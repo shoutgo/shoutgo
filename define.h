@@ -1,0 +1,514 @@
+#ifndef _DEFINE
+#define _DEFINE
+
+//_______ 头文件包含关系 ________
+//
+// define.h 
+//   utility.h 
+//     bitboard.h 
+//       itr.h 
+//       board.h 
+//   transptable.h
+//         infoboard.h 　
+//   search.h *
+//           targetsearch.h
+//   nn.h *
+//           learn.h 
+//             brain.h
+//		     tsumego.h 
+//		     fir.h 
+//               inout.h 
+//               test.h 
+//               go.h
+//
+//______有 * 者仅被紧邻的上级包含
+
+#include <iostream>		// VS2008
+#include <tchar.h>		// VS2008
+
+using namespace std; 
+
+#include <string>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+#include <vector>
+#include <map>
+#include <hash_map>
+#include <set>
+#include <bitset>
+#include <queue>
+
+#include <ctime>
+#include <cassert>
+#include <cmath>
+
+#include <iomanip>
+#include <fstream>
+#include <sstream>
+
+
+/*
+const enum	MODE_PRINT			{BOARD_P, BLOCK_P, BITB_P, ONEAREA_P}; 
+const enum	MODE_PRINTLABEL		{L_CLUSTER, L_AREA1, L_AREA2}; 
+*/
+const enum	MODE_PROMPT			{BEGINGAME, PREMOVE_MAN, AFTERMOVE_MAN, 
+								PREMOVE_PC, AFTERMOVE_PC, ENDGAME, BITSET}; 
+const enum	MODE_PLAY			{MAN_PC, PC_PC, MAN_MAN}; 
+
+const enum	MODE_RANDOMEYE		{LESS_LESS, BIGGER_LESS, 
+								LESS_LESS_CENTER, EQ_EQ}; 
+const enum	MODE_RANDOMBOARD	{LEGALIZE, ILLEGALIZE}; 
+const enum	DIRECTION			{EAST = 0, SOUTH = 1, WEST = 2, NORTH = 3, 
+								ES, EN, WS, WN, CENTER, DIRECTION_SIZE}; 
+const enum	COLOR				{BLACK, WHITE, EMPTY, BLACK_WHITE, 
+								HOTKO, NULL_CLR, COLOR_SIZE}; 
+const enum	ACTION				{AFTERDELETE, KILL, RESCUE, ACTION_SIZE}; 
+const enum	EYEKIND				{ENEMY_ALIVE, FALSEEYE, ONEEYE, CO_ONEEYE, 
+								CO_SOMEEYE, TWOEYE, SOMEEYE, MANYEYE, 
+								UNKOWN_WHENPASS}; 
+const enum  ROUTE				{R3 = 0, R4, R5, R4UP, R4DOWN, R4DOWN_EAST, 
+								R4DOWN_SOUTH, R4DOWN_WEST, R4DOWN_NORTH}; 
+const enum	STATE				{ALIVE, DEAD, UNCLEAR}; 
+const string eyekindname[]    = {"ENEMY_ALIVE", "FALSEEYE", "ONEEYE", 
+								"CO_ONEEYE", "CO_SOMEEYE", "TWOEYE", 
+								"SOMEEYE", "MANYEYE", "UNKOWN_WHENPASS"}; 
+
+extern	class	BITB; 
+extern	class	GO; 
+extern	class	LEARN; 
+
+typedef		int						VALUE; 
+typedef		unsigned				ROW, RGB, KEY, LIKELIHOOD; 
+typedef		unsigned long			UL; 
+typedef		unsigned long long		ULL; 
+typedef		float					ParaTYPE; //-//
+typedef		BITB					MASK, BLOCK; //, CHAIN, MASS, CLUSTER; 
+
+typedef		pair<int, ROW>			POS; 
+typedef		pair<int, int>			PII; 
+typedef		pair<unsigned, unsigned>	PUU; 
+typedef		pair<int, POS>			PIP; 
+typedef		pair<POS, COLOR>			MOVE; 
+typedef		pair<BITB, BITB>			PBB; 
+typedef		pair<BITB, COLOR>		PBC; 
+typedef		pair<GO, MASK>			PAT; 
+
+typedef		vector<int>				VI; 
+typedef		vector<unsigned>		VU; 
+typedef		vector<float>			VF; 
+typedef		vector<VI>				VVI; 
+typedef		vector<VF >				VVF; 
+typedef		vector<VVF >			VVVF; 
+typedef		vector<POS>				VP; 
+typedef		vector<VP>				VVP; 
+typedef		vector<BITB>			VB; 
+typedef		vector<MOVE>			VM; 
+typedef		vector<GO>				VG; 
+typedef		vector<COLOR>			VC; 
+typedef		vector<string>			VS; 
+typedef		vector<KEY>				VK; 
+typedef		vector<VK>				VVK; 
+
+typedef		map<POS, int>			MPI; 
+
+const       RGB			_I = 0x0080; 
+const       RGB			_B = 0x0010|_I; 
+const       RGB			_G = 0x0020|_I; 
+const       RGB			_R = 0x0040|_I; 
+const       RGB			_W = _R|_G|_B; 
+
+/*
+const       RGB			I = 0x0008; 
+const       RGB			B = 0x0001|I|_W; 
+const       RGB			G = 0x0002|I|_W; 
+const       RGB			R = 0x0004|I|_W; 
+const       RGB			W = _W; 
+*/
+
+const       RGB			I = 0x0008; 
+const       RGB			B = 0x0001|I; 
+const       RGB			G = 0x0002|I; 
+const       RGB			R = 0x0004|I; 
+const       RGB			W = (R|G|B)^I; 
+
+const		int			BS = 19; // max: 25
+const		float		KOMI = 7.5; 
+const		int			MIDBS = (BS-1)/2; 
+const       ROW			LEFTEST = 1<<(BS-1); 
+const		ROW			CENTEREST = 1<<(BS-1)/2; 
+const		ROW			ROWMASK = (1<<BS)-1; 
+const		POS			NULL_POS = make_pair(0, 0); 
+const		POS			PASS_POS = make_pair(BS, 0); 
+const		int			NULL_TAG = BS*BS; 
+const		MOVE		NULL_MOVE = make_pair(NULL_POS, NULL_CLR); 
+const		VP			NULL_VP; 
+const		int			NOINIT = INT_MIN; 
+/*
+const		string		GOPATH = "g:\\vc\\go\\"; 
+const		string		SGFPATH = "g:\\vc\\go\\sgf\\"; 
+const		string		LIBPATH = "g:\\vc\\go\\lib\\"; 
+static		char *		CMDPOS = "g:\\vc\\cmd.exe"; 
+static		char *		FONTPOS = "g:\\vc\\font\\font.exe"; 
+*/
+const		string		GOPATH = ""; 
+const		string		SGFPATH = "sgf\\"; 
+const		string		LIBPATH = "lib\\"; 
+static		char *		CMDPOS = "cmd.exe"; 
+static		char *		FONTPOS = "font.exe"; 
+
+/* _______________________________ 测试区 _______________________________ */
+
+#define MACRO_ALL			1
+
+#define MACRO_INIT			0
+
+#define MACRO_ASSERT		1
+#define MACRO_PARASSERT		0
+#define MACRO_FUNCOUNT		1
+#define MACRO_LINECOUNT		1
+#define MACRO_REPORT		1
+#define MACRO_COUT			1
+#define MACRO_TIME			1
+#define MACRO_CONTROL		1
+
+#define U_MACRO		1
+#define IO_MACRO	1
+#define ITR_MACRO	1
+#define BB_MACRO	1
+#define GO_MACRO	1
+#define INFO_MACRO	1
+#define L_MACRO		1
+#define NN_MACRO	1
+#define MACRO_T		1
+#define TS_MACRO	1
+#define TT_MACRO	1
+#define BR_MACRO	1
+#define F_MACRO		1
+#define TG_MACRO	1
+
+/* 验证宏：参数验证和正确性验证 */
+
+void ___assert(bool exp, string s, string _f_ = "", long _l_ = 0); 
+void ___parassert(bool exp, string s); 
+
+#if MACRO_ALL && MACRO_ASSERT  
+#define	___ASSERT(exp)		___assert(exp, #exp); 
+//#define	___ASSERT(exp)		  {	\
+//	swap(g_ctr, snap_ctr); \
+//	___assert(exp, #exp); \
+//	swap(g_ctr, snap_ctr); \
+//}
+//#define	___ASSERT(exp)		___assert(exp, #exp, __FILE__, __LINE__); 
+//#define ___ASSERT(exp)	assert(exp); 
+#define	___ASSERT2(exp, code)	___assert(exp, #exp); if (!(exp)) code 
+//#define	___ASSERT2(exp, code)  { \
+//	swap(g_ctr, snap_ctr); \
+//	___assert(exp, #exp); \
+//	if (!(exp))	code			\
+//	swap(g_ctr, snap_ctr); \
+//}
+#else
+#define ___ASSERT(exp)			{}
+#define ___ASSERT2(exp, code)	{}
+#endif
+
+#if MACRO_ALL && MACRO_PARASSERT
+#define	___PARASSERT(exp)		___parassert(exp, #exp); 
+//#define ___PARASSERT(exp)	  {	\
+//	swap(g_ctr, snap_ctr); \
+//	___parassert(exp, #exp); \
+//	swap(g_ctr, snap_ctr); \
+//}
+#else
+#define ___PARASSERT(exp)		{}
+#endif
+
+/* 报告宏：打印宏替换后的执行代码和执行结果 */
+
+#if MACRO_REPORT
+#define ___PRINT(code)					{	\
+	string s = #code; \
+	for (int p = 0; p<s.size (); ++p){			\
+		if (s.substr(p, 1) == "; ")				\
+			s.replace(p, 1, "; \n"); \
+	}										\
+	if (s[s.size()-1] == '\n')				\
+		s.erase(s.end()-1); \
+	cout<<" "<< s << endl; \
+}
+
+		// code 之后的语句有时不会到达，所以 code 内不应含 return
+		// 宏参数按逗号分割，所以 code 内也不能含非括号内的逗号
+#define ___REPORT(code)												\
+	cout<<"_________________________________________code:"<< endl; \
+	___PRINT(code)													\
+	cout<<"_________________________________________"<< endl; \
+	code															\
+	cout<<"_________________________________________end"<< endl; 
+#else
+#define ___REPORT(code)	code
+#endif
+
+/* 输出宏：输出变量，报告函数内部状态 */
+
+#if MACRO_ALL && MACRO_COUT
+		// 宏和模板只是替代，其内出现的类不必声明在前; 
+		// 多了参数可以，少了不行
+		// 注意宏名括号之前不能有空格
+template <class T>
+	void ___cout(T t, string s) {
+		if (typeid(T) == typeid(int) || 
+			typeid(T) == typeid(unsigned)	|| 
+			typeid(T) == typeid(float) || 
+			typeid(T) == typeid(double) || 
+			typeid(T) == typeid(ULL) || 
+			typeid(T) == typeid(POS) ||
+			typeid(T) == typeid(PUU) ||
+			typeid(T) == typeid(PII))
+			cout<<std::setw(20)<<std::left<< setx(G) << ( s + ": ")
+				<<setx(W)<< t << endl; 
+		else
+			cout<<setx(G)<< s <<": "<< endl
+				<<setx(W)<< t << endl; 
+	}
+
+#define ___COUT1(var)		___cout(var, #var); 
+#define ___COUT2(a, b)		{___COUT1(a)		___COUT1(b)}
+#define ___COUT3(a, b, c)		{___COUT2(a, b)		___COUT1(c)}
+#define ___COUT4(a, b, c, d)	{___COUT3(a, b, c)	___COUT1(d)}
+#define ___COUT5(a, b, c, d, e)	{___COUT4(a, b, c, d)	___COUT1(e)}
+#define ___COUT6(a, b, c, d, e, f)			{___COUT5(a, b, c, d, e)		\
+										___COUT1(f)}
+#define ___COUT7(a, b, c, d, e, f, g)			{___COUT5(a, b, c, d, e)		\
+										___COUT2(f, g)}
+#define ___COUT8(a, b, c, d, e, f, g, h)		{___COUT5(a, b, c, d, e)		\
+										___COUT3(f, g, h)}
+#define ___COUT9(a, b, c, d, e, f, g, h, i)		{___COUT5(a, b, c, d, e)		\
+										___COUT4(f, g, h, i)}
+#define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{___COUT5(a, b, c, d, e)		\
+										___COUT5(f, g, h, i, j)}
+#else
+#define ___COUT1(var)					{}
+#define ___COUT2(a, b)					{}
+#define ___COUT3(a, b, c)					{}
+#define ___COUT4(a, b, c, d)				{}
+#define ___COUT5(a, b, c, d, e)				{}
+#define ___COUT6(a, b, c, d, e, f)			{}
+#define ___COUT7(a, b, c, d, e, f, g)			{}
+#define ___COUT8(a, b, c, d, e, f, g, h)		{}
+#define ___COUT9(a, b, c, d, e, f, g, h, i)		{}
+#define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{}
+#endif
+
+/* 计数宏：函数执行次数或执行到达位置 */
+
+#if MACRO_ALL && MACRO_FUNCOUNT
+//#define ___FUNCOUNT(fun)	g_ctr.addfcount(fun); 
+//#define ___FUNCOUNT(fun)	g_ctr.addfcount(fun); st_g_ctr.addfcount(fun); 
+#define ___FUNCOUNT(fun)	{		\
+	g_ctr.addfcount(fun); \
+	g_ctr.setfname(fun, #fun); \
+	g_ctr.setftrack(fun); \
+}		
+#else
+#define ___FUNCOUNT(fun)	{}
+#endif
+
+#if MACRO_ALL && MACRO_LINECOUNT
+#define ___LINECOUNT(i)		g_ctr.setlcount(i); 
+//#define ___LINECOUNT(i)	{g_ctr.setlcount(i); st_g_ctr.setlcount(i); } 
+#else
+#define ___LINECOUNT(i)		{}
+#endif
+
+/* 计时宏 */
+
+#if MACRO_ALL && MACRO_TIME
+#define ___TIME(id, code)								\
+	if (which == "" || which == #id ){						\
+		g_ctr.setfname(id, #id); \
+		tested_ctr.setfcountone(id, snap_ctr.fcount[id]); \
+		___.tic(g_ctr.fname[id], snap_ctr.fcount[id]); \
+		for(int i = 0; i<snap_ctr.fcount[id]; ++i)			\
+			{code}										\
+		___.toc(); \
+	}
+#else
+#define ___TIME(id, code)	{}
+#endif
+
+/* 控制宏 */
+
+#if MACRO_ALL && MACRO_CONTROL
+#include "conio.h"	// _kbhit() _getch()						// VS2008
+#define ___ESC	if ( _kbhit() && ( _getch() == 0x1b ) )	break; 
+#else 
+#define ___ESC	{}
+#endif
+
+/* 时间类 */
+
+class TIMER{							
+private:
+	unsigned	ticat; 
+	int			dif; 
+public:
+	TIMER():ticat(clock()), dif(0){ }	
+	void	tic(string s = "", int n = 1); 
+	void	toc(); 
+	void	set_(); 
+	void	silenttic_(); 
+	void	silenttoc_(); 
+}; 
+
+/* 计数类 */
+
+const int  FUN_MAX = 100; 
+const enum FUNGROUP		{FU = 0, FBB, FGO, FINFO, FIO, FITR, FF, FTG, 
+						FS, FTS, FTT, FNN, FL, FBR, FSIZE}; 
+		// 原则：不使 test.h 被包含, 所以计数器类也置于此
+class COUNTER {		
+public:
+	static const int TRACK_MAX = 1000; 
+	static const int LINE_MAX = 100; 
+public:
+	VS			 fname; 
+	VI			 fcount; 
+	deque<int>	 ftrack; 
+	VI			 lcount; 
+
+public:
+	COUNTER(); 
+	void clear(); 
+    void reportfcount(FUNGROUP fg = FSIZE); 
+	void reportftrack(int n = 100); 
+	void setlcount(int n); 
+	void setfcountall(int n); 
+	template <typename T>
+		void setfname(T id, string s){
+			if (fname[int(id)].empty ())
+				fname[int(id)] = s; 
+	}
+	template <typename T>
+		void setftrack(T id){
+			ftrack.pop_front(); //-// 多余？
+			ftrack.push_back((int)id); 
+	}
+	template <typename T>
+		void setfcountone(T id, int n){
+			fcount[id] = n; 
+		}
+	template <typename T>
+		void addfcount(T id){
+			++ fcount[id]; 
+		}
+
+	friend COUNTER operator - (const COUNTER& a, const COUNTER& c); 
+}; 
+
+/* 随机器类 */
+
+class RANDER {
+public:
+	VI			vi; 
+	VU			vu; 
+	VP			vp; 
+	VS			vs; 
+	vector<DIRECTION>	vd; 
+	vector<COLOR>		vc; 
+	vector<ACTION>		va; 
+	VB			vb; 
+	VG			vg; 
+public:
+	RANDER(int n = 6, int nb = 4, int ng = 1); 
+}; 
+
+/* _______________________________ 非测试区 _______________________________ */
+
+
+/* 初始化类*/
+
+class INIT {
+private:
+	VP			i2p; 
+	VVP			i2near4; 
+	MPI			p2i; 
+	map<POS, VP> p2near4; 
+
+	VVI			id8; 
+	VVI			q8; 
+	VB			josekimask; 
+	VU			xrand; 
+	VU			orand; 
+	map<KEY, MOVE> key2rand; 
+	VB			route; 
+
+public:
+    bool		inited; 
+
+public:
+	INIT(); 
+
+	void	seti2p(); 
+	void	seti2near4(); 
+	void	setp2i(); 
+	void	setp2near4(); 
+
+	POS		getp(int i) const; 
+	VP		getnear4(int i)const; 
+	int		geti(const POS& p); 
+	VP&		getnear4(const POS& p); 
+
+	void	setzobristmask(int width = MIDBS-1); 
+	void	set_xorand_key2rand(); 
+	void	set_id8_q8(); 
+
+	void	swap_id8_q8(int i, int j); 
+	void	swap_xorand(); 
+
+	BITB	getjosekimask(int i) const; 
+	KEY		getrand(const POS& pos, COLOR clr); 
+	MOVE&	getmove(KEY key); 
+	int		getq8(int i) const; 
+
+	void	setroute(); 
+	BITB	getroute(ROUTE r); 
+
+	bool	load_xorand_key2rand(string filename); 
+	bool	save_xorand(string filename); 
+}; 
+
+/* 组合类 */
+
+#include "stdarg.h"		// va_list va_start() va_arg() va_end()		// VS2008
+
+
+template <typename T, typename S>
+class BIND {
+public:
+	vector<T> vt; 
+	vector<T>& operator()(int numb, ...){
+		va_list ptr; 
+		va_start(ptr, numb); 
+		while(numb--){
+			S t va_arg(ptr, S); 
+			vt.push_back(static_cast<T>(t)); 
+		}
+		va_end(ptr); 
+		return vt; 
+	}
+}; 
+
+/* 全局变量 */
+
+static COUNTER		st_g_ctr; 
+
+extern TIMER		___, gametimer; 
+extern COUNTER		g_ctr, err_ctr, snap_ctr, tested_ctr; 
+extern INIT			g_init; 
+extern LEARN		g_learn; 
+
+#endif
+
+

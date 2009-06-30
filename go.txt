@@ -1,0 +1,168 @@
+A FSM been loaded from g:\vc\go\lib\pemis .
+A FSM been loaded from g:\vc\go\lib\zobrist0 .
+A FSM been loaded from g:\vc\go\lib\zobrist1 .
+A FSM been loaded from g:\vc\go\lib\zobrist2 .
+A FSM been loaded from g:\vc\go\lib\zobrist3 .
+A FSM been loaded from g:\vc\go\lib\pemis .
+A FSM been loaded from g:\vc\go\lib\zobrist0 .
+A FSM been loaded from g:\vc\go\lib\zobrist1 .
+A FSM been loaded from g:\vc\go\lib\zobrist2 .
+A FSM been loaded from g:\vc\go\lib\zobrist3 .
+A FSM been loaded from g:\vc\go\lib\zobrist4 .
+A FSM been loaded from g:\vc\go\lib\zobrist5 .
+A FSM been loaded from g:\vc\go\lib\zobrist6 .
+A FSM been loaded from g:\vc\go\lib\zobrist7 .
+A FSM been loaded from g:\vc\go\lib\zobrist8 .
+All FSMs been loaded .
+
+>> thesis
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼○┼┼┼┼┼╋┼┼┼┼┼●┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼●┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼●┼┼┨16
+17┠┼┼○┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+棋盘与棋子
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯●┯○○┯●●○●┯┯○┯┯┯●┓ 1
+ 2┠┼○○┼○┼┼┼○┼┼●┼○┼○○● 2
+ 3○┼○┼○┼○●●○○●●┼○○┼┼┨ 3
+ 4┠○┼○○┼●┼┼╋┼●┼○┼╋┼●┨ 4
+ 5●┼●┼○●┼●┼┼●┼┼┼┼┼┼┼┨ 5
+ 6○┼○┼○●●┼●●┼○○┼○○┼┼● 6
+ 7┠●○┼┼┼●●┼┼┼┼●○○○●┼● 7
+ 8○○┼●●●○┼●●○┼●┼┼○○┼┨ 8
+ 9┠┼●┼○┼●○●○┼○┼●┼●●○● 9
+10●┼●○┼○┼┼┼●●○●┼○●●○┨10
+11●┼┼○○○┼┼○●┼●○┼○●●┼●11
+12┠┼●┼●┼┼┼┼●○●●┼┼┼┼┼┨12
+13┠○┼●┼●┼┼┼○●○┼┼┼┼┼┼┨13
+14┠○○○●┼○┼○○┼○┼○●┼┼┼┨14
+15┠○┼○┼○┼●┼┼○┼○●○●●┼┨15
+16┠○┼╋○┼○┼○●●○○●┼╋●○┨16
+17●┼┼┼●┼●○○●●┼○┼○┼●○○17
+18┠┼○○┼○○○┼○┼┼┼┼○┼○┼●18
+19●┷┷○┷○┷○┷┷●┷┷●┷┷●┷○19
+   S R Q P O N M L K J I H G F E D C B A
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼○┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼○○⊙┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼○●⊙┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼○●●⊙┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼⊙●●⊙┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼○⊙┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+气
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼○┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼○○○┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼○┼○┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼○●●○┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼○●●○┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼○○┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+禁着点
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼●○┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼●╋●○┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼●○┼┨17
+18●○┼┼┼┼┼┼┼●○┼┼┼┼┼┼┼┨18
+19┗●○┷┷┷┷┷●┷●○┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+劫
+A FSM been loaded from g:\vc\go\lib\pemis .
+A FSM been loaded from g:\vc\go\lib\zobrist0 .
+A FSM been loaded from g:\vc\go\lib\zobrist1 .
+A FSM been loaded from g:\vc\go\lib\zobrist2 .
+A FSM been loaded from g:\vc\go\lib\zobrist3 .
+A FSM been loaded from g:\vc\go\lib\zobrist4 .
+A FSM been loaded from g:\vc\go\lib\zobrist5 .
+A FSM been loaded from g:\vc\go\lib\zobrist6 .
+A FSM been loaded from g:\vc\go\lib\zobrist7 .
+A FSM been loaded from g:\vc\go\lib\zobrist8 .
+All FSMs been loaded .
+
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+
+> Selected the [19] sgf file .
+wrong when selecting sgf file !
+
+>>
+>>
+>>
+>>
+>>
+>>
