@@ -2,6 +2,7 @@
 #define _TRANSPTABLE
 
 #include "define.h"
+#include "bitboard.h"
 
 /* class FSM */
 
@@ -129,8 +130,7 @@ public:
 	}
 
 	bool operator()(const BITB& bb1, const BITB& bb2) const	{	
-		//2009// return bb1 < bb2; 
-		return 1;
+		return bb1 < bb2; 
 	}
 }; 
 

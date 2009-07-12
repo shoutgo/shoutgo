@@ -7,12 +7,21 @@ VVF	NN::producedata(int m, int n){
 	float xrange = 100; 
 	//2009//datayx.assign (m, 0); 
 	srand((unsigned)time(0)); 
+	//for (int i = 0; i<m; ++i){
+	//	for (int j = 0; j<n; ++j)
+	//		if (j == 0) 
+	//			datayx[i].push_back (fmod((float)rand(), yrange)); 
+	//		else
+	//			datayx[i].push_back (fmod((float)rand(), xrange)); 
+	//}
 	for (int i = 0; i<m; ++i){
+		VF vf;
 		for (int j = 0; j<n; ++j)
 			if (j == 0) 
-				datayx[i].push_back (fmod((float)rand(), yrange)); 
+				vf.push_back (fmod((float)rand(), yrange)); 
 			else
-				datayx[i].push_back (fmod((float)rand(), xrange)); 
+				vf.push_back (fmod((float)rand(), xrange)); 
+		datayx.push_back(vf);
 	}
 	return datayx; 
 }
@@ -37,6 +46,7 @@ VF			NN::linear_genetic(){
 	INOUT().save2txt(datayx, "datayx.txt"); //
 	srand((unsigned)time(0)); 
 	w = randvvf(ALLPOPU, n); 
+	tmpw = w; //addby2009
     for (int iterate = 0; ; ++iterate){						
 		for (int times = 0; times<(ALLPOPU/2); ++times){
 			tu = w[POPU-1-randsqrt(POPU)]; 

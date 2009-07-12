@@ -68,7 +68,8 @@ void COUNTER::setlcount(int p){
 
 void COUNTER::clear (){	 	
 	COUNTER cntr = COUNTER(); //2009//
-	swap(cntr, *this); 
+	swap(cntr, *this); //2009//
+	//swap(COUNTER(), *this); 
 }
 
 void COUNTER::reportfcount(FUNGROUP fg){

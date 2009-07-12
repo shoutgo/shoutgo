@@ -275,9 +275,9 @@ void testc (){
 		// 这个整数由's''r''r''h'拼接, 不能超过 5 个
 		// a 为 char 类型时取最后 8 位，故还是 'h'
 	___REPORT(
-		int a = 'srrh'; 
-		char b = a; 
-		___COUT2(a, b); 
+	//	int a = 'srrh'; 
+	//	char b = a; 
+	//	___COUT2(a, b); 
 		); 
 		// 浮点数按位读为unsigned
 	___REPORT(							

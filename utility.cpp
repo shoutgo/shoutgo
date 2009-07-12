@@ -706,9 +706,15 @@ VVF	randvvf(int m, int n){
 	___FUNCOUNT( U_RANDVVF); 
 	VVF vv; 
 	//2009// vv.assign (m, 0); 
-	for (int i = 0; i<m; ++i)
+	//for (int i = 0; i<m; ++i)
+	//	for (int j = 0; j<n; ++j)
+	//		vv[i].push_back ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
+	for (int i = 0; i<m; ++i){
+		VF vf;
 		for (int j = 0; j<n; ++j)
-			vv[i].push_back ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
+			vf.push_back ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
+		vv.push_back(vf);
+	}
 	return vv; 
 }
 
@@ -716,10 +722,20 @@ VVVF	randvvvf_(int m, int n, int l){
 	___FUNCOUNT( U_RANDVVVF); 
 	VVVF vvv; 
 	//2009// vvv.assign (m, 0); //-//
-	for (int i = 0; i<m; ++i)
-		for (int j = 0; j<n; ++j)
+	//for (int i = 0; i<m; ++i)
+	//	for (int j = 0; j<n; ++j)
+	//		for (int k = 0; k<l; ++k)
+	//			vvv[i][j].push_back ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
+	for (int i = 0; i<m; ++i){
+		VVF vvf;
+		for (int j = 0; j<n; ++j){
+			VF vf;
 			for (int k = 0; k<l; ++k)
-				vvv[i][j].push_back ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
+				vf.push_back ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
+			vvf.push_back(vf);
+		}
+		vvv.push_back(vvf);
+	}
 	return vvv; 
 }
 
