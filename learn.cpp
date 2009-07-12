@@ -25,7 +25,6 @@ LEARN::LEARN(string sgfpath){
 		learn (vf); 
 	}
 }
-LEARN		g_learn; 
 
 LEARN::~LEARN(){
 	VS  vf = INOUT().getfilename(LIBPATH, "*"); 

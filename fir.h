@@ -32,9 +32,9 @@ public:
 
 }; 
 
-inline bool		ppless(const PIP & m1, const PIP & m2); 
-inline VI		link4(BITB b, POS p); 
-inline int		link(BITB b, POS p); 
+/*inline*/ bool		ppless(const PIP & m1, const PIP & m2); 
+/*inline*/ VI		link4(BITB b, POS p); 
+/*inline*/ int		link(BITB b, POS p); 
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 

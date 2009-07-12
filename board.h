@@ -35,15 +35,15 @@ public:
 
 public:
 
-	inline	BITB	getbb( COLOR ) const; 
-	inline	BITB	getkill( ) const; 
-	inline	POS		gethotko( ) const; 
-	inline	POS		getlastpos( ) const; 
-	inline	COLOR	getlastclr( ) const; 
-	inline	int		gethistory( ) const; 
+	/*inline*/	BITB	getbb( COLOR ) const; 
+	/*inline*/	BITB	getkill( ) const; 
+	/*inline*/	POS		gethotko( ) const; 
+	/*inline*/	POS		getlastpos( ) const; 
+	/*inline*/	COLOR	getlastclr( ) const; 
+	/*inline*/	int		gethistory( ) const; 
 
-	inline	COLOR	color( const POS& )	const; 
-	inline	COLOR	turn( )	const; 
+	/*inline*/	COLOR	color( const POS& )	const; 
+	/*inline*/	COLOR	turn( )	const; 
 	/*
 	GO		snap() const; 
 	void	restore(const GO&); 

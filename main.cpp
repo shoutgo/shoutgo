@@ -7,10 +7,19 @@
 TIMER	___, gametimer; 
 COUNTER g_ctr, err_ctr, snap_ctr, tested_ctr; 
 INIT	g_init; 
+//TIMER	___=TIMER();
+//TIMER	gametimer=TIMER(); 
+//COUNTER g_ctr=COUNTER();
+//COUNTER err_ctr=COUNTER();
+//COUNTER snap_ctr=COUNTER();
+//COUNTER tested_ctr=COUNTER(); 
+//INIT	g_init=INIT(); 
+
 COMMAND g_cmd; 
 LEARN	g_learn; 
 
-int  _tmain(int argc, _TCHAR* argv[]) {
+//int  _tmain(int argc, _TCHAR* argv[]) {
+int  main(int argc, char* argv[]) {
 
 	command(BIND<string, char*>()(1, " ")); 
 
@@ -33,7 +42,7 @@ void command(VS in){
 			break; 
 
 		case CMD_C:
-			system( CMDPOS ); 
+			//system( CMDPOS ); 
 			break; 
 
 		case THESIS_C:
@@ -69,7 +78,7 @@ void command(VS in){
 			break; 
 
 		case FONT_C:
-			system( FONTPOS ); 
+			//system( FONTPOS ); 
 			break; 
 
 		case SAVECODE_C:
