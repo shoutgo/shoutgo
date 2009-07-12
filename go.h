@@ -2,6 +2,7 @@
 #define GO_
 
 #include "brain.h"	
+#include "inout.h"	
 
 /* global function */
 
@@ -17,7 +18,7 @@ template <class T>	void sgftree();
 
 /* class COMMAND */
 
-const enum {
+enum {
 	HELP_C, VERSION_C, CMD_C, THESIS_C, FONT_C, SAVECODE_C, 
 	PLAY_C, FIR_C, REVIEW_C, SGFTREE_C, INPUTPAT_C, 
 	ACTIVE_C, TRACK_C, COUNTERSET_C, COUNTER_C, TIME_C, SIZE_C, 

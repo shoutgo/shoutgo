@@ -4,7 +4,7 @@
 #include "targetsearch.h"
 #include "learn.h"
 
-const enum PRINCIPLE {
+enum PRINCIPLE {
 	DUIKANG, //对抗原则
 	HUANWEISIKAO, //换位思考原则
 	RENNAI, //忍耐原则
@@ -83,7 +83,7 @@ public:
 
 /* _______________________________ 测试区 _______________________________ */
 
-const enum	BR_FUN	{
+enum	BR_FUN	{
 	BR_BRAIN = FBR*FUN_MAX, BR_FUN_SIZE}; 
 
 class TEST_BR {

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "brain.h"
 #include "inout.h"
 

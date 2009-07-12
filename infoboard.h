@@ -191,7 +191,7 @@ public:
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	INFO_FUN	{
+enum	INFO_FUN	{
 	INFO_INFOGO1 = FINFO * FUN_MAX, 
 	INFO_INFOGO2, INFO_SCAN, INFO_MOVE, 
 	INFO_PARTITION, INFO_LASTPARTITION, INFO_CLUSTER, 

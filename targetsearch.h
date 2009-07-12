@@ -6,7 +6,7 @@
 
 /* class AIMGRAPH */
 
-const enum AIM {
+enum AIM {
 	ROOT, 
 		HIS_CLUSTER, 
 			GE, //
@@ -198,7 +198,7 @@ public:
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	TS_FUN	{TS_TARGETSEARCH = FTS*FUN_MAX, TS_FUN_SIZE}; 
+enum	TS_FUN	{TS_TARGETSEARCH = FTS*FUN_MAX, TS_FUN_SIZE}; 
 
 class TEST_TS {
 public:

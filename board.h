@@ -86,7 +86,7 @@ public:
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	GO_FUN	{ 
+enum	GO_FUN	{ 
 	GO_GO1 = FGO*FUN_MAX, 
 	GO_GO2, GO_GO3, GO_GO4, GO_RANDOM, GO_ADD, GO_LEGALIZE, 
 	GO_SNAP, GO_RESTORE, GO_TRANSPOSE, GO_ROTATE, GO_PEMIS3232, 

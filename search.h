@@ -109,7 +109,7 @@ public:
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	S_FUN	{
+enum	S_FUN	{
 	S_SEARCH = FS* FUN_MAX, S_FUN_SIZE }; 
 
 class TEST_S {

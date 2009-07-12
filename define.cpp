@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "define.h"
 #include "bitboard.h"
 #include "board.h"
@@ -17,7 +16,7 @@ void ___assert(bool exp, string s, string _f_, long _l_){
 
 void ___parassert(bool exp, string s){
 	if (!exp){
-		cerr << setx(R|G) << "___parassert(" << s << ") is failure ! "
+		cerr << setx(R) << "___parassert(" << s << ") is failure ! "
 			<< setx(W) << endl; 
 		err_ctr = g_ctr; //-//
 		//err_ctr = snap_ctr; 
@@ -46,8 +45,11 @@ void TIMER::silenttoc_(){
 	ticat = clock(); 
 }		
 
+const int COUNTER::TRACK_MAX = 1000;
+const int COUNTER::LINES_MAX = 100;
+
 COUNTER::COUNTER(){
-	lcount.assign (LINE_MAX, 0); 
+	lcount.assign (LINES_MAX, 0); 
 	fcount.assign (FSIZE*FUN_MAX, 0); 
 	fname.assign (FSIZE*FUN_MAX, ""); 
 	ftrack.assign (TRACK_MAX, -1); 
@@ -58,14 +60,15 @@ void COUNTER::setfcountall(int n){
 }
 
 void COUNTER::setlcount(int p){
-	___PARASSERT( p < LINE_MAX ); 
+	___PARASSERT( p < LINES_MAX ); 
 	++ lcount[p]; 
 	cout<<"lcount["<< setx(G) <<p <<setx(W) <<"]: "
 		<< setx(G) << lcount[p] <<setx(W) << endl; 
 }
 
 void COUNTER::clear (){	 	
-	swap(COUNTER(), *this); 
+	COUNTER cntr = COUNTER(); //2009//
+	swap(cntr, *this); 
 }
 
 void COUNTER::reportfcount(FUNGROUP fg){
@@ -336,3 +339,9 @@ void INIT::setroute(){
 BITB INIT::getroute(ROUTE r){
 	return route[r]; 
 }
+
+ostream& operator<< (ostream & os, setx s){
+	os << s.c;
+	return os; 
+}
+

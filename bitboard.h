@@ -117,7 +117,7 @@ const	BITB	FULL_BB = ~NULL_BB;
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	BB_FUN	{ 
+enum	BB_FUN	{ 
 	BB_BITB1 = FBB*FUN_MAX, 
 	BB_BITB2, BB_BITB3, BB_RANDOM, BB_ONLY, BB_COUNT, BB_BLOCKCOUNT, 
 	BB_BLOCKAT, BB_TRANSPOSE, BB_ROTATE, BB_RANGE, BB_RANGEMASK, 

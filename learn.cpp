@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "learn.h"
 #include "inout.h"
-#include "windows.h"	// Sleep()	// VS2008
+#include <unistd.h>	// sleep()	// VS2008
 
 /* class LEARN */
 
@@ -26,6 +25,7 @@ LEARN::LEARN(string sgfpath){
 		learn (vf); 
 	}
 }
+LEARN		g_learn; 
 
 LEARN::~LEARN(){
 	VS  vf = INOUT().getfilename(LIBPATH, "*"); 
@@ -52,7 +52,7 @@ LEARN::~LEARN(){
 			lib_zobrist[7 ].save( LIBPATH + "zobrist7"); 
 			lib_zobrist[8 ].save( LIBPATH + "zobrist8"); 
 			clog << "All FSM been saved ." << endl; 
-			Sleep(2000); 
+			sleep(2000); 
 			
 		}
 }

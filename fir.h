@@ -7,8 +7,8 @@
 
 class FIR :public INFOGO {
 public:
-	static const int	FIRNUM = 4; 
-	static const int	FIR_MAX = 10000; 
+	static const int	FIRNUM; 
+	static const int	FIR_MAX; 
 	int			nodenum; 
 	VP			vecp; 
 public:
@@ -38,7 +38,7 @@ inline int		link(BITB b, POS p);
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	F_FUN	{F_FIR = FF*FUN_MAX, F_FUN_SIZE}; 
+enum	F_FUN	{F_FIR = FF*FUN_MAX, F_FUN_SIZE}; 
 
 class TEST_F {
 public:

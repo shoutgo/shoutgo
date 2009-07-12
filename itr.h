@@ -61,7 +61,7 @@ public:
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	ITR_FUN	{
+enum	ITR_FUN	{
 	ITR_ITR1 = FITR*FUN_MAX, 
 	ITR_ITR2, ITR_IOPOSBEGIN, ITR_IOPOSNEXT, 
 	ITR_IOPOSEND, ITR_POSBEGIN, ITR_POSNEXT, ITR_POSEND, 

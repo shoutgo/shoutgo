@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "transptable.h"
 #include "targetsearch.h"
 #include "inout.h"

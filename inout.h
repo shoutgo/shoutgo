@@ -8,14 +8,6 @@
 #include "fir.h"
 #include "nn.h"
 
-class setx {
-private:
-	RGB c; 
-public:
-	setx(RGB x):c(x){}
-	friend ostream& operator<< (ostream& os, setx& s); 
-}; 
-
 class  INOUT{
 public:
 	bool axisshow; 
@@ -27,7 +19,7 @@ public:
 	string	axis( const POS& pos) const; 
 	void	print( const GO& go, const BITB& mask = FULL_BB); 
 	void	print( const GO& go, const GO& markgo, 
-					RGB xxc = R|B, RGB ooc = G|B, RGB xoc = R|G); 
+					RGB xxc = B, RGB ooc = G, RGB xoc = R); 
 	/*
 	string	axis ( string board); 
 	string	print__ ( const GO&, const BITB& markbb = NULL_BB, 
@@ -112,21 +104,19 @@ template <typename T>
 //
 template <typename T> 
 	void	INOUT::save(const T& t, string filename){	
-		___FUNCOUNT( IO_SAVE4); 
 		ofstream	file(filename.c_str (), ios::binary); 
 		if (!file) 
 			cerr<< filename << " : open fail !"<< endl; 
-		file.write((char*)&t, sizeof T); 
+		file.write((char*)&t, sizeof(T)); 
 		file.close(); 
 	}
 
 template <typename T> 
 	void	INOUT::load(T& t, string filename){	
-		___FUNCOUNT( IO_LOAD); 
 		ifstream file(filename.c_str (), ios::binary); 
 		if (!file) 
 			cerr<< filename << " : open fail !"<< endl; 
-		file.read((char*)&t, sizeof T); 
+		file.read((char*)&t, sizeof(T)); 
 		file.close(); 
 		
 	}
@@ -139,7 +129,7 @@ template <typename T>
 		int m = vt.size (); 
 		file.write((char*)&m, sizeof(int)); 
 		for (int i = 0; i<vt.size (); ++i)
-			file.write((char*)&vt[i], sizeof T); 
+			file.write((char*)&vt[i], sizeof(T)); 
 		//file.close(); 
 	}
 
@@ -153,7 +143,7 @@ template <typename T>
 		vt.clear (); 
 		file.read ((char*)&m, sizeof(int)); 
 		for (int i = 0; i< m; ++i){
-			file.read((char*)&t, sizeof T); 
+			file.read((char*)&t, sizeof(T)); 
 			vt.push_back (t); 
 		}
 		//file.close(); 
@@ -170,7 +160,7 @@ template <typename T>
 			int n = vvt[i].size (); 
 			file.write((char*)&n, sizeof(int)); 
 			for (int j = 0; j<n; ++j)
-				file.write((char*)&vvt[i][j], sizeof T); 
+				file.write((char*)&vvt[i][j], sizeof(T)); 
 		}
 		//file.close(); 
 	}
@@ -188,7 +178,7 @@ template <typename T>
 			file.read((char*)&n, sizeof(int)); 
 			vector<T> vt; 
 			for (int j = 0; j<n; ++j){
-				file.read((char*)&t, sizeof T); 
+				file.read((char*)&t, sizeof(T)); 
 				vt.push_back (t); 
 			}
 			vvt.push_back (vt); 
@@ -240,7 +230,7 @@ ostream& operator<<(ostream& os, const pair<T, S> pts){
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	IO_FUN	{
+enum	IO_FUN	{
 	IO_LOGO = FIO * FUN_MAX, IO_AXIS, 
 	IO_GRID, IO_PRINTBITBOARD, IO_PRINT1, IO_PRINT2, IO_PRINTBLOCK, 
 	IO_PRINTLIBERTYSITE, IO_PRINTLIBERTY, IO_PRINTPARTITION, 

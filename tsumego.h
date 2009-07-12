@@ -62,7 +62,7 @@ public:
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	TG_FUN	{
+enum	TG_FUN	{
 	TG_TSUMEGO = FTG*FUN_MAX, TG_FUN_SIZE}; 
 
 class TEST_TG {

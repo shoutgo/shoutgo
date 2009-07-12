@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "bitboard.h"
 #include "itr.h"
 #include "inout.h"

@@ -65,7 +65,7 @@ public:
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	L_FUN	{
+enum	L_FUN	{
 	L_LEARN = FL* FUN_MAX, L_FUN_SIZE}; 
 
 class TEST_L {

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "nn.h"  
 #include "inout.h"
 
@@ -6,7 +5,7 @@
 VVF	NN::producedata(int m, int n){
 	float yrange = 5000.1; 
 	float xrange = 100; 
-	datayx.assign (m, 0); 
+	//2009//datayx.assign (m, 0); 
 	srand((unsigned)time(0)); 
 	for (int i = 0; i<m; ++i){
 		for (int j = 0; j<n; ++j)
@@ -28,8 +27,8 @@ VF			NN::linear_genetic(){
 	int ITERATE_MAX = 30; 
 	VVF w; 
 	VVF tmpw; 
-	w.assign (ALLPOPU, 0); 
-	tmpw.assign (ALLPOPU, 0); 
+	//2009//w.assign (ALLPOPU, 0); 
+	//2009//tmpw.assign (ALLPOPU, 0); 
 	VF tu; 
 	VF tv; 
 	float bias; 

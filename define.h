@@ -24,7 +24,7 @@
 //______有 * 者仅被紧邻的上级包含
 
 #include <iostream>		// VS2008
-#include <tchar.h>		// VS2008
+//#include <tchar.h>		// VS2008
 
 using namespace std; 
 
@@ -42,44 +42,48 @@ using namespace std;
 #include <ctime>
 #include <cassert>
 #include <cmath>
+#include <climits>
 
 #include <iomanip>
 #include <fstream>
 #include <sstream>
 
+#include <typeinfo>
 
 /*
-const enum	MODE_PRINT			{BOARD_P, BLOCK_P, BITB_P, ONEAREA_P}; 
-const enum	MODE_PRINTLABEL		{L_CLUSTER, L_AREA1, L_AREA2}; 
+enum	MODE_PRINT			{BOARD_P, BLOCK_P, BITB_P, ONEAREA_P}; 
+enum	MODE_PRINTLABEL		{L_CLUSTER, L_AREA1, L_AREA2}; 
 */
-const enum	MODE_PROMPT			{BEGINGAME, PREMOVE_MAN, AFTERMOVE_MAN, 
-								PREMOVE_PC, AFTERMOVE_PC, ENDGAME, BITSET}; 
-const enum	MODE_PLAY			{MAN_PC, PC_PC, MAN_MAN}; 
+enum	MODE_PROMPT			{BEGINGAME, PREMOVE_MAN, AFTERMOVE_MAN, 
+  							PREMOVE_PC, AFTERMOVE_PC, ENDGAME, BITSET}; 
+enum	MODE_PLAY			{MAN_PC, PC_PC, MAN_MAN}; 
 
-const enum	MODE_RANDOMEYE		{LESS_LESS, BIGGER_LESS, 
-								LESS_LESS_CENTER, EQ_EQ}; 
-const enum	MODE_RANDOMBOARD	{LEGALIZE, ILLEGALIZE}; 
-const enum	DIRECTION			{EAST = 0, SOUTH = 1, WEST = 2, NORTH = 3, 
-								ES, EN, WS, WN, CENTER, DIRECTION_SIZE}; 
-const enum	COLOR				{BLACK, WHITE, EMPTY, BLACK_WHITE, 
-								HOTKO, NULL_CLR, COLOR_SIZE}; 
-const enum	ACTION				{AFTERDELETE, KILL, RESCUE, ACTION_SIZE}; 
-const enum	EYEKIND				{ENEMY_ALIVE, FALSEEYE, ONEEYE, CO_ONEEYE, 
-								CO_SOMEEYE, TWOEYE, SOMEEYE, MANYEYE, 
-								UNKOWN_WHENPASS}; 
-const enum  ROUTE				{R3 = 0, R4, R5, R4UP, R4DOWN, R4DOWN_EAST, 
-								R4DOWN_SOUTH, R4DOWN_WEST, R4DOWN_NORTH}; 
-const enum	STATE				{ALIVE, DEAD, UNCLEAR}; 
+enum	MODE_RANDOMEYE		{LESS_LESS, BIGGER_LESS, 
+  							LESS_LESS_CENTER, EQ_EQ}; 
+enum	MODE_RANDOMBOARD	{LEGALIZE, ILLEGALIZE}; 
+enum	DIRECTION			{EAST = 0, SOUTH = 1, WEST = 2, NORTH = 3, 
+  							ES, EN, WS, WN, CENTER, DIRECTION_SIZE}; 
+enum	COLOR				{BLACK, WHITE, EMPTY, BLACK_WHITE, 
+  							HOTKO, NULL_CLR, COLOR_SIZE}; 
+enum	ACTION				{AFTERDELETE, KILL, RESCUE, ACTION_SIZE}; 
+enum	EYEKIND				{ENEMY_ALIVE, FALSEEYE, ONEEYE, CO_ONEEYE, 
+  							CO_SOMEEYE, TWOEYE, SOMEEYE, MANYEYE, 
+  							UNKOWN_WHENPASS}; 
+enum  ROUTE				{R3 = 0, R4, R5, R4UP, R4DOWN, R4DOWN_EAST, 
+  							R4DOWN_SOUTH, R4DOWN_WEST, R4DOWN_NORTH}; 
+enum	STATE				{ALIVE, DEAD, UNCLEAR}; 
 const string eyekindname[]    = {"ENEMY_ALIVE", "FALSEEYE", "ONEEYE", 
 								"CO_ONEEYE", "CO_SOMEEYE", "TWOEYE", 
 								"SOMEEYE", "MANYEYE", "UNKOWN_WHENPASS"}; 
 
-extern	class	BITB; 
-extern	class	GO; 
-extern	class	LEARN; 
+class	BITB; 
+class	GO; 
+class	LEARN; 
+
+typedef		string				RGB;
 
 typedef		int						VALUE; 
-typedef		unsigned				ROW, RGB, KEY, LIKELIHOOD; 
+typedef		unsigned				ROW, KEY, LIKELIHOOD; 
 typedef		unsigned long			UL; 
 typedef		unsigned long long		ULL; 
 typedef		float					ParaTYPE; //-//
@@ -112,25 +116,25 @@ typedef		vector<VK>				VVK;
 
 typedef		map<POS, int>			MPI; 
 
+/*
 const       RGB			_I = 0x0080; 
 const       RGB			_B = 0x0010|_I; 
 const       RGB			_G = 0x0020|_I; 
 const       RGB			_R = 0x0040|_I; 
 const       RGB			_W = _R|_G|_B; 
-
-/*
-const       RGB			I = 0x0008; 
-const       RGB			B = 0x0001|I|_W; 
-const       RGB			G = 0x0002|I|_W; 
-const       RGB			R = 0x0004|I|_W; 
-const       RGB			W = _W; 
 */
-
+/*
 const       RGB			I = 0x0008; 
 const       RGB			B = 0x0001|I; 
 const       RGB			G = 0x0002|I; 
 const       RGB			R = 0x0004|I; 
 const       RGB			W = (R|G|B)^I; 
+*/
+
+const string R = "\033[1;33;44m";
+const string G = "\033[1;32;43m";
+const string B = "\033[1;32;44m";
+const string W = "\033[0m";
 
 const		int			BS = 19; // max: 25
 const		float		KOMI = 7.5; 
@@ -154,8 +158,18 @@ static		char *		FONTPOS = "g:\\vc\\font\\font.exe";
 const		string		GOPATH = ""; 
 const		string		SGFPATH = "sgf\\"; 
 const		string		LIBPATH = "lib\\"; 
-static		char *		CMDPOS = "cmd.exe"; 
-static		char *		FONTPOS = "font.exe"; 
+//2009//static		char *		CMDPOS = "cmd.exe"; 
+//2009//static		char *		FONTPOS = "font.exe"; 
+const		string		CMDPOS = "cmd.exe"; 
+const		string		FONTPOS = "font.exe"; 
+
+class setx {
+private:
+	RGB c; 
+public:
+	setx(RGB x):c(x){}
+	friend ostream& operator<< (ostream& os, setx s); 
+}; 
 
 /* _______________________________ 测试区 _______________________________ */
 
@@ -341,8 +355,9 @@ template <class T>
 /* 控制宏 */
 
 #if MACRO_ALL && MACRO_CONTROL
-#include "conio.h"	// _kbhit() _getch()						// VS2008
-#define ___ESC	if ( _kbhit() && ( _getch() == 0x1b ) )	break; 
+//#include "conio.h"	// _kbhit() _getch()						// VS2008
+//#define ___ESC	if ( _kbhit() && ( _getch() == 0x1b ) )	break; 
+#define ___ESC	{}
 #else 
 #define ___ESC	{}
 #endif
@@ -365,13 +380,14 @@ public:
 /* 计数类 */
 
 const int  FUN_MAX = 100; 
-const enum FUNGROUP		{FU = 0, FBB, FGO, FINFO, FIO, FITR, FF, FTG, 
+enum FUNGROUP		{FU = 0, FBB, FGO, FINFO, FIO, FITR, FF, FTG, 
 						FS, FTS, FTT, FNN, FL, FBR, FSIZE}; 
 		// 原则：不使 test.h 被包含, 所以计数器类也置于此
 class COUNTER {		
 public:
-	static const int TRACK_MAX = 1000; 
-	static const int LINE_MAX = 100; 
+	static const int LINES_MAX; 
+	static const int TRACK_MAX; 
+
 public:
 	VS			 fname; 
 	VI			 fcount; 
@@ -492,7 +508,7 @@ public:
 		va_list ptr; 
 		va_start(ptr, numb); 
 		while(numb--){
-			S t va_arg(ptr, S); 
+			S t = va_arg(ptr, S); 
 			vt.push_back(static_cast<T>(t)); 
 		}
 		va_end(ptr); 

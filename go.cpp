@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "go.h"
 #include "inout.h"
 

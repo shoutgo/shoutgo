@@ -86,9 +86,9 @@ public:
 			cerr<< filename << " : open fail !"<< endl; 
 			return 0; 
 		}
-		INOUT().save(father, file); 
-		INOUT().save(sons, file); 
-		INOUT().save(freq, file); 
+		//INOUT().save(father, file); 
+		//INOUT().save(sons, file); 
+		//INOUT().save(freq, file); 
 		file.close (); 
 		clog<< "A FSM been saved in "<< filename << " ."<< endl; 
 		return 1; 
@@ -99,9 +99,9 @@ public:
 			cerr<< filename << " : open fail !"<< endl; 
 			return 0; 
 		}
-		INOUT().load(father, file); 
-		INOUT().load(sons, file); 
-		INOUT().load(freq, file); 
+		//INOUT().load(father, file); 
+		//INOUT().load(sons, file); 
+		//INOUT().load(freq, file); 
 		file.close (); 
 		clog<< "A FSM been loaded from "<<filename <<" ."<< endl; 
 		return 1; 
@@ -129,7 +129,8 @@ public:
 	}
 
 	bool operator()(const BITB& bb1, const BITB& bb2) const	{	
-		return bb1 < bb2; 
+		//2009// return bb1 < bb2; 
+		return 1;
 	}
 }; 
 
@@ -155,7 +156,7 @@ public:
 
 /* class TERM */
 
-const enum SHAPETERM {
+enum SHAPETERM {
 	CHONG_TM, //冲
 	JIA2_TM, //夹
 	YA_TM, //压
@@ -218,7 +219,7 @@ const enum SHAPETERM {
 	TIAO_TM, //跳
 };
 
-const enum SHAPELIBTERM{
+enum SHAPELIBTERM{
 	PANJIAOQUSI_TM, //盘角曲四
 	DAERHUANYI_TM, //打二还一
 	JINJIDULI_TM, //金鸡独立
@@ -227,7 +228,7 @@ const enum SHAPELIBTERM{
 	ZHANGSINIU_TM, //胀死牛
 }; 
 
-const enum LIBTERM{
+enum LIBTERM{
 	DA3_TM, //打
 	FANDA_TM, //反打
 	SHUANGDA_TM, //双打
@@ -249,7 +250,7 @@ public:
 
 /* _______________________________ 测试区 _______________________________ */
 
-const enum	TT_FUN	{
+enum	TT_FUN	{
 	TT_TRANSPTABLE = FTT* FUN_MAX, TT_FUN_SIZE}; 
 
 class TEST_TT {

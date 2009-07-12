@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "search.h"							
 #include "inout.h"
 

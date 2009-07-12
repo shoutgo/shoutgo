@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "utility.h"
 #include "bitboard.h"
 #include "itr.h"
@@ -706,7 +705,7 @@ VF	randvf(int m){
 VVF	randvvf(int m, int n){  
 	___FUNCOUNT( U_RANDVVF); 
 	VVF vv; 
-	vv.assign (m, 0); 
+	//2009// vv.assign (m, 0); 
 	for (int i = 0; i<m; ++i)
 		for (int j = 0; j<n; ++j)
 			vv[i].push_back ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
@@ -716,7 +715,7 @@ VVF	randvvf(int m, int n){
 VVVF	randvvvf_(int m, int n, int l){  
 	___FUNCOUNT( U_RANDVVVF); 
 	VVVF vvv; 
-	vvv.assign (m, 0); //-//
+	//2009// vvv.assign (m, 0); //-//
 	for (int i = 0; i<m; ++i)
 		for (int j = 0; j<n; ++j)
 			for (int k = 0; k<l; ++k)
@@ -778,12 +777,14 @@ UL rand32(UL & Seed, UL Multiplier) {
 } 
 UL longmulmod(UL Multiplier, UL Multiplicand, UL Divisor) {
   UL Result; 
+  /*
   __asm {
     mov eax, Multiplier; 
     mul Multiplicand; 
     div Divisor; 
     mov Result, edx; 
   }
+  */
   return Result; 
 }
 

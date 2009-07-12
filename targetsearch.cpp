@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "targetsearch.h"  
 #include "inout.h"
 #include "go.h"

@@ -1,8 +1,8 @@
-#include "stdafx.h"
 #include "inout.h" 
-#include "io.h"
-#include "windows.h"	// GetStdHandle() SetConsoleTextAttribute()	// VS2008
-#include "direct.h"		// _mkdir()									// VS2008
+#include "stdio.h"
+#include <unistd.h>	// GetStdHandle() SetConsoleTextAttribute()	// VS2008
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #if		IO_MACRO == 0
 #undef	___FUNCOUNT
@@ -692,9 +692,10 @@ string	INOUT::readbuf(string filename){
 
 void	INOUT::savecode(string path){	
 	___FUNCOUNT( IO_SAVECODE); 
+	/*
 	LPSTR s = new TCHAR[256]; 
 	wsprintf(s, "%u", (unsigned)time(0)); 
-	::_mkdir(s); 
+	::mkdir(s,0777); 
 	VS	h = getfilename (path, "*.h"); 
 	VS	cpp = getfilename (path, "*.cpp"); 
 	VS  txt = getfilename (path, "*.txt"); 
@@ -708,6 +709,7 @@ void	INOUT::savecode(string path){
 		all[i].replace(all[i].begin(), all[i].begin()+path.length(), ""); 
 		save2txt ( tmp, path + string(s) + "\\" + all[i]); 
 	}
+	*/ //2009//
 }
 
 
@@ -977,6 +979,7 @@ VS		INOUT::getfilename(string path, string type){
 	___FUNCOUNT( IO_GETFILENAME); 
 	//-// ÎÞ´íÎó¼ì²â
 	VS vecf; 
+	/*
     struct _finddata_t c_file; 
     long hFile; 
 	hFile = _findfirst( (path+type).c_str(), &c_file ); 
@@ -984,6 +987,7 @@ VS		INOUT::getfilename(string path, string type){
 	while( _findnext( hFile, &c_file ) == 0 )  
 		vecf.push_back(path+(string)(c_file.name)); 
     _findclose( hFile ); 
+    */ //2009//
 	return vecf; 
 }
 
@@ -1189,12 +1193,6 @@ ostream& operator<<(ostream& os, MPI m){
 		if (p.second == 1)	cout<< endl; 
 	}
 	cout<< endl; 
-	return os; 
-}
-
-ostream& operator<< (ostream & os, setx& s){
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE); 
-	SetConsoleTextAttribute(hStdOut, s.c); 
 	return os; 
 }
 

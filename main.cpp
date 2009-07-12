@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "go.h"
 #include "tsumego.h"
 #include "fir.h"

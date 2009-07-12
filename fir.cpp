@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "fir.h"
 #include "inout.h"
 
@@ -10,6 +9,9 @@
 																		//从而每处选点都一样；
 																		//而人类认识不到，反而认为有最好点，
 																		//造成程序没有搜索正确的假象。
+const int	FIRNUM = 4; 
+const int	FIR_MAX = 10000; 
+
 PIP FIR::minmax(int n){								
 	++nodenum; //cout<<"n = "<<n<< endl<<(*this); // fine
 	if (n == 0)

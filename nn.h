@@ -35,7 +35,7 @@ public:
 
 /* _______________________________ ²âÊÔÇø _______________________________ */
 
-const enum	NN_FUN	{NN_NN = FNN*FUN_MAX, NN_FUN_SIZE}; 
+enum	NN_FUN	{NN_NN = FNN*FUN_MAX, NN_FUN_SIZE}; 
 
 class TEST_NN {
 public:
