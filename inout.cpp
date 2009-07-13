@@ -975,11 +975,27 @@ GO	INOUT::frommatlab(string filename) {
 	return go.rotate(270); 
 }
 
+VS	 INOUT::getfilename(string path, string type){
+	         string command = "ls " + path + type + " > tmp";
+	         system(command.c_str());
+	         string names = readbuf("tmp");
+	         int p;
+	         VS vecs;
+	         string tmps;
+	         while ((p= names.find_first_of ("\n")) != names.npos ) {
+	                    tmps = names.substr (0, p),
+	     		    names.replace(0,p+1,""),
+	     		    vecs.push_back(tmps);
+		 }
+	         system("rm -f tmp");
+	         return vecs;
+	 }
+
+	/*
 VS		INOUT::getfilename(string path, string type){	
 	___FUNCOUNT( IO_GETFILENAME); 
 	//-// ÎÞ´íÎó¼ì²â
 	VS vecf; 
-	/*
     struct _finddata_t c_file; 
     long hFile; 
 	hFile = _findfirst( (path+type).c_str(), &c_file ); 
@@ -987,9 +1003,9 @@ VS		INOUT::getfilename(string path, string type){
 	while( _findnext( hFile, &c_file ) == 0 )  
 		vecf.push_back(path+(string)(c_file.name)); 
     _findclose( hFile ); 
-    */ //2009//
 	return vecf; 
 }
+    */ //2009//
 
 string INOUT::selectsgf(string path){
 	VS vf = INOUT().getfilename( path, "*.sgf"); 

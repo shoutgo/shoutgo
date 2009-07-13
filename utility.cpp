@@ -800,7 +800,8 @@ UL longmulmod(UL Multiplier, UL Multiplicand, UL Divisor) {
     div Divisor; 
     mov Result, edx; 
   }
-  */
+  */ //2009//
+  Result = (Multiplicand * Multiplier) % Divisor; 
   return Result; 
 }
 

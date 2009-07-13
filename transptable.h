@@ -4,6 +4,8 @@
 #include "define.h"
 #include "bitboard.h"
 
+class INOUT;
+
 /* class FSM */
 
 // _________________________________

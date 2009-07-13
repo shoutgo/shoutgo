@@ -62,8 +62,7 @@ public:
 	SGFROOT*		sgf2tree(string filename); 
 	GO				frommatlab(string filename = "forypgo.txt"); 
 	void			infop2sgf(INFOGO* infop, string filename);
-	string			_infop2sgf(INFOGO* infop);
-
+	string			_infop2sgf(INFOGO* infop); 
 	void			savecode(string path = GOPATH ); 
 	/*
 	void            save2txt(string content, string filename = "go.txt"); 

@@ -156,8 +156,8 @@ static		char *		CMDPOS = "g:\\vc\\cmd.exe";
 static		char *		FONTPOS = "g:\\vc\\font\\font.exe"; 
 */
 const		string		GOPATH = ""; 
-const		string		SGFPATH = "sgf\\"; 
-const		string		LIBPATH = "lib\\"; 
+const		string		SGFPATH = "sgf/"; 
+const		string		LIBPATH = "lib/"; 
 //2009//static		char *		CMDPOS = "cmd.exe"; 
 //2009//static		char *		FONTPOS = "font.exe"; 
 const		string		CMDPOS = "cmd.exe"; 
