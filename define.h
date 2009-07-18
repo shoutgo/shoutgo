@@ -23,9 +23,6 @@
 //
 //______有 * 者仅被紧邻的上级包含
 
-#include <iostream>		// VS2008
-//#include <tchar.h>		// VS2008
-
 using namespace std; 
 
 #include <string>
@@ -47,13 +44,10 @@ using namespace std;
 #include <iomanip>
 #include <fstream>
 #include <sstream>
+#include <iostream>		// VS2008
 
 #include <typeinfo>
 
-/*
-enum	MODE_PRINT			{BOARD_P, BLOCK_P, BITB_P, ONEAREA_P}; 
-enum	MODE_PRINTLABEL		{L_CLUSTER, L_AREA1, L_AREA2}; 
-*/
 enum	MODE_PROMPT			{BEGINGAME, PREMOVE_MAN, AFTERMOVE_MAN, 
   							PREMOVE_PC, AFTERMOVE_PC, ENDGAME, BITSET}; 
 enum	MODE_PLAY			{MAN_PC, PC_PC, MAN_MAN}; 
@@ -117,13 +111,6 @@ typedef		vector<VK>				VVK;
 typedef		map<POS, int>			MPI; 
 
 /*
-const       RGB			_I = 0x0080; 
-const       RGB			_B = 0x0010|_I; 
-const       RGB			_G = 0x0020|_I; 
-const       RGB			_R = 0x0040|_I; 
-const       RGB			_W = _R|_G|_B; 
-*/
-/*
 const       RGB			I = 0x0008; 
 const       RGB			B = 0x0001|I; 
 const       RGB			G = 0x0002|I; 
@@ -163,31 +150,15 @@ public:
 
 /* _______________________________ 测试区 _______________________________ */
 
-#define MACRO_ALL			1
+#define MACRO_ALL		1
 
-#define MACRO_INIT			0
+#define MACRO_INIT		0
 
 #define MACRO_ASSERT		1
 #define MACRO_PARASSERT		0
 #define MACRO_REPORT		1
-#define MACRO_COUT			1
-#define MACRO_TIME			1
+#define MACRO_COUT		1
 #define MACRO_CONTROL		1
-
-#define U_MACRO		1
-#define IO_MACRO	1
-#define ITR_MACRO	1
-#define BB_MACRO	1
-#define GO_MACRO	1
-#define INFO_MACRO	1
-#define L_MACRO		1
-#define NN_MACRO	1
-#define MACRO_T		1
-#define TS_MACRO	1
-#define TT_MACRO	1
-#define BR_MACRO	1
-#define F_MACRO		1
-#define TG_MACRO	1
 
 /* 验证宏：参数验证和正确性验证 */
 
@@ -198,38 +169,20 @@ void ___parassert(bool exp, string s);
 #define	___ASSERT(exp)		___assert(exp, #exp); 
 #define	___ASSERT2(exp, code)	___assert(exp, #exp); if (!(exp)) code 
 #else
-#define ___ASSERT(exp)			{}
+#define ___ASSERT(exp)		{}
 #define ___ASSERT2(exp, code)	{}
 #endif
 
 #if MACRO_ALL && MACRO_PARASSERT
-#define	___PARASSERT(exp)		___parassert(exp, #exp); 
+#define	___PARASSERT(exp)	___parassert(exp, #exp); 
 #else
-#define ___PARASSERT(exp)		{}
+#define ___PARASSERT(exp)	{}
 #endif
 
 /* 报告宏：打印宏替换后的执行代码和执行结果 */
 
 #if MACRO_REPORT
-#define ___PRINT(code)					{	\
-	string s = #code; \
-	for (int p = 0; p<s.size (); ++p){			\
-		if (s.substr(p, 1) == "; ")				\
-			s.replace(p, 1, "; \n"); \
-	}										\
-	if (s[s.size()-1] == '\n')				\
-		s.erase(s.end()-1); \
-	cout<<" "<< s << endl; \
-}
-
-		// code 之后的语句有时不会到达，所以 code 内不应含 return
-		// 宏参数按逗号分割，所以 code 内也不能含非括号内的逗号
-#define ___REPORT(code)												\
-	cout<<"_________________________________________code:"<< endl; \
-	___PRINT(code)													\
-	cout<<"_________________________________________"<< endl; \
-	code															\
-	cout<<"_________________________________________end"<< endl; 
+#define ___REPORT(code)	code
 #else
 #define ___REPORT(code)	code
 #endif
@@ -275,29 +228,19 @@ template <class T>
 #else
 #define ___COUT1(var)					{}
 #define ___COUT2(a, b)					{}
-#define ___COUT3(a, b, c)					{}
+#define ___COUT3(a, b, c)				{}
 #define ___COUT4(a, b, c, d)				{}
 #define ___COUT5(a, b, c, d, e)				{}
 #define ___COUT6(a, b, c, d, e, f)			{}
 #define ___COUT7(a, b, c, d, e, f, g)			{}
 #define ___COUT8(a, b, c, d, e, f, g, h)		{}
 #define ___COUT9(a, b, c, d, e, f, g, h, i)		{}
-#define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{}
-#endif
-
-/* 计时宏 */
-
-#if MACRO_ALL && MACRO_TIME
-#define ___TIME(id, code)	{}
-#else
-#define ___TIME(id, code)	{}
+#define ___COUT10(a, b, c, d, e, f, g, h, i, j)		{}
 #endif
 
 /* 控制宏 */
 
 #if MACRO_ALL && MACRO_CONTROL
-//#include "conio.h"	// _kbhit() _getch()						// VS2008
-//#define ___ESC	if ( _kbhit() && ( _getch() == 0x1b ) )	break; 
 #define ___ESC	{}
 #else 
 #define ___ESC	{}
@@ -308,7 +251,7 @@ template <class T>
 class TIMER{							
 private:
 	unsigned	ticat; 
-	int			dif; 
+	int		dif; 
 public:
 	TIMER():ticat(clock()), dif(0){ }	
 	void	tic(string s = "", int n = 1); 
@@ -336,7 +279,6 @@ public:
 }; 
 
 /* _______________________________ 非测试区 _______________________________ */
-
 
 /* 初始化类*/
 
@@ -394,7 +336,6 @@ public:
 
 #include "stdarg.h"		// va_list va_start() va_arg() va_end()		// VS2008
 
-
 template <typename T, typename S>
 class BIND {
 public:
@@ -413,9 +354,8 @@ public:
 
 /* 全局变量 */
 
-
 extern TIMER		___, gametimer; 
-extern INIT			g_init; 
+extern INIT		g_init; 
 extern LEARN		g_learn; 
 
 #endif

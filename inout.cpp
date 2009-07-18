@@ -4,11 +4,6 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#if		IO_MACRO == 0
-#undef	___TIME
-#define ___TIME(code)	{}
-#endif
-
 // ┠┷┯┨┿┼╋╬┳┻┫┣
 // ●○⊙■□▲△▼▽◆◇★☆◎☉
 // ⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇

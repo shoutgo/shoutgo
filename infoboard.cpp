@@ -1,11 +1,6 @@
 #include "infoboard.h"
 #include "inout.h"
 
-#if		INFO_MACRO == 0
-#undef	___TIME
-#define ___TIME(code)	{}
-#endif
-
 /* class INCREMENT */
 
 INCREMENT::INCREMENT(){

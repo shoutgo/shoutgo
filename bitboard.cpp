@@ -2,21 +2,6 @@
 #include "itr.h"
 #include "inout.h"
 
-#if		BB_MACRO == 0
-#undef  ___ASSERT
-#define ___ASSERT(var) {}
-#undef  ___PARASSERT
-#define ___PARASSERT(var) {}
-#undef  ___REPORT
-#define ___REPORT(code) {}
-//#undef  ___COUT1 ... 10
-//#define ___COUT1 ... 10 {}
-#undef  ___ESC
-#define ___ESC {}
-#undef	___TIME
-#define ___TIME(code)	{}
-#endif
-
 BITB::BITB(ROW x){   
 	for (int i = 0; i<BS; ++i)
 		r[i] = x; 
@@ -435,11 +420,9 @@ PUU BITB::pemis3232_(const BITB& patmask) const {
 	vector<short> vecs; 
 	BITB patbb = blockon(patmask); 
 	BITB mask = patbb.pemismask(); 
-	//___COUT4(*this, patmask, patbb, mask); 
 	ITR itr(patbb); 
 	for (POS p = itr.stonebegin (); !itr.stoneend (); p = itr.stonenext())
 		vecs.push_back((BITB(p).dilate(1)&patbb).count() + onboarder(p)*BS); //
-	//___COUT1(vecs); 
 	short a, c; 
 	for(int i = 0; i<BS; ++i){
 		if(patbb.r[i]){
@@ -448,7 +431,6 @@ PUU BITB::pemis3232_(const BITB& patmask) const {
 			vecs.push_back (a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
 		}
 	}
-	//___COUT1(vecs); 
 	patbb = patbb.transpose (); 
 	mask = mask.transpose (); 
 	for(int i = 0; i<BS; ++i){
@@ -458,7 +440,6 @@ PUU BITB::pemis3232_(const BITB& patmask) const {
 			vecs.push_back (a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
 		}
 	}
-	//___COUT1(vecs); 
 	unsigned high32 = 0, low32 = 1; 
 	for(int i = 0; i<vecs.size (); ++i) {							
 		high32 = high32*vecs[i] + mulhigh32(low32, vecs[i]); 
@@ -476,11 +457,9 @@ ULL	BITB::pemis64_(const BITB& patmask) const {
 	ULL tmp = 1; 
 	BITB patbb = blockon(patmask); 
 	BITB mask = patbb.pemismask(); 
-	//___COUT4(*this, patmask, patbb, mask); 
 	ITR itr(patbb); 
 	for (POS p = itr.stonebegin (); !itr.stoneend (); p = itr.stonenext()){
 		tmp *= (ULL)((BITB(p).dilate(1)&patbb).count() + onboarder(p)*BS); //	
-		//___COUT2(1, tmp); 
 	}																				
 	int a, c; 
 	for(int i = 0; i<BS; ++i){
@@ -488,18 +467,15 @@ ULL	BITB::pemis64_(const BITB& patmask) const {
 			a = nleadingzero(patbb.r[i])+BS-32; 
 			c = ntailzero(patbb.r[i]); 
 			tmp *= (ULL)(a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
-		//___COUT2(2, tmp); 
 		}
 	}																					
 	patbb = patbb.transpose (); 
 	mask = mask.transpose (); 
-	//___COUT2(patbb, mask); 
 	for(int i = 0; i<BS; ++i){
 		if(patbb.r[i]){
 			a = nleadingzero(patbb.r[i])+BS-32; 
 			c = ntailzero(patbb.r[i]); 
 			tmp *= (ULL)(a*((mask.r[i]&LEFTEST)>0)+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
-		//___COUT2(3, tmp); 
 		}
 	}																					
 	return tmp + (ULL)(patbb.rangemask().count()); 

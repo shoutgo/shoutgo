@@ -1,11 +1,6 @@
 #include "itr.h"  
 #include "inout.h"
 
-#if		ITR_MACRO == 0
-#undef	___TIME
-#define ___TIME(code)	{}
-#endif
-
 ITR::ITR():pp(make_pair(0, 0)){	
 }
 ITR::ITR(const BITB& b):bb(b){	
