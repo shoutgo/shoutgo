@@ -72,9 +72,9 @@ VF			NN::linear_genetic(){
 			bias += w[i][0]; 
 		if (bias<100000)	break; 
 		if (iterate>ITERATE_MAX) break; 
-														//cout<<"linear: "<<iterate
-														//	<<"  bias: "<<(bias/POPU)
-														//	<<"  best: "<<w[0][0]<< endl; 
+											//cout<<"linear: "<<iterate
+											//	<<"  bias: "<<(bias/POPU)
+											//	<<"  best: "<<w[0][0]<< endl; 
 														___ESC;
 	}													
 	___.toc();
@@ -167,10 +167,10 @@ void					NN::perception_genetic(){
 			bias += w[i].fitness; 
 		if (bias<100000)	break; 
 		if (iterate>ITERATE_MAX) break; 
-														//cout<<"perception: "<<iterate
-														//	<<"  bias: "<<(bias/POPU)
-														//	<<"  best: "<<w[0].fitness << endl; 
-														___ESC;
+							//cout<<"perception: "<<iterate
+							//	<<"  bias: "<<(bias/POPU)
+							//	<<"  best: "<<w[0].fitness << endl; 
+							___ESC;
 	}								
 	___.toc();
 }

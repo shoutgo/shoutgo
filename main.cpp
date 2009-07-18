@@ -6,10 +6,10 @@
 
 TIMER	___, gametimer; 
 INIT	g_init; 
-COMMAND g_cmd; 
 LEARN	g_learn; 
 
-//int  _tmain(int argc, _TCHAR* argv[]) {
+COMMAND g_cmd; 
+
 int  main(int argc, char* argv[]) {
 
 	command(BIND<string, char*>()(1, " ")); 
@@ -28,7 +28,7 @@ void command(VS in){
 		
 		case VERSION_C:
 			cout<< "ShoutGo 1.0 " << endl
-				<< "by Yappy (yappy555@tom.com)" << endl
+				<< "by ShoutGo (shoutgo@gmail.com)" << endl
 				<< "All rights reserved " << endl; 
 			break; 
 
@@ -57,7 +57,7 @@ void command(VS in){
 			break; 
 
 		default:
-; 
+			; 
 	}
 
 	command_test(in); 

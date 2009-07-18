@@ -156,7 +156,7 @@ public:
 #define MACRO_CONTROL		1
 
 #define MACRO_CODEUNIT		1
-#define MACRO_COUT		0
+#define MACRO_COUT		1
 
 /* 验证宏：参数验证和正确性验证 */
 

@@ -1,17 +1,17 @@
 #include "fir.h"
 #include "inout.h"
 
-																		//性能优化可能大大提高速度，
-																		//但表现在搜索层次上可能只增加一两层，
-																		//因为后一层的结点数量远远大于上一层。
-
-																		//搜索到一定程度程序可能已经认识到必输，
-																		//从而每处选点都一样；
-																		//而人类认识不到，反而认为有最好点，
-																		//造成程序没有搜索正确的假象。
 const int	FIR::FIRNUM = 4; 
 const int	FIR::FIR_MAX = 10000; 
 
+	//性能优化可能大大提高速度，
+	//但表现在搜索层次上可能只增加一两层，
+	//因为后一层的结点数量远远大于上一层。
+
+	//搜索到一定程度程序可能已经认识到必输，
+	//从而每处选点都一样；
+	//而人类认识不到，反而认为有最好点，
+	//造成程序没有搜索正确的假象。
 PIP FIR::minmax(int n){								
 	++nodenum; //cout<<"n = "<<n<< endl<<(*this); // fine
 	if (n == 0)
@@ -45,7 +45,7 @@ PIP FIR::alphabeta(int n, int alpha, int beta){
 */
 
 /*
-PIP FIR::minmax(int n){								//速度似乎有提高，但搜索范围太局限导致结果不正确
+PIP FIR::minmax(int n){		//速度似乎有提高，但搜索范围太局限导致结果不正确
 	++nodenum; //cout<<(*this); // fine
 	if (n == 0)
 		return leafvalue(); 
@@ -80,7 +80,7 @@ void FIR::scope(int a){
 		vecp.push_back (pos); 
 }
 
-PIP FIR::leafvalue(){									//注意这里可以调用minmax()继续搜索
+PIP FIR::leafvalue(){		//注意这里可以调用minmax()继续搜索
 	VI vi, vj; //cout<<vecp.size (); 
 	vi = link4(getbb(getlastclr()), lastpos); 
 	INFOGO info = snap(); //
@@ -122,7 +122,7 @@ bool ppless(const PIP & m1, const PIP & m2) {
 	return m1.first < m2.first; 
 }
 
-VI link4(BITB b, POS p){								// direction: -\|/
+VI link4(BITB b, POS p){	// direction: -\|/
 	VI vi; 
 	vi.reserve(4); // 比 vi.assign(4, 0) 性能大大提高，其它处尚未优化
 	vi.push_back( popu(rowexpand(b.r[p.first], p.second))); 

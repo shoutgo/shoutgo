@@ -138,7 +138,7 @@ int PATFREQ::getf(const POS& pos, COLOR clr, int i) const{
 
 /* class INFOGO */
 
-INFOGO::INFOGO():father(0) {			//-// 
+INFOGO::INFOGO():father(0) {		//-// 
 }
 
 INFOGO::INFOGO(const GO& go):father(0){ //-//
@@ -174,7 +174,7 @@ INCREMENT INFOGO::scan() const {
 					NULL_TAG : pos2i(blk.tag()); 
 		int		m = pos2i(p); 
 		tmp.settag(m, tag); 
-		// ___ASSERT( inc.gettag (m) == tag); 
+		___ASSERT( inc.gettag (m) == tag); 
 	}
 	for (POS p = itr.posbegin (); !itr.posend (); p = itr.posnext ()){
 		COLOR	clr = color(p); 
@@ -188,13 +188,11 @@ INCREMENT INFOGO::scan() const {
 		tmp.setlibertysite(m, libsite); 
 		tmp.setliberty (m, lib); 
 		tmp.setenemysite(m, ene); 
-		/*
 		___ASSERT( inc.getcontent (m) == blk ); 
 		___ASSERT( inc.getenemysite (m) == ene ); 
 		___ASSERT( inc.getlibertysite (m) == libsite ); 
 		___ASSERT( inc.getliberty (m) == lib ); 
 		___ASSERT( inc.getcolor (m) == clr ); 
-		*/
 	}
 	return tmp; 
 }

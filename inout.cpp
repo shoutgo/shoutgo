@@ -1,6 +1,6 @@
 #include "inout.h" 
 #include "stdio.h"
-#include <unistd.h>	// GetStdHandle() SetConsoleTextAttribute()	// VS2008
+#include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
