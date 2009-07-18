@@ -36,16 +36,4 @@ public:
 /*inline*/ VI		link4(BITB b, POS p); 
 /*inline*/ int		link(BITB b, POS p); 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	F_FUN	{F_FIR = FF*FUN_MAX, F_FUN_SIZE}; 
-
-class TEST_F {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void active(){ 
-	}  
-}; 
-
 #endif

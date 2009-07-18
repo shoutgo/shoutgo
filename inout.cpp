@@ -5,8 +5,6 @@
 #include <sys/types.h>
 
 #if		IO_MACRO == 0
-#undef	___FUNCOUNT
-#define ___FUNCOUNT(fun) {}
 #undef	___TIME
 #define ___TIME(code)	{}
 #endif
@@ -35,7 +33,6 @@ INOUT::INOUT(bool b):axisshow(b){
 }
 
 string     INOUT::logo_() {	
-	___FUNCOUNT( IO_LOGO); 
 	static string s = ""; 
 		s += " -+    -+    ++ \n"; 
 		s += "   ●┯┯┯○   \n"; 
@@ -48,7 +45,6 @@ string     INOUT::logo_() {
 }
 
 string   INOUT::grid(const POS& pos) {	
-	___FUNCOUNT( IO_GRID); 
 	int		 r = pos.first; 
 	ROW		 p = pos.second; 
 	if (r == 0 && p == LEFTEST)		{return "┏"; }
@@ -69,7 +65,6 @@ string   INOUT::grid(const POS& pos) {
 }
 
 POS		 INOUT::in2pos(const POS& pos, string in) {	
-	___FUNCOUNT( IO_IN2POS); 
 
 	POS p = ai2pos(in); 
 	if (p != NULL_POS)
@@ -112,7 +107,6 @@ POS		 INOUT::in2pos(const POS& pos, string in) {
 }
 
 POS		 INOUT::jj2pos(string in, const POS& pp){	
-	___FUNCOUNT( IO_JJ2POS); 
 	string op; 
 	int    n0, n3, n4; 
 	n0 = in[0]-'0'; n3 = in[3]-'0'; n4 = in[4]-'0'; 
@@ -131,7 +125,6 @@ POS		 INOUT::jj2pos(string in, const POS& pp){
 }
 
 string INOUT::axis(const POS& pos) const {
-	___FUNCOUNT( IO_AXIS); 
 	if (!axisshow)
 		return "  "; 
 	//static string h = "ＺＹＸＷＶＵＴＳＲＱＰＯＮＭＬＫＪＩＨＧＦＥＤＣＢＡ";
@@ -151,7 +144,6 @@ string INOUT::axis(const POS& pos) const {
 }
 
 void	INOUT::print(const GO& go, const BITB& mask) {	
-	___FUNCOUNT( IO_PRINT1); 
 	string s; 
 	ITR itr; 
 	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
@@ -185,7 +177,6 @@ void	INOUT::print(const GO& go, const BITB& mask) {
 }
 
 void	INOUT::print(const GO& go, const GO& markgo, RGB xxc, RGB ooc, RGB xoc) {	
-	___FUNCOUNT( IO_PRINT2); 
 	string s; 
 	ITR itr; 
 	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
@@ -242,7 +233,6 @@ string	INOUT::axis (string board) {
 
 string   INOUT::print__(const GO& go, const BITB& bb, 
 					  const POS& pp, MODE_PRINT mode) {	
-	___FUNCOUNT( IO_PRINT); 
 	for (int i = 0; i<BS; ++i) 
 		___ASSERT((go.xx.r [i]| go.oo.r [i]) <= ROWMASK); 
 	string s = ""; 
@@ -306,7 +296,6 @@ string   INOUT::print__(const GO& go, const BITB& bb,
 }
 
 string   INOUT::printbitboard(const BITB& bb) {	
-	___FUNCOUNT( IO_PRINTBITBOARD); 
 	string s; 
 	ITR itr; 
 	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
@@ -328,7 +317,6 @@ string   INOUT::printbitboard(const BITB& bb) {
 /*
 string	 INOUT::printlabel ( const GO& go, 
 							const pair<VB, VB >& pvv, MODE_PRINTLABEL mode) {	
-	___FUNCOUNT( IO_PRINTLABEL); 
 	string black = "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ"; 
 	string white = "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"; 
 	string blk = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
@@ -404,38 +392,31 @@ string	 INOUT::printlabel ( const GO& go,
 }
 
 string	 INOUT::printcluster ( const GO& go, const pair<VB, VB >& pvv) {	
-	___FUNCOUNT( IO_PRINTCLUSTER); 
 	return printlabel(go, pvv, L_CLUSTER); 
 }
 
 string	 INOUT::printarea ( const GO& go, const pair<VB, VB >& pvv) {	
-	___FUNCOUNT( IO_PRINTAREA); 
 	return printlabel(go, pvv, L_AREA1); // mode = L_AREA1 or L_AREA2
 }
 
 string	 INOUT::printonearea ( const GO& go, const BITB& bb) {	
-	___FUNCOUNT( IO_PRINTONEAREA); 
 	return print__(go, bb, NULL_POS, ONEAREA_P); 
 }
 
 string	 INOUT::printpublicarea ( const GO& go, const BITB& bb) {	
-	___FUNCOUNT( IO_PRINTPUBLICAREA); 
 	return print__(go, bb, NULL_POS, BITB_P); 
 }
 
 string   INOUT::printblock(const GO& go, const BITB& blk, const POS& pos) {	
-	___FUNCOUNT( IO_PRINTBLOCK); 
 	return	print__(go, blk, pos, BLOCK_P); 
 }
 
 string   INOUT::printlibertysite(const GO& go, 
 								 const BITB& libsite, const POS& pos) {	
-	___FUNCOUNT( IO_PRINTLIBERTYSITE); 
 	return	print__(go, libsite, pos, BITB_P); 
 }
 
 string   INOUT::printpartition(const VG& vg){	
-	___FUNCOUNT( IO_PRINTPARTITION); 
 	string black = "●⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇"; 
 	string white = "○⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛"; 
 	string s = ""; 
@@ -475,7 +456,6 @@ string   INOUT::printpartition(const VG& vg){
 }
 
 string   INOUT::printliberty(const GO& go, const VI& vec){		
-	___FUNCOUNT( IO_PRINTLIBERTY); 
 	
 	//-// 20个字符不够用, 可能导致运行时错误, 待改进
 	string black = "◎⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇"; 
@@ -505,7 +485,6 @@ string   INOUT::printliberty(const GO& go, const VI& vec){
 /*
 // 此 mask 可以呈不规则形状
 string	INOUT::printpat(const GO& old, const BITB& mask){	
-	___FUNCOUNT( IO_PRINTPAT1); 
 	string s = ""; 
 	GO go = GO(old.xx & mask, old.oo & mask); 
 	BITB squarem = mask.project (); 
@@ -557,7 +536,6 @@ string	INOUT::printpat(const GO& old, const BITB& mask){
 
 // 此 mask 可以呈不规则形状
 string	INOUT::printpat(const BITB& old, const BITB& mask) {	
-	___FUNCOUNT( IO_PRINTPAT2); 
 	string s; 
 	BITB bb = old&mask; 
 	BITB squarem = mask.project (); 
@@ -596,7 +574,6 @@ string	INOUT::printpat(const BITB& old, const BITB& mask) {
 // 输入是否合法在inputpat()里检查, 默认长宽不超过(BS-1)/2
 // 可加入 X O 表示边上的子, 待完成
 PAT	INOUT::in2pat(string s){	
-	___FUNCOUNT( IO_IN2PAT); 
 	int w; 
 	while ((w = s.find_first_of ("\t ")) != s.npos )
 		s.replace(w, 1, ""); 
@@ -678,7 +655,6 @@ PAT	INOUT::in2pat(string s){
 
 //直接用缓冲区操作比frommatlab()中那种按字读入的方式快得多。
 string	INOUT::readbuf(string filename){	
-	___FUNCOUNT( IO_READBUF); 
 	ifstream file(filename.c_str()); 
 	if (!file) {
 		cerr<< filename << " : open fail !"<< endl; 
@@ -691,7 +667,6 @@ string	INOUT::readbuf(string filename){
 }
 
 void	INOUT::savecode(string path){	
-	___FUNCOUNT( IO_SAVECODE); 
 	/*
 	LPSTR s = new TCHAR[256]; 
 	wsprintf(s, "%u", (unsigned)time(0)); 
@@ -715,7 +690,6 @@ void	INOUT::savecode(string path){
 
 /*
 VP	INOUT::sgf2pos(string filename) {	
-	___FUNCOUNT( IO_SGF2POS); 
 	vector<PII >  vecpii = sgf2xy(filename); 
     VP  vech; 
 	POS pos; 
@@ -731,7 +705,6 @@ VP	INOUT::sgf2pos(string filename) {
 }
 
 vector<PII >	INOUT::sgf2xy(string filename) {	
-	___FUNCOUNT( IO_SGF2XY); 
 	string s = readbuf(filename); 
 	vector<PII >  vechistory; 
 	int p = 0; 
@@ -745,7 +718,6 @@ vector<PII >	INOUT::sgf2xy(string filename) {
 }
 
 VVP			INOUT::sgfs2pos(const VS& vecf){	
-	___FUNCOUNT( IO_SGFS2POS); 
 	VVP  vech; 
 	VP vp; 
 	for (int i = 0; i<vecf.size (); ++i){
@@ -760,7 +732,6 @@ VVP			INOUT::sgfs2pos(const VS& vecf){
 }
 
 vector<vector<PII> > INOUT::sgfs2xy(const VS& vecf){	
-	___FUNCOUNT( IO_SGFS2XY); 
 	vector<vector<PII > >  vech; 
 	for (int i = 0; i<vecf.size (); ++i)
 		vech.push_back (sgf2xy(vecf[i])); 
@@ -772,7 +743,6 @@ vector<vector<PII> > INOUT::sgfs2xy(const VS& vecf){
 // 中括号［］之内是实际内容，不会有嵌套
 // 此处的结点不是全局分支，仅仅是一个走步
 SGFROOT* INOUT::sgf2tree(string filename){	
-	___FUNCOUNT( IO_SGF2TREE); 
 	string s = readbuf(filename.c_str ()); 
 	int	unmatch = 0; // 未匹配的左小括号（
 	int	m = 0; // 未匹配的左中括号［
@@ -953,7 +923,6 @@ string	INOUT::_infop2sgf(INFOGO* infop){
 }
 
 GO	INOUT::frommatlab(string filename) {	
-	___FUNCOUNT( IO_FROMMATLAB); 
 	ifstream file(filename.c_str()); 
 	if (!file) {
 		cerr<< filename << " : open fail !"<< endl; 
@@ -993,7 +962,6 @@ VS	 INOUT::getfilename(string path, string type){
 
 	/*
 VS		INOUT::getfilename(string path, string type){	
-	___FUNCOUNT( IO_GETFILENAME); 
 	//-// 无错误检测
 	VS vecf; 
     struct _finddata_t c_file; 
@@ -1025,7 +993,6 @@ string INOUT::selectsgf(string path){
 
 /*
 void	INOUT::save2txt( string content, string filename){	
-	___FUNCOUNT( IO_SAVE1); 
 	// out, out|trunc, out|app, in|out, out|app
 	ofstream file(filename.c_str (), ios::out); 
 	if (!file) 
@@ -1035,7 +1002,6 @@ void	INOUT::save2txt( string content, string filename){
 }
 
 void	INOUT::save2txt( const GO& go, string filename){	
-	___FUNCOUNT( IO_SAVE2); 
 	ofstream file(filename.c_str (), ios::app); 
 	if (!file) 
 		cerr<< filename << " : open fail !"<< endl; 
@@ -1046,7 +1012,6 @@ void	INOUT::save2txt( const GO& go, string filename){
 }
 
 void   INOUT::save2txt(const VVF& vvf, string filename){	
-	___FUNCOUNT( IO_SAVE3); 
 	ofstream file(filename.c_str (), ios::ate); 
 	if (!file) 
 		cerr<< filename << " : open fail !"<< endl; 
@@ -1218,224 +1183,5 @@ ostream& operator<<(ostream& os, const PAT& pat){
 	inout.print(GO(pat.first .xx & pat.second, pat.first .oo& pat.second), 
 				pat.second .project ()); 
 	return os; 
-}
-
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_IO::pattern(){
-	string ina = 
-					"\
-		+--------	\n\
-		.........	\n\
-		....xo..o	\n\
-		...x.o...	\n\
-		.........	\n\
-		.........	\n\
-		..x......	\n\
-					"; 
-	string inb = 
-					"\
-		+------		\n\
-		.......		\n\
-		......x		\n\
-		...x...		\n\
-		..x....		\n\
-		..oo...		\n\
-		.......		\n\
-		.......		\n\
-		..o....		\n\
-					"; 
-
-	PAT  pata = INOUT().in2pat(ina); 
-	PAT  patb = INOUT().in2pat(inb); 
-	PUU	 a3232 = pata.first .pemis3232(pata.second ); 
-	PUU	 b3232 = patb.first .pemis3232(patb.second ); 
-	___COUT6(
-		ina, pata.first, pata.second, 
-		inb, patb.first, patb.second 
-		); 
-	___COUT4(
-		a3232, 
-		b3232, 
-		pata.first.pemis64(pata.second ), 
-		patb.first.pemis64(patb.second )
-		); 
-	//___ASSERT(issamepat(ina, inb)); 
-	___ASSERT(a3232 == b3232); 
-
-	BITB paton = strip(star(8), 3, 1); 
-	___COUT1(paton); 
-	BITB bb; 
-	bb.random(); 
-	BITB patmask = bb.blockon(paton); 
-	PUU bb3232 = (bb&patmask).pemis3232(); 
-	ULL	bb64 = (bb&patmask).pemis64(); 
-	cout << make_pair(GO(bb, bb), patmask); 
-	___COUT4(
-		bb, 
-		patmask, 
-		//INOUT().printpat(bb, patmask), 
-		//asciipat(INOUT().printpat(bb, patmask)), 
-		//pat2ascii(bb, patmask), 
-		bb3232, 
-		bb64
-		); 
-	___ASSERT((ULL)(bb3232.first )*((ULL)1<<32)+(ULL)(bb3232.second ) == bb64); 
-
-	GO go; 
-	go.random (); 
-	patmask = go.xx.blockon (paton)|go.oo.blockon (paton); 
-	PUU go3232 = go.pemis3232 (patmask); 
-	ULL go64 = go.pemis64(patmask); 
-	cout << make_pair(go, patmask); 
-	___COUT4(
-		go, 
-		patmask, 
-		//INOUT().printpat(go, patmask), 
-		//asciipat(INOUT().printpat(go, patmask)), 
-		//pat2ascii(go.xx, go.oo, patmask), 
-		go3232, 
-		go64
-		); 
-	___ASSERT((ULL)(go3232.first )*((ULL)1<<32)+(ULL)(go3232.second ) == go64); 
-	
-}
-
-/*
-void TEST_IO::sgftree(){
-	// 初始布局
-	SGFROOT *root = INOUT().sgf2tree(INOUT().selectsgf()); 
-	SGFNODE *cnode = new SGFNODE; 
-	INFOGO* infop; 
-	infop = new INFOGO; 
-	cout << root->intro << endl << "start:\n"; 
-	root->fuseki(infop); 
-	cout << *infop; 
-	cnode->sons = root->sons; 
-	for (int i = 0; i<cnode->sons .size (); ++i)
-		cnode->sons [i]->father = cnode; 
-
-	// 多次查看		
-	for(; ; ){
-		// 如果到达叶结点
-		if (cnode->sons.empty ()){
-			delete root; 
-			infop->delfromroot(); 
-			// 似乎还要删除最初那个 cnode
-			return; 
-		}
-		// 提示
-		if (cnode->sons.size () == 1)
-			cout<<"branch: "<<"[0]"<< endl; 
-		else 
-			cout<<"branch: "<<"[0]-["
-				<< cnode->sons .size ()-1<<"]"<< endl; 
-		// 选择合适分支
-		int m; 
-		for(; ; ){
-			cout<< endl << ">  "; 
-			string s; 
-			cin >> s; 
-			if (isdigit(s[0])|| s[0] == '-'){
-				m = atoi(s.c_str ()); 
-				if( 0 <= m && m< cnode->sons .size ()){
-					cnode = cnode->sons [m]; 
-					break; 
-				}
-				// 后退
-				else if ( m<0 ) {
-					for (; m<0 && (infop->father); ++m ){
-						infop = infop->father; 
-						cnode = cnode->father; 
-					}
-					for (int i = 0; i<infop->sons .size (); ++i)
-						infop->sons[i]->delfromhere(); 
-					infop->sons .clear (); 
-					break; 
-				}
-			}
-		}
-		// 显示
-		infop = infop->move_tree(cnode->pos, cnode->color ); 
-		cout<<*infop; 
-	}
-}
-*/
-
-void TEST_IO::inputpat(){
-	char	chars[256]; 
-	string	patstr, tmp; 
-	int		n; 
-	PAT		pat; 
-	cout<<"input the pattern: \n"; 
-	cin.getline(chars, 256); 
-	tmp = (string)(chars); 
-	n = tmp.size (); 
-	for (; ; )
-		if (tmp == ""){
-			if (patstr == "") break; 
-			pat = INOUT().in2pat(patstr); 
-			cout<<"pemis64(): "<<pat.first.pemis64(pat.second)<< endl; 
-			cout<<pat; 
-			//INOUT().printpat(pat.first, pat.second ); 
-			break; 
-		}
-		else{
-			if (tmp.size() != n){
-				inputpat(); 
-				break; 
-			}
-			patstr += (tmp+"\n"); 
-		    cin.getline(chars, 256); 
-			tmp = (string)(chars); 
-		}
-}
-
-void TEST_IO::timefunc (string which) {
-	RANDER  r; 
-	
-	INOUT	io = INOUT(); 
-	pair<VB, VB> pvv = make_pair(r.vb, r.vb); 
-	VI	vi; 
-	vi.assign (BS*BS, 1); 
-	VVF vvf = randvvf(5, 3); 
-
-	___TIME( IO_LOGO, io.logo_ ( ); ); 
-    ___TIME( IO_GRID, io.grid ( r.vp[0]); ); 
-	//___TIME( IO_PRINTBITBOARD, io.printbitboard ( r.vb[0] ); ); 
-	//___TIME( IO_PRINT, io.print__ ( r.vg[0], r.vb[0], r.vp[0], BOARD_P ); ); 
-	/*
-	___TIME( IO_PRINTBLOCK, io.printblock(r.vg[0], r.vb[0], r.vp[0] ); ); 
-	___TIME( IO_PRINTLIBERTYSITE, io.printlibertysite(r.vg[0], r.vb[0], r.vp[0] ); ); 
-    ___TIME( IO_PRINTLIBERTY, io.printliberty( r.vg[0], vi); ); 
-    ___TIME( IO_PRINTPARTITION, io.printpartition (r.vg ); ); 
-	___TIME( IO_PRINTLABEL, io.printlabel ( r.vg[0], pvv, L_CLUSTER); ); 
-	___TIME( IO_PRINTCLUSTER, io.printcluster ( r.vg[0], pvv); ); 
-	___TIME( IO_PRINTAREA, io.printarea ( r.vg[0], pvv); ); 
-	___TIME( IO_PRINTONEAREA, io.printonearea ( r.vg[0], r.vb[0]); ); 
-	___TIME( IO_PRINTPUBLICAREA, io.printpublicarea ( r.vg[0], r.vb[0]); ); 
-	*/
-	//___TIME( IO_PRINTPAT1, io.printpat ( r.vg[0], r.vb[0]); ); 
-	//___TIME( IO_PRINTPAT2, io.printpat ( r.vb[0], r.vb[1]); ); 
-	
-	/*
-	___TIME( IO_SGF2POS, io.sgf2pos(r.vs[0]); ); 
-	___TIME( IO_SGF2XY, io.sgf2xy(r.vs[0]); ); 
-	___TIME( IO_SGFS2POS, io.sgfs2pos(r.vs); ); 
-	___TIME( IO_SGFS2XY, io.sgfs2xy(r.vs); ); 
-	*/
-	___TIME( IO_IN2PAT, io.in2pat(r.vs[0]); ); 
-	___TIME( IO_IN2POS, io.in2pos( r.vp[0], r.vs[0] ); ); 
-	___TIME( IO_JJ2POS, io.jj2pos( r.vs[0], r.vp[0]); ); 
-	___TIME( IO_GETFILENAME, io.getfilename(r.vs[0], r.vs[1]); ); 
-	___TIME( IO_SGF2TREE, io.sgf2tree(r.vs[0]); ); 
-	___TIME( IO_FROMMATLAB, io.frommatlab(r.vs[0]); ); 
-	/*
-	___TIME( IO_SAVE1, io.save2txt(r.vs[0], r.vs[1]); ); 
-	___TIME( IO_SAVE2, io.save2txt(vvf, r.vs[0]); ); 
-	___TIME( IO_SAVE3, io.save2txt(r.vg[0], r.vs[0]); ); 
-	*/
-	___TIME( IO_SAVECODE, io.savecode(r.vs[0]); ); 
-	___TIME( IO_READBUF, io.readbuf(r.vs[0]); ); 
 }
 

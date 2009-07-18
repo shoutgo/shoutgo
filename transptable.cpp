@@ -21,18 +21,3 @@ TERM::TERM(){
 
 }
 
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_TT::aimtree(){
-	AIMGRAPH aimtree; 
-	for (int i = 0; i<AIM_SIZE; ++i){
-		AIM a = static_cast<AIM>(i); 
-		___COUT1(aimtree.sons [a].size () ); 
-		___COUT3(aimtree.backward(a), a, aimtree.forward(a)); 
-		___ASSERT(aimtree.anti(aimtree.anti (a)) == a ); 
-	}
-}
-
-void TEST_TT::timefunc (string which) {
-	RANDER  r; 
-}

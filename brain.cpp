@@ -138,8 +138,3 @@ VT	BRAIN::surmise () {
 	return vt; 
 }
 
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_BR::timefunc (string which) {
-	RANDER  r; 
-}

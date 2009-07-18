@@ -205,8 +205,3 @@ N3WEIGHT				NN::perception(N3WEIGHT w){
 	return w; //
 }
 
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_NN::timefunc (string which) {
-	RANDER  r; 
-}

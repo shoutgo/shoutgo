@@ -115,25 +115,4 @@ public:
 const	BITB	NULL_BB; 
 const	BITB	FULL_BB = ~NULL_BB; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	BB_FUN	{ 
-	BB_BITB1 = FBB*FUN_MAX, 
-	BB_BITB2, BB_BITB3, BB_RANDOM, BB_ONLY, BB_COUNT, BB_BLOCKCOUNT, 
-	BB_BLOCKAT, BB_TRANSPOSE, BB_ROTATE, BB_RANGE, BB_RANGEMASK, 
-	BB_DILATE, BB_ERODE, BB_DRY, BB_ADSORB, BB_INNER, BB_NOTBIGGER, 
-	BB_RUBOFF1, BB_RUBOFF2, BB_CLOSE, BB_OPEN, BB_BLOCKON, 
-	BB_TOUCHBOARDER, BB_CONTAIN, BB_KEYPOS, BB_JOINTPOS, BB_ENCODE32, 
-	BB_PEMIS3232, BB_PEMIS64, BB_EYEKIND, BB_FUN_SIZE}; 
-
-class TEST_BB {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void fly(); 
-	void active(){  
-		 fly(); 
-	} 
-}; 
-
 #endif

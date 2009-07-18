@@ -62,18 +62,18 @@ public:
 	int numb;
 	SEARCH():numb(0){}
 public:
-	T_RESULT minmax(T_NODE * node, T_CONTROL ctr = T_CONTROL()){
+	T_RESULT minmax(T_NODE * node, T_CONTROL cntr = T_CONTROL()){
 		++numb;
-		if (isleaf(node, ctr)){
+		if (isleaf(node, cntr)){
 			//cout<< *node << endl; 
-			return leafvalue(node, ctr); 
+			return leafvalue(node, cntr); 
 		}
-		vector<T_PATH> paths = findpath(node, ctr); 
-		bool maxnode = ismax(node, ctr); 
+		vector<T_PATH> paths = findpath(node, cntr); 
+		bool maxnode = ismax(node, cntr); 
 		T_RESULT tmp, better = maxnode ? downbound() : upbound(); 
 		for (int i = 0; i<paths.size (); ++i){
 			T_NODE* sonp = findson(node, paths[i]);
-			tmp = minmax(sonp, control(node, ctr)); 
+			tmp = minmax(sonp, control(node, cntr)); 
 			//better = maxnode ? max(tmp, better):min(tmp, better); 
 			if ( maxnode) {
 				if ( better < tmp){
@@ -105,19 +105,6 @@ public:
 	virtual T_CONTROL		control(T_NODE *, T_CONTROL) = 0;
 	virtual T_RESULT        recordpath(T_RESULT, T_PATH) = 0;
 
-}; 
-
-/* _______________________________ 测试区 _______________________________ */
-
-enum	S_FUN	{
-	S_SEARCH = FS* FUN_MAX, S_FUN_SIZE }; 
-
-class TEST_S {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void active(){  
-	}  
 }; 
 
 #endif

@@ -179,8 +179,6 @@ public:
 
 #define MACRO_ASSERT		1
 #define MACRO_PARASSERT		0
-#define MACRO_FUNCOUNT		1
-#define MACRO_LINECOUNT		1
 #define MACRO_REPORT		1
 #define MACRO_COUT			1
 #define MACRO_TIME			1
@@ -208,20 +206,7 @@ void ___parassert(bool exp, string s);
 
 #if MACRO_ALL && MACRO_ASSERT  
 #define	___ASSERT(exp)		___assert(exp, #exp); 
-//#define	___ASSERT(exp)		  {	\
-//	swap(g_ctr, snap_ctr); \
-//	___assert(exp, #exp); \
-//	swap(g_ctr, snap_ctr); \
-//}
-//#define	___ASSERT(exp)		___assert(exp, #exp, __FILE__, __LINE__); 
-//#define ___ASSERT(exp)	assert(exp); 
 #define	___ASSERT2(exp, code)	___assert(exp, #exp); if (!(exp)) code 
-//#define	___ASSERT2(exp, code)  { \
-//	swap(g_ctr, snap_ctr); \
-//	___assert(exp, #exp); \
-//	if (!(exp))	code			\
-//	swap(g_ctr, snap_ctr); \
-//}
 #else
 #define ___ASSERT(exp)			{}
 #define ___ASSERT2(exp, code)	{}
@@ -229,11 +214,6 @@ void ___parassert(bool exp, string s);
 
 #if MACRO_ALL && MACRO_PARASSERT
 #define	___PARASSERT(exp)		___parassert(exp, #exp); 
-//#define ___PARASSERT(exp)	  {	\
-//	swap(g_ctr, snap_ctr); \
-//	___parassert(exp, #exp); \
-//	swap(g_ctr, snap_ctr); \
-//}
 #else
 #define ___PARASSERT(exp)		{}
 #endif
@@ -315,39 +295,10 @@ template <class T>
 #define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{}
 #endif
 
-/* 计数宏：函数执行次数或执行到达位置 */
-
-#if MACRO_ALL && MACRO_FUNCOUNT
-//#define ___FUNCOUNT(fun)	g_ctr.addfcount(fun); 
-//#define ___FUNCOUNT(fun)	g_ctr.addfcount(fun); st_g_ctr.addfcount(fun); 
-#define ___FUNCOUNT(fun)	{		\
-	g_ctr.addfcount(fun); \
-	g_ctr.setfname(fun, #fun); \
-	g_ctr.setftrack(fun); \
-}		
-#else
-#define ___FUNCOUNT(fun)	{}
-#endif
-
-#if MACRO_ALL && MACRO_LINECOUNT
-#define ___LINECOUNT(i)		g_ctr.setlcount(i); 
-//#define ___LINECOUNT(i)	{g_ctr.setlcount(i); st_g_ctr.setlcount(i); } 
-#else
-#define ___LINECOUNT(i)		{}
-#endif
-
 /* 计时宏 */
 
 #if MACRO_ALL && MACRO_TIME
-#define ___TIME(id, code)								\
-	if (which == "" || which == #id ){						\
-		g_ctr.setfname(id, #id); \
-		tested_ctr.setfcountone(id, snap_ctr.fcount[id]); \
-		___.tic(g_ctr.fname[id], snap_ctr.fcount[id]); \
-		for(int i = 0; i<snap_ctr.fcount[id]; ++i)			\
-			{code}										\
-		___.toc(); \
-	}
+#define ___TIME(id, code)	{}
 #else
 #define ___TIME(id, code)	{}
 #endif
@@ -375,52 +326,6 @@ public:
 	void	set_(); 
 	void	silenttic_(); 
 	void	silenttoc_(); 
-}; 
-
-/* 计数类 */
-
-const int  FUN_MAX = 100; 
-enum FUNGROUP		{FU = 0, FBB, FGO, FINFO, FIO, FITR, FF, FTG, 
-						FS, FTS, FTT, FNN, FL, FBR, FSIZE}; 
-		// 原则：不使 test.h 被包含, 所以计数器类也置于此
-class COUNTER {		
-public:
-	static const int LINES_MAX; 
-	static const int TRACK_MAX; 
-
-public:
-	VS			 fname; 
-	VI			 fcount; 
-	deque<int>	 ftrack; 
-	VI			 lcount; 
-
-public:
-	COUNTER(); 
-	void clear(); 
-    void reportfcount(FUNGROUP fg = FSIZE); 
-	void reportftrack(int n = 100); 
-	void setlcount(int n); 
-	void setfcountall(int n); 
-	template <typename T>
-		void setfname(T id, string s){
-			if (fname[int(id)].empty ())
-				fname[int(id)] = s; 
-	}
-	template <typename T>
-		void setftrack(T id){
-			ftrack.pop_front(); //-// 多余？
-			ftrack.push_back((int)id); 
-	}
-	template <typename T>
-		void setfcountone(T id, int n){
-			fcount[id] = n; 
-		}
-	template <typename T>
-		void addfcount(T id){
-			++ fcount[id]; 
-		}
-
-	friend COUNTER operator - (const COUNTER& a, const COUNTER& c); 
 }; 
 
 /* 随机器类 */
@@ -518,10 +423,8 @@ public:
 
 /* 全局变量 */
 
-static COUNTER		st_g_ctr; 
 
 extern TIMER		___, gametimer; 
-extern COUNTER		g_ctr, err_ctr, snap_ctr, tested_ctr; 
 extern INIT			g_init; 
 extern LEARN		g_learn; 
 

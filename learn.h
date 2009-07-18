@@ -63,22 +63,6 @@ public:
 
 }; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	L_FUN	{
-	L_LEARN = FL* FUN_MAX, L_FUN_SIZE}; 
-
-class TEST_L {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void lib_zobrist(); 
-	void joseki(); 
-	void active(){
-		lib_zobrist(); 
-	}
-}; 
-
 #endif
 
 

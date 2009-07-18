@@ -375,8 +375,3 @@ VALUE TREE::mtdf(NODE* p, VALUE guess){
 	return guess; 
 }
 
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_S::timefunc (string which) {
-	 RANDER  r; 
-}

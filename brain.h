@@ -81,17 +81,4 @@ public:
 	friend ostream& operator<<(ostream& os, const BRAIN& ); 
 }; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	BR_FUN	{
-	BR_BRAIN = FBR*FUN_MAX, BR_FUN_SIZE}; 
-
-class TEST_BR {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void active(){ 
-	} 
-}; 
-
 #endif

@@ -80,34 +80,6 @@ COLOR	operator ~ (const COLOR c);
 VS	 getline(); 
 /*extern*/ /*inline*/ VI	indexsort(const VI& vi);
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	U_FUN	{
-	U_ROWEXPAND = FU* FUN_MAX, 
-	U_CONNECTINGONE, U_REVERSE, U_POPU, U_NLEADINGZERO, U_NTAILZERO, 
-	U_XY2POS, U_XY2I, U_I2XY, U_I2POS, U_POS2I, U_POS2XY, U_AA2POS, 
-	U_CORNER, U_STAR1, U_STAR2, U_NEAR4, 
-	U_NEAR8, U_OUTSIDE, 
-	U_ONBOARDER, U_ROT, U_TRANSP, U_INTERVAL, U_LINE, U_FRAME, 
-	U_SQUARE, U_PIE, U_CIRCLE, U_DIAMOND, U_CROSS, U_STRIP1, U_STRIP2, 
-	U_STRIP3, U_MULHIGH32, U_MULOVERFLOW, U_COMPACTMASK, U_ISSAMEPAT, 
-	U_STANDARDPAT, U_GRIDSTR, 
-	U_PAT2STR1, U_PAT2STR2, U_PROB, U_RANDSQRT, U_RANDLOG, U_RANDU, 
-	U_RANDF, U_RANDVF, U_RANDVVF, U_RANDVVVF, U_FUN_SIZE}; 
-
-class U_TEST {
-public:
-	void assertall(); 
-	void timefunc(string which = "" ); 
-	void draw(); 
-	void bit(); 
-	void idsort();
-	void active(){  
-		idsort();
-		draw(); 
-	}  
-}; 
-
 #endif
 
 

@@ -5,16 +5,7 @@
 #include "test.h"
 
 TIMER	___, gametimer; 
-COUNTER g_ctr, err_ctr, snap_ctr, tested_ctr; 
 INIT	g_init; 
-//TIMER	___=TIMER();
-//TIMER	gametimer=TIMER(); 
-//COUNTER g_ctr=COUNTER();
-//COUNTER err_ctr=COUNTER();
-//COUNTER snap_ctr=COUNTER();
-//COUNTER tested_ctr=COUNTER(); 
-//INIT	g_init=INIT(); 
-
 COMMAND g_cmd; 
 LEARN	g_learn; 
 
@@ -102,11 +93,7 @@ void command(VS in){
 			break; 
 
 		case INPUTPAT_C:
-			TEST_IO().inputpat(); 
-			break; 
-
-		case ACTIVE_C: 
-			TEST().active(); 
+			//TEST_IO().inputpat(); 
 			break; 
 
 		case EXIT_C:
@@ -143,28 +130,6 @@ void command_test(VS in) {
 				g_cmd.help(g_cmd.which(in[1])); 
 			else
 				g_cmd.help(); 
-			break; 
-
-		case COUNTERSET_C:
-			if (in.size()>1)
-				g_ctr.setfcountall(str2i(in[1], 0, INT_MAX)); 
-			else
-				g_ctr.setfcountall(10000); 
-			break; 
-
-		case TRACK_C:
-			if (in.size()>1)
-				err_ctr.reportftrack(str2i(in[1], 0, COUNTER::TRACK_MAX )); 
-			else
-				err_ctr.reportftrack(100); 
-			break; 
-
-		case COUNTER_C:
-			g_ctr.reportfcount(); 
-			break; 
-
-		case TIME_C:
-			TEST().time((in.size()>1) ? in[1] : ""); 
 			break; 
 
 		case SIZE_C:

@@ -60,20 +60,4 @@ public:
 
 }; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	TG_FUN	{
-	TG_TSUMEGO = FTG*FUN_MAX, TG_FUN_SIZE}; 
-
-class TEST_TG {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void eyekind(); 
-	void randomeye(); 
-	void tsumego(); 
-	void active(){  
-	}  
-}; 
-
 #endif

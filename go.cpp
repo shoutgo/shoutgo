@@ -49,26 +49,6 @@ COMMAND::COMMAND() {
 		"[ ]", 
 		"...", 
 		"输入模式"); 
-	cmd[ACTIVE_C] = CMD ( BIND<string, char*>()(2, "active", "ac"), 
-		"[ ]", 
-		"...", 
-		"激活所有测试函数"); 
-	cmd[TRACK_C] = CMD ( BIND<string, char*>()(2, "track", "tr"), 
-		"[numb]", 
-		"...", 
-		"跟踪异常计数器中最后执行的 numb 个函数名"); 
-	cmd[COUNTERSET_C] = CMD ( BIND<string, char*>()(2, "counterset", "cs"), 
-		"[numb]", 
-		"...", 
-		"设置计数器状态"); 
-	cmd[COUNTER_C] = CMD ( BIND<string, char*>()(2, "counter", "co"), 
-		"[ ]", 
-		"...", 
-		"显示计数器状态"); 
-	cmd[TIME_C] = CMD ( BIND<string, char*>()(2, "time", "ti"), 
-		"[function( eg: \"\", \"u\", \"U_RANDU\" )]", 
-		"...", 
-		"测试全部函数、函数组或特定函数"); 
 	cmd[SIZE_C] = CMD ( BIND<string, char*>()(2, "size", "si"), 
 		"[ ]", 
 		"...", 

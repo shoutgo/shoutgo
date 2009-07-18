@@ -84,26 +84,6 @@ public:
 	friend	ostream& operator<<(ostream&, const GO&); 
 }; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	GO_FUN	{ 
-	GO_GO1 = FGO*FUN_MAX, 
-	GO_GO2, GO_GO3, GO_GO4, GO_RANDOM, GO_ADD, GO_LEGALIZE, 
-	GO_SNAP, GO_RESTORE, GO_TRANSPOSE, GO_ROTATE, GO_PEMIS3232, 
-	GO_PEMIS64, GO_COLOR, GO_TURN, GO_GETLASTCLR, GO_GETLASTPOS, 
-	GO_GETBB, 
-	GO_EXPAND, GO_LIBERTYSITE, GO_LIBERTY, 
-	GO_MOVEABLE, GO_MOVE, GO_ENDGAME, GO_FUN_SIZE}; 
-
-class TEST_GO {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void morphology(); 
-	void active(){  
-	}  
-}; 
-
 #endif
 
 

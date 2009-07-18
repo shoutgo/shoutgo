@@ -11,7 +11,6 @@ history(0),
 lastpos(NULL_POS), 
 lastclr(WHITE), 
 kill(NULL_BB){  
-	___FUNCOUNT( GO_GO1); 
 }
 
 GO::GO(const BITB& x, const BITB& o, const BITB& d, 
@@ -23,7 +22,6 @@ hotko(k),
 lastpos(l), 
 lastclr(c), 
 history(h){ 
-	___FUNCOUNT( GO_GO2); 
 }
 
 GO::GO(const PBB& pbb, const BITB& d, 
@@ -35,7 +33,6 @@ hotko(k),
 lastpos(l), 
 lastclr(c), 
 history(h){  
-	___FUNCOUNT( GO_GO3); 
 }
 
 GO::GO(const GO& go)
@@ -46,11 +43,9 @@ history(go.gethistory() ),
 lastpos(go.getlastpos() ), 
 lastclr(go.getlastclr() ), 
 kill(go.getkill()){ 
-	___FUNCOUNT( GO_GO4); 
 }
 
 void GO::random(MODE_RANDOMBOARD mode) {  
-	___FUNCOUNT( GO_RANDOM); 
 	switch (mode) {
 		case ILLEGALIZE:													
 			xx.random (); 
@@ -67,7 +62,6 @@ void GO::random(MODE_RANDOMBOARD mode) {
 }
 
 void GO::legalize(){  
-	___FUNCOUNT( GO_LEGALIZE); 
 	BITB repeat = xx&oo; 
 	xx ^= repeat; 
 	oo ^= repeat; 
@@ -82,7 +76,6 @@ void GO::legalize(){
 }
 
 void GO::add(const POS& pos, COLOR clr) {  
-	___FUNCOUNT( GO_ADD); 
 	___PARASSERT( !outside(pos) && (clr == BLACK || clr == WHITE) ); 
 	if (clr == BLACK)   
 		xx |= pos; 
@@ -94,17 +87,14 @@ void GO::add(const POS& pos, COLOR clr) {
 }
 /*
 GO	 GO::snap() const {  
-	___FUNCOUNT( GO_SNAP); 
 	return *this; 
 }
 
 void	 GO::restore(const GO& go){ 
-	___FUNCOUNT( GO_RESTORE); 
 	*this = go; 
 }
 */
 GO	 GO::transpose() const {  
-	___FUNCOUNT( GO_TRANSPOSE); 
 	return GO(xx.transpose (), 
 		oo.transpose (), 
 		kill.transpose (), 
@@ -115,7 +105,6 @@ GO	 GO::transpose() const {
 }
 
 GO    GO::rotate(int angle) const {
-	___FUNCOUNT( GO_ROTATE); 
 	return GO(xx.rotate(angle), 
 		oo.rotate(angle), 
 		kill.rotate(angle), 
@@ -126,7 +115,6 @@ GO    GO::rotate(int angle) const {
 }
 
 COLOR    GO::color(const POS& pos)  const {  
-	___FUNCOUNT( GO_COLOR); 
 	___PARASSERT( !outside(pos) ); 
 	if (oo[pos]) {
 		if (xx[pos]) 
@@ -142,22 +130,18 @@ COLOR    GO::color(const POS& pos)  const {
 }
 
 COLOR	GO::turn( )	const { 
-	___FUNCOUNT( GO_TURN); 
 	return ~lastclr; 
 }
 
 COLOR	GO::getlastclr( )	const { 
-	___FUNCOUNT( GO_GETLASTCLR); 
 	return lastclr; 
 }
 
 POS		GO::getlastpos( )	const {
-	___FUNCOUNT( GO_GETLASTPOS); 
 	return  lastpos; 
 }
 
 BITB	GO::getbb(COLOR clr) const {  
-	___FUNCOUNT( GO_GETBB); 
 	___PARASSERT(clr != BLACK_WHITE); 
 	switch (clr) {
 		case BLACK:
@@ -185,7 +169,6 @@ BITB	GO::getkill() const {
 
 ////
 BLOCK	 GO::expand(const BLOCK& b, COLOR clr) const {  
-	___FUNCOUNT( GO_EXPAND); 
 	BITB ex; 
 	BITB otherbb = getbb( ~clr ); 
 	ROW tmp = (b.r[0]|b.r[0]<<1|b.r[0]>>1|b.r[1]); 
@@ -212,7 +195,6 @@ BITB GO::enemysite(const BLOCK& blk, COLOR clr) const {
 }
 
 BITB GO::libertysite(const POS& pos) const {  
-	___FUNCOUNT( GO_LIBERTYSITE); 
 	COLOR clr = color(pos); 
 	if (clr != BLACK && clr != WHITE) 
 		return NULL_BB; 
@@ -221,7 +203,6 @@ BITB GO::libertysite(const POS& pos) const {
 }
 
 int		 GO::liberty_(const POS& pos) const { 
-	___FUNCOUNT( GO_LIBERTY); 
 	if (color(pos) != BLACK && color(pos) != WHITE) 
 		return 0; //-// -1
 	return libertysite(pos).count(); 
@@ -230,7 +211,6 @@ int		 GO::liberty_(const POS& pos) const {
 /* 展开版之 movealbe() */
 
 bool	 GO::moveable_(const POS& pos, COLOR clr)  const {  
-	___FUNCOUNT( GO_MOVEABLE); 
 	___PARASSERT( !outside(pos) && (clr == BLACK || clr == WHITE) ); 
 	if (color(pos) != EMPTY)
 		return 0; 
@@ -307,7 +287,6 @@ bool	 GO::moveable_(const POS& pos, COLOR clr)  const {
 /* 未展开版 moveable() */
 
 bool GO::moveable (const POS& pos, COLOR clr) const {   
-	___FUNCOUNT( GO_MOVE); 
 	___PARASSERT( !outside(pos) && (clr == BLACK || clr == WHITE) ); 
 	
 	if ( color(pos) != EMPTY ) 
@@ -333,7 +312,6 @@ bool GO::moveable (const POS& pos, COLOR clr) const {
 /* 调用版 move() */
 
 bool GO::move_(const POS& pos, COLOR clr) {   
-	___FUNCOUNT( GO_MOVE); 
 	___PARASSERT( !outside(pos) && (clr == BLACK || clr == WHITE) ); 
 
 	if (!moveable(pos, clr)) 
@@ -375,7 +353,6 @@ bool GO::move_(const POS& pos, COLOR clr) {
 /* 展开之独立版 move() */
 
 bool GO::move__(const POS& pos, COLOR clr) {   
-	___FUNCOUNT( GO_MOVE); 
 	___PARASSERT( !outside(pos) && (clr == BLACK || clr == WHITE) ); 
 
 	if (color(pos) != EMPTY)
@@ -459,7 +436,6 @@ bool GO::move__(const POS& pos, COLOR clr) {
 /* 独立版 move() */
 
 bool GO::move(const POS& pos, COLOR clr) {   
-	___FUNCOUNT( GO_MOVE); 
 	___PARASSERT( !outside(pos) && (clr == BLACK || clr == WHITE) ); 
 	
 	if ( color(pos) != EMPTY ) 
@@ -512,7 +488,6 @@ bool GO::move(const POS& pos, COLOR clr) {
 }
 
 bool		GO::endgame( )	const {  
-	___FUNCOUNT( GO_ENDGAME); 
 	return history > 200; 
 }
 
@@ -528,7 +503,6 @@ void		GO::update () {
 }
 
 PUU		GO::pemis3232 (const BITB& patmask) const { 
-	___FUNCOUNT( GO_PEMIS3232); 
 	PUU a = (xx&patmask).pemis3232 (); 
 	PUU b = (oo&patmask).pemis3232 (); 
 	PUU c = ((xx|oo)&patmask).pemis3232 (); 
@@ -546,7 +520,6 @@ PUU		GO::pemis3232 (const BITB& patmask) const {
 }
 
 ULL			GO::pemis64 (const BITB& patmask) const {  
-	___FUNCOUNT( GO_PEMIS64); 
 	return  (xx&patmask).pemis64() 
 		* (oo&patmask).pemis64() 
 		*((xx|oo)&patmask).pemis64(); 
@@ -578,51 +551,3 @@ int			GO::delta () const {
 	return xx.count () - oo.count(); 
 }
 
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_GO::morphology(){
-	GO  go; 
-	go.random (); 
-	//GO go = INOUT().frommatlab (); 
-	cout<<go; 
-	go.xx &= square(star(EN), 5); 
-	int times = 5; 
-	for(int i = 1; i <= times; ++i){
-		BITB bb = go.xx.dilate (i); 
-		cout<<"dilate times: "<<i<< endl<<GO(go.xx, bb^go.xx); 
-		cout<<"dry    times: "<<i<< endl<<GO(go.xx, bb.dry (go.xx, i)^go.xx); 
-		cout<<"adsorb times: "<<i<< endl<<GO(go.xx, bb.adsorb (go.xx, i)^go.xx); 
-		cout<<"inner  times: "<<i<< endl<<GO(go.xx, go.xx.inner (i)); 
-	}
-}
-
-void TEST_GO::timefunc (string which) {
- 	 
-	RANDER  r; 
-	
-	GO go = r.vg [0]; 
-
-	___TIME( GO_RANDOM, go.random( LEGALIZE ); ); 
-	___TIME( GO_ADD, go.add(r.vp[0], r.vc[0] ); ); 
-	___TIME( GO_LEGALIZE, go.legalize(); ); 
-	/*
-	___TIME( GO_SNAP, go.snap(); ); 
-	___TIME( GO_RESTORE, go.restore(r.vg[0]); ); 
-	*/
-	___TIME( GO_PEMIS3232, go.pemis3232(r.vb[0]); ); 
-	___TIME( GO_PEMIS64, go.pemis64(r.vb[0]); ); 
-	___TIME( GO_TRANSPOSE, go.transpose( ); )		
-	___TIME( GO_ROTATE, go.rotate(r.vi[0]); )		
-	___TIME( GO_TURN, go.turn( ); )					
-	___TIME( GO_GETLASTCLR, go.getlastclr( ); )				
-	___TIME( GO_COLOR, go.color( r.vp[0] ); )			
-	___TIME( GO_GETLASTPOS, go.getlastpos( ); )			
-	___TIME( GO_GETBB, go.getbb( r.vc[0] ); )			
-	___TIME( GO_EXPAND, go.expand( r.vb[0], r.vc[0] ); )	
-	___TIME( GO_LIBERTYSITE, go.libertysite( r.vp[0] ); )		
-	___TIME( GO_LIBERTY, go.liberty_( r.vp[0] ); )			
-	___TIME( GO_MOVEABLE, go.moveable( r.vp[0], r.vc[0] ); )	
-	___TIME( GO_MOVE, go.move( r.vp[0], r.vc[0] ); ); 
-	___TIME( GO_ENDGAME, go.endgame( ); ); 
- 
-}

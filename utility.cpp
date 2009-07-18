@@ -6,7 +6,6 @@
 //注意这里的函数可以用查表法优化
 
 int		 popu(unsigned x){  
-	___FUNCOUNT( U_POPU); 
 	x = x-((x>>1)&0x55555555); 
 	x = (x&0x33333333)+((x>>2)&0x33333333); 
 	x = (x+(x>>4))&0x0F0F0F0F; 
@@ -16,7 +15,6 @@ int		 popu(unsigned x){
 }
 
 unsigned connectingone(unsigned x, int n){  
-	___FUNCOUNT( U_CONNECTINGONE); 
 	int s; 
 	while (n>1) {
 		s = n>>1; 
@@ -27,7 +25,6 @@ unsigned connectingone(unsigned x, int n){
 }
 
 unsigned reverse(unsigned x){  
-	___FUNCOUNT( U_REVERSE); 
 	x = (x&0x55555555)<<1 | (x>>1)&0x55555555; 
 	x = (x&0x33333333)<<2 | (x>>2)&0x33333333; 
 	x = (x&0x0F0F0F0F)<<4 | (x>>4)&0x0F0F0F0F; 
@@ -36,7 +33,6 @@ unsigned reverse(unsigned x){
 }
 
 int		 nleadingzero(unsigned x) {  
-	___FUNCOUNT( U_NLEADINGZERO); 
 	unsigned y; 
 	int n = 32; 
 	y = x>>16; if (y != 0) {n = n-16; x = y; }
@@ -48,12 +44,10 @@ int		 nleadingzero(unsigned x) {
 }
 
 int	     ntailzero(unsigned x){  
-	___FUNCOUNT( U_NTAILZERO); 
 	return popu(x^(x-1))-1; 
 }
 
 ROW		 rowexpand(ROW background, ROW rpos){  
-	___FUNCOUNT( U_ROWEXPAND); 
 	rpos &= background; 
 	ROW tmp[BS+1]; 
     tmp[0] = rpos; 
@@ -67,7 +61,6 @@ ROW		 rowexpand(ROW background, ROW rpos){
 }
 ////
 VP	near4(const POS& pos) {  
-	___FUNCOUNT( U_NEAR4); 
 
 	if (g_init.inited){
 		return g_init.getnear4(pos); 
@@ -92,7 +85,6 @@ VP	near4(const POS& pos) {
 }
 
 VP	near8(const POS& pos) {  
-	___FUNCOUNT( U_NEAR8); 
 	VP vecp; 
 	vecp.reserve (8); 
 	POS p; 
@@ -117,13 +109,11 @@ VP	near8(const POS& pos) {
 
 // NULL_POS 和 PASS_POS 都返回 1
 bool	outside(const POS& pos){		
-	___FUNCOUNT( U_OUTSIDE); 
 	return ((pos.second == 0)|| (pos.second>ROWMASK) 
 		|| (pos.first<0) || (pos.first >= BS) ); 
 }
 
 bool	onboarder(const POS& p){			
-	___FUNCOUNT( U_ONBOARDER); 
 	if ((p.first == 0)||(p.first == (BS-1)))
 		return 1; 
 	else if ((p.second & LEFTEST)||(p.second & 1))
@@ -133,7 +123,6 @@ bool	onboarder(const POS& p){
 }
 
 POS	rot(int angle, const POS& pos){  
-	___FUNCOUNT( U_ROT); 
 	___PARASSERT(angle == 0 || angle == 90 || angle == 180 || angle == 270); 
 	if (pos == NULL_POS) 
 		return pos; 
@@ -150,14 +139,12 @@ POS	rot(int angle, const POS& pos){
 }
 
 POS	transp(const POS& pos){  
-	___FUNCOUNT( U_TRANSP); 
 	if (pos == NULL_POS) 
 		return pos; 
 	return make_pair(BS-1-ntailzero(pos.second ), 1<<(BS-1-pos.first )); 
 }
 
 POS	star(int n) {  
-	___FUNCOUNT( U_STAR1); 
 	___PARASSERT(BS>0 && BS == (int)(BS/2)*2+1 ); 
 	switch (n) {
 	case 1:		return make_pair(3, 1<<3); 
@@ -174,7 +161,6 @@ POS	star(int n) {
 }
 
 POS	star(DIRECTION d) {  
-	___FUNCOUNT( U_STAR2); 
 	___PARASSERT(BS>0 && BS == (int)(BS/2)*2+1 ); 
 	switch (d){
 		case EN:	return make_pair(3, 1<<3 ); 
@@ -191,7 +177,6 @@ POS	star(DIRECTION d) {
 }
 
 POS	corner(DIRECTION d) {  
-	___FUNCOUNT( U_CORNER); 
 	switch (d){
 		case EN:	return make_pair(0, 1 ); 
 		case NORTH: return make_pair(0, CENTEREST ); 
@@ -207,43 +192,36 @@ POS	corner(DIRECTION d) {
 }
 
 int	xy2i_(int x, int y){  
-	___FUNCOUNT( U_XY2I); 
 	return x*BS+y; 
 }
 
 PII	i2xy_(int i){  
-	___FUNCOUNT( U_I2XY); 
 	int x = i/BS; 
 	return make_pair(x, i-x*BS); 
 }
 
 POS	_xy2pos(int x, int y){ 
-	___FUNCOUNT( U_XY2POS); 
 	return make_pair(x, 1<<y); 
 }
 
 // 注意这几个函数的前提： popu(pos.second) == 1 
 
 PII	_pos2xy(const POS& pos){		
-	___FUNCOUNT( U_POS2XY); 
 	return make_pair(pos.first, ntailzero(pos.second )); 
 }
 
 POS	i2pos(int i){  
-	___FUNCOUNT( U_I2POS); 
 	___PARASSERT(i != NULL_TAG); 
 	int x = i/BS; 
 	return make_pair(x, 1<<(i-x*BS)); 
 }
 
 int	pos2i(const POS& pos){ 
-	___FUNCOUNT( U_POS2I); 
 	___PARASSERT(pos != NULL_POS); 
 	return pos.first *BS + ntailzero(pos.second ); 
 }
 
 POS	aa2pos(string in) {  
-	___FUNCOUNT( U_AA2POS); 
 	return make_pair(tolower(in[1])-'a', 1<<(tolower(in[0])-'a')); 
 }
 
@@ -256,7 +234,6 @@ string pos2aa(const POS& pos){
 }
 
 int	interval_(const POS& p1, const POS& p2){  
-	___FUNCOUNT( U_INTERVAL); 
 	return (((p1.first >= p2.first)?
 		(p1.first-p2.first)	:
 		(p2.first-p1.first)) + popu((p1.second-1)^(p2.second-1))); 
@@ -264,7 +241,6 @@ int	interval_(const POS& p1, const POS& p2){
 
 ////
 BITB	cross(const POS& center, int radius){  
-	___FUNCOUNT( U_CROSS); 
 	int up = center.first -radius; 
 	int down = center.first +radius; 
 	ROW left = center.second<<(radius+1); 
@@ -281,7 +257,6 @@ BITB	cross(const POS& center, int radius){
 }
 
 BITB	square(const POS& center, int radius){ 
-	___FUNCOUNT( U_SQUARE); 
 	int up = center.first -radius; 
 	int down = center.first +radius; 
 	ROW left = center.second<<(radius+1); 
@@ -297,7 +272,6 @@ BITB	square(const POS& center, int radius){
 }
 
 BITB	frame(const POS& center, int radius){ 
-	___FUNCOUNT( U_FRAME); 
 	int up = center.first -radius; 
 	int down = center.first +radius; 
 	ROW left = center.second<<radius; 
@@ -314,7 +288,6 @@ BITB	frame(const POS& center, int radius){
 }
 
 BITB	strip(const POS& pos, int horizontal, int vertical, DIRECTION d){ 
-	___FUNCOUNT( U_STRIP1); 
 	int up, down; 
 	ROW left, right; 
 	if (d != SOUTH && d != ES && d != WS){
@@ -344,12 +317,10 @@ BITB	strip(const POS& pos, int horizontal, int vertical, DIRECTION d){
 }
 
 BITB	strip(const POS& p1, const POS& p2){  
-	___FUNCOUNT( U_STRIP2); 
 	return (NULL_BB|p1|p2).rangemask(); 
 }
 
 BITB	strip(const POS& center, int u, int l, int d, int r){  
-	___FUNCOUNT( U_STRIP3); 
 	int up = center.first -u; 
 	int down = center.first +d; 
 	ROW left = center.second<<(l+1); 
@@ -365,7 +336,6 @@ BITB	strip(const POS& center, int u, int l, int d, int r){
 }	
 
 BITB	diamond(const POS& center, int radius){  
-	___FUNCOUNT( U_DIAMOND); 
 	int up = center.first -radius; 
 	int down = center.first +radius; 
 	ROW left = center.second<<(radius+1); 
@@ -385,7 +355,6 @@ BITB	diamond(const POS& center, int radius){
 }
 
 BITB	pie(const POS& center, int radius){  
-	___FUNCOUNT( U_PIE); 
 	BITB bb = square(center, radius); 
 	int m, n; 
 	ITR itr(bb); 
@@ -399,7 +368,6 @@ BITB	pie(const POS& center, int radius){
 }
 
 BITB	circle(const POS& center, int radius){  
-	___FUNCOUNT( U_CIRCLE); 
 	BITB bb = square(center, radius); 
 	int m, n, l; 
 	ITR itr(bb); 
@@ -414,7 +382,6 @@ BITB	circle(const POS& center, int radius){
 }
 
 BITB	line(POS p1, POS p2){  
-	___FUNCOUNT( U_LINE); 
 	if ((p1.first == p2.first)||(p1.second == p2.second ))
 		return strip(p1, p2); 
 	BITB bb = NULL_BB|p1|p2; 
@@ -434,7 +401,6 @@ BITB	line(POS p1, POS p2){
 }
 
 unsigned	mulhigh32(unsigned u, unsigned v){  
-	___FUNCOUNT( U_MULHIGH32); 
 	unsigned u0, v0, w0, u1, v1, w1, w2, t; 
 	u0 = u&0xffff; u1 = u>>16; 
 	v0 = v&0xffff; v1 = v>>16; 
@@ -447,7 +413,6 @@ unsigned	mulhigh32(unsigned u, unsigned v){
 }
 
 bool	muloverflow(unsigned x, unsigned y){ 
-	___FUNCOUNT( U_MULOVERFLOW); 
 	int m = nleadingzero(x); 
 	int n = nleadingzero(y); 
 	if (m+n <= 30) 
@@ -464,7 +429,6 @@ bool	muloverflow(unsigned x, unsigned y){
 
 /*
 bool	issamepat(string a, string b){  
-	___FUNCOUNT( U_ISSAMEPAT); 
 	string ax = a; 
 	for (int i = 0; i<a.size (); ++i){
 		if		(ax.substr (i, 1) == "x")   
@@ -561,7 +525,6 @@ bool	issamepat(string a, string b){
 
 //此函数应当避免使用, 也未有 X O 符号
 string	asciipat(string patstr){	
-	___FUNCOUNT( U_STANDARDPAT); 
 	for (int p = 0; p<patstr.size (); ++p){			// p += 2
 		if (patstr.substr(p, 2) == "●")		{ patstr.replace (p, 2, "x"); continue; }
 		if (patstr.substr(p, 2) == "○")		{ patstr.replace (p, 2, "o"); continue; }
@@ -584,7 +547,6 @@ string	asciipat(string patstr){
 //此 mask 可以呈不规则形状
 //注意可以生成 "xbb\no-\n" 模式, 并不能用in2pat()还原
 string	pat2ascii ( const BITB& xbb, const BITB& obb, const BITB& mask){   
-	___FUNCOUNT( U_PAT2STR1); 
 												
 	string s = ""; 
 	BITB squarem = project(((xbb|obb)&mask).rangemask(), mask.rangemask()); 
@@ -623,7 +585,6 @@ string	pat2ascii ( const BITB& xbb, const BITB& obb, const BITB& mask){
 //注意可以生成 "xx\nx-\n" 模式, 并不能用in2pat()还原
 //可以生成 "+o\n" 或 "-o\n" 模式, 待改进
 string	pat2ascii(const BITB& bb, const BITB& mask) { 
-	___FUNCOUNT( U_PAT2STR2); 
 	string s; 
 	BITB squarem = project((bb&mask).rangemask(), mask.rangemask()); 
 	POS pos; //应该调用已存的位置向量
@@ -650,7 +611,6 @@ string	pat2ascii(const BITB& bb, const BITB& mask) {
 }
 
 string	asciigrid(const POS& pos) {  
-	___FUNCOUNT( U_GRIDSTR); 
 	int		 r = pos.first; 
 	ROW		 p = pos.second; 
 	if (r == 0&&p == LEFTEST)	{return "+"; }
@@ -670,24 +630,20 @@ string	asciigrid(const POS& pos) {
 */
 ////
 bool	prob(int small, int large){  
-	___FUNCOUNT( U_PROB); 
 	if ((rand()%large)<small)
 		return 1; 
 	else return 0; 
 }
 
 int	randsqrt(int m){  
-	___FUNCOUNT( U_RANDSQRT); 
 	return sqrtf((float)(rand()%(m*m))); 
 }
 
 int	randlog_(int m){  //-// right ?
-	___FUNCOUNT( U_RANDLOG); 
 	return log((float)(rand()+1))/15*m; 
 }
 
 float	randf(){  
-	___FUNCOUNT( U_RANDF); 
 	return ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
 	//UL seed = (unsigned)clock(); 
 	//seed = rand32(seed); 
@@ -695,7 +651,6 @@ float	randf(){
 }
 
 VF	randvf(int m){  
-	___FUNCOUNT( U_RANDVF); 
 	VF v; 
 	for (int j = 0; j<m; ++j)
 		v.push_back ((float)rand()/(float)(rand()+1)*(prob(1, 2)?1:-1)); 
@@ -703,7 +658,6 @@ VF	randvf(int m){
 }
 
 VVF	randvvf(int m, int n){  
-	___FUNCOUNT( U_RANDVVF); 
 	VVF vv; 
 	//2009// vv.assign (m, 0); 
 	//for (int i = 0; i<m; ++i)
@@ -719,7 +673,6 @@ VVF	randvvf(int m, int n){
 }
 
 VVVF	randvvvf_(int m, int n, int l){  
-	___FUNCOUNT( U_RANDVVVF); 
 	VVVF vvv; 
 	//2009// vvv.assign (m, 0); //-//
 	//for (int i = 0; i<m; ++i)
@@ -740,7 +693,6 @@ VVVF	randvvvf_(int m, int n, int l){
 }
 
 unsigned	randu(int m){	
-	___FUNCOUNT(U_RANDU); 
 	return rand() % m; 
 }
 
@@ -856,122 +808,3 @@ VI indexsort(const VI& vi){
 	return tmp;
 }
 
-/* _______________________________ 测试区 _______________________________ */
-
-void U_TEST::draw(){
-		___COUT1(  strip (star(5), 3, 3, 3, 3)); 
-		___COUT1(   ~strip (star(5), 5, 5, 5, 5)); 
-		___COUT1(   frame (star(5), 5)); 
-		___COUT1(   strip (star(5), 4, 4, 4, 4)); 
-		___COUT1( frame(star(5), MIDBS) ); 
-		___COUT1( (((NULL_BB|star(2))|star(5)).range()) ); 
-		___COUT1( (((NULL_BB|star(2))|star(4)).rangemask())); 
-		___COUT1( strip(star(9), 9, 2) ); 
-		___COUT1( strip(star(4), BS, 4, NORTH) ); 
-		___COUT1( strip(star(6), 4, BS, WEST) ); 
-		___COUT1( strip(star(5), 4, 6, WS) ); 
-		___COUT1( strip(star(2), star(4))); 
-		___COUT1( diamond(star(5), 3) ); 
-		___COUT1( pie(star(5), 7) ); 
-		___COUT1( (pie(star(5), 7)^pie(star(5), 6)) ); 
-		___COUT1( circle(star(6), 7) ); 
-		___COUT1( line(star(7), star(4))); 
-		___COUT1( line(star(6), star(4))); 
-		___COUT1( line(star(2), star(7))); 
-		___COUT1( line(star(7), star(2))); 
-		___COUT1( line(star(9), star(2))); 
-		___COUT1( line(star(2), star(9))); 
-		___COUT1( line(star(4), star(9))); 
-		___COUT1( line(star(9), star(4))); 
-		___COUT1( line(star(4), star(3))); 
-		___COUT1( line(star(3), star(5))); 
-		___COUT1( line(make_pair(15, 1<<18), make_pair(0, 1))); 
-		___COUT1( line(make_pair(3, 1<<18), make_pair(0, 1))); 
-		___COUT1( line(make_pair(13, 1<<13), make_pair(5, 1<<2))); 
-		___COUT1( line(make_pair(11, 1<<7), make_pair(2, 1))); 
-		___COUT1( line(make_pair(7, 1<<13), make_pair(4, 1))); 
-		___COUT1( line(make_pair(13, 1<<13), make_pair(5, 1<<2))); 
-		___COUT1( line(make_pair(13, 1<<2), make_pair(5, 1<<13))); 
-}
-
-void U_TEST::bit(){
-	___COUT8(
-		nleadingzero(0), 
-		ntailzero(0), 
-		nleadingzero(1), 
-		ntailzero(1), 
-		nleadingzero(1<<31), 
-		ntailzero(1<<31), 
-		NULL_POS, 
-		PASS_POS
-		); 
-}
-
-void U_TEST::idsort(){
-	VI vi;
-	for (int t=0; t<10; ++t) {
-		for (int i=0; i< randu(20); ++i)
-			vi.push_back( randu(100) );
-		___COUT2( vi, indexsort(vi) );
-	}
-}
-
-void U_TEST::timefunc(string which){
-	 
-	RANDER  r; 
-
-	___TIME(U_ROWEXPAND, rowexpand(   r.vu[0], r.vu[1]); ); 
-	___TIME(U_CONNECTINGONE, connectingone(   r.vu[0], r.vi[0]); ); 
-	___TIME(U_REVERSE, reverse(   r.vu[0]); ); 
-	___TIME(U_POPU, popu(  r.vu[0]); ); 
-	___TIME(U_NLEADINGZERO, nleadingzero(   r.vu[0]); ); 
-	___TIME(U_NTAILZERO, ntailzero(   r.vu[0]); ); 
-
-	___TIME(U_XY2POS, _xy2pos(   r.vi[0], r.vi[1]); ); 
-	___TIME(U_XY2I, xy2i_(   r.vi[0], r.vi[1] ); ); 
-	___TIME(U_I2XY, i2xy_(   r.vi[0]); ); 
-	___TIME(U_I2POS, i2pos(   r.vi[0]); ); 
-	___TIME(U_POS2I, pos2i(   r.vp[0]); ); 
-	___TIME(U_POS2XY, _pos2xy(   r.vp[0]); ); 
-	___TIME(U_AA2POS, aa2pos(   r.vs[0]); ); 
-
-	___TIME(U_CORNER, corner(   r.vd[0]); ); 
-	___TIME(U_STAR1, star(   r.vd[0] ); ); 
-	___TIME(U_STAR2, star(   r.vi[0]); ); 
-	___TIME(U_NEAR4, near4(   r.vp[0]); ); 
-	___TIME(U_NEAR8, near8(   r.vp[0]); ); 
-	___TIME(U_OUTSIDE, outside(   r.vp[0]); ); 
-	___TIME(U_ONBOARDER, onboarder(  r.vp[0]); ); 
-	___TIME(U_ROT, rot(   r.vi[0], r.vp[0]); ); 
-	___TIME(U_TRANSP, transp(   r.vp[0]); ); 
-	___TIME(U_INTERVAL, interval_(   r.vp[0], r.vp[1]); ); 
-
-	___TIME(U_LINE, line(   r.vp[0], r.vp[1]); ); 
-	___TIME(U_FRAME, frame(   r.vp[0], r.vi[0]); ); 
-	___TIME(U_SQUARE, square(   r.vp[0], r.vi[0]); ); 
-	___TIME(U_PIE, pie(   r.vp[0], r.vi[0]); ); 
-	___TIME(U_CIRCLE, circle(  r.vp[0], r.vi[0]); ); 
-	___TIME(U_DIAMOND, diamond(  r.vp[0], r.vi[0]); ); 
-	___TIME(U_CROSS, cross(  r.vp[0], r.vi[0]); ); 
-	___TIME(U_STRIP1, strip(  r.vp[0], r.vp[1]); ); 
-	___TIME(U_STRIP2, strip(  r.vp[0], r.vi[0], r.vi[1], r.vd[0]); ); 
-	___TIME(U_STRIP3, strip(  r.vp[0], r.vi[0], r.vi[1], r.vi[2], r.vi[3]); ); 
-
-	___TIME(U_MULHIGH32, mulhigh32(  r.vu[0], r.vu[1]); ); 
-	___TIME(U_MULOVERFLOW, muloverflow(  r.vu[0], r.vu[1]); ); 
-	/*
-	___TIME(U_ISSAMEPAT, issamepat(  r.vs[0], r.vs[1]); ); 
-	___TIME(U_STANDARDPAT, asciipat(  r.vs[0]); ); 
-	___TIME(U_GRIDSTR, asciigrid(  r.vp[0]); ); 
-	___TIME(U_PAT2STR1, pat2ascii(  r.vb[0], r.vb[1]); ); 
-	___TIME(U_PAT2STR2, pat2ascii(  r.vb[0], r.vb[1], r.vb[2]); ); 
-	*/
-	___TIME(U_PROB, prob(  r.vi[0], r.vi[1]); ); 
-	___TIME(U_RANDSQRT, randsqrt(  r.vi[0]); ); 
-	___TIME(U_RANDLOG, randlog_(  r.vi[0]); ); 
-	___TIME(U_RANDU, randu(  r.vi[0]); ); 
-	___TIME(U_RANDF, randf(); ); 
-	___TIME(U_RANDVF, randvf(  r.vi[0]); ); 
-	___TIME(U_RANDVVF, randvvf(  r.vi[0], r.vi[1]); ); 
-	___TIME(U_RANDVVVF, randvvvf_(  r.vi[0], r.vi[1], r.vi[2]); ); 
-}

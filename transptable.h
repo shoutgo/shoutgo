@@ -250,19 +250,4 @@ public:
 		}
 }; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	TT_FUN	{
-	TT_TRANSPTABLE = FTT* FUN_MAX, TT_FUN_SIZE}; 
-
-class TEST_TT {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void aimtree(); 
-	void active(){
-		aimtree(); 
-	} 
-}; 
-
 #endif

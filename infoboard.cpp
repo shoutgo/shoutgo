@@ -2,8 +2,6 @@
 #include "inout.h"
 
 #if		INFO_MACRO == 0
-#undef	___FUNCOUNT
-#define ___FUNCOUNT(fun) {}
 #undef	___TIME
 #define ___TIME(code)	{}
 #endif
@@ -152,11 +150,9 @@ int PATFREQ::getf(const POS& pos, COLOR clr, int i) const{
 /* class INFOGO */
 
 INFOGO::INFOGO():father(0) {			//-// 
-	___FUNCOUNT( INFO_INFOGO1); 
 }
 
 INFOGO::INFOGO(const GO& go):father(0){ //-//
-	___FUNCOUNT( INFO_INFOGO2); 
 	xx = go.xx; 
 	oo = go.oo; 
 	kill = go.getkill(); 
@@ -180,7 +176,6 @@ bool INFOGO::operator == (const GO& go) const {
 }
 
 INCREMENT INFOGO::scan() const {	
-	___FUNCOUNT( INFO_SCAN); 
 	INCREMENT tmp; 
 	ITR itr; 
 	for (POS p = itr.posbegin (); !itr.posend (); p = itr.posnext ()){
@@ -230,7 +225,6 @@ INCREMENT INFOGO::scan() const {
 }
 
 bool INFOGO::move  ( const POS& pos, COLOR clr) {	
-	___FUNCOUNT( INFO_MOVE); 
 	
 	int ip = pos2i(pos); 
 	COLOR ic = inc.getcolor (ip); 
@@ -412,7 +406,6 @@ bool INFOGO::move  ( const POS& pos, COLOR clr) {
 }
 
 VG	INFOGO::partition(int n)  const {	
-	___FUNCOUNT( INFO_PARTITION); 
 	VG vg; 
 	vg.push_back (*this); 
 	BITB tmpx[BS], tmpo[BS], contact; // [n] ?
@@ -431,7 +424,6 @@ VG	INFOGO::partition(int n)  const {
 /*
 // 色域精确化
 PBB	INFOGO::lastpartition(int n) const {	
-	___FUNCOUNT( INFO_LASTPARTITION); 
 	GO     gp = partition(n).back(); 
 	BITB  tmp; 
 	int p, q; 
@@ -460,7 +452,6 @@ PBB	INFOGO::lastpartition(int n) const {
 }
 
 pair<VB, VB >	INFOGO::getallmass(const PBB& pbb) const {	
-	___FUNCOUNT( INFO_CLUSTER); 
 	VB vecx, veco; 
 	ITR itr = ITR(pbb.first ); 
 	for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext())
@@ -472,7 +463,6 @@ pair<VB, VB >	INFOGO::getallmass(const PBB& pbb) const {
 }
 
 AREA	INFOGO::setarea(int pt, int dt, int at) const {	
-	___FUNCOUNT( INFO_AREA); 
 	pair<VB, VB > pv = getallmass(lastpartition(pt)); 
 	PBB clrbb = lastpartition(BS); //pt
 	AREA area; 
@@ -917,22 +907,4 @@ bool	AREA::newmass(const POS& pos, COLOR clr) const{
 //	sort(vec.begin (), vec.end ()); 
 //	return vec; 
 //}
-
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_INFO::timefunc (string which) {
-	  
-	RANDER  r; 
-	
-	INFOGO	info = INFOGO(r.vg[0]); 
-
-	//___TIME( INFO_SCAN, info.scan(); ); 
-	//___TIME( INFO_MOVE, info.move  ( r.vp[0], r.vc[0] ); ); 
-	___TIME( INFO_PARTITION, info.partition(r.vi[0] ); ); 
-	/*
-	___TIME( INFO_LASTPARTITION, info.lastpartition(r.vi[0]); ); 
-	___TIME( INFO_CLUSTER, info.getallmass(make_pair(r.vb[0], r.vb[1])); ); 
-	___TIME( INFO_AREA, info.setarea(r.vi [0], r.vi[1], r.vi[2]); ); 
-	*/
-}
 

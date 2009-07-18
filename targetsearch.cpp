@@ -638,8 +638,3 @@ void	TARGETSEARCH::lookfor(){
 }
 */
 
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_TS::timefunc (string which) {
-	RANDER  r; 
-}

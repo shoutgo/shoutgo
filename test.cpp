@@ -211,42 +211,6 @@ void testsize(){
 		); 
 }
 
-		// 同一实现文件内的函数 static 对象值才可以保持
-void t_t_teststatic(){						
-	___REPORT(
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		st_g_ctr.fcount [U_RANDU] += 100; 
-		g_ctr.fcount [U_RANDU] += 100; 
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		t_teststatic(); 
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		); 
-}
-
-void t_teststatic(){
-	___REPORT(
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		st_g_ctr.fcount [U_RANDU] += 400; 
-		g_ctr.fcount [U_RANDU] += 400; 
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		teststatic(); 
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		); 
-}
-
-
-void teststatic(){
-	___REPORT(
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		st_g_ctr.fcount [U_RANDU] += 100; 
-		g_ctr.fcount [U_RANDU] += 100; 
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		//TIMER()(10, "rand_u", randu, 33); 
-		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
-		___ASSERT(st_g_ctr.fcount [U_RANDU] == 5); 
-		); 
-}
-
 void testc (){
 		// time() 返回自 1970 年 1 月 1 日 00:00:00到当前时间的秒数。
 		// clock() 返回自程序运行到此时的 CPU 时钟计时单元数。
@@ -362,21 +326,6 @@ void testload (){/*
 	); */
 }
 
-void testcounter (){
-	___REPORT(
-		st_g_ctr.reportfcount(); 
-		g_ctr.reportfcount(); 
-		GO go; 
-		go.random (); 
-		st_g_ctr.reportfcount(); 
-		g_ctr.reportfcount(); 
-		U_TEST().timefunc(); 
-		g_ctr.reportfcount(); 
-		g_ctr.clear (); 
-		g_ctr.reportfcount(); 
-	); 
-}
-
 void testrand (){
 	___COUT2(ULLONG_MAX, UINT_MAX); 
 	UL seed32 = 333; 
@@ -460,95 +409,3 @@ int	 TEST::minus5(int& a) const {
 	a -= 5; 
 	return a; 
 }
-
-		// s == ""          测试全部函数
-		// s == "u""bb"...  测试相应组
-		// s == "U_RANDU"	  测试指定函数
-void TEST::time (string s){
-	tested_ctr.clear(); 
-	swap(snap_ctr, g_ctr); 
-	clog << setx(G) << "testing ..." << setx(W)<< endl; 
-
-	if ((s == "") ||(s == "u") || (s.find("U_") != s.npos))	
-		tu.timefunc(s); 
-	if ((s == "") ||(s == "bb") || (s.find("BB_") != s.npos))	
-		tbb.timefunc(s); 
-	if ((s == "") ||(s == "go") || (s.find("GO_") != s.npos))	
-		tgo.timefunc(s); 
-	if ((s == "") ||(s == "info") || (s.find("INFO_") != s.npos))	
-		tinfo.timefunc(s); 
-	if ((s == "") ||(s == "io") || (s.find("IO_") != s.npos))	
-		tio.timefunc(s); 
-	if ((s == "") ||(s == "itr") || (s.find("ITR_") != s.npos))	
-		titr.timefunc(s); 
-	if ((s == "") ||(s == "s") ||(s.find("_S_SIZE") == s.npos)  
-		|| ((s.find("S_") != s.npos) && (s.find("_SIZE") == s.npos) ))	
-		ts.timefunc(s); 
-	if ((s == "") ||(s == "ts") || (s.find("TS_") != s.npos))	
-		tts.timefunc(s); 
-	if ((s == "") ||(s == "tt") || (s.find("TT_") != s.npos))	
-		ttt.timefunc(s); 
-	if ((s == "") ||(s == "nn") || (s.find("NN_") != s.npos))	
-		tnn.timefunc(s); 
-	if ((s == "") ||(s == "l") || (s.find("L_") != s.npos))	
-		tl.timefunc(s); 
-	if ((s == "") ||(s == "br") || (s.find("BR_") != s.npos))	
-		tbr.timefunc(s); 
-	if ((s == "") ||(s == "f") || (s.find("F_") != s.npos))	
-		tf.timefunc(s); 
-	if ((s == "") ||(s == "tg") || (s.find("TG_") != s.npos))	
-		ttg.timefunc(s); 
-
-	clog<<setx(R)<<"no tested :"<<setx(W)<< endl; 
-	(snap_ctr - tested_ctr).reportfcount(); 
-	swap(snap_ctr, g_ctr); 
-}
-
-void TEST::active() {
-	//tu.active(); 
-	//tbb.active(); 
-	tgo.active(); 
-	tinfo.active(); 
-	//tio.active(); 
-	titr.active(); 
-	ts.active(); 
-	tts.active(); 
-	//ttt.active(); 
-	tnn.active(); 
-	//tl.active(); 
-	tbr.active(); 
-	tf.active(); 
-	ttg.active(); 
-
-	//testnewpos(); 
-	//testtree(); 
-	//t_t_teststatic(); 
-	//t_teststatic(); 
-	//teststatic(); 
-	//testc (); 
-	//testcpp(); 
-	//teststl(); 
-	//testsize(); 
-	//testload (); 
-	//testcounter (); 
-	//testrand (); 
-	//test_array_if (); 
-	//testcout (); 
-	//testindex8 (); 
-	//testtransptable(); 
-
-	test5 (); 
-	test6 (); 
-	test7 (); 
-}
-
-void test5 (){
-}
-
-void test6 (){
-}
-
-void test7 (){
-}
-
-

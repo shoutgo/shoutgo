@@ -196,16 +196,4 @@ public:
 
 }; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	TS_FUN	{TS_TARGETSEARCH = FTS*FUN_MAX, TS_FUN_SIZE}; 
-
-class TEST_TS {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void active(){
-	}  
-}; 
-
 #endif

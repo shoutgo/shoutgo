@@ -9,8 +9,6 @@ void ___assert(bool exp, string s, string _f_, long _l_){
 		if ( ! _f_.empty ())
 			cout << " ["<< _f_ <<" ("<< _l_ <<")]"; 
 		cout << setx(W) << endl; 
-		//err_ctr = snap_ctr; 
-		//g_ctr = snap_ctr; 
 	} 
 }
 
@@ -18,10 +16,6 @@ void ___parassert(bool exp, string s){
 	if (!exp){
 		cerr << setx(R) << "___parassert(" << s << ") is failure ! "
 			<< setx(W) << endl; 
-		err_ctr = g_ctr; //-//
-		//err_ctr = snap_ctr; 
-		//g_ctr = snap_ctr; 
-		g_ctr.reportftrack(30); 
 	} 
 }
 
@@ -44,80 +38,6 @@ void TIMER::silenttoc_(){
 	dif = clock()-ticat; 
 	ticat = clock(); 
 }		
-
-const int COUNTER::TRACK_MAX = 1000;
-const int COUNTER::LINES_MAX = 100;
-
-COUNTER::COUNTER(){
-	lcount.assign (LINES_MAX, 0); 
-	fcount.assign (FSIZE*FUN_MAX, 0); 
-	fname.assign (FSIZE*FUN_MAX, ""); 
-	ftrack.assign (TRACK_MAX, -1); 
-}
-
-void COUNTER::setfcountall(int n){
-	fcount.assign (FSIZE*FUN_MAX, n); 
-}
-
-void COUNTER::setlcount(int p){
-	___PARASSERT( p < LINES_MAX ); 
-	++ lcount[p]; 
-	cout<<"lcount["<< setx(G) <<p <<setx(W) <<"]: "
-		<< setx(G) << lcount[p] <<setx(W) << endl; 
-}
-
-void COUNTER::clear (){	 	
-	COUNTER cntr = COUNTER(); //2009//
-	swap(cntr, *this); //2009//
-	//swap(COUNTER(), *this); 
-}
-
-void COUNTER::reportfcount(FUNGROUP fg){
-	static int x[FSIZE]; 
-	x[FU] = U_FUN_SIZE; 
-	x[FBB] = BB_FUN_SIZE; 
-	x[FGO] = GO_FUN_SIZE; 
-	x[FINFO] = INFO_FUN_SIZE; 
-	x[FIO] = IO_FUN_SIZE; 
-	x[FITR] = ITR_FUN_SIZE; 
-	x[FS] = S_FUN_SIZE; 
-	x[FTS] = TS_FUN_SIZE; 
-	x[FTT] = TT_FUN_SIZE; 
-	x[FL] = L_FUN_SIZE; 
-	x[FNN] = NN_FUN_SIZE; 
-	x[FBR] = BR_FUN_SIZE; 
-	x[FF] = F_FUN_SIZE; 
-	x[FTG] = TG_FUN_SIZE; 
-	if (fg != FSIZE){
-		for (int i = fg * FUN_MAX; i< x[fg]; ++i)
-			cout<<::setw(20)<<::left<< fname[i]	
-				<<::setw(10)<<::right<< fcount[i] << endl; 
-	}
-	else 
-		for (int i = 0; i<FSIZE; ++i){
-			reportfcount((FUNGROUP)i); 
-			cout<< endl; 
-		}
-}
-
-void COUNTER::reportftrack(int n){
-	___ASSERT( ftrack.size () == TRACK_MAX ); 
-	for (int i = ftrack.size ()-1; n>0 && i >= 0; --i, --n) {
-		int width = ftrack[i]/FUN_MAX; 
-		if (ftrack[i] != -1)
-			cout<< ::setw( 20 + width*4 ) << fname[ftrack[i]] << endl; 
-	}
-}
-
-COUNTER operator - (const COUNTER& a, const COUNTER& c) { 
-	//-// 其它几个成员未处理
-	COUNTER tmp = a; 
-	transform(a.lcount.begin(), a.lcount.end(), c.lcount .begin (), 
-		tmp.lcount.begin (), minus<int>()); 
-	transform(a.fcount.begin(), a.fcount.end(), c.fcount .begin (), 
-		tmp.fcount .begin (), minus<int>()); 
-	return tmp; 
-}
 
 RANDER::RANDER(int n, int nb, int ng){
 	srand((unsigned)time(0)); 

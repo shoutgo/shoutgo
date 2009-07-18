@@ -227,29 +227,4 @@ ostream& operator<<(ostream& os, const pair<T, S> pts){
 }
 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	IO_FUN	{
-	IO_LOGO = FIO * FUN_MAX, IO_AXIS, 
-	IO_GRID, IO_PRINTBITBOARD, IO_PRINT1, IO_PRINT2, IO_PRINTBLOCK, 
-	IO_PRINTLIBERTYSITE, IO_PRINTLIBERTY, IO_PRINTPARTITION, 
-	IO_PRINTLABEL, IO_PRINTCLUSTER, IO_PRINTAREA, IO_PRINTONEAREA, 
-	IO_PRINTPUBLICAREA, IO_PRINTPAT1, IO_PRINTPAT2, IO_IN2PAT, 
-	IO_IN2POS, IO_JJ2POS, IO_GETFILENAME, IO_SGF2POS, IO_SGF2XY, 
-	IO_SGFS2POS, IO_SGFS2XY, IO_SGF2TREE, IO_FROMMATLAB, 
-	IO_SAVE1, IO_SAVE2, IO_SAVE3, IO_SAVE4, IO_LOAD, 
-	IO_READBUF, IO_SAVECODE, IO_FUN_SIZE}; 
-
-class TEST_IO {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void pattern(); 
-	//void sgftree(); 
-	void inputpat(); 
-	void active(){ 
-		pattern(); 
-	} 
-}; 
-
 #endif

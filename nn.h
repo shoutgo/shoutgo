@@ -33,19 +33,4 @@ public:
 	void		perception_genetic(); 
 }; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	NN_FUN	{NN_NN = FNN*FUN_MAX, NN_FUN_SIZE}; 
-
-class TEST_NN {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void active(){ 
-		NN nn;
-		nn.linear_genetic();
-       nn.perception_genetic();
-	} 
-}; 
-
 #endif

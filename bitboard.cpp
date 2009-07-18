@@ -7,8 +7,6 @@
 #define ___ASSERT(var) {}
 #undef  ___PARASSERT
 #define ___PARASSERT(var) {}
-#undef	___FUNCOUNT
-#define ___FUNCOUNT(fun) {}
 #undef  ___LINECOUNT
 #define ___LINECOUNT(var) {}
 #undef  ___REPORT
@@ -22,26 +20,22 @@
 #endif
 
 BITB::BITB(ROW x){   
-	////___FUNCOUNT( BB_BITB1); 
 	for (int i = 0; i<BS; ++i)
 		r[i] = x; 
 }
 
 BITB::BITB(ROW a[]) {  
-	___FUNCOUNT( BB_BITB2); 
 	for (int i = 0; i<BS; ++i) 
 		r[i] = a[i]; 
 }
 
 BITB::BITB(const POS& p)	{  
-	___FUNCOUNT( BB_BITB3); 
 	for (int i = 0; i<BS; ++i) 
 		r[i] = 0; 
 	r[p.first ] = p.second; 
 }
 
 void BITB::random(){  
-	___FUNCOUNT( BB_RANDOM); 
 	srand((unsigned)clock()); // 测试时可用time()   2006.9.23
 	for (int i = 0; i<BS; ++i) 
 		r[i] = ((rand()<<15)+rand()) & ROWMASK; 
@@ -50,7 +44,6 @@ void BITB::random(){
 
 BLOCK BITB::blockat(const POS& pos) const {  
 	//-// 应该放入blockon(), 再调用
-	___FUNCOUNT( BB_BLOCKAT); 
 	___PARASSERT( !outside (pos) || pos == NULL_POS ); 
 
 	if (( r[pos.first ] & pos.second ) == 0) 
@@ -74,7 +67,6 @@ BLOCK BITB::blockat(const POS& pos) const {
 
 BITB BITB::blockon_ (const BITB& t) const {  
 	//-// 有待改进，仿blockat(POS)或者dialate()
-	___FUNCOUNT( BB_BLOCKON); 
 	BITB bb = *this; 
 	ITR itr(bb); 
 	for (BITB b = itr.blockbegin(); !itr.blockend(); b = itr.blocknext())
@@ -95,7 +87,6 @@ BITB BITB::blockon (const BITB& t) const {
 }
 
 bool BITB::only (const POS& pos) const { 
-	___FUNCOUNT( BB_ONLY); 
 	//-//
 	for (int i = 0; i<BS; ++i) {
 		if (i != pos.first) {
@@ -109,7 +100,6 @@ bool BITB::only (const POS& pos) const {
 }
 
 int	BITB::count () const {  
-	___FUNCOUNT( BB_COUNT); 
 	int n = 0; 
 	for (int i = 0; i<BS; ++i)   
 		n += popu(r[i]); 
@@ -117,7 +107,6 @@ int	BITB::count () const {
 }
 
 BITB BITB::transpose() const {  
-	___FUNCOUNT( BB_TRANSPOSE); 
 	BITB T; 
 	for (int i = 0; i<BS; ++i) {
 		for (int j = 0; j<BS; ++j) { 
@@ -128,7 +117,6 @@ BITB BITB::transpose() const {
 }
 
 BITB BITB::rotate(int angle) const {  
-	___FUNCOUNT( BB_ROTATE); 
 	___PARASSERT(angle == 0 || angle == 90 || angle == 180 || angle == 270); 
 	BITB T; 
 	switch (angle){
@@ -155,7 +143,6 @@ BITB BITB::rotate(int angle) const {
 }
 
 int	BITB::blockcount() const { 
-	___FUNCOUNT( BB_BLOCKCOUNT); 
 	ITR itr = ITR(*this); 
 	int n = 0; 
 	for (itr.blockbegin(); !itr.blockend(); itr.blocknext(), ++n){}; 
@@ -164,7 +151,6 @@ int	BITB::blockcount() const {
 
 //输出为水平和垂直方向的长度
 PII	BITB::range() const {					
-	___FUNCOUNT( BB_RANGE); 
 	if (*this == NULL_BB) 
 		return 	make_pair(0, 0); 
 	ROW rr = 0; //必须初始化为0
@@ -180,7 +166,6 @@ PII	BITB::range() const {
 }
 
 BITB BITB::rangemask() const {  
-	___FUNCOUNT( BB_RANGEMASK); 
 	if (*this == NULL_BB) 
 		return NULL_BB; 
 	ROW rr = 0; 
@@ -201,7 +186,6 @@ BITB BITB::rangemask() const {
 }
 
 BITB BITB::dilate(int times) const {  
-	___FUNCOUNT( BB_DILATE); 
 	BITB ex, bb = *this; 
 	for (int t = 0; t<times; ++t){
 		ex.r[0] = (bb.r[0]|bb.r[0]<<1|bb.r[0]>>1|bb.r[1]); 
@@ -215,7 +199,6 @@ BITB BITB::dilate(int times) const {
 }
 
 BITB BITB::dry(const BITB& bone, int times) const {  
-	___FUNCOUNT( BB_DRY); 
 	BITB ex, bb = *this; 
 	for (int t = 0; t<times; ++t){
 		ex.r[0] = bone.r[0]; 
@@ -228,7 +211,6 @@ BITB BITB::dry(const BITB& bone, int times) const {
 }
 
 BITB BITB::adsorb(const BITB& bone, int times) const {  
-	___FUNCOUNT( BB_ADSORB); 
 	BITB ex, bb = *this; 
 	for (int t = 0; t<times; ++t){
 		ex = bb.dry(bone, 1); 
@@ -242,7 +224,6 @@ BITB BITB::adsorb(const BITB& bone, int times) const {
 }
 
 BITB BITB::inner(int times) const {  
-	___FUNCOUNT( BB_INNER); 
 	BITB bone = *this; // 2006.10.30
 	BITB bb; 
 	ITR itr(dilate (times)^bone); 
@@ -253,14 +234,12 @@ BITB BITB::inner(int times) const {
 }
 
 bool BITB::notbigger (int x, int y) const {  
-	___FUNCOUNT( BB_NOTBIGGER); 
 	pair <int, int> rg = range(); 
 	return ((rg.first <= x && rg.second <= y) 
 			|| (rg.first <= y && rg.second <= x)); 
 }
 
 BITB BITB::ruboff (int x, int y) const {  
-	___FUNCOUNT( BB_RUBOFF1); 
 	BITB b = *this; 
 	ITR itr = ITR(b); 
 	for(BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext())
@@ -269,12 +248,10 @@ BITB BITB::ruboff (int x, int y) const {
 }
 
 BITB BITB::ruboff(const BITB& b) const {  
-	___FUNCOUNT( BB_RUBOFF2); 
 	return *this^(*this&b); 
 }
 
 BITB BITB::close (int t) const {  
-	___FUNCOUNT( BB_CLOSE); 
 	BITB bb = *this; 
 	for(int i = 0; i<t; ++i)
 		bb = bb.dilate (1).erode(1); 
@@ -282,7 +259,6 @@ BITB BITB::close (int t) const {
 }
 
 BITB BITB::open (int t) const {  
-	___FUNCOUNT( BB_OPEN); 
 	BITB bb = *this; 
 	for(int i = 0; i<t; ++i)
 		bb = bb.erode(1).dilate (1); 
@@ -290,7 +266,6 @@ BITB BITB::open (int t) const {
 }
 
 BITB BITB::erode(int times) const {  
-	___FUNCOUNT( BB_ERODE); 
 	BITB ex, bb = *this; 
 	for (int t = 0; t<times; ++t){
 		ex.r[0] = 0; 
@@ -379,22 +354,18 @@ POS  BITB::tag() const{
 }
 
 bool BITB::touchboarder() const {  
-	___FUNCOUNT( BB_TOUCHBOARDER); 
 	return ( *this & frame(star(CENTER), MIDBS) ) != NULL_BB; 
 }
 
 bool BITB::contain (const BITB& c) const {  
-	___FUNCOUNT( BB_CONTAIN); 
 	return (*this&c) == c; 
 }
 
 VP BITB::keypos_() const {  
-	___FUNCOUNT( BB_KEYPOS); 
 	return NULL_VP; 
 }
 
 VP BITB::jointpos() const {  
-	___FUNCOUNT( BB_JOINTPOS); 
 	BLOCK blk = *this; 
 	ITR itr(blk); 
 	VP vecpos; 
@@ -406,7 +377,6 @@ VP BITB::jointpos() const {
 // 子数小于等于7的BLOCK的模式特征码，
 // 为各位置可扩展点数相乘结果，小于 5^7。
 UL BITB::encode32() const {  
-	___FUNCOUNT( BB_ENCODE32); 
 	BLOCK blk = *this; 
 	ITR itr(blk); 
 	int n = 1; 
@@ -432,7 +402,6 @@ BITB BITB::pemismask() const {
 // direction 的作用仅在于判断是否和四边接触，以便投射到相应边，
 // 所以左上四分之一区与左上角点完全等价
 BITB	BITB::project(const BITB& direction) const { 
-	___FUNCOUNT( U_COMPACTMASK); 
 	ROW s = 0, m = 0; 
 	int up = -1, down = -1; 
 	for (int i = 0; i<BS; ++i){
@@ -465,7 +434,6 @@ BITB	BITB::project(const BITB& direction) const {
 
 //注意 NULL_BB 结果为 1
 PUU BITB::pemis3232_(const BITB& patmask) const {			
-	___FUNCOUNT( BB_PEMIS3232); 
 	vector<short> vecs; 
 	BITB patbb = blockon(patmask); 
 	BITB mask = patbb.pemismask(); 
@@ -507,7 +475,6 @@ PUU BITB::pemis3232_(const BITB& patmask) const {
 
 //算法应与 project() 有关!
 ULL	BITB::pemis64_(const BITB& patmask) const {				
-	___FUNCOUNT( BB_PEMIS64); 
 	ULL tmp = 1; 
 	BITB patbb = blockon(patmask); 
 	BITB mask = patbb.pemismask(); 
@@ -628,7 +595,6 @@ PUU	 BITB::pemis3232() const{
 // 可利用encode32()和jointp()直接给出结果.
 // 如 encode32 不重复, 可不用count().
 pair<EYEKIND, VP > BITB::eyekind(ACTION action) const { 
-	___FUNCOUNT( BB_EYEKIND); 
 	if (blockcount()>1 || count()>7)
 		return make_pair(SOMEEYE, NULL_VP); 
 	if ((action == AFTERDELETE)||(action == KILL)){
@@ -897,64 +863,4 @@ void	 BITB::operator ^= (const POS& pos)		{
 bool	 BITB::operator[]  (const POS& pos)  const	{ 
 	return (r[pos.first]&pos.second) >0; 
 }
-
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_BB::fly(){
-	BITB tmp; 
-	tmp.random (); 
-	ITR itr = ITR(tmp); 
-	for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext()){
-		___COUT1( GO(bb, bb.diagonal()) ); 
-		___COUT8( 
-			GO(bb, bb.fly (0, 1)), 
-			GO(bb, bb.fly (1, 1)), 
-			GO(bb, bb.fly (1, 2)), 
-			GO(bb, bb.fly (2, 1)), 
-			GO(bb, bb.fly (0, 2)), 
-			GO(bb, bb.fly (3, 0)), 
-			GO(bb, bb.fly (3, 1)), 
-			GO(bb, bb.fly (3, 2))
-			); 
-	}
-}
-
-void TEST_BB::timefunc (string which) {
-		 
-	RANDER  r; 
-
-	BITB	bb = r.vb[0]; 
-
-	___TIME(BB_RANDOM, bb.random(); ); 
-	___TIME(BB_ONLY, bb.only( r.vp[0]); ); 
-	___TIME(BB_COUNT, bb.count(); ); 
-	___TIME(BB_BLOCKCOUNT, bb.blockcount(); ); 
-	//___TIME(BB_BLOCKAT, bb.blockat(  r.vp[0]); ); 
-	___TIME(BB_TRANSPOSE, bb.transpose(); ); 
-	___TIME(BB_ROTATE, bb.rotate( 90); ); 
-	___TIME(BB_RANGE, bb.range(); ); 
-	___TIME(BB_RANGEMASK, bb.rangemask(); ); 
-	___TIME(BB_DILATE, bb.dilate(  2); ); 
-	___TIME(BB_ERODE, bb.erode( r.vi[0]); ); 
-	___TIME(BB_DRY, bb.dry(  r.vb[0], r.vi[0]); ); 
-	___TIME(BB_ADSORB, bb.adsorb(  r.vb[0], r.vi[0]); ); 
-	___TIME(BB_INNER, bb.inner(  r.vi[0]); ); 
-	___TIME(BB_NOTBIGGER, bb.notbigger(  r.vi[0], r.vi[1]); ); 
-	___TIME(BB_RUBOFF1, bb.ruboff(  r.vb[0]); ); 
-	___TIME(BB_RUBOFF2, bb.ruboff(  r.vi[0], r.vi[1]); ); 
-	___TIME(BB_CLOSE, bb.close(  r.vi[0]); ); 
-	___TIME(BB_OPEN, bb.open(  r.vi[0]); ); 
-	___TIME(BB_BLOCKON, bb.blockon(  r.vb[0]); ); 
-	___TIME(BB_TOUCHBOARDER, bb.touchboarder(); ); 
-	___TIME(BB_CONTAIN, bb.contain(  r.vb[0]); ); 
-	___TIME(BB_KEYPOS, bb.keypos_(); ); 
-	___TIME(BB_JOINTPOS, bb.jointpos(); ); 
-	___TIME(BB_ENCODE32, bb.encode32(); ); 
-	___TIME(BB_PEMIS3232, bb.pemis3232( ); ); 
-	___TIME(BB_PEMIS64, bb.pemis64( ); ); 
-	___TIME(BB_EYEKIND, bb.eyekind(  r.va[0]); ); 
-
-}
-
-
 

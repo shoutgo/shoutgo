@@ -143,8 +143,3 @@ int link(BITB b, POS p){
 	return popu(rowexpand(b.r[p.first], p.second)); 
 }
 
-/* _______________________________ 测试区 _______________________________ */
-
-void TEST_F::timefunc (string which) {
-	RANDER  r; 
-}

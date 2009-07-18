@@ -189,22 +189,6 @@ public:
 	friend	ostream& operator<< (ostream&, const INFOGO&); 
 }; 
 
-/* _______________________________ 测试区 _______________________________ */
-
-enum	INFO_FUN	{
-	INFO_INFOGO1 = FINFO * FUN_MAX, 
-	INFO_INFOGO2, INFO_SCAN, INFO_MOVE, 
-	INFO_PARTITION, INFO_LASTPARTITION, INFO_CLUSTER, 
-	INFO_AREA, INFO_FUN_SIZE}; 
-
-class TEST_INFO {
-public:
-	void assertall(); 
-	void timefunc(string which = ""); 
-	void active(){ 
-	}  
-}; 
-
 #endif
 
 
