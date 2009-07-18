@@ -2,7 +2,7 @@
 #include "inout.h"
 
 PBB		TSUMEGO::randomeye(int m, int n, MODE_RANDOMEYE mode){
-	___ASSERT(m>n); 
+	___PARASSERT(m>n); 
 	BITB enemy; 
 	for(; ; ){
 		random (ILLEGALIZE); 
@@ -30,7 +30,6 @@ void	TSUMEGO::randomtsumgo(int publicliberty, int m, int n, MODE_RANDOMEYE mode)
 	PBB pbb = randomeye(m, n, mode); 
 	xx = pbb.second; 
 	oo = pbb.first; 
-	___REPORT( clog<<"eye:"<< endl<<*this; ); 
 	BITB di2 = oo.dilate (2); 
 	oo ^= di2; 
     xx |= (di2.dilate (2)^di2); 
@@ -68,7 +67,6 @@ pair<EYEKIND, VP > TSUMEGO::tsumego(COLOR sente) {
 			enemy = space&xx; 
 		}
 	}										
-	___REPORT( clog<<"space:"<< endl<<space<<"enemy:"<< endl<<enemy; ); 
 	if (sente == surrounder)				
 		return eyekind_RESCUE(sente, space, enemy); 
 	else
@@ -79,11 +77,6 @@ pair<EYEKIND, VP > TSUMEGO::eyekind_KILL(COLOR sente, BITB space, BITB enemy, EY
 	if (enemy == NULL_BB)										
 		return space.eyekind(KILL); 
 	BITB sp = enemy.inner (5); 
-	___REPORT(
-		clog<<"this kill:"<< endl//<<*this
-			<<"space:"<< endl<<space<<"enemy:"<< endl<<enemy
-			<<"sp:"<< endl<<sp<<"en:"<< endl<<(sp&(~space)); //
-	); 
 	//pair<EYEKIND, VP > te = sp.eyekind (RESCUE, sp&(~space)); 
 	pair<EYEKIND, VP > te = eyekind_RESCUE(sente, sp, sp & (~space)); 
 	if ((sp != NULL_BB)&&(te.first>ONEEYE))
@@ -124,11 +117,6 @@ pair<EYEKIND, VP > TSUMEGO::eyekind_RESCUE(COLOR sente, BITB space, BITB enemy, 
 	if (enemy == NULL_BB)			
 		return space.eyekind(RESCUE); 
 	BITB sp = enemy.inner (5); 
-	___REPORT(
-		clog<<"this kill:"<< endl//<<*this
-			<<"space:"<< endl<<space<<"enemy:"<< endl<<enemy
-			<<"sp:"<< endl<<sp<<"en:"<< endl<<(sp&(~space)); //
-	); 
 	//pair<EYEKIND, VP > te = sp.eyekind (KILL, sp&(~space)); 
 	pair<EYEKIND, VP > te = eyekind_KILL(sente, sp, sp & (~space)); 
 	if ((sp != NULL_BB)&&(te.first>ONEEYE))									//这里可以分得再细

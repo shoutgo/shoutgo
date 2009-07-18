@@ -168,7 +168,6 @@ void command_state(const INFOGO& info, VS in){
 
 		case PUBLICAREA_C:
 			cout << info(info.area .publicarea ()); 
-			___COUT1(info.area.massmaps.size ()); 
 			break; 
 
 		case ALIVE_C:
@@ -235,8 +234,7 @@ void command_state(const INFOGO& info, VS in){
 				if (vi[pos2i(pos)]>0)
 					bb |= pos;
 			cout << info(bb); 
-			___COUT1(vi);
-            break; 
+            		break; 
 
 		case PEMIS_C:
 			if (in.size()>1)
@@ -249,7 +247,6 @@ void command_state(const INFOGO& info, VS in){
 				if (vi[pos2i(pos)]>1)
 					bb |= pos;
 			cout << inf(bb);
-			___COUT1(vi);
 			break; 
 
 		case SAVE_C:

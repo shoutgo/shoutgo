@@ -12,15 +12,12 @@ bool	BRAIN::endgame() const {
 	return 0; 
 }
 
-POS		BRAIN::genmove() {
+POS	BRAIN::genmove() {
 	tgsearch.numb = 0;
 	___.tic("search by minmax ...");
-    RESULT rslt = tgsearch.minmax(this, TARGETS(TARGET(ROOT, 2)));
+	RESULT rslt = tgsearch.minmax(this, TARGETS(TARGET(ROOT, 2)));
 	___.toc();
-	___COUT1(tgsearch.numb);
-	___ASSERT2(rslt.move.second == turn(), 
-		___COUT3(rslt.move.first, rslt.move.second, rslt.value););
-	___COUT1(rslt.move.first);
+	___ASSERT(rslt.move.second == turn()); 
 	return rslt.move.first;
 }
 

@@ -483,7 +483,6 @@ string	INOUT::printpat(const GO& old, const BITB& mask){
 	string s = ""; 
 	GO go = GO(old.xx & mask, old.oo & mask); 
 	BITB squarem = mask.project (); 
-	___COUT1(squarem); 
 	ITR itr; 
 	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
 		if (squarem[pos]){
@@ -534,7 +533,6 @@ string	INOUT::printpat(const BITB& old, const BITB& mask) {
 	string s; 
 	BITB bb = old&mask; 
 	BITB squarem = mask.project (); 
-	___COUT1(squarem); 
 	ITR itr; 
 	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
 		if (squarem[pos]){

@@ -42,7 +42,6 @@ VF			NN::linear_genetic(){
 	VF tv; 
 	float bias; 
 	producedata(m, n);
-	___COUT1(datayx); 
 	INOUT().save2txt(datayx, "datayx.txt"); //
 	srand((unsigned)time(0)); 
 	w = randvvf(ALLPOPU, n); 
@@ -111,7 +110,6 @@ void					NN::perception_genetic(){
 	N3WEIGHT			tv; 
 	float bias; 
 	//producedata(m, n); 
-	___COUT1(datayx); 
 	//INOUT().save2txt(datayx, "datayx.txt"); //
 	srand((unsigned)time(0)); 
 	for(int i = 0; i<ALLPOPU; ++i){

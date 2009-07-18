@@ -3,19 +3,19 @@
 #include "board.h"
 #include "inout.h"
 
+void ___parassert(bool exp, string s){
+	if (!exp){
+		cerr << setx(R) << "___parassert(" << s << ") is failure ! ";
+		cout << setx(W) << endl; 
+	} 
+}
+
 void ___assert(bool exp, string s, string _f_, long _l_){
 	if (!exp){
 		cerr << setx(R) << "___assert(" << s << ") is failure ! "; 
 		if ( ! _f_.empty ())
 			cout << " ["<< _f_ <<" ("<< _l_ <<")]"; 
 		cout << setx(W) << endl; 
-	} 
-}
-
-void ___parassert(bool exp, string s){
-	if (!exp){
-		cerr << setx(R) << "___parassert(" << s << ") is failure ! "
-			<< setx(W) << endl; 
 	} 
 }
 
@@ -111,9 +111,6 @@ void INIT::setzobristmask(int width){
 	// 此 mask 目前未采用
 	//josekimask[8] = ~(square(star(5), 3)); 
 	//josekimask[8] = ~NULL_BB; 
-	
-	//for (int i = 0; i<ZOBRIST::ZOBRIST_KIND; ++i)
-	//	___COUT2(i, josekimask[i]); 
 }
 
 // ___________
@@ -253,8 +250,6 @@ void INIT::setroute(){
 	route.push_back( strip (star(SOUTH), 0, MIDBS, MIDBS, MIDBS)); //R4DOWN_SOUTH
 	route.push_back( strip (star(WEST), MIDBS, MIDBS, MIDBS, 0)); //R4DOWN_WEST
 	route.push_back( strip (star(NORTH), MIDBS, MIDBS, 0, MIDBS)); //R4DOWN_NORTH
-	//for (int i = 0; i<route.size(); ++i)
-	//	___COUT1(route[i]); 
 }
 
 BITB INIT::getroute(ROUTE r){

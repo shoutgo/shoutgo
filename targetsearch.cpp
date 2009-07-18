@@ -106,8 +106,7 @@ AIM AIMGRAPH::anti(AIM a){
 }
 
 void AIMGRAPH::setup(vector<AIM> va){
-	//___ASSERT2(va.size() >= 2,___COUT1(va.size());); 
-	//___COUT1(va.size ()); 
+	// ___ASSERT(va.size() >= 2); 
 	for (int i = 1; i<va.size (); ++i){
 		sons[va[0]].push_back (va[i]); 
 		father[va[i]] = va[0]; 
@@ -505,7 +504,6 @@ RESULT		TARGETSEARCH::leafvalue ( INFOGO* infop, TARGET tg){
 		//command_state(*infop, BIND<string, char*>()(1, "mm"));
 		rs.move = make_pair(infop->getlastpos(), infop->getlastclr());
 		rs.value = infop->area.massmaps.back().delta();
-		//___COUT3(rs.move.first, rs.move.second, rs.value);
 		return rs;
 	default:
         return rs;
@@ -546,7 +544,6 @@ VM TARGETSEARCH::findpath(INFOGO * infop, TARGETS tgs) {
 	idsort = indexsort(vi);
 	for (int i = BS*BS-1; i>=0; --i)
 		if (vi[idsort[i]]>1){
-			//___COUT1(i2pos(idsort[i]));
 			vm.push_back(make_pair(i2pos(idsort[i]), trn));
 		}
 		else 

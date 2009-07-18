@@ -37,7 +37,7 @@ class COMMAND {
 	static const int SETW = 20; 
 private:
 	struct CMD {
-		VS			names; 
+		VS		names; 
 		string		format; 
 		string		english; 
 		string		chinese; 
@@ -145,7 +145,6 @@ void review(){
 		inff = inf;
 	}
 	___.toc();
-	___COUT1(rcd.size());
 	//for thesis
 	cout << vect.back ();
 	cout << endl;

@@ -11,7 +11,7 @@ NEWPOS make_pair(int a, unsigned b)
 
 void testtree(){ //for thesis
 		// 这些搜索算法均只利用叶结点的值回溯，不受前面算法影响
-	___REPORT(
+	___CODEUNIT(
 		TREE tree; 
 		srand((unsigned)time(0)); 
 		NODE* p = tree.root();
@@ -26,7 +26,7 @@ void testtree(){ //for thesis
 	VALUE narrowa = 10; 
 	VALUE narrowb = 20; 
 	
-	___REPORT(  
+	___CODEUNIT(  
 		tree.visited = 0;
 		___.tic("minmax");
 		a = tree.minmax(p); 
@@ -36,7 +36,7 @@ void testtree(){ //for thesis
 
 						// 当界值不当，且有浅层叶结点时返回值可能越界，
 						// 层数稍深，返回值会被抹平，则返回原始界值
-	___REPORT(  
+	___CODEUNIT(  
 		tree.visited = 0;
 		___.tic("alphabeta_minmax");
 		b = tree.alphabeta_minmax(p, widea, wideb); 
@@ -45,7 +45,7 @@ void testtree(){ //for thesis
 		); 
 						// 当界值不当，返回值比真实值高估低估都有可能
 						// 但一定处在界外同侧
-	___REPORT(  
+	___CODEUNIT(  
 		tree.visited = 0;
 		___.tic("failsoft_minmax");
 		c = tree.failsoft_minmax(p, widea, wideb); 
@@ -56,7 +56,7 @@ void testtree(){ //for thesis
 		// ________ class TREESEARCH _________
 		// 叶结点值为真实值
 	TREESEARCH treesearch; 
-	___REPORT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
+	___CODEUNIT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
 	___ASSERT(a == aa); 
 		// ________ class TREESEARCH _________
 */
@@ -67,21 +67,21 @@ void testtree(){ //for thesis
 	VALUE newwideb = p->ismax ? wideb : -widea; 
 	VALUE newnarrowa = p->ismax ? narrowa : -narrowb; 
 	VALUE newnarrowb = p->ismax ? narrowb : -narrowa; 
-	___REPORT(  
+	___CODEUNIT(  
 		tree.visited = 0;
 		___.tic("negamax");
 		u = tree.negamax(p); 
 		___.toc();
 		___COUT1(tree.visited);
 		); 
-	___REPORT(  
+	___CODEUNIT(  
 		tree.visited = 0;
 		___.tic("alphabeta_negamax");
 		v = tree.alphabeta_negamax(p, newwidea, newwideb); 
 		___.toc();
 		___COUT1(tree.visited);
 		); 
-	___REPORT(  
+	___CODEUNIT(  
 		tree.visited = 0;
 		___.tic("failsoft_negamax");
 		w = tree.failsoft_negamax(p, newwidea, newwideb); 
@@ -89,14 +89,14 @@ void testtree(){ //for thesis
 		___COUT1(tree.visited);
 		); 
 						// 当兄弟结点无序时搜索的结点往往更多
-	___REPORT(  
+	___CODEUNIT(  
 		tree.visited = 0;
 		___.tic("negascout");
 		x = tree.negascout(p, newwidea, newwideb); 
 		___.toc();
 		___COUT1(tree.visited);
 		); 
-	___REPORT(  
+	___CODEUNIT(  
 		tree.visited = 0;
 		___.tic("mtdf");
 		y = tree.mtdf(p); 
@@ -104,7 +104,7 @@ void testtree(){ //for thesis
 		___COUT1(tree.visited);
 		); 
 						// 一定最后测试，因结点值保存于结点内
-	//___REPORT(		   tree.negamax2(p); ); 
+	//___CODEUNIT(		   tree.negamax2(p); ); 
 		
 		// 仅当均为 widea, wideb 时下四式均成立
 	___ASSERT(a == b && a == c); 
@@ -116,7 +116,7 @@ void testtree(){ //for thesis
 /*
 void testtree(){
 		// 这些搜索算法均只利用叶结点的值回溯，不受前面算法影响
-	___REPORT(
+	___CODEUNIT(
 		TREE tree; 
 		srand((unsigned)time(0)); 
 		NODE* p = tree.root(); 
@@ -127,18 +127,18 @@ void testtree(){
 	VALUE wideb = TREE::VALUE_MAX; 
 	VALUE narrowa = 10; 
 	VALUE narrowb = 20; 
-	___REPORT( VALUE a = tree.minmax(p); ); 
+	___CODEUNIT( VALUE a = tree.minmax(p); ); 
 						// 当界值不当，且有浅层叶结点时返回值可能越界，
 						// 层数稍深，返回值会被抹平，则返回原始界值
-	___REPORT( VALUE b = tree.alphabeta_minmax(p, widea, wideb); ); 
+	___CODEUNIT( VALUE b = tree.alphabeta_minmax(p, widea, wideb); ); 
 						// 当界值不当，返回值比真实值高估低估都有可能
 						// 但一定处在界外同侧
-	___REPORT( VALUE c = tree.failsoft_minmax(p, widea, wideb); ); 
+	___CODEUNIT( VALUE c = tree.failsoft_minmax(p, widea, wideb); ); 
 
 		// ________ class TREESEARCH _________
 		// 叶结点值为真实值
 	TREESEARCH treesearch; 
-	___REPORT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
+	___CODEUNIT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
 	___ASSERT(a == aa); 
 		// ________ class TREESEARCH _________
 
@@ -149,14 +149,14 @@ void testtree(){
 	VALUE newwideb = p->ismax ? wideb : -widea; 
 	VALUE newnarrowa = p->ismax ? narrowa : -narrowb; 
 	VALUE newnarrowb = p->ismax ? narrowb : -narrowa; 
-	___REPORT( VALUE u = tree.negamax(p); ); 
-	___REPORT( VALUE v = tree.alphabeta_negamax(p, newwidea, newwideb); ); 
-	___REPORT( VALUE w = tree.failsoft_negamax(p, newwidea, newwideb); ); 
+	___CODEUNIT( VALUE u = tree.negamax(p); ); 
+	___CODEUNIT( VALUE v = tree.alphabeta_negamax(p, newwidea, newwideb); ); 
+	___CODEUNIT( VALUE w = tree.failsoft_negamax(p, newwidea, newwideb); ); 
 						// 当兄弟结点无序时搜索的结点往往更多
-	___REPORT( VALUE x = tree.negascout(p, newwidea, newwideb); ); 
-	___REPORT( VALUE y = tree.mtdf(p); ); 
+	___CODEUNIT( VALUE x = tree.negascout(p, newwidea, newwideb); ); 
+	___CODEUNIT( VALUE y = tree.mtdf(p); ); 
 						// 一定最后测试，因结点值保存于结点内
-	___REPORT(		   tree.negamax2(p); ); 
+	___CODEUNIT(		   tree.negamax2(p); ); 
 		
 		// 仅当均为 widea, wideb 时下四式均成立
 	___ASSERT(a == b && a == c); 
@@ -167,7 +167,7 @@ void testtree(){
 }
 */
 void testnewpos(){
-	___REPORT(
+	___CODEUNIT(
 		NEWPOS newpos; 
 		newpos.first = 1; 
 		newpos.second = 0x10; 
@@ -216,7 +216,7 @@ void testc (){
 		// clock() 返回自程序运行到此时的 CPU 时钟计时单元数。
 		// time.h 中有 typedef long clock_t; CLOCKS_PER_SEC
 	
-	___REPORT(
+	___CODEUNIT(
 		___COUT1(CLOCKS_PER_SEC); 
 		int w = 4; 
 		clock_t goal; 
@@ -238,13 +238,13 @@ void testc (){
 		// 基本型的相互赋值
 		// 这个整数由's''r''r''h'拼接, 不能超过 5 个
 		// a 为 char 类型时取最后 8 位，故还是 'h'
-	___REPORT(
+	___CODEUNIT(
 	//	int a = 'srrh'; 
 	//	char b = a; 
 	//	___COUT2(a, b); 
 		); 
 		// 浮点数按位读为unsigned
-	___REPORT(							
+	___CODEUNIT(							
 		float f = 374.342; 
 		___COUT4(						
 			(*(unsigned *)&f),			// 正确
@@ -257,7 +257,7 @@ void testc (){
 
 void testcpp(){
 		// 按值与按引用返回
-	___REPORT(							
+	___CODEUNIT(							
 		TEST t; 
 		int a = 30; 
 		int b = t.add100(a); 
@@ -282,7 +282,7 @@ void testcpp(){
 }
 
 void teststl(){
-	//___REPORT(				
+	//___CODEUNIT(				
 		map<int, int> mapm; 
 		mapm[3] = 30; 
 		mapm[4] = 40; 
@@ -301,7 +301,7 @@ void teststl(){
 }
 
 void testload (){/*
-	___REPORT(
+	___CODEUNIT(
 		VI vi; 
 		VI loadedvi; 
 		vi.assign (4, -3); 

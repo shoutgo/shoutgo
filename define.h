@@ -48,24 +48,24 @@ using namespace std;
 
 #include <typeinfo>
 
-enum	MODE_PROMPT			{BEGINGAME, PREMOVE_MAN, AFTERMOVE_MAN, 
+enum	MODE_PROMPT		{BEGINGAME, PREMOVE_MAN, AFTERMOVE_MAN, 
   							PREMOVE_PC, AFTERMOVE_PC, ENDGAME, BITSET}; 
-enum	MODE_PLAY			{MAN_PC, PC_PC, MAN_MAN}; 
+enum	MODE_PLAY		{MAN_PC, PC_PC, MAN_MAN}; 
 
 enum	MODE_RANDOMEYE		{LESS_LESS, BIGGER_LESS, 
   							LESS_LESS_CENTER, EQ_EQ}; 
 enum	MODE_RANDOMBOARD	{LEGALIZE, ILLEGALIZE}; 
-enum	DIRECTION			{EAST = 0, SOUTH = 1, WEST = 2, NORTH = 3, 
+enum	DIRECTION		{EAST = 0, SOUTH = 1, WEST = 2, NORTH = 3, 
   							ES, EN, WS, WN, CENTER, DIRECTION_SIZE}; 
-enum	COLOR				{BLACK, WHITE, EMPTY, BLACK_WHITE, 
+enum	COLOR			{BLACK, WHITE, EMPTY, BLACK_WHITE, 
   							HOTKO, NULL_CLR, COLOR_SIZE}; 
-enum	ACTION				{AFTERDELETE, KILL, RESCUE, ACTION_SIZE}; 
-enum	EYEKIND				{ENEMY_ALIVE, FALSEEYE, ONEEYE, CO_ONEEYE, 
+enum	ACTION			{AFTERDELETE, KILL, RESCUE, ACTION_SIZE}; 
+enum	EYEKIND			{ENEMY_ALIVE, FALSEEYE, ONEEYE, CO_ONEEYE, 
   							CO_SOMEEYE, TWOEYE, SOMEEYE, MANYEYE, 
   							UNKOWN_WHENPASS}; 
-enum  ROUTE				{R3 = 0, R4, R5, R4UP, R4DOWN, R4DOWN_EAST, 
+enum	ROUTE			{R3 = 0, R4, R5, R4UP, R4DOWN, R4DOWN_EAST, 
   							R4DOWN_SOUTH, R4DOWN_WEST, R4DOWN_NORTH}; 
-enum	STATE				{ALIVE, DEAD, UNCLEAR}; 
+enum	STATE			{ALIVE, DEAD, UNCLEAR}; 
 const string eyekindname[]    = {"ENEMY_ALIVE", "FALSEEYE", "ONEEYE", 
 								"CO_ONEEYE", "CO_SOMEEYE", "TWOEYE", 
 								"SOMEEYE", "MANYEYE", "UNKOWN_WHENPASS"}; 
@@ -76,7 +76,7 @@ class	LEARN;
 
 typedef		string				RGB;
 
-typedef		int						VALUE; 
+typedef		int					VALUE; 
 typedef		unsigned				ROW, KEY, LIKELIHOOD; 
 typedef		unsigned long			UL; 
 typedef		unsigned long long		ULL; 
@@ -126,7 +126,7 @@ const string W = "\033[0m";
 const		int			BS = 19; // max: 25
 const		float		KOMI = 7.5; 
 const		int			MIDBS = (BS-1)/2; 
-const       ROW			LEFTEST = 1<<(BS-1); 
+const		ROW			LEFTEST = 1<<(BS-1); 
 const		ROW			CENTEREST = 1<<(BS-1)/2; 
 const		ROW			ROWMASK = (1<<BS)-1; 
 const		POS			NULL_POS = make_pair(0, 0); 
@@ -136,7 +136,6 @@ const		MOVE		NULL_MOVE = make_pair(NULL_POS, NULL_CLR);
 const		VP			NULL_VP; 
 const		int			NOINIT = INT_MIN; 
 
-const		string		GOPATH = ""; 
 const		string		SGFPATH = "sgf/"; 
 const		string		LIBPATH = "lib/"; 
 
@@ -152,26 +151,17 @@ public:
 
 #define MACRO_ALL		1
 
-#define MACRO_INIT		0
-
 #define MACRO_ASSERT		1
-#define MACRO_PARASSERT		0
-#define MACRO_REPORT		1
-#define MACRO_COUT		1
+#define MACRO_PARASSERT		1
 #define MACRO_CONTROL		1
+
+#define MACRO_CODEUNIT		1
+#define MACRO_COUT		0
 
 /* 验证宏：参数验证和正确性验证 */
 
 void ___assert(bool exp, string s, string _f_ = "", long _l_ = 0); 
 void ___parassert(bool exp, string s); 
-
-#if MACRO_ALL && MACRO_ASSERT  
-#define	___ASSERT(exp)		___assert(exp, #exp); 
-#define	___ASSERT2(exp, code)	___assert(exp, #exp); if (!(exp)) code 
-#else
-#define ___ASSERT(exp)		{}
-#define ___ASSERT2(exp, code)	{}
-#endif
 
 #if MACRO_ALL && MACRO_PARASSERT
 #define	___PARASSERT(exp)	___parassert(exp, #exp); 
@@ -179,40 +169,51 @@ void ___parassert(bool exp, string s);
 #define ___PARASSERT(exp)	{}
 #endif
 
-/* 报告宏：打印宏替换后的执行代码和执行结果 */
-
-#if MACRO_REPORT
-#define ___REPORT(code)	code
+#if MACRO_ALL && MACRO_ASSERT  
+#define	___ASSERT(exp)		___assert(exp, #exp); 
 #else
-#define ___REPORT(code)	code
+#define ___ASSERT(exp)		{}
+#endif
+
+/* 控制宏 */
+
+#if MACRO_ALL && MACRO_CONTROL
+#define ___ESC	{}
+#else 
+#define ___ESC	{}
+#endif
+
+/* 分组宏：将代码分组 */
+
+#if MACRO_CODEUNIT
+#define ___CODEUNIT(code)	code
+#else
+#define ___CODEUNIT(code)	code
 #endif
 
 /* 输出宏：输出变量，报告函数内部状态 */
 
 #if MACRO_ALL && MACRO_COUT
-		// 宏和模板只是替代，其内出现的类不必声明在前; 
-		// 多了参数可以，少了不行
-		// 注意宏名括号之前不能有空格
 template <class T>
-	void ___cout(T t, string s) {
-		if (typeid(T) == typeid(int) || 
-			typeid(T) == typeid(unsigned)	|| 
-			typeid(T) == typeid(float) || 
-			typeid(T) == typeid(double) || 
-			typeid(T) == typeid(ULL) || 
-			typeid(T) == typeid(POS) ||
-			typeid(T) == typeid(PUU) ||
-			typeid(T) == typeid(PII))
-			cout<<std::setw(20)<<std::left<< setx(G) << ( s + ": ")
-				<<setx(W)<< t << endl; 
-		else
-			cout<<setx(G)<< s <<": "<< endl
-				<<setx(W)<< t << endl; 
-	}
+void ___cout(T t, string s) {
+	if (typeid(T) == typeid(int) || 
+		typeid(T) == typeid(unsigned)	|| 
+		typeid(T) == typeid(float) || 
+		typeid(T) == typeid(double) || 
+		typeid(T) == typeid(ULL) || 
+		typeid(T) == typeid(POS) ||
+		typeid(T) == typeid(PUU) ||
+		typeid(T) == typeid(PII))
+		cout<<std::setw(20)<<std::left<< setx(G) << ( s + ": ")
+			<<setx(W)<< t << endl; 
+	else
+		cout<<setx(G)<< s <<": "<< endl
+			<<setx(W)<< t << endl; 
+}
 
 #define ___COUT1(var)		___cout(var, #var); 
 #define ___COUT2(a, b)		{___COUT1(a)		___COUT1(b)}
-#define ___COUT3(a, b, c)		{___COUT2(a, b)		___COUT1(c)}
+#define ___COUT3(a, b, c)	{___COUT2(a, b)		___COUT1(c)}
 #define ___COUT4(a, b, c, d)	{___COUT3(a, b, c)	___COUT1(d)}
 #define ___COUT5(a, b, c, d, e)	{___COUT4(a, b, c, d)	___COUT1(e)}
 #define ___COUT6(a, b, c, d, e, f)			{___COUT5(a, b, c, d, e)		\
@@ -223,7 +224,7 @@ template <class T>
 										___COUT3(f, g, h)}
 #define ___COUT9(a, b, c, d, e, f, g, h, i)		{___COUT5(a, b, c, d, e)		\
 										___COUT4(f, g, h, i)}
-#define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{___COUT5(a, b, c, d, e)		\
+#define ___COUT10(a, b, c, d, e, f, g, h, i, j)		{___COUT5(a, b, c, d, e)		\
 										___COUT5(f, g, h, i, j)}
 #else
 #define ___COUT1(var)					{}
@@ -236,14 +237,6 @@ template <class T>
 #define ___COUT8(a, b, c, d, e, f, g, h)		{}
 #define ___COUT9(a, b, c, d, e, f, g, h, i)		{}
 #define ___COUT10(a, b, c, d, e, f, g, h, i, j)		{}
-#endif
-
-/* 控制宏 */
-
-#if MACRO_ALL && MACRO_CONTROL
-#define ___ESC	{}
-#else 
-#define ___ESC	{}
 #endif
 
 /* 时间类 */

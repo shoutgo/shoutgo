@@ -68,27 +68,21 @@ void INCREMENT::settag(int i, int t){
 bool INCREMENT::operator == (const INCREMENT& ic) const {
 	for (int i = 0; i<BS*BS + 1; ++i){
 		if (ic.gettag(i) != gettag(i)) {
-			//___COUT2( ic.gettag(i), gettag(i)); 
 			return 0; 
 		}
 		if (ic.getcolor(i) != getcolor(i)) {
-			//___COUT2(ic.getcolor(i), getcolor(i) ); 
 			return 0; 
 		}
 		if (ic.getenemysite(i) != getenemysite(i)) {
-			//___COUT2(ic.getenemysite(i), getenemysite(i) ); 
 			return 0; 
 		}
 		if (ic.getcontent(i) != getcontent(i)) {
-			//___COUT2(ic.getcontent(i), getcontent(i) ); 
 			return 0; 
 		}
 		if (ic.getlibertysite(i) != getlibertysite(i)) {
-			//___COUT2(ic.getlibertysite(i), getlibertysite(i) ); 
 			return 0; 
 		}
 		if (ic.getliberty(i) != getliberty(i)) {
-			//___COUT2(ic.getliberty(i), getliberty(i) ); 
 			return 0; 
 		}
 	}
@@ -180,11 +174,7 @@ INCREMENT INFOGO::scan() const {
 					NULL_TAG : pos2i(blk.tag()); 
 		int		m = pos2i(p); 
 		tmp.settag(m, tag); 
-		/*
-		___ASSERT2( 
-			inc.gettag (m) == tag, 
-			___COUT4(*this, p, tag, inc.gettag (m))); 
-		*/
+		// ___ASSERT( inc.gettag (m) == tag); 
 	}
 	for (POS p = itr.posbegin (); !itr.posend (); p = itr.posnext ()){
 		COLOR	clr = color(p); 
@@ -199,21 +189,11 @@ INCREMENT INFOGO::scan() const {
 		tmp.setliberty (m, lib); 
 		tmp.setenemysite(m, ene); 
 		/*
-		___ASSERT2( 
-			inc.getcontent (m) == blk, 
-			___COUT4(*this, p, blk, inc.getcontent (m))); 
-		___ASSERT2( 
-			inc.getenemysite (m) == ene, 
-			___COUT4(*this, p, ene, inc.getenemysite (m))); 
-		___ASSERT2( 
-			inc.getlibertysite (m) == libsite, 
-			___COUT4(*this, p, libsite, inc.getlibertysite (m))); 
-		___ASSERT2(
-			inc.getliberty (m) == lib, 
-			___COUT4(*this, p, lib, inc.getliberty (m))); 
-		___ASSERT2(
-			inc.getcolor (m) == clr, 
-			___COUT4(*this, p, clr, inc.getcolor (m))); 
+		___ASSERT( inc.getcontent (m) == blk ); 
+		___ASSERT( inc.getenemysite (m) == ene ); 
+		___ASSERT( inc.getlibertysite (m) == libsite ); 
+		___ASSERT( inc.getliberty (m) == lib ); 
+		___ASSERT( inc.getcolor (m) == clr ); 
 		*/
 	}
 	return tmp; 

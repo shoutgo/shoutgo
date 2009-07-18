@@ -60,7 +60,6 @@ void LEARN::learn(VS vf){
 	INFOGO* infop; 
 	SGFROOT* p; 
 	for (int v = 0; v<vf.size (); ++v){
-		___COUT1(vf[v]);
 		n_zobrist = 0;
 		___.tic("zobrist");
 
@@ -76,7 +75,6 @@ void LEARN::learn(VS vf){
 				}
 				g_init.swap_id8_q8 (0, i); 
 				infop->delfromroot(); 
-				//___COUT2(k, i); 
 			}
 			g_init.swap_xorand(); 
 		}
@@ -92,10 +90,8 @@ void LEARN::learn(VS vf){
 		delete p; 
 
 		___.toc();
-		___COUT1(n_zobrist);
 	}
 	for (int v = 0; v<vf.size (); ++v){
-		___COUT1(vf[v]);
 		n_pemis = 0;
 		___.tic("pemis");
 
@@ -112,7 +108,6 @@ void LEARN::learn(VS vf){
 				}
 				g_init.swap_id8_q8 (0, i); 
 				infop->delfromroot(); 
-				___COUT2(k, i); 
 			}
 			g_init.swap_xorand(); 
 		}
@@ -127,7 +122,6 @@ void LEARN::learn(VS vf){
 		delete p; 
 
 		___.toc();
-		___COUT1(n_pemis);
 	}
 	INOUT().save2txt(vf, LIBPATH + "filenames.txt");
 }
