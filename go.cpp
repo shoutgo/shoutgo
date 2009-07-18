@@ -13,22 +13,6 @@ COMMAND::COMMAND() {
 		"[ ]", 
 		"...", 
 		"显示版本信息"); 
-	cmd[CMD_C] = CMD ( BIND<string, char*>()(2, "cmd", "cm"), 
-		"[ ]", 
-		"...", 
-		"执行 CMD.EXE 程序"); 
-	cmd[THESIS_C] = CMD ( BIND<string, char*>()(2, "thesis", "th"), 
-		"[ ]", 
-		"...", 
-		"执行一系列定制命令"); 
-	cmd[FONT_C] = CMD ( BIND<string, char*>()(2, "font", "fo"), 
-		"[ ]", 
-		"...", 
-		"执行 FONT.EXE 程序"); 
-	cmd[SAVECODE_C] = CMD ( BIND<string, char*>()(2, "savecode", "sc"), 
-		"[ ]", 
-		"...", 
-		"保存本程序源代码"); 
 	cmd[PLAY_C] = CMD ( BIND<string, char*>()(2, "play", "pl"), 
 		"[MAN_PC, PC_PC, MAN_MAN]", 
 		"...", 
@@ -53,10 +37,6 @@ COMMAND::COMMAND() {
 		"[ ]", 
 		"...", 
 		"显示各类的大小"); 
-	//cmd[NEWLINE_C] = CMD ( BIND<string, char*>()(3, "newline", "nl", ";"), 
-	//	"[ ]", 
-	//	"...", 
-	//	"换行"); 
 	cmd[EXIT_C] = CMD ( BIND<string, char*>()(2, "exit", "ex"), 
 		"[ ]", 
 		"...", 

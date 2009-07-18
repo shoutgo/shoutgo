@@ -666,28 +666,6 @@ string	INOUT::readbuf(string filename){
 	return s; 
 }
 
-void	INOUT::savecode(string path){	
-	/*
-	LPSTR s = new TCHAR[256]; 
-	wsprintf(s, "%u", (unsigned)time(0)); 
-	::mkdir(s,0777); 
-	VS	h = getfilename (path, "*.h"); 
-	VS	cpp = getfilename (path, "*.cpp"); 
-	VS  txt = getfilename (path, "*.txt"); 
-	VS  all(h); 
-	copy(cpp.begin(), cpp.end(), back_inserter(all)); 
-	copy(txt.begin (), txt.end (), back_inserter(all)); 
-	___COUT4( h.size(), cpp.size(), txt.size (), all.size () ); 
-	___ASSERT( all.size() == h.size() + cpp.size() + txt.size () ); 
-	for (int i = 0; i<all.size (); ++i){
-		string tmp = readbuf(all[i]); 
-		all[i].replace(all[i].begin(), all[i].begin()+path.length(), ""); 
-		save2txt ( tmp, path + string(s) + "\\" + all[i]); 
-	}
-	*/ //2009//
-}
-
-
 /*
 VP	INOUT::sgf2pos(string filename) {	
 	vector<PII >  vecpii = sgf2xy(filename); 

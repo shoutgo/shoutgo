@@ -148,20 +148,10 @@ const		int			NULL_TAG = BS*BS;
 const		MOVE		NULL_MOVE = make_pair(NULL_POS, NULL_CLR); 
 const		VP			NULL_VP; 
 const		int			NOINIT = INT_MIN; 
-/*
-const		string		GOPATH = "g:\\vc\\go\\"; 
-const		string		SGFPATH = "g:\\vc\\go\\sgf\\"; 
-const		string		LIBPATH = "g:\\vc\\go\\lib\\"; 
-static		char *		CMDPOS = "g:\\vc\\cmd.exe"; 
-static		char *		FONTPOS = "g:\\vc\\font\\font.exe"; 
-*/
+
 const		string		GOPATH = ""; 
 const		string		SGFPATH = "sgf/"; 
 const		string		LIBPATH = "lib/"; 
-//2009//static		char *		CMDPOS = "cmd.exe"; 
-//2009//static		char *		FONTPOS = "font.exe"; 
-const		string		CMDPOS = "cmd.exe"; 
-const		string		FONTPOS = "font.exe"; 
 
 class setx {
 private:

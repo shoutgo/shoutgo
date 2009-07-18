@@ -63,7 +63,6 @@ public:
 	GO				frommatlab(string filename = "forypgo.txt"); 
 	void			infop2sgf(INFOGO* infop, string filename);
 	string			_infop2sgf(INFOGO* infop); 
-	void			savecode(string path = GOPATH ); 
 	/*
 	void            save2txt(string content, string filename = "go.txt"); 
 	void            save2txt(const VVF& v, string filename = "datayx.txt"); 

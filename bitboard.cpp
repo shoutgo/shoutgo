@@ -7,8 +7,6 @@
 #define ___ASSERT(var) {}
 #undef  ___PARASSERT
 #define ___PARASSERT(var) {}
-#undef  ___LINECOUNT
-#define ___LINECOUNT(var) {}
 #undef  ___REPORT
 #define ___REPORT(code) {}
 //#undef  ___COUT1 ... 10

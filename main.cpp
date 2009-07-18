@@ -32,50 +32,6 @@ void command(VS in){
 				<< "All rights reserved " << endl; 
 			break; 
 
-		case CMD_C:
-			//system( CMDPOS ); 
-			break; 
-
-		case THESIS_C:
-			go = GO(NULL_BB,NULL_BB);
-			go.move(star(1),BLACK);
-			go.move(star(3),WHITE);
-			go.move(star(7),BLACK);
-			go.move(ai2pos("p17"),WHITE);
-			go.move(ai2pos("q15"),BLACK);
-			cout << go;
-			cout << "棋盘与棋子" << endl;
-
-			go.random();
-			itr = ITR(go.xx);
-			for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext())
-				if (bb.count()>= 5){
-					g = GO(bb,go.oo.blockon(bb.dilate(1)));
-					BITB b = g.libertysite(bb.tag());
-					cout << go;
-					cout << GO(g.xx|b, g.oo|b);
-					cout << "气" << endl;
-					cout << GO(g.xx^g.xx.tag(), g.oo|b);
-					cout << "禁着点" << endl;
-					break;
-				}
-			
-			go = GO(NULL_BB|star(7)|corner(SOUTH)|corner(WS),NULL_BB);
-			g = GO(NULL_BB|ai2pos("c16")|ai2pos("i19")|ai2pos("r19"),NULL_BB);
-			cout << GO(go.xx.dilate()^go.xx, g.xx.dilate()^g.xx^go.xx);
-			cout << "劫" << endl;
-
-			system( "g:\\vc\\go\\debug\\go.exe < thesis.txt");
-			break; 
-
-		case FONT_C:
-			//system( FONTPOS ); 
-			break; 
-
-		case SAVECODE_C:
-			INOUT().savecode(); 
-			break; 
-
 		case PLAY_C:
 			play<BRAIN>(); 
 			break; 
@@ -135,10 +91,6 @@ void command_test(VS in) {
 		case SIZE_C:
 			testsize(); 
 			break; 
-
-		//case NEWLINE_C:
-		//	cout << endl;
-		//	break; 
 
 		default:
 ; 
