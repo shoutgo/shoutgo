@@ -53,7 +53,7 @@ void command(VS in){
 			go.move(ai2pos("p17"),WHITE);
 			go.move(ai2pos("q15"),BLACK);
 			cout << go;
-			cout << "ÆåÅÌÓëÆå×Ó" << endl;
+			cout << "æ£‹ç›˜ä¸Žæ£‹å­" << endl;
 
 			go.random();
 			itr = ITR(go.xx);
@@ -63,16 +63,16 @@ void command(VS in){
 					BITB b = g.libertysite(bb.tag());
 					cout << go;
 					cout << GO(g.xx|b, g.oo|b);
-					cout << "Æø" << endl;
+					cout << "æ°”" << endl;
 					cout << GO(g.xx^g.xx.tag(), g.oo|b);
-					cout << "½û×Åµã" << endl;
+					cout << "ç¦ç€ç‚¹" << endl;
 					break;
 				}
 			
 			go = GO(NULL_BB|star(7)|corner(SOUTH)|corner(WS),NULL_BB);
 			g = GO(NULL_BB|ai2pos("c16")|ai2pos("i19")|ai2pos("r19"),NULL_BB);
 			cout << GO(go.xx.dilate()^go.xx, g.xx.dilate()^g.xx^go.xx);
-			cout << "½Ù" << endl;
+			cout << "åŠ«" << endl;
 
 			system( "g:\\vc\\go\\debug\\go.exe < thesis.txt");
 			break; 

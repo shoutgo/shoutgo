@@ -5,7 +5,7 @@
 /* class LEARN */
 
 LEARN::LEARN(string sgfpath){
-	// ÒòÎª»ºÊ½¼ÆËãµÄ¹ØÏµ£¬Òª±£Ö¤¶¼ load(), Ó¦¸ÃÓÃ &&
+	// å› ä¸ºç¼“å¼è®¡ç®—çš„å…³ç³»ï¼Œè¦ä¿è¯éƒ½ load(), åº”è¯¥ç”¨ &&
 	if ( g_init.load_xorand_key2rand (LIBPATH + "xorand") &&
 		lib_pemis.load( LIBPATH + "pemis") &&
 		lib_zobrist[0].load( LIBPATH + "zobrist0") &&
@@ -65,7 +65,7 @@ void LEARN::learn(VS vf){
 		___.tic("zobrist");
 
 		p = INOUT().sgf2tree(vf[v]); 
-		// 16 ÖÖ¶Ô³Æ·½Ê½±àÂë²»Ò»Ñù
+		// 16 ç§å¯¹ç§°æ–¹å¼ç¼–ç ä¸ä¸€æ ·
 		for (int k = 0; k<2; ++k){
 			for (int i = 0; i<8; ++i) {
 				infop = new INFOGO; 
@@ -81,7 +81,7 @@ void LEARN::learn(VS vf){
 			g_init.swap_xorand(); 
 		}
 		/*
-		// 16 ÖÖ¶Ô³Æ·½Ê½ÏÂ±àÂë¶¼Ò»Ñù
+		// 16 ç§å¯¹ç§°æ–¹å¼ä¸‹ç¼–ç éƒ½ä¸€æ ·
 		infop = new INFOGO; 
 		p->fuseki(infop); 
 		for (int i = 0; i<p->sons.size(); ++i){
@@ -101,7 +101,7 @@ void LEARN::learn(VS vf){
 
 		p = INOUT().sgf2tree(vf[v]); 
 		/*
-		// 16 ÖÖ¶Ô³Æ·½Ê½±àÂë²»Ò»Ñù
+		// 16 ç§å¯¹ç§°æ–¹å¼ç¼–ç ä¸ä¸€æ ·
 		for (int k = 0; k<2; ++k){
 			for (int i = 0; i<8; ++i) {
 				infop = new INFOGO; 
@@ -117,7 +117,7 @@ void LEARN::learn(VS vf){
 			g_init.swap_xorand(); 
 		}
 		*/
-		// 16 ÖÖ¶Ô³Æ·½Ê½ÏÂ±àÂë¶¼Ò»Ñù
+		// 16 ç§å¯¹ç§°æ–¹å¼ä¸‹ç¼–ç éƒ½ä¸€æ ·
 		infop = new INFOGO; 
 		p->fuseki(infop); 
 		for (int i = 0; i<p->sons.size(); ++i){
@@ -163,12 +163,12 @@ void LEARN::insert_pemis(INFOGO* infop) {
 }
 
 vector<pair<ULL, ULL> > LEARN::pemis(INFOGO* infop) {
-	// ´Ë´¦¿ÉÉú³É¸÷ÖÖÑÚÂë
+	// æ­¤å¤„å¯ç”Ÿæˆå„ç§æ©ç 
 	vector<pair<ULL, ULL> > vpuu; 
 	BITB tmp; 
 	ULL f, s; 
 	vector<BITB> vecb; 
-	//-// Ô¤ÏÈ¼ÆËã
+	//-// é¢„å…ˆè®¡ç®—
 	vecb.push_back (BITB(infop->getlastpos()).dilate (1)); 
 	vecb.push_back (BITB(infop->getlastpos()).dilate (2)); 
 	vecb.push_back (BITB(infop->getlastpos()).dilate (3)); 
@@ -177,7 +177,7 @@ vector<pair<ULL, ULL> > LEARN::pemis(INFOGO* infop) {
 		tmp = infop->father->xx .blockon(vecb[i]) 
 			| infop->father->oo .blockon(vecb[i]); 
 		if (tmp.empty ()&& !g_init.getroute(R4)[infop->getlastpos()] ){  // 
-			vpuu.push_back(make_pair(0, 0)); //´ËÌØÊâÖµÔÚ getfreq()ÖĞµ÷ÓÃ
+			vpuu.push_back(make_pair(0, 0)); //æ­¤ç‰¹æ®Šå€¼åœ¨ getfreq()ä¸­è°ƒç”¨
 			continue; 
 		}
 		f = infop->father->pemis64(tmp); 
@@ -190,8 +190,8 @@ vector<pair<ULL, ULL> > LEARN::pemis(INFOGO* infop) {
 	return vpuu; 
 }
 
-// É¨ÃèÊ½¸üĞÂ¡£Êµ¼ÊÓ¦ÓÃÊ±ÊÇ·ñ¿ÉÒÔ¾Ö²¿ÔöÁ¿Ê½¸üĞÂ£¿
-// ¾¡¹ÜÓĞ´¦²»ÕıÈ·£¬µ«Èç¹ûÖ»ÊÇÓÃÓÚÅÅĞò£¬Ó¦¸ÃÒ²¿ÉÒÔ½ÓÊÜ¡£
+// æ‰«æå¼æ›´æ–°ã€‚å®é™…åº”ç”¨æ—¶æ˜¯å¦å¯ä»¥å±€éƒ¨å¢é‡å¼æ›´æ–°ï¼Ÿ
+// å°½ç®¡æœ‰å¤„ä¸æ­£ç¡®ï¼Œä½†å¦‚æœåªæ˜¯ç”¨äºæ’åºï¼Œåº”è¯¥ä¹Ÿå¯ä»¥æ¥å—ã€‚
 void LEARN::setpatfreq(INFOGO* infop) {
 	vector<pair<ULL, ULL> > vpuu; 
 	ITR itr; 
@@ -238,7 +238,7 @@ SGFROOT::~SGFROOT(){
 	//clog<< "delete the sgfroot !"<< endl; 
 }
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_L::joseki(){
 }

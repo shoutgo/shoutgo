@@ -1,7 +1,7 @@
 #include "nn.h"  
 #include "inout.h"
 
-// ×¢Òâ \\matlab\\work\\linearmodal.m ÀïÓĞĞ´ºÃÁËµÄÑéÖ¤Ëã·¨
+// æ³¨æ„ \\matlab\\work\\linearmodal.m é‡Œæœ‰å†™å¥½äº†çš„éªŒè¯ç®—æ³•
 VVF	NN::producedata(int m, int n){
 	float yrange = 5000.1; 
 	float xrange = 100; 
@@ -205,7 +205,7 @@ N3WEIGHT				NN::perception(N3WEIGHT w){
 	return w; //
 }
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_NN::timefunc (string which) {
 	RANDER  r; 

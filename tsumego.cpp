@@ -42,7 +42,7 @@ void	TSUMEGO::randomtsumgo(int publicliberty, int m, int n, MODE_RANDOMEYE mode)
 	legalize(); 
 }
 
-/*		// Õâ²¿·Ö´Ó GO Àï°áÀ´
+/*		// è¿™éƒ¨åˆ†ä» GO é‡Œæ¬æ¥
 pair<EYEKIND, VP > TSUMEGO::tsumego(COLOR sente) {
 	COLOR surrounder; 
 	int max = 0; 
@@ -131,10 +131,10 @@ pair<EYEKIND, VP > TSUMEGO::eyekind_RESCUE(COLOR sente, BITB space, BITB enemy, 
 	); 
 	//pair<EYEKIND, VP > te = sp.eyekind (KILL, sp&(~space)); 
 	pair<EYEKIND, VP > te = eyekind_KILL(sente, sp, sp & (~space)); 
-	if ((sp != NULL_BB)&&(te.first>ONEEYE))									//ÕâÀï¿ÉÒÔ·ÖµÃÔÙÏ¸
+	if ((sp != NULL_BB)&&(te.first>ONEEYE))									//è¿™é‡Œå¯ä»¥åˆ†å¾—å†ç»†
 		return make_pair(ENEMY_ALIVE, te.second ); 
 	if ((space.blockcount()>1) || ((space.count()>13) && (enemy.count()<7)))	{cout<<1111<< endl; 
-		return make_pair(SOMEEYE, NULL_VP); }//ËÆºõ´íÎóÔÚ´Ë, ¿ÉÄÜÊÇ»ù±¾º¯ÊıÓĞÎÊÌâ, µ«ÎªÊ²Ã´_KILL×ÜÕıÈ·?
+		return make_pair(SOMEEYE, NULL_VP); }//ä¼¼ä¹é”™è¯¯åœ¨æ­¤, å¯èƒ½æ˜¯åŸºæœ¬å‡½æ•°æœ‰é—®é¢˜, ä½†ä¸ºä»€ä¹ˆ_KILLæ€»æ­£ç¡®?
 
 	PBB upd; 
 	pair<EYEKIND, VP >	 tmp; 
@@ -181,7 +181,7 @@ PBB			TSUMEGO::update_RESCUE(POS pos, COLOR sente, BITB space, BITB enemy){
 }
 */
 
-////////////////////////////////// Õâ²¿·Ö´Ó BITB °áÀ´
+////////////////////////////////// è¿™éƒ¨åˆ†ä» BITB æ¬æ¥
 /*
 
 pair<EYEKIND, VP > TSUMEGO::eyekind(ACTION action, BITB enemy, EYEKIND passbest) {
@@ -212,7 +212,7 @@ pair<EYEKIND, VP > TSUMEGO::eyekind(ACTION action, BITB enemy, EYEKIND passbest)
 			return make_pair(enemy.eyekind (AFTERDELETE).first, NULL_VP); }
 		if (passbest == UNKOWN_WHENPASS)			
 			passbest = eyekind(RESCUE, enemy, best).first; //cout<<5555555555<< endl<<GO(enemy, BITB(r))<<"action:"<<action<<"  best:"<<eyekindname[best]<<"  passbest:"<<eyekindname[passbest]<< endl; 
-		if (passbest< best) return make_pair(CO_ONEEYE, NULL_VP); /////////////////////ÎÊÌâÔÚ´Ë£¬Éæ¼°µ½¹«ÆøÎÊÌâ¡£
+		if (passbest< best) return make_pair(CO_ONEEYE, NULL_VP); /////////////////////é—®é¢˜åœ¨æ­¤ï¼Œæ¶‰åŠåˆ°å…¬æ°”é—®é¢˜ã€‚
 		else if (passbest == best) return make_pair(passbest, NULL_VP); 
 		else return make_pair(best, vecp[best]); 
 	}
@@ -262,7 +262,7 @@ void	TSUMEGO::restore(const GO& go){
 	// *this = go; 
 }
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_TG::randomeye(){/*
 	PBB pbb = TSUMEGO().randomeye(6, 4, 0); 

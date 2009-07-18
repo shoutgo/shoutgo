@@ -178,7 +178,7 @@ map<POS, VB >		ITR::makemapmask(int a, int b){
 		mapmask[pos] = makemask(pos, a, b); 
 	return mapmask; 
 }
-VB ITR::makemask(const POS& p, int a, int b){	//-// ´ıÓÅ»¯
+VB ITR::makemask(const POS& p, int a, int b){	//-// å¾…ä¼˜åŒ–
 	___FUNCOUNT( ITR_MAKEMASK); 
 	vecbb.clear (); 
 	for (int i = 0; i<a; ++i)
@@ -214,7 +214,7 @@ BITB ITR::randommasknext(){
 	vecbb.pop_back (); 
 	return vecbb.back (); 
 }
-map<POS, VB >	ITR::makejosekimask(int width){	// ÆäÊµÃ¿¸öposÖ»¶ÔÓ¦Ò»¸ömask£¿
+map<POS, VB >	ITR::makejosekimask(int width){	// å…¶å®æ¯ä¸ªposåªå¯¹åº”ä¸€ä¸ªmaskï¼Ÿ
 	___FUNCOUNT( ITR_MAKEJOSEKIMASK); 
 	BITB wn = strip(corner(WN), width, width, ES); 
 	BITB ws = strip(corner(WS), width, width, EN); 
@@ -232,7 +232,7 @@ map<POS, VB >	ITR::makejosekimask(int width){	// ÆäÊµÃ¿¸öposÖ»¶ÔÓ¦Ò»¸ömask£¿
 	return mapmask; 
 }
 */
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_ITR::timefunc (string which) {
 	RANDER  r; 

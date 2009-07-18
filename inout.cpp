@@ -11,23 +11,23 @@
 #define ___TIME(code)	{}
 #endif
 
-// ©Ä©Û©Ó©Ì©ã©à©ï¨p©×©ß©Ï©Ç
-// ¡ñ¡ğ¡Ñ¡ö¡õ¡ø¡÷¨‹¨Œ¡ô¡ó¡ï¡î¡ò¨‘
-// ¢Å¢Æ¢Ç¢È¢É¢Ê¢Ë¢Ì¢Í¢Î¢Ï¢Ğ¢Ñ¢Ò¢Ó¢Ô¢Õ¢Ö¢×¢Ø
-// ¢±¢²¢³¢´¢µ¢¶¢·¢¸¢¹¢º¢»¢¼¢½¢¾¢¿¢À¢Á¢Â¢Ã¢Ä
-// £Á£Â£Ã£Ä£Å£Æ£Ç£È£É£Ê£Ë£Ì£Í£Î£Ï£Ğ£Ñ£Ò£Ó£Ô£Õ£Ö£×£Ø£Ù£Ú
-// £á£â£ã£ä£å£æ£ç£è£é£ê£ë£ì£í£î£ï£ğ£ñ£ò£ó£ô£õ£ö£÷£ø£ù£ú
+// â” â”·â”¯â”¨â”¿â”¼â•‹â•¬â”³â”»â”«â”£
+// â—â—‹âŠ™â– â–¡â–²â–³â–¼â–½â—†â—‡â˜…â˜†â—â˜‰
+// â‘´â‘µâ‘¶â‘·â‘¸â‘¹â‘ºâ‘»â‘¼â‘½â‘¾â‘¿â’€â’â’‚â’ƒâ’„â’…â’†â’‡
+// â’ˆâ’‰â’Šâ’‹â’Œâ’â’â’â’â’‘â’’â’“â’”â’•â’–â’—â’˜â’™â’šâ’›
+// ï¼¡ï¼¢ï¼£ï¼¤ï¼¥ï¼¦ï¼§ï¼¨ï¼©ï¼ªï¼«ï¼¬ï¼­ï¼®ï¼¯ï¼°ï¼±ï¼²ï¼³ï¼´ï¼µï¼¶ï¼·ï¼¸ï¼¹ï¼º
+// ï½ï½‚ï½ƒï½„ï½…ï½†ï½‡ï½ˆï½‰ï½Šï½‹ï½Œï½ï½ï½ï½ï½‘ï½’ï½“ï½”ï½•ï½–ï½—ï½˜ï½™ï½š
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ
 // abcdefghijklmnoprrstuvwxyz
-// ¢Ù¢Ú¢Û¢Ü¢İ¢Ş¢ß¢à¢á¢â
+// â‘ â‘¡â‘¢â‘£â‘¤â‘¥â‘¦â‘§â‘¨â‘©
 
-// ÉÏÎªÒÑ²ÉÓÃÏÂÎª±¸ÓÃ
-// £°£±£²£³£´£µ£¶£·£¸£¹
+// ä¸Šä¸ºå·²é‡‡ç”¨ä¸‹ä¸ºå¤‡ç”¨
+// ï¼ï¼‘ï¼’ï¼“ï¼”ï¼•ï¼–ï¼—ï¼˜ï¼™
 // ??????????????????????????
 // ??????????
 // ??????????
 // ??????????
-// ¢Ù¢Ú¢Û¢Ü¢İ¢Ş¢ß¢à¢á¢â??????????
+// â‘ â‘¡â‘¢â‘£â‘¤â‘¥â‘¦â‘§â‘¨â‘©??????????
 // ??????????????????????????
 // ??????????????????????????
 
@@ -38,11 +38,11 @@ string     INOUT::logo_() {
 	___FUNCOUNT( IO_LOGO); 
 	static string s = ""; 
 		s += " -+    -+    ++ \n"; 
-		s += "   ¡ñ©Ó©Ó©Ó¡ğ   \n"; 
-		s += "   ©Ä¢Û¢Ú¢Ù©Ì   \n"; 
-		s += " --©Ä¢Ş¢İ¢Ü©Ì++ \n"; 
-		s += "   ©Ä¢á¢à¢ß©Ì   \n"; 
-		s += "   ¡ğ©Û©Û©Û¡ñ   \n"; 
+		s += "   â—â”¯â”¯â”¯â—‹   \n"; 
+		s += "   â” â‘¢â‘¡â‘ â”¨   \n"; 
+		s += " --â” â‘¥â‘¤â‘£â”¨++ \n"; 
+		s += "   â” â‘¨â‘§â‘¦â”¨   \n"; 
+		s += "   â—‹â”·â”·â”·â—   \n"; 
 		s += " --    +-    +- \n"; 
 	return s; 
 }
@@ -51,21 +51,21 @@ string   INOUT::grid(const POS& pos) {
 	___FUNCOUNT( IO_GRID); 
 	int		 r = pos.first; 
 	ROW		 p = pos.second; 
-	if (r == 0 && p == LEFTEST)		{return "©³"; }
-	if (r == 0 && p == 1)			{return "©·"; }
-	if (r == BS-1 && p == 1)		{return "©¿"; }
-	if (r == BS-1 && p == LEFTEST)	{return "©»"; }
-	if (r == 0)						{return "©Ó"; }
-	if (p == 1)						{return "©Ì"; }
-	if (r == (BS-1))				{return "©Û"; }
-	if (p == LEFTEST)				{return "©Ä"; }
+	if (r == 0 && p == LEFTEST)		{return "â”"; }
+	if (r == 0 && p == 1)			{return "â”“"; }
+	if (r == BS-1 && p == 1)		{return "â”›"; }
+	if (r == BS-1 && p == LEFTEST)	{return "â”—"; }
+	if (r == 0)						{return "â”¯"; }
+	if (p == 1)						{return "â”¨"; }
+	if (r == (BS-1))				{return "â”·"; }
+	if (p == LEFTEST)				{return "â” "; }
 	if ((BS >= 13) &&
 		((r == 3) || (r == MIDBS) || (r == (BS-1-3)) ) &&
 		((p == (1<<3)) || (p == (CENTEREST)) || (p == (1<<(BS-1-3)))))
-									{return "©ï"; }
+									{return "â•‹"; }
 	if (r == MIDBS && p == CENTEREST )
-									{return "©ï"; }
-	else 							{return "©à"; }
+									{return "â•‹"; }
+	else 							{return "â”¼"; }
 }
 
 POS		 INOUT::in2pos(const POS& pos, string in) {	
@@ -134,7 +134,7 @@ string INOUT::axis(const POS& pos) const {
 	___FUNCOUNT( IO_AXIS); 
 	if (!axisshow)
 		return "  "; 
-	//static string h = "£Ú£Ù£Ø£×£Ö£Õ£Ô£Ó£Ò£Ñ£Ğ£Ï£Î£Í£Ì£Ë£Ê£É£È£Ç£Æ£Å£Ä£Ã£Â£Á";
+	//static string h = "ï¼ºï¼¹ï¼¸ï¼·ï¼¶ï¼µï¼´ï¼³ï¼²ï¼±ï¼°ï¼¯ï¼®ï¼­ï¼¬ï¼«ï¼ªï¼©ï¼¨ï¼§ï¼¦ï¼¥ï¼¤ï¼£ï¼¢ï¼¡";
 	static string h = " Z Y X W V U T S R Q P O N M L K J I H G F E D C B A"; 
 	static string v = " 1 2 3 4 5 6 7 8 91011121314151617181920212223242526";
 	static string blanks = "";
@@ -160,11 +160,11 @@ void	INOUT::print(const GO& go, const BITB& mask) {
 		if ( mask[pos] ){ 
 			switch (go[pos]) {
 				case BLACK:				
-					s = "¡ñ"; break; 
+					s = "â—"; break; 
 				case WHITE:				
-					s = "¡ğ"; break; 
+					s = "â—‹"; break; 
 				case BLACK_WHITE:	   	
-					s = "¡Ñ"; break; 
+					s = "âŠ™"; break; 
 				case HOTKO:			    
 					s = grid(pos); break; 
 				case EMPTY:			    
@@ -193,11 +193,11 @@ void	INOUT::print(const GO& go, const GO& markgo, RGB xxc, RGB ooc, RGB xoc) {
 			cout << axis(pos); 
 		switch (go[pos]) {
 			case BLACK:				
-				s = "¡ñ"; break; 
+				s = "â—"; break; 
 			case WHITE:				
-				s = "¡ğ"; break; 
+				s = "â—‹"; break; 
 			case BLACK_WHITE:	   	
-				s = "¡Ñ"; break; 
+				s = "âŠ™"; break; 
 			case HOTKO:			    
 				s = grid(pos); break; 
 			case EMPTY:			    
@@ -250,18 +250,18 @@ string   INOUT::print__(const GO& go, const BITB& bb,
 	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
 		if (bb[pos]){
 			if (mode == BITB_P)				
-				s += "¨‘"; 
+				s += "â˜‰"; 
 			if (mode == ONEAREA_P && (go[pos] == EMPTY)) 
-				s += "¨‘"; 
+				s += "â˜‰"; 
 			if (mode == BLOCK_P||mode == BOARD_P||mode == ONEAREA_P) {		
 				if(go[pos] == BLACK)			 
-					s += "¡ô"; 
+					s += "â—†"; 
 			    if(go[pos] == WHITE)          
-					s += "¡ó"; 
+					s += "â—‡"; 
 			    if(go[pos] == BLACK_WHITE)     
-					s += "¡Ñ"; 
+					s += "âŠ™"; 
 			    if(go[pos] == HOTKO)             
-					s += "¨p"; 
+					s += "â•¬"; 
 			}
 			if (pos.second == 1)
 				s += "\n"; 
@@ -270,29 +270,29 @@ string   INOUT::print__(const GO& go, const BITB& bb,
 		switch (go[pos]) {
 			case BLACK:	
 				if (pos == pp) {
-					s += "¡ô"; 
+					s += "â—†"; 
 					break; 
 				}
 				if (pos == go.getlastpos() ) 
-					s += "¡ö"; 
+					s += "â– "; 
 				else                 
-					s += "¡ñ"; 
+					s += "â—"; 
 				break; 
 			case WHITE:	
 				if (pos == pp) 	{
-					s += "¡ó"; 
+					s += "â—‡"; 
 					break; 
 				}
 				if (pos == go.getlastpos() ) 
-					s += "¡õ"; 
+					s += "â–¡"; 
 				else		         
-					s += "¡ğ"; 
+					s += "â—‹"; 
 				break; 
 			case BLACK_WHITE:	    
-				s += "¡Ñ"; 
+				s += "âŠ™"; 
 				break; 
 			case HOTKO:		
-				s += "¨p"; 
+				s += "â•¬"; 
 				break; 
 			case EMPTY:				 
 				s += grid(pos); 
@@ -312,7 +312,7 @@ string   INOUT::printbitboard(const BITB& bb) {
 	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
 		switch (bb[pos]) {
 			case 1:	            
-				s += "¡ò"; 
+				s += "â—"; 
 				break; 
 			case 0: 			
 				s += grid(pos); 
@@ -329,8 +329,8 @@ string   INOUT::printbitboard(const BITB& bb) {
 string	 INOUT::printlabel ( const GO& go, 
 							const pair<VB, VB >& pvv, MODE_PRINTLABEL mode) {	
 	___FUNCOUNT( IO_PRINTLABEL); 
-	string black = "£Á£Â£Ã£Ä£Å£Æ£Ç£È£É£Ê£Ë£Ì£Í£Î£Ï£Ğ£Ñ£Ò£Ó£Ô£Õ£Ö£×£Ø£Ù£Ú"; 
-	string white = "£á£â£ã£ä£å£æ£ç£è£é£ê£ë£ì£í£î£ï£ğ£ñ£ò£ó£ô£õ£ö£÷£ø£ù£ú"; 
+	string black = "ï¼¡ï¼¢ï¼£ï¼¤ï¼¥ï¼¦ï¼§ï¼¨ï¼©ï¼ªï¼«ï¼¬ï¼­ï¼®ï¼¯ï¼°ï¼±ï¼²ï¼³ï¼´ï¼µï¼¶ï¼·ï¼¸ï¼¹ï¼º"; 
+	string white = "ï½ï½‚ï½ƒï½„ï½…ï½†ï½‡ï½ˆï½‰ï½Šï½‹ï½Œï½ï½ï½ï½ï½‘ï½’ï½“ï½”ï½•ï½–ï½—ï½˜ï½™ï½š"; 
 	string blk = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
 	string wht = "abcdefghijklmnopqrstuvwxyz"; 
 	string s = ""; 
@@ -343,7 +343,7 @@ string	 INOUT::printlabel ( const GO& go,
 	ITR itr; 
 	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
 		bool labelfound = 0; 
-		// ²»¼Ó break ÒÔ¹Û²ì¸÷µãµÄ¹éÊôÊÇ·ñÎ¨Ò»
+		// ä¸åŠ  break ä»¥è§‚å¯Ÿå„ç‚¹çš„å½’å±æ˜¯å¦å”¯ä¸€
 		for (int i = 0; i<vx.size (); ++i)
 			if ((mode == L_CLUSTER && vx[i][pos]) ||
 				(mode == L_AREA1 && vx[i][pos] 
@@ -390,10 +390,10 @@ string	 INOUT::printlabel ( const GO& go,
 			}	
 		if (!labelfound)
 			switch (go[pos]) {
-				case BLACK:			s += "¡ñ"; break; 
-				case WHITE:			s += "¡ğ"; break; 
-				case BLACK_WHITE:	s += "¡Ñ"; break; 
-				case HOTKO:			s += "¨p"; break; 
+				case BLACK:			s += "â—"; break; 
+				case WHITE:			s += "â—‹"; break; 
+				case BLACK_WHITE:	s += "âŠ™"; break; 
+				case HOTKO:			s += "â•¬"; break; 
 				case EMPTY:			s += grid(pos); break; 
 			}														
 		if (pos.second == 1)			
@@ -436,8 +436,8 @@ string   INOUT::printlibertysite(const GO& go,
 
 string   INOUT::printpartition(const VG& vg){	
 	___FUNCOUNT( IO_PRINTPARTITION); 
-	string black = "¡ñ¢Å¢Æ¢Ç¢È¢É¢Ê¢Ë¢Ì¢Í¢Î¢Ï¢Ğ¢Ñ¢Ò¢Ó¢Ô¢Õ¢Ö¢×¢Ø"; 
-	string white = "¡ğ¢±¢²¢³¢´¢µ¢¶¢·¢¸¢¹¢º¢»¢¼¢½¢¾¢¿¢À¢Á¢Â¢Ã¢Ä"; 
+	string black = "â—â‘´â‘µâ‘¶â‘·â‘¸â‘¹â‘ºâ‘»â‘¼â‘½â‘¾â‘¿â’€â’â’‚â’ƒâ’„â’…â’†â’‡"; 
+	string white = "â—‹â’ˆâ’‰â’Šâ’‹â’Œâ’â’â’â’â’‘â’’â’“â’”â’•â’–â’—â’˜â’™â’šâ’›"; 
 	string s = ""; 
 	int find; 
 	ITR itr; 
@@ -455,11 +455,11 @@ string   INOUT::printpartition(const VG& vg){
 					break; }
 				case BLACK_WHITE:	  
 					{++find; 
-					s += "¡Ñ"; 
+					s += "âŠ™"; 
 					break; }
 				case HOTKO:			  
 					{++find; 
-					s += "¨p"; 
+					s += "â•¬"; 
 					break; }
 			}															  
 		if (find>0)  
@@ -477,9 +477,9 @@ string   INOUT::printpartition(const VG& vg){
 string   INOUT::printliberty(const GO& go, const VI& vec){		
 	___FUNCOUNT( IO_PRINTLIBERTY); 
 	
-	//-// 20¸ö×Ö·û²»¹»ÓÃ, ¿ÉÄÜµ¼ÖÂÔËĞĞÊ±´íÎó, ´ı¸Ä½ø
-	string black = "¡ò¢Å¢Æ¢Ç¢È¢É¢Ê¢Ë¢Ì¢Í¢Î¢Ï¢Ğ¢Ñ¢Ò¢Ó¢Ô¢Õ¢Ö¢×¢Ø"; 
-	string white = "¨‘¢±¢²¢³¢´¢µ¢¶¢·¢¸¢¹¢º¢»¢¼¢½¢¾¢¿¢À¢Á¢Â¢Ã¢Ä"; 
+	//-// 20ä¸ªå­—ç¬¦ä¸å¤Ÿç”¨, å¯èƒ½å¯¼è‡´è¿è¡Œæ—¶é”™è¯¯, å¾…æ”¹è¿›
+	string black = "â—â‘´â‘µâ‘¶â‘·â‘¸â‘¹â‘ºâ‘»â‘¼â‘½â‘¾â‘¿â’€â’â’‚â’ƒâ’„â’…â’†â’‡"; 
+	string white = "â˜‰â’ˆâ’‰â’Šâ’‹â’Œâ’â’â’â’â’‘â’’â’“â’”â’•â’–â’—â’˜â’™â’šâ’›"; 
 	string s = ""; 
 	int i; 
 	ITR itr; 
@@ -503,7 +503,7 @@ string   INOUT::printliberty(const GO& go, const VI& vec){
 }
 */
 /*
-// ´Ë mask ¿ÉÒÔ³Ê²»¹æÔòĞÎ×´
+// æ­¤ mask å¯ä»¥å‘ˆä¸è§„åˆ™å½¢çŠ¶
 string	INOUT::printpat(const GO& old, const BITB& mask){	
 	___FUNCOUNT( IO_PRINTPAT1); 
 	string s = ""; 
@@ -516,19 +516,19 @@ string	INOUT::printpat(const GO& old, const BITB& mask){
 			switch (go[pos]) {
 				case BLACK:				
 					//if (mask[pos]) 
-						s += "¡ñ"; 
+						s += "â—"; 
 					//else 
 					//	s += "  "; 
 					break; 
 				case WHITE:				
 					//if (mask[pos])
-						s += "¡ğ"; 
+						s += "â—‹"; 
 					//else 
 					//	s += "  "; 
 					break; 
 				case BLACK_WHITE:	   	
 					//if (mask[pos])
-						s += "¡Ñ"; 
+						s += "âŠ™"; 
 					//else 
 					//	s += "  "; 
 					break; 
@@ -549,13 +549,13 @@ string	INOUT::printpat(const GO& old, const BITB& mask){
 		if (pos.second == 1 && squarem.r[pos.first])             
 			s += "\n"; 
 	}
-	for (int pp = s.find ("©ï"); pp != s.npos; pp = s.find ("©ï"))
-        	s.replace(pp, 2, "©à"); 
+	for (int pp = s.find ("â•‹"); pp != s.npos; pp = s.find ("â•‹"))
+        	s.replace(pp, 2, "â”¼"); 
 	cout<<(s += "\n"); 
 	return s; 
 }
 
-// ´Ë mask ¿ÉÒÔ³Ê²»¹æÔòĞÎ×´
+// æ­¤ mask å¯ä»¥å‘ˆä¸è§„åˆ™å½¢çŠ¶
 string	INOUT::printpat(const BITB& old, const BITB& mask) {	
 	___FUNCOUNT( IO_PRINTPAT2); 
 	string s; 
@@ -568,7 +568,7 @@ string	INOUT::printpat(const BITB& old, const BITB& mask) {
 			switch (bb[pos]) {
 				case 1:	           
 					//if (mask[pos]) 
-						s += "¡ò"; 
+						s += "â—"; 
 					//else 
 					//	s += "  "; 
 					break; 
@@ -583,18 +583,18 @@ string	INOUT::printpat(const BITB& old, const BITB& mask) {
 		if (pos.second == 1 && squarem.r[pos.first])   
 			s += "\n"; 
 	}
-	for (int pp = s.find ("©ï"); pp != s.npos; pp = s.find ("©ï"))
-        	s.replace(pp, 2, "©à"); 
+	for (int pp = s.find ("â•‹"); pp != s.npos; pp = s.find ("â•‹"))
+        	s.replace(pp, 2, "â”¼"); 
 	cout<<(s += "\n"); 
 	return s; 
 }
 */
 
-// Óëpat2ascii()²¢·Ç¶ÔÓ¦¹ØÏµ.Ä£Ê½"xx\n-x\n"ÖĞµÄ-ÊÇÃ»ÓĞÒâÒåµÄ, 
-// µ«Ëü¿ÉÒÔÓÉpat2ascii()Éú³É.
-// Èç¹ûin2pat()Í¬Ê±¸ø³öÒ»¸ö¶ÔÓ¦ mask µÄ string Ôò¿ÉÒÔ½â¾ö.
-// ÊäÈëÊÇ·ñºÏ·¨ÔÚinputpat()Àï¼ì²é, Ä¬ÈÏ³¤¿í²»³¬¹ı(BS-1)/2
-// ¿É¼ÓÈë X O ±íÊ¾±ßÉÏµÄ×Ó, ´ıÍê³É
+// ä¸pat2ascii()å¹¶éå¯¹åº”å…³ç³».æ¨¡å¼"xx\n-x\n"ä¸­çš„-æ˜¯æ²¡æœ‰æ„ä¹‰çš„, 
+// ä½†å®ƒå¯ä»¥ç”±pat2ascii()ç”Ÿæˆ.
+// å¦‚æœin2pat()åŒæ—¶ç»™å‡ºä¸€ä¸ªå¯¹åº” mask çš„ string åˆ™å¯ä»¥è§£å†³.
+// è¾“å…¥æ˜¯å¦åˆæ³•åœ¨inputpat()é‡Œæ£€æŸ¥, é»˜è®¤é•¿å®½ä¸è¶…è¿‡(BS-1)/2
+// å¯åŠ å…¥ X O è¡¨ç¤ºè¾¹ä¸Šçš„å­, å¾…å®Œæˆ
 PAT	INOUT::in2pat(string s){	
 	___FUNCOUNT( IO_IN2PAT); 
 	int w; 
@@ -611,7 +611,7 @@ PAT	INOUT::in2pat(string s){
 			++m; 
 		}
 	}
-	n = p/m - 1; //-// È¡Ä££¿			
+	n = p/m - 1; //-// å–æ¨¡ï¼Ÿ			
 	for (p = 1; p<m-1; ++p){
 		if (smn[p][0] == "-")
 			left = 1; 
@@ -634,8 +634,8 @@ PAT	INOUT::in2pat(string s){
 		down = 1; 
 	int i0 = MIDBS, j0 = MIDBS; 
 
-	// + ÓÅÏÈ  - ´ÎÖ® . ¸ü´ÎÖ®  
-	// ²»ÔÚ¿¼ÂÇÎ»ÖÃµÄ + - Óë . ÎŞÒì
+	// + ä¼˜å…ˆ  - æ¬¡ä¹‹ . æ›´æ¬¡ä¹‹  
+	// ä¸åœ¨è€ƒè™‘ä½ç½®çš„ + - ä¸ . æ— å¼‚
 	if		((smn[0][0] == "+")	|| (up && left))	{ 
 		i0 = 0; 
 		j0 = BS-1; 
@@ -663,7 +663,7 @@ PAT	INOUT::in2pat(string s){
 	GO go; 
 	BITB mask = strip(make_pair(i0, 1<<j0), n-1, m-1, ES); 
 	for (int i = 0; i<m; ++i)
-		//²»ÈÏÊ¶µÄ·ûºÅÒ»ÂÉ×÷¿Õ°×µã
+		//ä¸è®¤è¯†çš„ç¬¦å·ä¸€å¾‹ä½œç©ºç™½ç‚¹
 		for (int j = 0; j<n; ++j){			
 			if		(smn[i][j] == "x")		{	
 				go.xx.r[i+i0] |= (1<<(j0-j)); 
@@ -673,10 +673,10 @@ PAT	INOUT::in2pat(string s){
 			}		
 		}
 
-	return make_pair(go, mask); //Î´¾­ project()
+	return make_pair(go, mask); //æœªç» project()
 }
 
-//Ö±½ÓÓÃ»º³åÇø²Ù×÷±Èfrommatlab()ÖĞÄÇÖÖ°´×Ö¶ÁÈëµÄ·½Ê½¿ìµÃ¶à¡£
+//ç›´æ¥ç”¨ç¼“å†²åŒºæ“ä½œæ¯”frommatlab()ä¸­é‚£ç§æŒ‰å­—è¯»å…¥çš„æ–¹å¼å¿«å¾—å¤šã€‚
 string	INOUT::readbuf(string filename){	
 	___FUNCOUNT( IO_READBUF); 
 	ifstream file(filename.c_str()); 
@@ -768,25 +768,25 @@ vector<vector<PII> > INOUT::sgfs2xy(const VS& vecf){
 }
 */
 
-// Ğ¡À¨ºÅ£¨£©Ö®ÄÚÊÇÒ»¸öÈ«¾Ö·ÖÖ§£¬¿ÉÇ¶Ì×
-// ÖĞÀ¨ºÅ£Û£İÖ®ÄÚÊÇÊµ¼ÊÄÚÈİ£¬²»»áÓĞÇ¶Ì×
-// ´Ë´¦µÄ½áµã²»ÊÇÈ«¾Ö·ÖÖ§£¬½ö½öÊÇÒ»¸ö×ß²½
+// å°æ‹¬å·ï¼ˆï¼‰ä¹‹å†…æ˜¯ä¸€ä¸ªå…¨å±€åˆ†æ”¯ï¼Œå¯åµŒå¥—
+// ä¸­æ‹¬å·ï¼»ï¼½ä¹‹å†…æ˜¯å®é™…å†…å®¹ï¼Œä¸ä¼šæœ‰åµŒå¥—
+// æ­¤å¤„çš„ç»“ç‚¹ä¸æ˜¯å…¨å±€åˆ†æ”¯ï¼Œä»…ä»…æ˜¯ä¸€ä¸ªèµ°æ­¥
 SGFROOT* INOUT::sgf2tree(string filename){	
 	___FUNCOUNT( IO_SGF2TREE); 
 	string s = readbuf(filename.c_str ()); 
-	int	unmatch = 0; // Î´Æ¥ÅäµÄ×óĞ¡À¨ºÅ£¨
-	int	m = 0; // Î´Æ¥ÅäµÄ×óÖĞÀ¨ºÅ£Û
-	int	expand[1024] = {0}; // ´ÓÏàÓ¦µÄÎ´Æ¥ÅäµÄ£¨´¦Õ¹¿ªµÄ½Úµã²ãÊı£¬ÓÃÒÔ»ØËİ
-	int	p; // ÔÚ s ÉÏµÄ¹¤×÷Î»ÖÃ
+	int	unmatch = 0; // æœªåŒ¹é…çš„å·¦å°æ‹¬å·ï¼ˆ
+	int	m = 0; // æœªåŒ¹é…çš„å·¦ä¸­æ‹¬å·ï¼»
+	int	expand[1024] = {0}; // ä»ç›¸åº”çš„æœªåŒ¹é…çš„ï¼ˆå¤„å±•å¼€çš„èŠ‚ç‚¹å±‚æ•°ï¼Œç”¨ä»¥å›æº¯
+	int	p; // åœ¨ s ä¸Šçš„å·¥ä½œä½ç½®
 
-	/* Éú³É¸ù½áµã */
+	/* ç”Ÿæˆæ ¹ç»“ç‚¹ */
 
 	SGFROOT* root = new SGFROOT; 
-	//ºóÃæµÄËã·¨ÕıÈ·ÔËĞĞĞèÏÈÌæ»»µô¿Õ¸ñ»»ĞĞ·ûµÈ
+	//åé¢çš„ç®—æ³•æ­£ç¡®è¿è¡Œéœ€å…ˆæ›¿æ¢æ‰ç©ºæ ¼æ¢è¡Œç¬¦ç­‰
 	while ((p = s.find_first_of ("\t\n\r ")) != s.npos )
 		s.replace(p, 1, ""); 
 	root->intro = s.substr (0, 0); 
-	// ÅÅ¾Ö
+	// æ’å±€
 	if ((p = s.find("AB[")) != s.npos)
 		for(p += 2; s.substr(p, 1) == "["; p += 4) 
 				//root->xfuseki.push_back(_xy2pos(s[p+1]-'a', (s[p+2]-'a'))); 
@@ -796,38 +796,38 @@ SGFROOT* INOUT::sgf2tree(string filename){
 			if (s.substr(p, 1) == "[") 
 				//root->ofuseki.push_back(_xy2pos(s[p+1]-'a', (s[p+2]-'a'))); 
 				root->ofuseki.push_back(aa2pos(s.substr(p+1,2))); 
-	// ÏÂÒ»ÊÖ¸ÃË­×ß
+	// ä¸‹ä¸€æ‰‹è¯¥è°èµ°
 	if ((p = s.find("PL[")) != s.npos)
 		root->turn = ((s.substr (p+3, 1) == "B")?BLACK:WHITE); 
 	else root->turn = BLACK; 
 
-	/* Ê×´ÎÎªÎ±¸ù½áµã£¬½«À´»á±» root ÑÍÃ»£»×÷ÓÃÎª¹¤×÷½áµã */
+	/* é¦–æ¬¡ä¸ºä¼ªæ ¹ç»“ç‚¹ï¼Œå°†æ¥ä¼šè¢« root æ·¹æ²¡ï¼›ä½œç”¨ä¸ºå·¥ä½œç»“ç‚¹ */
 
-	// µ±Ç°½áµã cnode £¬¸³³õÖµ£¬Îª¸ù½áµãµÄ±¾É«
+	// å½“å‰ç»“ç‚¹ cnode ï¼Œèµ‹åˆå€¼ï¼Œä¸ºæ ¹ç»“ç‚¹çš„æœ¬è‰²
 	SGFNODE* cnode = new SGFNODE; 
 	cnode->color = ~(root->turn); 
-	// °´×Ö·ûÍÆ½ø
+	// æŒ‰å­—ç¬¦æ¨è¿›
 	for (p = s.find("("); p<s.size (); ++p){
-		// ÆÕÍ¨×Ö·û¾ùÌø¹ı
-		// Óöµ½£Û Ê±£¬µ½ÏÂÒ»¸ö£İÖ®¼äµÄÄÚÈİÒ»¶¨ÒÑ´¦Àí£¬Ìø¹ı
+		// æ™®é€šå­—ç¬¦å‡è·³è¿‡
+		// é‡åˆ°ï¼» æ—¶ï¼Œåˆ°ä¸‹ä¸€ä¸ªï¼½ä¹‹é—´çš„å†…å®¹ä¸€å®šå·²å¤„ç†ï¼Œè·³è¿‡
 		if (s.substr(p, 1) == "[")
 			++m; 
 		else if (s.substr(p, 1) == "]")
 			--m; 
 		if (m != 0) 
 			continue; 
-		// Ò»¸ö·ÖÖ§¿ªÊ¼£¬¼ÇÂ¼·ÖÖ§¿ªÊ¼Ê±µÄ·ÖÖ§²ãÊı
+		// ä¸€ä¸ªåˆ†æ”¯å¼€å§‹ï¼Œè®°å½•åˆ†æ”¯å¼€å§‹æ—¶çš„åˆ†æ”¯å±‚æ•°
 		if (s.substr(p, 1) == "("){										
 			++unmatch; 
 			expand[unmatch] = 0; 
 		}
-		// Óöµ½£»ºÅ£¬ÏòÇ°¿´3¸ö×Ö·û
+		// é‡åˆ°ï¼›å·ï¼Œå‘å‰çœ‹3ä¸ªå­—ç¬¦
 		else if (s.substr(p, 3) == ";B[" || s.substr(p, 3) == ";W["){						
 			++expand[unmatch]; 
 		}
-		// Óöµ½ B 
+		// é‡åˆ° B 
 		else if (s.substr(p-1, 3) == ";B["){		
-			// ×ß×Ó·½ÓĞÌøÔ¾£¬¼ÓÈëPASS
+			// èµ°å­æ–¹æœ‰è·³è·ƒï¼ŒåŠ å…¥PASS
 			if (cnode->color == BLACK){
 				SGFNODE* newnode = new SGFNODE; 
 				cnode->sons.push_back(newnode); 
@@ -837,7 +837,7 @@ SGFROOT* INOUT::sgf2tree(string filename){
 				cnode = newnode; 
 				++expand[unmatch]; 
 			}
-			// Õı³£Éú³ÉÒ»¸ö½áµã
+			// æ­£å¸¸ç”Ÿæˆä¸€ä¸ªç»“ç‚¹
 			SGFNODE* newnode = new SGFNODE; 
 			cnode->sons.push_back(newnode); 
 			newnode->father = cnode; 
@@ -846,9 +846,9 @@ SGFROOT* INOUT::sgf2tree(string filename){
 			newnode->color = BLACK; 
 			cnode = newnode; 
 		}
-		// Óöµ½ W
+		// é‡åˆ° W
 		else if (s.substr(p-1, 3) == ";W["){										
-			// ×ß×Ó·½ÓĞÌøÔ¾£¬¼ÓÈëPASS
+			// èµ°å­æ–¹æœ‰è·³è·ƒï¼ŒåŠ å…¥PASS
 			if (cnode->color == WHITE){
 				SGFNODE* newnode = new SGFNODE; 
 				cnode->sons.push_back(newnode); 
@@ -858,7 +858,7 @@ SGFROOT* INOUT::sgf2tree(string filename){
 				cnode = newnode; 
 				++expand[unmatch]; 
 			}
-			// Õı³£Éú³ÉÒ»¸ö½áµã
+			// æ­£å¸¸ç”Ÿæˆä¸€ä¸ªç»“ç‚¹
 			SGFNODE* newnode = new SGFNODE; 
 			cnode->sons.push_back(newnode); 
 			newnode->father = cnode; 
@@ -867,7 +867,7 @@ SGFROOT* INOUT::sgf2tree(string filename){
 			newnode->color = WHITE; 
 			cnode = newnode; 
 		}
-		// Ò»¸ö·ÖÖ§½áÊø£¬ÍË»Øµ½ºÏÊÊ²ãÊı
+		// ä¸€ä¸ªåˆ†æ”¯ç»“æŸï¼Œé€€å›åˆ°åˆé€‚å±‚æ•°
 		else if (s.substr(p, 1) == ")"){							
 			for(int i = 0; i<expand[unmatch]; ++i)
 				cnode = cnode->father; 
@@ -875,13 +875,13 @@ SGFROOT* INOUT::sgf2tree(string filename){
 		}															
 	}														
 
-	/* ÕæÊµµÄ¸ù½áµã */
+	/* çœŸå®çš„æ ¹ç»“ç‚¹ */
 
 	root->sons = cnode->sons; 
 	for(int i = 0; i< root->sons.size(); ++i)
 		root->sons[i]->father = 0; 
 	
-	/* ÑéÖ¤ */
+	/* éªŒè¯ */
 
 	___ASSERT(unmatch == 0); 
 	if (root->sons .size ()){
@@ -961,7 +961,7 @@ GO	INOUT::frommatlab(string filename) {
 	}
 	char in; 
 	string s; 
-	// Ö»¶ÁĞ¡ÊıµãÇ°µÄÒ»¸ö×Ö·û
+	// åªè¯»å°æ•°ç‚¹å‰çš„ä¸€ä¸ªå­—ç¬¦
 	while (file.get(in)) 
 		if (file.peek() == '.') 
 			s += in; 
@@ -994,7 +994,7 @@ VS	 INOUT::getfilename(string path, string type){
 	/*
 VS		INOUT::getfilename(string path, string type){	
 	___FUNCOUNT( IO_GETFILENAME); 
-	//-// ÎŞ´íÎó¼ì²â
+	//-// æ— é”™è¯¯æ£€æµ‹
 	VS vecf; 
     struct _finddata_t c_file; 
     long hFile; 
@@ -1064,9 +1064,9 @@ ostream& operator<<(ostream& os, const GO& go){
 	string s = INOUT().print__(go); 
 	s = INOUT().axis(s); 
 	for (int p = 0; p<s.size (); ){
-		if (s.substr (p, 2) == "¡ö" || s.substr (p, 2) == "¡õ"){
+		if (s.substr (p, 2) == "â– " || s.substr (p, 2) == "â–¡"){
 			cout<<setx(R); 
-			cout<<(s.substr (p, 2) == "¡ö"?"¡ñ":"¡ğ"); 
+			cout<<(s.substr (p, 2) == "â– "?"â—":"â—‹"); 
 			cout<<setx(W); 
 			p += 2; 
 		}
@@ -1220,7 +1220,7 @@ ostream& operator<<(ostream& os, const PAT& pat){
 	return os; 
 }
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_IO::pattern(){
 	string ina = 
@@ -1303,7 +1303,7 @@ void TEST_IO::pattern(){
 
 /*
 void TEST_IO::sgftree(){
-	// ³õÊ¼²¼¾Ö
+	// åˆå§‹å¸ƒå±€
 	SGFROOT *root = INOUT().sgf2tree(INOUT().selectsgf()); 
 	SGFNODE *cnode = new SGFNODE; 
 	INFOGO* infop; 
@@ -1315,22 +1315,22 @@ void TEST_IO::sgftree(){
 	for (int i = 0; i<cnode->sons .size (); ++i)
 		cnode->sons [i]->father = cnode; 
 
-	// ¶à´Î²é¿´		
+	// å¤šæ¬¡æŸ¥çœ‹		
 	for(; ; ){
-		// Èç¹ûµ½´ïÒ¶½áµã
+		// å¦‚æœåˆ°è¾¾å¶ç»“ç‚¹
 		if (cnode->sons.empty ()){
 			delete root; 
 			infop->delfromroot(); 
-			// ËÆºõ»¹ÒªÉ¾³ı×î³õÄÇ¸ö cnode
+			// ä¼¼ä¹è¿˜è¦åˆ é™¤æœ€åˆé‚£ä¸ª cnode
 			return; 
 		}
-		// ÌáÊ¾
+		// æç¤º
 		if (cnode->sons.size () == 1)
 			cout<<"branch: "<<"[0]"<< endl; 
 		else 
 			cout<<"branch: "<<"[0]-["
 				<< cnode->sons .size ()-1<<"]"<< endl; 
-		// Ñ¡ÔñºÏÊÊ·ÖÖ§
+		// é€‰æ‹©åˆé€‚åˆ†æ”¯
 		int m; 
 		for(; ; ){
 			cout<< endl << ">  "; 
@@ -1342,7 +1342,7 @@ void TEST_IO::sgftree(){
 					cnode = cnode->sons [m]; 
 					break; 
 				}
-				// ºóÍË
+				// åé€€
 				else if ( m<0 ) {
 					for (; m<0 && (infop->father); ++m ){
 						infop = infop->father; 
@@ -1355,7 +1355,7 @@ void TEST_IO::sgftree(){
 				}
 			}
 		}
-		// ÏÔÊ¾
+		// æ˜¾ç¤º
 		infop = infop->move_tree(cnode->pos, cnode->color ); 
 		cout<<*infop; 
 	}

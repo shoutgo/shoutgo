@@ -49,7 +49,7 @@ public:
 	void	hash(){}; 
 }; 
 
-//尽管现在已申明，但不会影响原代码，会自动脱壳
+//灏界鐜板湪宸茬敵鏄庯紝浣嗕笉浼氬奖鍝嶅師浠ｇ爜锛屼細鑷姩鑴卞３
 NEWPOS	make_pair(int a, unsigned b); 
 
 /* class TEST */

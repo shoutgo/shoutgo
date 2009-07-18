@@ -28,11 +28,11 @@ enum AIM {
 				ZHENGZI, 
 				DAOTUOXUE, 
 		HIS_POTENTIAL, 
-			_ZHIGAODIAN, //		//Ë«·½½ü²ã¸ßÎ»Éú³¤×Ó
-			QINGXIAO, //Ò»·½½ü²ã¸ßÎ»Éú³¤×Ó
-			BI, //Ò»·½ÖĞ¾àµÍÎ»Éú³¤×Ó
-			QINSHI, //Ò»·½½ü²ã×Ó
-			DARU, //ÊÆÄÚ²¿×Ó
+			_ZHIGAODIAN, //		//åŒæ–¹è¿‘å±‚é«˜ä½ç”Ÿé•¿å­
+			QINGXIAO, //ä¸€æ–¹è¿‘å±‚é«˜ä½ç”Ÿé•¿å­
+			BI, //ä¸€æ–¹ä¸­è·ä½ä½ç”Ÿé•¿å­
+			QINSHI, //ä¸€æ–¹è¿‘å±‚å­
+			DARU, //åŠ¿å†…éƒ¨å­
 		MY_CLUSTER, 
 			_GE, //
 			LIANLUO, 
@@ -153,17 +153,17 @@ TARGETS		operator &= (const TARGETS& a, const TARGET& b);
 struct RESULT{
 	int			 value;
 	MOVE		 move;
-	unsigned     a; //ºÏÄ¿µÄ
-	unsigned     b; //¹Ù×Ó
-	unsigned     c; //ÆåĞÎ
-	unsigned     d; //½Ù²Ä
-	unsigned     e; //ÓàÎ¶
-	unsigned     f; //ÏÈÊÖ
-	unsigned     g; //¼æ¹Ë
-	unsigned     h; //¸´ÔÓ¶È
-	unsigned     i; //Æø
-	unsigned     j; //ÇáÖØ
-	unsigned     k; //Òş±ÎĞÔ
+	unsigned     a; //åˆç›®çš„
+	unsigned     b; //å®˜å­
+	unsigned     c; //æ£‹å½¢
+	unsigned     d; //åŠ«æ
+	unsigned     e; //ä½™å‘³
+	unsigned     f; //å…ˆæ‰‹
+	unsigned     g; //å…¼é¡¾
+	unsigned     h; //å¤æ‚åº¦
+	unsigned     i; //æ°”
+	unsigned     j; //è½»é‡
+	unsigned     k; //éšè”½æ€§
 public:
 	RESULT(int v = 0):value(v){}
 	bool	operator  < (const RESULT& r) const; 
@@ -196,7 +196,7 @@ public:
 
 }; 
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 enum	TS_FUN	{TS_TARGETSEARCH = FTS*FUN_MAX, TS_FUN_SIZE}; 
 

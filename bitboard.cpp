@@ -42,14 +42,14 @@ BITB::BITB(const POS& p)	{
 
 void BITB::random(){  
 	___FUNCOUNT( BB_RANDOM); 
-	srand((unsigned)clock()); // ²âÊÔÊ±¿ÉÓÃtime()   2006.9.23
+	srand((unsigned)clock()); // æµ‹è¯•æ—¶å¯ç”¨time()   2006.9.23
 	for (int i = 0; i<BS; ++i) 
 		r[i] = ((rand()<<15)+rand()) & ROWMASK; 
 	//-//
 }
 
 BLOCK BITB::blockat(const POS& pos) const {  
-	//-// Ó¦¸Ã·ÅÈëblockon(), ÔÙµ÷ÓÃ
+	//-// åº”è¯¥æ”¾å…¥blockon(), å†è°ƒç”¨
 	___FUNCOUNT( BB_BLOCKAT); 
 	___PARASSERT( !outside (pos) || pos == NULL_POS ); 
 
@@ -60,7 +60,7 @@ BLOCK BITB::blockat(const POS& pos) const {
 	int  id = pos.first; 
 	ROW  p; 
 	int  d = ((id == 0)? 1:-1); 
-	for (; ; ) {						// ´Ë´¦Èç¶à´ÎÖØ¸´¼ì²â¿ÉÌáÇ°×ªÏò, ´ıÓÅ»¯. 
+	for (; ; ) {						// æ­¤å¤„å¦‚å¤šæ¬¡é‡å¤æ£€æµ‹å¯æå‰è½¬å‘, å¾…ä¼˜åŒ–. 
 		id += d; 
 		p = B.r[id-d] & r[id]; 
 		B.r[id] = rowexpand(r[id], p|B.r[id]); 
@@ -73,7 +73,7 @@ BLOCK BITB::blockat(const POS& pos) const {
 }
 
 BITB BITB::blockon_ (const BITB& t) const {  
-	//-// ÓĞ´ı¸Ä½ø£¬·Âblockat(POS)»òÕßdialate()
+	//-// æœ‰å¾…æ”¹è¿›ï¼Œä»¿blockat(POS)æˆ–è€…dialate()
 	___FUNCOUNT( BB_BLOCKON); 
 	BITB bb = *this; 
 	ITR itr(bb); 
@@ -84,7 +84,7 @@ BITB BITB::blockon_ (const BITB& t) const {
 }
 
 BITB BITB::blockon (const BITB& t) const {  
-	//-// ÓĞ´ı¸Ä½ø£¬·Âblockat(POS)»òÕßdialate()
+	//-// æœ‰å¾…æ”¹è¿›ï¼Œä»¿blockat(POS)æˆ–è€…dialate()
 	BITB snapbb, bb = *this & t; 
 	for (; ; ){
 		snapbb = bb; 
@@ -162,12 +162,12 @@ int	BITB::blockcount() const {
 	return n; 
 }
 
-//Êä³öÎªË®Æ½ºÍ´¹Ö±·½ÏòµÄ³¤¶È
+//è¾“å‡ºä¸ºæ°´å¹³å’Œå‚ç›´æ–¹å‘çš„é•¿åº¦
 PII	BITB::range() const {					
 	___FUNCOUNT( BB_RANGE); 
 	if (*this == NULL_BB) 
 		return 	make_pair(0, 0); 
-	ROW rr = 0; //±ØĞë³õÊ¼»¯Îª0
+	ROW rr = 0; //å¿…é¡»åˆå§‹åŒ–ä¸º0
 	int up = -1, down = -1; 
 	for (int i = 0; i<BS; ++i){ 
 		rr |= r[i]; 
@@ -361,12 +361,12 @@ BITB BITB::touch_blockon_(const BITB& mask) const{
 	return blockon(mask.dilate (1))^blockon(mask); 
 }
 
-// ×¢ÒâÓëinclude()²¢²»ÍêÈ«ÏàÓ¦£¬ismassof() ¸üÒªÒÔmass²ã´Î°üº¬¡£
+// æ³¨æ„ä¸include()å¹¶ä¸å®Œå…¨ç›¸åº”ï¼Œismassof() æ›´è¦ä»¥masså±‚æ¬¡åŒ…å«ã€‚
 bool BITB::ismassof(const BITB& big) const {
 	return big.blockon (*this) == (*this); 
 }
 
-//-// ×¢ÒâÔöÁ¿Ëã·¨ÀûÓÃµ½ tag Î»ÖÃÖµ×îĞ¡
+//-// æ³¨æ„å¢é‡ç®—æ³•åˆ©ç”¨åˆ° tag ä½ç½®å€¼æœ€å°
 POS  BITB::tag() const{	
 	POS p; 
 	for(int i = 0; i<BS; ++i) 
@@ -403,8 +403,8 @@ VP BITB::jointpos() const {
 	return vecpos; 
 }
 
-// ×ÓÊıĞ¡ÓÚµÈÓÚ7µÄBLOCKµÄÄ£Ê½ÌØÕ÷Âë£¬
-// Îª¸÷Î»ÖÃ¿ÉÀ©Õ¹µãÊıÏà³Ë½á¹û£¬Ğ¡ÓÚ 5^7¡£
+// å­æ•°å°äºç­‰äº7çš„BLOCKçš„æ¨¡å¼ç‰¹å¾ç ï¼Œ
+// ä¸ºå„ä½ç½®å¯æ‰©å±•ç‚¹æ•°ç›¸ä¹˜ç»“æœï¼Œå°äº 5^7ã€‚
 UL BITB::encode32() const {  
 	___FUNCOUNT( BB_ENCODE32); 
 	BLOCK blk = *this; 
@@ -429,8 +429,8 @@ BITB BITB::pemismask() const {
 		|((*this).transpose ().project(b.transpose ()).transpose ()); 
 }
 
-// direction µÄ×÷ÓÃ½öÔÚÓÚÅĞ¶ÏÊÇ·ñºÍËÄ±ß½Ó´¥£¬ÒÔ±ãÍ¶Éäµ½ÏàÓ¦±ß£¬
-// ËùÒÔ×óÉÏËÄ·ÖÖ®Ò»ÇøÓë×óÉÏ½ÇµãÍêÈ«µÈ¼Û
+// direction çš„ä½œç”¨ä»…åœ¨äºåˆ¤æ–­æ˜¯å¦å’Œå››è¾¹æ¥è§¦ï¼Œä»¥ä¾¿æŠ•å°„åˆ°ç›¸åº”è¾¹ï¼Œ
+// æ‰€ä»¥å·¦ä¸Šå››åˆ†ä¹‹ä¸€åŒºä¸å·¦ä¸Šè§’ç‚¹å®Œå…¨ç­‰ä»·
 BITB	BITB::project(const BITB& direction) const { 
 	___FUNCOUNT( U_COMPACTMASK); 
 	ROW s = 0, m = 0; 
@@ -445,25 +445,25 @@ BITB	BITB::project(const BITB& direction) const {
 	}
 	BITB bb; 
 	
-	//if (direction.r[0])						//direction ½Ó´¥ÉÏ±ß½ç 
+	//if (direction.r[0])						//direction æ¥è§¦ä¸Šè¾¹ç•Œ 
 	//	for (int i = 0; i<up; ++i)
 	//		bb.r[i] = s; 
-	//if (direction.r[BS-1])					//direction ½Ó´¥ÏÂ±ß½ç 
+	//if (direction.r[BS-1])					//direction æ¥è§¦ä¸‹è¾¹ç•Œ 
 	//	for (int i = down+1; i<BS; ++i)
 	//		bb.r[i] = s; 
 	
-	if (m&LEFTEST)							//direction ½Ó´¥×ó±ß½ç
+	if (m&LEFTEST)							//direction æ¥è§¦å·¦è¾¹ç•Œ
 		for (int i = 0; i<BS; ++i)
 			if (r[i])
 				bb.r[i] = ROWMASK & (r[i]|reverse(reverse(r[i])-1)); 
-	if (m&1)								//direction ½Ó´¥ÓÒ±ß½ç
+	if (m&1)								//direction æ¥è§¦å³è¾¹ç•Œ
 		for (int i = 0; i<BS; ++i)
 			if (r[i])		
 				bb.r[i] |= (r[i]-1); 
 	return bb; 
 }
 
-//×¢Òâ NULL_BB ½á¹ûÎª 1
+//æ³¨æ„ NULL_BB ç»“æœä¸º 1
 PUU BITB::pemis3232_(const BITB& patmask) const {			
 	___FUNCOUNT( BB_PEMIS3232); 
 	vector<short> vecs; 
@@ -498,14 +498,14 @@ PUU BITB::pemis3232_(const BITB& patmask) const {
 		high32 = high32*vecs[i] + mulhigh32(low32, vecs[i]); 
 		low32 *= vecs[i]; 
 	}															
-	unsigned y = patbb.rangemask().count(); //ÕâÑù²ÅÄÜÇø±ğĞ¡·ÉÓë¼âµÈ¼òµ¥ÆåĞÎ 
+	unsigned y = patbb.rangemask().count(); //è¿™æ ·æ‰èƒ½åŒºåˆ«å°é£ä¸å°–ç­‰ç®€å•æ£‹å½¢ 
 	if ( ~low32 < y ) 
 		high32 += 1; 
 	low32 += y; 
 	return make_pair(high32, low32); 
 }
 
-//Ëã·¨Ó¦Óë project() ÓĞ¹Ø!
+//ç®—æ³•åº”ä¸ project() æœ‰å…³!
 ULL	BITB::pemis64_(const BITB& patmask) const {				
 	___FUNCOUNT( BB_PEMIS64); 
 	ULL tmp = 1; 
@@ -542,7 +542,7 @@ ULL	BITB::pemis64_(const BITB& patmask) const {
 }
 */
 
-// ÏÈ½«Æä·½ĞÎ»¯£¬ÔÙ¿´ÊÇ·ñÓëËÄº£½Ó´¥£¬Í¶Éä³ÉÒ»¸ü´óµÄ·½ĞÎ¡£
+// å…ˆå°†å…¶æ–¹å½¢åŒ–ï¼Œå†çœ‹æ˜¯å¦ä¸å››æµ·æ¥è§¦ï¼ŒæŠ•å°„æˆä¸€æ›´å¤§çš„æ–¹å½¢ã€‚
 BITB	BITB::project( ) const { 
 	BITB tmp = rangemask(); 
 	ROW s = 0, m = 0; 
@@ -555,18 +555,18 @@ BITB	BITB::project( ) const {
 		s |= tmp.r[i]; 
 	}
 	BITB bb = tmp; 
-	if (!(tmp &g_init.getroute(R4DOWN_NORTH)).empty())// ½Ó´¥ÉÏº£ 
+	if (!(tmp &g_init.getroute(R4DOWN_NORTH)).empty())// æ¥è§¦ä¸Šæµ· 
 		for (int i = 0; i<up; ++i)
 			bb.r[i] = s; 
-	if (!(tmp &g_init.getroute(R4DOWN_SOUTH)).empty())// ½Ó´¥ÏÂº£ 
+	if (!(tmp &g_init.getroute(R4DOWN_SOUTH)).empty())// æ¥è§¦ä¸‹æµ· 
 		for (int i = down+1; i<BS; ++i)
 			bb.r[i] = s; 
-	// ÉÏÏÂ²Ù×÷ÍêÔÙ²Ù×÷×óÓÒ£¬ÓÃ¸üĞÂºóµÄ bb£¬¶ÔÃ¿ĞĞ
-	if (!(tmp &g_init.getroute(R4DOWN_WEST)).empty())// ½Ó´¥×óº£
+	// ä¸Šä¸‹æ“ä½œå®Œå†æ“ä½œå·¦å³ï¼Œç”¨æ›´æ–°åçš„ bbï¼Œå¯¹æ¯è¡Œ
+	if (!(tmp &g_init.getroute(R4DOWN_WEST)).empty())// æ¥è§¦å·¦æµ·
 		for (int i = 0; i<BS; ++i)
 			if (bb.r[i])
 				bb.r[i] = ROWMASK & (bb.r[i]|reverse(reverse(bb.r[i])-1)); 
-	if (!(tmp &g_init.getroute(R4DOWN_EAST)).empty())// ½Ó´¥ÓÒº£
+	if (!(tmp &g_init.getroute(R4DOWN_EAST)).empty())// æ¥è§¦å³æµ·
 		for (int i = 0; i<BS; ++i)
 			if (bb.r[i])		
 				bb.r[i] |= (bb.r[i]-1); 
@@ -618,15 +618,15 @@ PUU	 BITB::pemis3232() const{
 		high = high*vs[i] + mulhigh32(low, vs[i]); 
 		low *= vs[i]; 
 	}															
-	unsigned y = rangemask().count(); //ÕâÑù²ÅÄÜÇø±ğĞ¡·ÉÓë¼âµÈ¼òµ¥ÆåĞÎ 
+	unsigned y = rangemask().count(); //è¿™æ ·æ‰èƒ½åŒºåˆ«å°é£ä¸å°–ç­‰ç®€å•æ£‹å½¢ 
 	if ( ~low < y ) 
 		high += 1; 
 	low += y; 
 	return make_pair(high, low); 
 }
 
-// ¿ÉÀûÓÃencode32()ºÍjointp()Ö±½Ó¸ø³ö½á¹û.
-// Èç encode32 ²»ÖØ¸´, ¿É²»ÓÃcount().
+// å¯åˆ©ç”¨encode32()å’Œjointp()ç›´æ¥ç»™å‡ºç»“æœ.
+// å¦‚ encode32 ä¸é‡å¤, å¯ä¸ç”¨count().
 pair<EYEKIND, VP > BITB::eyekind(ACTION action) const { 
 	___FUNCOUNT( BB_EYEKIND); 
 	if (blockcount()>1 || count()>7)
@@ -683,8 +683,8 @@ BITB	BITB::wrapper_(int m) const {
 	}
 }
 
-// ¿É¸º¿ÉÕı£¬½öÔÚ±ß½çÉÏÏà½»Ê±Îª 0
-// Ö»ÅòÕÍÒ»·½£¬½á¹û»á²»»á¶Ô³Æ£¿Ó¦¸ÃÊÇ¶Ô³ÆµÄ¡£
+// å¯è´Ÿå¯æ­£ï¼Œä»…åœ¨è¾¹ç•Œä¸Šç›¸äº¤æ—¶ä¸º 0
+// åªè†¨èƒ€ä¸€æ–¹ï¼Œç»“æœä¼šä¸ä¼šå¯¹ç§°ï¼Ÿåº”è¯¥æ˜¯å¯¹ç§°çš„ã€‚
 int  BITB::dist(const BITB& bb) const{
 	BITB tmp = bb; 
 	if (!((*this)&tmp).empty())
@@ -825,7 +825,7 @@ bool	 BITB::operator == (const BITB& bb) const {
 		if (r[i]<bb.r[i]||bb.r[i]<r[i]) 
 			return 0; 
 	return 1; 
-}									//ÕâÁ½¾ä¿ÉÒÔÓÃ != .´ı¸Ä¡£2006.9.9
+}									//è¿™ä¸¤å¥å¯ä»¥ç”¨ != .å¾…æ”¹ã€‚2006.9.9
 bool	 BITB::operator != (const BITB& bb) const { 
 	for (int i = 0; i<BS; ++i) 
 		if (r[i]<bb.r[i]||bb.r[i]<r[i]) 
@@ -898,7 +898,7 @@ bool	 BITB::operator[]  (const POS& pos)  const	{
 	return (r[pos.first]&pos.second) >0; 
 }
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_BB::fly(){
 	BITB tmp; 

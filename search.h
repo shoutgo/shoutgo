@@ -7,7 +7,7 @@
 
 /* class NODE, TREE */
 
-// ×¢Òâ class TREE µÄ´úÂë²»Òª¸Ä£¬±£Áô¡£
+// æ³¨æ„ class TREE çš„ä»£ç ä¸è¦æ”¹ï¼Œä¿ç•™ã€‚
 struct NODE{
 	int				numb; 
 	int				depth; 
@@ -85,9 +85,9 @@ public:
 				better = tmp;
 				better = recordpath(better, paths[i]);
 			}
-			//  ¼Ódeletefromsons()¼¯ÖÐdelete. ¿É²»É¾£¬°´Ö¸ÕëµÇ¼Çµ½Ò» map ÒÔ¹©²éÑ¯£¿
+			//  åŠ deletefromsons()é›†ä¸­delete. å¯ä¸åˆ ï¼ŒæŒ‰æŒ‡é’ˆç™»è®°åˆ°ä¸€ map ä»¥ä¾›æŸ¥è¯¢ï¼Ÿ
 			if (sonp != node){
-				// node->sons.clear(); // node.sons »¹Ã»Çå¿Õ£¬
+				// node->sons.clear(); // node.sons è¿˜æ²¡æ¸…ç©ºï¼Œ
 				delete sonp;
 			}
 		}
@@ -107,7 +107,7 @@ public:
 
 }; 
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 enum	S_FUN	{
 	S_SEARCH = FS* FUN_MAX, S_FUN_SIZE }; 

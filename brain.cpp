@@ -46,26 +46,26 @@ VT BRAIN::top( ) const{
 	PBC smass_his = infop->area.getmass ( smass.first, infop->turn()); 
 	PBC fmass = infop->father->area .getmass (smass.first, infop->getlastclr()); 
 	PBC fmass_his = infop->father->area .getmass (smass.first, infop->turn()); 
-	// ¶ÏÊÂ¼þ£¬±ØÈ»ÓÐÒì¿é°ëÁª£¨¼´¶Ï£©ÒÑ¿é°ëÁª£¨¼´¶Ï£©£¬¿ÉÄÜÓÐÒÑ¿éÁªÂç£¨È«Áª£©
+	// æ–­äº‹ä»¶ï¼Œå¿…ç„¶æœ‰å¼‚å—åŠè”ï¼ˆå³æ–­ï¼‰å·²å—åŠè”ï¼ˆå³æ–­ï¼‰ï¼Œå¯èƒ½æœ‰å·²å—è”ç»œï¼ˆå…¨è”ï¼‰
 	BITB cut = infop->cutpos(infop->getlastclr()).blockon(infop->getlastpos()); 
 	if (cut[infop->getlastpos()]) {
 		PBC f_his = infop->father->area .getmass (cut, infop->turn()); 
 		PBC s_my = infop->area.getmass (cut, infop->getlastclr()); 
-		vt.push_back (TARGET(DUAN, INT_MAX, f_his, s_my)); //±»¶ÏÕß£¬¶ÏÕß
+		vt.push_back (TARGET(DUAN, INT_MAX, f_his, s_my)); //è¢«æ–­è€…ï¼Œæ–­è€…
 	}
-	// ÒÑ¿éÁªÂç£¬ÂäÔÚ¸¸µÄÊ²Ã´É«Çø¶¼ÓÐ¿ÉÄÜ
+	// å·²å—è”ç»œï¼Œè½åœ¨çˆ¶çš„ä»€ä¹ˆè‰²åŒºéƒ½æœ‰å¯èƒ½
 	if ( fmass.first .blockcount() > 1)
-		vt.push_back (TARGET(LIANLUO, INT_MAX, fmass, smass)); //ÁªÂç¶ÔÏó£¬ÁªÂçÐ§¹û
-	// Òì¿é¸ô¿ª£¬ÂäÔÚ¸¸µÄÊ²Ã´É«Çø¶¼ÓÐ¿ÉÄÜ
+		vt.push_back (TARGET(LIANLUO, INT_MAX, fmass, smass)); //è”ç»œå¯¹è±¡ï¼Œè”ç»œæ•ˆæžœ
+	// å¼‚å—éš”å¼€ï¼Œè½åœ¨çˆ¶çš„ä»€ä¹ˆè‰²åŒºéƒ½æœ‰å¯èƒ½
 	if ( fmass_his.first .blockcount() < smass_his.first .blockcount() )
-		vt.push_back (TARGET(GE, INT_MAX, fmass_his, smass)); //¸ô¿ª¶ÔÏó£¬×è¸ôÕß
+		vt.push_back (TARGET(GE, INT_MAX, fmass_his, smass)); //éš”å¼€å¯¹è±¡ï¼Œé˜»éš”è€…
 	return vt; 
 }
 
 VT	BRAIN::surmise () {
 	VT vt; 
-	//¾Ö²¿·ÖÎö£º
-	//	block ²ã´Î(¶Ô·½Ô²Èý²½Ö®ÄÚµÄÃ¿¸ö¿é)
+	//å±€éƒ¨åˆ†æžï¼š
+	//	block å±‚æ¬¡(å¯¹æ–¹åœ†ä¸‰æ­¥ä¹‹å†…çš„æ¯ä¸ªå—)
 
 	/*
 	BITB view = BITB(infop->getlastpos()).dilate (3); 
@@ -83,62 +83,62 @@ VT	BRAIN::surmise () {
 			ts |= TARGET(tmp, WHITE, JIUZI); 
 	*/
 
-	//	mass ²ã´Î(¸¸)(Óëcluster²ã´ÎÆ¥ÅäÔËÓÃ)
+	//	mass å±‚æ¬¡(çˆ¶)(ä¸Žclusterå±‚æ¬¡åŒ¹é…è¿ç”¨)
 	//
-	//	cluster ²ã´Î(¸¸)(Óëmass²ã´ÎÆ¥ÅäÔËÓÃ)
-	//			ÒìÈº£º	µØ
-	//							ÐÂÉúÍÅ		POYAN
-	//								ÍâÉúÍÅ		SUOYANWEI
-	//								ÄÚÉúÍÅ
-	//					º£
-	//							ÐÂÉúÍÅ		SHA
-	//								ÍâÉúÍÅ		GAN, SHENGTUI
-	//								ÄÚÉúÍÅ
-	//					¿Õ
-	//							ÐÂÉúÍÅ		
-	//								ÍâÉúÍÅ
-	//								ÄÚÉúÍÅ
-	//			ÒÑÈº£º	µØ
-	//							ÐÂÉúÍÅ		
-	//								ÍâÉúÍÅ		KUOYANWEI
-	//								ÄÚÉúÍÅ		ZUOYAN
-	//					º£
-	//							ÐÂÉúÍÅ		
-	//								ÍâÉúÍÅ		SHENGEN, _SHENGTUI
-	//								ÄÚÉúÍÅ		ZUOYAN
-	//					¿Õ
-	//							ÐÂÉúÍÅ
-	//								ÍâÉúÍÅ
-	//								ÄÚÉúÍÅ
-	//			¹«Èº£º
-	//							ÐÂÉúÍÅ		SHA
-	//								ÍâÉúÍÅ		ZUOHUO
-	//								ÄÚÉúÍÅ		ZUOHUO
+	//	cluster å±‚æ¬¡(çˆ¶)(ä¸Žmasså±‚æ¬¡åŒ¹é…è¿ç”¨)
+	//			å¼‚ç¾¤ï¼š	åœ°
+	//							æ–°ç”Ÿå›¢		POYAN
+	//								å¤–ç”Ÿå›¢		SUOYANWEI
+	//								å†…ç”Ÿå›¢
+	//					æµ·
+	//							æ–°ç”Ÿå›¢		SHA
+	//								å¤–ç”Ÿå›¢		GAN, SHENGTUI
+	//								å†…ç”Ÿå›¢
+	//					ç©º
+	//							æ–°ç”Ÿå›¢		
+	//								å¤–ç”Ÿå›¢
+	//								å†…ç”Ÿå›¢
+	//			å·²ç¾¤ï¼š	åœ°
+	//							æ–°ç”Ÿå›¢		
+	//								å¤–ç”Ÿå›¢		KUOYANWEI
+	//								å†…ç”Ÿå›¢		ZUOYAN
+	//					æµ·
+	//							æ–°ç”Ÿå›¢		
+	//								å¤–ç”Ÿå›¢		SHENGEN, _SHENGTUI
+	//								å†…ç”Ÿå›¢		ZUOYAN
+	//					ç©º
+	//							æ–°ç”Ÿå›¢
+	//								å¤–ç”Ÿå›¢
+	//								å†…ç”Ÿå›¢
+	//			å…¬ç¾¤ï¼š
+	//							æ–°ç”Ÿå›¢		SHA
+	//								å¤–ç”Ÿå›¢		ZUOHUO
+	//								å†…ç”Ÿå›¢		ZUOHUO
 	//		
-	//			¹«¿Õ£º					
-	//	potential ²ã´Î£º
+	//			å…¬ç©ºï¼š					
+	//	potential å±‚æ¬¡ï¼š
 
 		
-	//È«¾ÖÍØÆË·ÖÎö£º
-	//	block ²ã´Î
-	//			ÐÂ¿é
-	//			Éú³¤¿é
-	//			ÄÚ³¤¿é
-	//			ÒÑ¿éÈÚºÏ
-	//			Òì¿é·ÖÁÑ
-	//	mass ²ã´Î
-	//			ÐÂÍÅ
-	//			Éú³¤ÍÅ
-	//			ÄÚ³¤ÍÅ
-	//			ÒÑÍÅÈÚºÏ
-	//			ÒìÍÅ·ÖÁÑ
-	//	cluster ²ã´Î
-	//			¶ÔÂäµãÓëËùÓÐÈº°´¾àÀëÅÅÐò(ÖÁÉÙÓëËùÊôÕßÏàÁÚ)£¬
-	//			Éú³ÉÁªÂçÓë¹¥»÷¿ÉÄÜÄ¿±ê
+	//å…¨å±€æ‹“æ‰‘åˆ†æžï¼š
+	//	block å±‚æ¬¡
+	//			æ–°å—
+	//			ç”Ÿé•¿å—
+	//			å†…é•¿å—
+	//			å·²å—èžåˆ
+	//			å¼‚å—åˆ†è£‚
+	//	mass å±‚æ¬¡
+	//			æ–°å›¢
+	//			ç”Ÿé•¿å›¢
+	//			å†…é•¿å›¢
+	//			å·²å›¢èžåˆ
+	//			å¼‚å›¢åˆ†è£‚
+	//	cluster å±‚æ¬¡
+	//			å¯¹è½ç‚¹ä¸Žæ‰€æœ‰ç¾¤æŒ‰è·ç¦»æŽ’åº(è‡³å°‘ä¸Žæ‰€å±žè€…ç›¸é‚»)ï¼Œ
+	//			ç”Ÿæˆè”ç»œä¸Žæ”»å‡»å¯èƒ½ç›®æ ‡
 	return vt; 
 }
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_BR::timefunc (string which) {
 	RANDER  r; 

@@ -69,20 +69,20 @@ public:
 	void            save2txt(const VVF& v, string filename = "datayx.txt"); 
 	void			save2txt(const GO& go, string filename = "go.txt"); 
 	*/
-	// Õâ¸öÊÇÀûÓÃÊä³öÖØ¶¨Ïò°´×Ö·û·½Ê½±£´æ
+	// è¿™ä¸ªæ˜¯åˆ©ç”¨è¾“å‡ºé‡å®šå‘æŒ‰å­—ç¬¦æ–¹å¼ä¿å­˜
 	template <typename T> 
 		void		save2txt(const T& t, string filename); 
-	// ÕâÁ½¸ö°´¶ş½øÖÆ·½Ê½±£´æ¼°¶ÁÈëµ¥¸öÀà
+	// è¿™ä¸¤ä¸ªæŒ‰äºŒè¿›åˆ¶æ–¹å¼ä¿å­˜åŠè¯»å…¥å•ä¸ªç±»
 	template <typename T> 
 		void		save(const T& t, string filename); 
 	template <typename T> 
 		void		load(T& t, string filename); 
-	// ÕâÁ½¸ö°´¶ş½øÖÆ·½Ê½±£´æ¼°¶ÁÈëÒ»Î¬ÏòÁ¿Àà
+	// è¿™ä¸¤ä¸ªæŒ‰äºŒè¿›åˆ¶æ–¹å¼ä¿å­˜åŠè¯»å…¥ä¸€ç»´å‘é‡ç±»
 	template <typename T> 
 		void		save(const vector<T>& vt, ofstream& file); 
 	template <typename T> 
 		void		load(vector<T>& vt, ifstream& file); 
-	// ÕâÁ½¸ö°´¶ş½øÖÆ·½Ê½±£´æ¼°¶ÁÈë¶şÎ¬ÏòÁ¿Àà
+	// è¿™ä¸¤ä¸ªæŒ‰äºŒè¿›åˆ¶æ–¹å¼ä¿å­˜åŠè¯»å…¥äºŒç»´å‘é‡ç±»
 	template <typename T> 
 		void		save(const vector<vector<T> >& vvt, ofstream& file); 
 	template <typename T> 
@@ -98,7 +98,7 @@ template <typename T>
 		cout.rdbuf(file.rdbuf()); 
 		cout<<t; 
 		cout.rdbuf(old); 
-		// file << t; ÓëÒÔÉÏËÄ¾ä¹¦ÄÜÍ¬
+		// file << t; ä¸ä»¥ä¸Šå››å¥åŠŸèƒ½åŒ
 	}
 //
 template <typename T> 
@@ -227,7 +227,7 @@ ostream& operator<<(ostream& os, const pair<T, S> pts){
 }
 
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 enum	IO_FUN	{
 	IO_LOGO = FIO * FUN_MAX, IO_AXIS, 

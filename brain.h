@@ -5,17 +5,17 @@
 #include "learn.h"
 
 enum PRINCIPLE {
-	DUIKANG, //¶Ô¿¹Ô­Ôò
-	HUANWEISIKAO, //»»Î»Ë¼¿¼Ô­Ôò
-	RENNAI, //ÈÌÄÍÔ­Ôò
-	SHITAN, //ÊÔÌ½Ô­Ôò
-	DUIKANGHOUXIAO, //¶Ô¿¹µÃ³ÑºóĞ§Ô­Ôò
-	TUOXIAN, //ÍÑÏÈÔ­Ôò
-	SHUNSHI, //Ë³ÊÆÔ­Ôò
-	JISUO, //¼±ËùÔ­Ôò
-	LIYIZUIDA, //ÀûÒæ×î´óÔ­Ôò
-	LIYIPINGHENG, //ÊÕÒæÆ½ºâÔ­Ôò
-	LIYIYUZHI, //ãĞÖµÔ­Ôò
+	DUIKANG, //å¯¹æŠ—åŸåˆ™
+	HUANWEISIKAO, //æ¢ä½æ€è€ƒåŸåˆ™
+	RENNAI, //å¿è€åŸåˆ™
+	SHITAN, //è¯•æ¢åŸåˆ™
+	DUIKANGHOUXIAO, //å¯¹æŠ—å¾—é€åæ•ˆåŸåˆ™
+	TUOXIAN, //è„±å…ˆåŸåˆ™
+	SHUNSHI, //é¡ºåŠ¿åŸåˆ™
+	JISUO, //æ€¥æ‰€åŸåˆ™
+	LIYIZUIDA, //åˆ©ç›Šæœ€å¤§åŸåˆ™
+	LIYIPINGHENG, //æ”¶ç›Šå¹³è¡¡åŸåˆ™
+	LIYIYUZHI, //é˜ˆå€¼åŸåˆ™
 	PRINCIPLE_SIZE
 }; 
 
@@ -46,42 +46,42 @@ private:
 
 public:
 
-	void		event(); //ÊÂ¼ş
-	void		cluster(); //ÆåÈº¾ÛÀà	
-	void		area(); //µØÓò»®·Ö
+	void		event(); //äº‹ä»¶
+	void		cluster(); //æ£‹ç¾¤èšç±»	
+	void		area(); //åœ°åŸŸåˆ’åˆ†
 
 	VT			top( ) const; 
-	VT			surmise( ); //×ß²½ÒâÍ¼²Â²â
+	VT			surmise( ); //èµ°æ­¥æ„å›¾çŒœæµ‹
 
-	TARGETS		inspire( ); //Ä¿±êÉú³É
-	TARGETS		prepare(const TARGET&); //ÎªÄ³Ä¿±ê×÷ÆÌµæ
-	TARGETS		follow(const TARGET&); //Ä³Ä¿±êÖ®ºóĞø
-	TARGETS		compose(const VT&); //Ä¿±êºÏ³É£¬Èç²øÈÆ
+	TARGETS		inspire( ); //ç›®æ ‡ç”Ÿæˆ
+	TARGETS		prepare(const TARGET&); //ä¸ºæŸç›®æ ‡ä½œé“ºå«
+	TARGETS		follow(const TARGET&); //æŸç›®æ ‡ä¹‹åç»­
+	TARGETS		compose(const VT&); //ç›®æ ‡åˆæˆï¼Œå¦‚ç¼ ç»•
 
-	TARGETS*	plan(); //¼Æ»®
-	TARGETS		decide(); //¾ö¶¨
-	POS			genmove(); //×ß²½Éú³É
+	TARGETS*	plan(); //è®¡åˆ’
+	TARGETS		decide(); //å†³å®š
+	POS			genmove(); //èµ°æ­¥ç”Ÿæˆ
 
-	TARGETS		sabaki(); //ÌÚÅ²		
-	TARGETS		suteru(); //Æú×Ó
-	TARGETS		tenuki(); //ÍÑÏÈ
-	int			yoseki(); //¹Ù×Ó¼ÆËã
-	int			judgement(); //ĞÎÊÆÅĞ¶Ï
+	TARGETS		sabaki(); //è…¾æŒª		
+	TARGETS		suteru(); //å¼ƒå­
+	TARGETS		tenuki(); //è„±å…ˆ
+	int			yoseki(); //å®˜å­è®¡ç®—
+	int			judgement(); //å½¢åŠ¿åˆ¤æ–­
 
-	void		model(); //ÆåÊÖ½¨Ä£
+	void		model(); //æ£‹æ‰‹å»ºæ¨¡
 		
-	void		autolearn(); //×ÔÑ§Ï°	
-	void		sgflearn(); //ÆåÆ×Ñ§Ï°
-	void		teach(); //ÈËÀàÊ¾½Ì
+	void		autolearn(); //è‡ªå­¦ä¹ 	
+	void		sgflearn(); //æ£‹è°±å­¦ä¹ 
+	void		teach(); //äººç±»ç¤ºæ•™
 
 	bool		endgame() const; 
 	//bool		move( const POS&, COLOR ); 
-	string		interpret(); //×ß²½½âÊÍ
+	string		interpret(); //èµ°æ­¥è§£é‡Š
 
 	friend ostream& operator<<(ostream& os, const BRAIN& ); 
 }; 
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 enum	BR_FUN	{
 	BR_BRAIN = FBR*FUN_MAX, BR_FUN_SIZE}; 

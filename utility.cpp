@@ -3,7 +3,7 @@
 #include "itr.h"
 #include "inout.h"
 
-//×¢ÒâÕâÀïµÄº¯Êı¿ÉÒÔÓÃ²é±í·¨ÓÅ»¯
+//æ³¨æ„è¿™é‡Œçš„å‡½æ•°å¯ä»¥ç”¨æŸ¥è¡¨æ³•ä¼˜åŒ–
 
 int		 popu(unsigned x){  
 	___FUNCOUNT( U_POPU); 
@@ -115,7 +115,7 @@ VP	near8(const POS& pos) {
 	return vecp; 
 }
 
-// NULL_POS ºÍ PASS_POS ¶¼·µ»Ø 1
+// NULL_POS å’Œ PASS_POS éƒ½è¿”å› 1
 bool	outside(const POS& pos){		
 	___FUNCOUNT( U_OUTSIDE); 
 	return ((pos.second == 0)|| (pos.second>ROWMASK) 
@@ -145,7 +145,7 @@ POS	rot(int angle, const POS& pos){
 		case 270:
 			return make_pair(ntailzero(pos.second ), 1<<(BS-1-pos.first )); 
 		default :
-			return pos; // 2006.8.20 ÒÔÊ¹ÔÚangle = 0Ê±ÕıÈ·
+			return pos; // 2006.8.20 ä»¥ä½¿åœ¨angle = 0æ—¶æ­£ç¡®
 	}
 }
 
@@ -222,7 +222,7 @@ POS	_xy2pos(int x, int y){
 	return make_pair(x, 1<<y); 
 }
 
-// ×¢ÒâÕâ¼¸¸öº¯ÊıµÄÇ°Ìá£º popu(pos.second) == 1 
+// æ³¨æ„è¿™å‡ ä¸ªå‡½æ•°çš„å‰æï¼š popu(pos.second) == 1 
 
 PII	_pos2xy(const POS& pos){		
 	___FUNCOUNT( U_POS2XY); 
@@ -476,10 +476,10 @@ bool	issamepat(string a, string b){
 		else if (ax.substr (i, 1) == "O")   
 			ax.replace (i, 1, "X"); 
 	}
-	//µÚ 1 ÖÖÇé¿ö (Î´·­×ª) 
+	//ç¬¬ 1 ç§æƒ…å†µ (æœªç¿»è½¬) 
     if (a == b || ax == b)						
 		return 1; 
-	//°Ñ b ¶ÁÈë bmn, m ĞĞ n ÁĞ.
+	//æŠŠ b è¯»å…¥ bmn, m è¡Œ n åˆ—.
 	char bmn[BS][BS]; 
 	int  m = 0, n = 0, p; 
 	for (p = 0; p<b.size(); ++p){
@@ -490,9 +490,9 @@ bool	issamepat(string a, string b){
 			++m; 
 		}
 	}
-	n = p/m - 1; //-// È¡Ä££¿Óëin2pat()ÓĞÖØ¸´
+	n = p/m - 1; //-// å–æ¨¡ï¼Ÿä¸in2pat()æœ‰é‡å¤
 
-	//ÆäËü 7 ÖÖ¶Ô³ÆÇé¿ö (¿´×÷ÊÇ×ù±ê¶ÁÈ¡·½Ê½µÄ²»Í¬)
+	//å…¶å®ƒ 7 ç§å¯¹ç§°æƒ…å†µ (çœ‹ä½œæ˜¯åº§æ ‡è¯»å–æ–¹å¼çš„ä¸åŒ)
 	string tmp = ""; 
 	for (int i = 0; i<n; ++i)		
 		for(int j = 0; j<m; ++j){
@@ -559,36 +559,36 @@ bool	issamepat(string a, string b){
 	return 0; 
 }
 
-//´Ëº¯ÊıÓ¦µ±±ÜÃâÊ¹ÓÃ, Ò²Î´ÓĞ X O ·ûºÅ
+//æ­¤å‡½æ•°åº”å½“é¿å…ä½¿ç”¨, ä¹Ÿæœªæœ‰ X O ç¬¦å·
 string	asciipat(string patstr){	
 	___FUNCOUNT( U_STANDARDPAT); 
 	for (int p = 0; p<patstr.size (); ++p){			// p += 2
-		if (patstr.substr(p, 2) == "¡ñ")		{ patstr.replace (p, 2, "x"); continue; }
-		if (patstr.substr(p, 2) == "¡ğ")		{ patstr.replace (p, 2, "o"); continue; }
-		if (patstr.substr(p, 2) == "©à")		{ patstr.replace (p, 2, "."); continue; }
-		if (patstr.substr(p, 2) == "©³")		{ patstr.replace (p, 2, "+"); continue; }
-		if (patstr.substr(p, 2) == "©·")		{ patstr.replace (p, 2, "+"); continue; }
-		if (patstr.substr(p, 2) == "©¿")		{ patstr.replace (p, 2, "+"); continue; } 
-		if (patstr.substr(p, 2) == "©»")		{ patstr.replace (p, 2, "+"); continue; }
-		if (patstr.substr(p, 2) == "©Ó")		{ patstr.replace (p, 2, "-"); continue; }
-		if (patstr.substr(p, 2) == "©Ì")		{ patstr.replace (p, 2, "-"); continue; }
-		if (patstr.substr(p, 2) == "©Û")		{ patstr.replace (p, 2, "-"); continue; }
-		if (patstr.substr(p, 2) == "©Ä")		{ patstr.replace (p, 2, "-"); continue; }
-		if (patstr.substr(p, 2) == "¡ò")		{ patstr.replace (p, 2, "o"); continue; }
-		if (patstr.substr(p, 2) == "¡Ñ")		{ patstr.replace (p, 2, "*"); continue; }
+		if (patstr.substr(p, 2) == "â—")		{ patstr.replace (p, 2, "x"); continue; }
+		if (patstr.substr(p, 2) == "â—‹")		{ patstr.replace (p, 2, "o"); continue; }
+		if (patstr.substr(p, 2) == "â”¼")		{ patstr.replace (p, 2, "."); continue; }
+		if (patstr.substr(p, 2) == "â”")		{ patstr.replace (p, 2, "+"); continue; }
+		if (patstr.substr(p, 2) == "â”“")		{ patstr.replace (p, 2, "+"); continue; }
+		if (patstr.substr(p, 2) == "â”›")		{ patstr.replace (p, 2, "+"); continue; } 
+		if (patstr.substr(p, 2) == "â”—")		{ patstr.replace (p, 2, "+"); continue; }
+		if (patstr.substr(p, 2) == "â”¯")		{ patstr.replace (p, 2, "-"); continue; }
+		if (patstr.substr(p, 2) == "â”¨")		{ patstr.replace (p, 2, "-"); continue; }
+		if (patstr.substr(p, 2) == "â”·")		{ patstr.replace (p, 2, "-"); continue; }
+		if (patstr.substr(p, 2) == "â” ")		{ patstr.replace (p, 2, "-"); continue; }
+		if (patstr.substr(p, 2) == "â—")		{ patstr.replace (p, 2, "o"); continue; }
+		if (patstr.substr(p, 2) == "âŠ™")		{ patstr.replace (p, 2, "*"); continue; }
 		if (patstr.substr(p, 2) == "\n\n")	{ patstr.replace (p, 2, "\n"); continue; }
 	}
 	return patstr; 
 }
 
-//´Ë mask ¿ÉÒÔ³Ê²»¹æÔòĞÎ×´
-//×¢Òâ¿ÉÒÔÉú³É "xbb\no-\n" Ä£Ê½, ²¢²»ÄÜÓÃin2pat()»¹Ô­
+//æ­¤ mask å¯ä»¥å‘ˆä¸è§„åˆ™å½¢çŠ¶
+//æ³¨æ„å¯ä»¥ç”Ÿæˆ "xbb\no-\n" æ¨¡å¼, å¹¶ä¸èƒ½ç”¨in2pat()è¿˜åŸ
 string	pat2ascii ( const BITB& xbb, const BITB& obb, const BITB& mask){   
 	___FUNCOUNT( U_PAT2STR1); 
 												
 	string s = ""; 
 	BITB squarem = project(((xbb|obb)&mask).rangemask(), mask.rangemask()); 
-	POS pos; //Ó¦¸Ãµ÷ÓÃÒÑ´æµÄÎ»ÖÃÏòÁ¿
+	POS pos; //åº”è¯¥è°ƒç”¨å·²å­˜çš„ä½ç½®å‘é‡
 	for (int i = 0; i<BS*BS; ++i) {
 		pos = i2pos(i); 
 		if (squarem[pos]){
@@ -619,14 +619,14 @@ string	pat2ascii ( const BITB& xbb, const BITB& obb, const BITB& mask){
 	return s; 
 }
 
-//´Ë mask ¿ÉÒÔ³Ê²»¹æÔòĞÎ×´
-//×¢Òâ¿ÉÒÔÉú³É "xx\nx-\n" Ä£Ê½, ²¢²»ÄÜÓÃin2pat()»¹Ô­
-//¿ÉÒÔÉú³É "+o\n" »ò "-o\n" Ä£Ê½, ´ı¸Ä½ø
+//æ­¤ mask å¯ä»¥å‘ˆä¸è§„åˆ™å½¢çŠ¶
+//æ³¨æ„å¯ä»¥ç”Ÿæˆ "xx\nx-\n" æ¨¡å¼, å¹¶ä¸èƒ½ç”¨in2pat()è¿˜åŸ
+//å¯ä»¥ç”Ÿæˆ "+o\n" æˆ– "-o\n" æ¨¡å¼, å¾…æ”¹è¿›
 string	pat2ascii(const BITB& bb, const BITB& mask) { 
 	___FUNCOUNT( U_PAT2STR2); 
 	string s; 
 	BITB squarem = project((bb&mask).rangemask(), mask.rangemask()); 
-	POS pos; //Ó¦¸Ãµ÷ÓÃÒÑ´æµÄÎ»ÖÃÏòÁ¿
+	POS pos; //åº”è¯¥è°ƒç”¨å·²å­˜çš„ä½ç½®å‘é‡
 	for (int i = 0; i<BS*BS; ++i) {
 		pos = i2pos(i); 
 		if (squarem[pos]){
@@ -749,7 +749,7 @@ bool	apos_(const POS& pos) {
 }
 
 VVI index8(int a, int b){
-	// 8 ÖÖ¶Ô³Æ·½Ê½
+	// 8 ç§å¯¹ç§°æ–¹å¼
 	int id[8][6] = {
 		{0, a-1, 1, 0, b-1, 1}, // +0
 		{0, a-1, 1, b-1, 0, -1}, // |
@@ -760,11 +760,11 @@ VVI index8(int a, int b){
 		{b-1, 0, -1, 0, a-1, 1}, // +270
 		{b-1, 0, -1, a-1, 0, -1}	// /
 	}; 
-	// Éú³É´Ó 0 µ½ a*b-1 µÄÒ»Î¬×ø±ê£¬¶ÔÓ¦ a ĞĞ b ÁĞµÄ¶şÎ¬×ø±ê
+	// ç”Ÿæˆä» 0 åˆ° a*b-1 çš„ä¸€ç»´åæ ‡ï¼Œå¯¹åº” a è¡Œ b åˆ—çš„äºŒç»´åæ ‡
 	VI index; 
 	for (int i = 0; i<a*b; ++i)
 		index.push_back (i); 
-	// Éú³É 8 ÖÖ¶Ô³Æ·½Ê½ÏÂĞÂµÄÒ»Î¬×ø±ê
+	// ç”Ÿæˆ 8 ç§å¯¹ç§°æ–¹å¼ä¸‹æ–°çš„ä¸€ç»´åæ ‡
 	VVI vvi; 
 	vvi.reserve(8); 
 	for (int i = 0; i<8; ++i){
@@ -775,7 +775,7 @@ VVI index8(int a, int b){
 			for (int k = id[i][3]; 
 				id[i][3]<id[i][4]?k <= id[i][4]:k >= id[i][4]; 
 				k += id[i][5])	
-				// Ç° 4 ÖÖÏÈ¹Ì¶¨ĞĞ£¬ºó 4 ÖÖÏÈ¹Ì¶¨ÁĞ
+				// å‰ 4 ç§å…ˆå›ºå®šè¡Œï¼Œå 4 ç§å…ˆå›ºå®šåˆ—
 				tmp.push_back ( index[(i<4?j:k)*b + (i<4?k:j)] ); 
 		vvi.push_back (tmp); 
 	}
@@ -841,7 +841,7 @@ VS getline(){
 	VS		vs; 
 	string	s; 
 	while(cin>>s, vs.push_back (s), cin.peek() != '\n'); 
-	// cout << endl; // Ö»ÔÚ command(thesis) Ê±´ò¿ª
+	// cout << endl; // åªåœ¨ command(thesis) æ—¶æ‰“å¼€
 	return vs; 
 }
 
@@ -856,7 +856,7 @@ VI indexsort(const VI& vi){
 	return tmp;
 }
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void U_TEST::draw(){
 		___COUT1(  strip (star(5), 3, 3, 3, 3)); 

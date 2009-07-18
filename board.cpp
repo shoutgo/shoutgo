@@ -199,13 +199,13 @@ BLOCK	 GO::expand(const BLOCK& b, COLOR clr) const {
 	return ex&ROWMASK; 
 }
 
-// Á½ÕßÓ¦¸ÃÎŞÖØºÏ£¬·ÅÔÚ BITB ÖĞ²»ºÏÊÊ
+// ä¸¤è€…åº”è¯¥æ— é‡åˆï¼Œæ”¾åœ¨ BITB ä¸­ä¸åˆé€‚
 BITB GO::enemy_(const BLOCK& blk, COLOR clr) const {	
 	___PARASSERT(blk.ismassof(getbb(clr))); 
 	return (getbb(~clr)|blk).blockon(blk)^blk; 
 }
 
-// Óë libertysite() ¹¦ÄÜ»¥²¹
+// ä¸ libertysite() åŠŸèƒ½äº’è¡¥
 BITB GO::enemysite(const BLOCK& blk, COLOR clr) const {			
 	___PARASSERT(blk.ismassof(getbb(clr))); 
 	return blk.dilate (1) & getbb(~clr); 
@@ -227,7 +227,7 @@ int		 GO::liberty_(const POS& pos) const {
 	return libertysite(pos).count(); 
 }
 
-/* Õ¹¿ª°æÖ® movealbe() */
+/* å±•å¼€ç‰ˆä¹‹ movealbe() */
 
 bool	 GO::moveable_(const POS& pos, COLOR clr)  const {  
 	___FUNCOUNT( GO_MOVEABLE); 
@@ -235,7 +235,7 @@ bool	 GO::moveable_(const POS& pos, COLOR clr)  const {
 	if (color(pos) != EMPTY)
 		return 0; 
 
-	/* ¼ÆËãÁ¿×îÉÙ */
+	/* è®¡ç®—é‡æœ€å°‘ */
 
 	POS		pN, pS, pE, pW; 
 	COLOR   cN, cS, cE, cW; 
@@ -270,31 +270,31 @@ bool	 GO::moveable_(const POS& pos, COLOR clr)  const {
 		return 1; 
 	return 0; 
 
-	/* Âß¼­×îÇåÎú */
+	/* é€»è¾‘æœ€æ¸…æ™° */
 
 	/*
-	// ÓĞÆø
+	// æœ‰æ°”
 	if (cN == EMPTY || cS == EMPTY || cE == EMPTY || cW == EMPTY)        
 		return 1; 
-	// ¿ÉÈÚºÏ³ÉÓĞÆøµÄ¿é
+	// å¯èåˆæˆæœ‰æ°”çš„å—
 	if (   ((cN == clr) && !onlyN)
 		|| ((cS == clr) && !onlyS)
 		|| ((cE == clr) && !onlyE)
 		|| ((cW == clr) && !onlyW)
 		)
 		return 1; 
-	// ¿ÉÌá
+	// å¯æ
 	if (   (cN != clr) && onlyN 
 		|| (cS != clr) && onlyS 
 		|| (cE != clr) && onlyE
 		|| (cW != clr) && onlyW
 		) 
 		return 1; 
-	// ×ÔÉ±
+	// è‡ªæ€
 	return 0; 
 	*/
 
-	/* ´úÂë×î¼ò½à */
+	/* ä»£ç æœ€ç®€æ´ */
 
 	/*
 	return (   cN == EMPTY || (cN != clr && onlyN) || (cN == clr && !onlyN)
@@ -304,7 +304,7 @@ bool	 GO::moveable_(const POS& pos, COLOR clr)  const {
 	*/
 }
 
-/* Î´Õ¹¿ª°æ moveable() */
+/* æœªå±•å¼€ç‰ˆ moveable() */
 
 bool GO::moveable (const POS& pos, COLOR clr) const {   
 	___FUNCOUNT( GO_MOVE); 
@@ -315,22 +315,22 @@ bool GO::moveable (const POS& pos, COLOR clr) const {
 	VP	 near4p = near4(pos); 
 	for (int i = 0; i < near4p.size (); ++i) {
 		COLOR c = color(near4p[i]); 
-		// ÓĞÆø
+		// æœ‰æ°”
 		if (c == EMPTY)
 			return 1; 
-		// ¿ÉÌá
+		// å¯æ
 		BITB blk = libertysite(near4p[i]); 
 		if ((c != clr) && blk.only(pos) ) 
 			return 1; 
-		// ¿ÉÈÚºÏ³ÉÓĞÆøµÄ¿é
+		// å¯èåˆæˆæœ‰æ°”çš„å—
 		else if (( c == clr) && blk.count() > 1)
 			return 1; 
 	}
-	// ×ÔÉ±
+	// è‡ªæ€
 	return 0; 
 }
 
-/* µ÷ÓÃ°æ move() */
+/* è°ƒç”¨ç‰ˆ move() */
 
 bool GO::move_(const POS& pos, COLOR clr) {   
 	___FUNCOUNT( GO_MOVE); 
@@ -338,7 +338,7 @@ bool GO::move_(const POS& pos, COLOR clr) {
 
 	if (!moveable(pos, clr)) 
 		return 0; 
-	// ¸üĞÂ kill
+	// æ›´æ–° kill
 	BITB otherbb = getbb( ~clr ); 
 	VP near4p = near4(pos); 
 	kill = NULL_BB; 
@@ -349,7 +349,7 @@ bool GO::move_(const POS& pos, COLOR clr) {
 			kill |= otherbb.blockat ( near4p[i]); 
 		}
 	}
-	// ¸üĞÂ ...
+	// æ›´æ–° ...
 	if (clr == BLACK)  
 		xx |= pos, oo ^= kill; 
 	else  
@@ -357,7 +357,7 @@ bool GO::move_(const POS& pos, COLOR clr) {
 	++history; 
 	lastpos = pos; 
 	lastclr = clr; 
-	// ¸üĞÂ½Ùµã
+	// æ›´æ–°åŠ«ç‚¹
 	if (kill.count() == 1){
 		BITB tmpbb = getbb(clr).blockat(pos); 
 		if (tmpbb.count() == 1 
@@ -372,7 +372,7 @@ bool GO::move_(const POS& pos, COLOR clr) {
 	return 1; 
 }
 
-/* Õ¹¿ªÖ®¶ÀÁ¢°æ move() */
+/* å±•å¼€ä¹‹ç‹¬ç«‹ç‰ˆ move() */
 
 bool GO::move__(const POS& pos, COLOR clr) {   
 	___FUNCOUNT( GO_MOVE); 
@@ -398,17 +398,17 @@ bool GO::move__(const POS& pos, COLOR clr) {
 	onlyS = libertysite(pS).only (pos); 
 	onlyE = libertysite(pE).only (pos); 
 	onlyW = libertysite(pW).only (pos); 
-	// ÓĞÆø
+	// æœ‰æ°”
 	if (cN == EMPTY || cS == EMPTY || cE == EMPTY || cW == EMPTY)        
 		mvable = 1; 
-	// ¿ÉÈÚºÏ³ÉÓĞÆøµÄ¿é
+	// å¯èåˆæˆæœ‰æ°”çš„å—
 	if (   ((cN == clr) && !onlyN)
 		|| ((cS == clr) && !onlyS)
 		|| ((cE == clr) && !onlyE)
 		|| ((cW == clr) && !onlyW)
 		)
 		mvable = 1; 
-	// ¿ÉÌá
+	// å¯æ
 	if ((cN != clr) && onlyN) {
 		tmpbb |= otherbb.blockat (pN); 
 		hotko = pN; 
@@ -429,12 +429,12 @@ bool GO::move__(const POS& pos, COLOR clr) {
 		hotko = pW; 
 		mvable = 1; 
 	}
-	// ×ÔÉ±
+	// è‡ªæ€
 	if (!mvable)
 		return 0; 
 	else 
 		kill = tmpbb; 
-	// ¸üĞÂ
+	// æ›´æ–°
 	if (clr == BLACK)  
 		xx |= pos, oo ^= kill; 
 	else  
@@ -456,7 +456,7 @@ bool GO::move__(const POS& pos, COLOR clr) {
 	return 1; 
 }
 
-/* ¶ÀÁ¢°æ move() */
+/* ç‹¬ç«‹ç‰ˆ move() */
 
 bool GO::move(const POS& pos, COLOR clr) {   
 	___FUNCOUNT( GO_MOVE); 
@@ -470,26 +470,26 @@ bool GO::move(const POS& pos, COLOR clr) {
 	bool mvable = 0; 
 	for (int i = 0; i < near4p.size (); ++i) {
 		COLOR c = color(near4p[i]); 
-		// ÓĞÆø
+		// æœ‰æ°”
 		if (c == EMPTY)
 			mvable = 1; 
 		BITB blk = libertysite(near4p[i]); 
-		// ¿ÉÌá
+		// å¯æ
 		if ((c != clr) && blk.only(pos) ) {
 			mvable = 1; 
 			hotko = near4p[i]; 
 			tmpbb |= otherbb.blockat ( near4p[i]); 
 		}
-		// ¿ÉÈÚºÏ³ÉÓĞÆøµÄ¿é
+		// å¯èåˆæˆæœ‰æ°”çš„å—
 		else if (( c == clr) && blk.count() > 1)
 			mvable = 1; 
 	}
-	// ×ÔÉ±
+	// è‡ªæ€
 	if (!mvable)
 		return 0; 
 	else 
 		kill = tmpbb; 
-	// ¸üĞÂ
+	// æ›´æ–°
 	if (clr == BLACK)  
 		xx |= pos, oo ^= kill; 
 	else  
@@ -578,7 +578,7 @@ int			GO::delta () const {
 	return xx.count () - oo.count(); 
 }
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_GO::morphology(){
 	GO  go; 

@@ -10,7 +10,7 @@ NEWPOS make_pair(int a, unsigned b)
 }
 
 void testtree(){ //for thesis
-		// ÕâĞ©ËÑË÷Ëã·¨¾ùÖ»ÀûÓÃÒ¶½áµãµÄÖµ»ØËİ£¬²»ÊÜÇ°ÃæËã·¨Ó°Ïì
+		// è¿™äº›æœç´¢ç®—æ³•å‡åªåˆ©ç”¨å¶ç»“ç‚¹çš„å€¼å›æº¯ï¼Œä¸å—å‰é¢ç®—æ³•å½±å“
 	___REPORT(
 		TREE tree; 
 		srand((unsigned)time(0)); 
@@ -20,7 +20,7 @@ void testtree(){ //for thesis
 
 	VALUE a,b,c,u,v,w,x,y;
 	
-		// Ò¶½áµãÖµÎªÕæÊµÖµ£¬Î´ÅĞ¶ÏÊÇ·ñÎª·­×ªÖµ
+		// å¶ç»“ç‚¹å€¼ä¸ºçœŸå®å€¼ï¼Œæœªåˆ¤æ–­æ˜¯å¦ä¸ºç¿»è½¬å€¼
 	VALUE widea = TREE::VALUE_MIN; 
 	VALUE wideb = TREE::VALUE_MAX; 
 	VALUE narrowa = 10; 
@@ -34,8 +34,8 @@ void testtree(){ //for thesis
 		___COUT1(tree.visited);
 		);
 
-						// µ±½çÖµ²»µ±£¬ÇÒÓĞÇ³²ãÒ¶½áµãÊ±·µ»ØÖµ¿ÉÄÜÔ½½ç£¬
-						// ²ãÊıÉÔÉî£¬·µ»ØÖµ»á±»Ä¨Æ½£¬Ôò·µ»ØÔ­Ê¼½çÖµ
+						// å½“ç•Œå€¼ä¸å½“ï¼Œä¸”æœ‰æµ…å±‚å¶ç»“ç‚¹æ—¶è¿”å›å€¼å¯èƒ½è¶Šç•Œï¼Œ
+						// å±‚æ•°ç¨æ·±ï¼Œè¿”å›å€¼ä¼šè¢«æŠ¹å¹³ï¼Œåˆ™è¿”å›åŸå§‹ç•Œå€¼
 	___REPORT(  
 		tree.visited = 0;
 		___.tic("alphabeta_minmax");
@@ -43,8 +43,8 @@ void testtree(){ //for thesis
 		___.toc();
 		___COUT1(tree.visited);
 		); 
-						// µ±½çÖµ²»µ±£¬·µ»ØÖµ±ÈÕæÊµÖµ¸ß¹ÀµÍ¹À¶¼ÓĞ¿ÉÄÜ
-						// µ«Ò»¶¨´¦ÔÚ½çÍâÍ¬²à
+						// å½“ç•Œå€¼ä¸å½“ï¼Œè¿”å›å€¼æ¯”çœŸå®å€¼é«˜ä¼°ä½ä¼°éƒ½æœ‰å¯èƒ½
+						// ä½†ä¸€å®šå¤„åœ¨ç•Œå¤–åŒä¾§
 	___REPORT(  
 		tree.visited = 0;
 		___.tic("failsoft_minmax");
@@ -54,15 +54,15 @@ void testtree(){ //for thesis
 		); 
 /*
 		// ________ class TREESEARCH _________
-		// Ò¶½áµãÖµÎªÕæÊµÖµ
+		// å¶ç»“ç‚¹å€¼ä¸ºçœŸå®å€¼
 	TREESEARCH treesearch; 
 	___REPORT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
 	___ASSERT(a == aa); 
 		// ________ class TREESEARCH _________
 */
-		// ÏÂÃæ min Ò¶½áµãÎª·­×ªÖµ£¬Èç·­×ª¹ıÔò²»ÔÙ·­×ª
-		// µ±Í·½áµãÎª min ½áµãÊ±£¬´«ÈëµÄ½çÖµÊµÎª(-beta, -alpha)
-		// ËùÒÔÈç¹ûÇøÓò×ã¹»´ó£¬½á¹ûÓëÉÏÒ»ÖÂ£¬·ñÔò¿ÉÄÜ²¢²»Ò»ÖÂ
+		// ä¸‹é¢ min å¶ç»“ç‚¹ä¸ºç¿»è½¬å€¼ï¼Œå¦‚ç¿»è½¬è¿‡åˆ™ä¸å†ç¿»è½¬
+		// å½“å¤´ç»“ç‚¹ä¸º min ç»“ç‚¹æ—¶ï¼Œä¼ å…¥çš„ç•Œå€¼å®ä¸º(-beta, -alpha)
+		// æ‰€ä»¥å¦‚æœåŒºåŸŸè¶³å¤Ÿå¤§ï¼Œç»“æœä¸ä¸Šä¸€è‡´ï¼Œå¦åˆ™å¯èƒ½å¹¶ä¸ä¸€è‡´
 	VALUE newwidea = p->ismax ? widea : -wideb; 
 	VALUE newwideb = p->ismax ? wideb : -widea; 
 	VALUE newnarrowa = p->ismax ? narrowa : -narrowb; 
@@ -88,7 +88,7 @@ void testtree(){ //for thesis
 		___.toc();
 		___COUT1(tree.visited);
 		); 
-						// µ±ĞÖµÜ½áµãÎŞĞòÊ±ËÑË÷µÄ½áµãÍùÍù¸ü¶à
+						// å½“å…„å¼Ÿç»“ç‚¹æ— åºæ—¶æœç´¢çš„ç»“ç‚¹å¾€å¾€æ›´å¤š
 	___REPORT(  
 		tree.visited = 0;
 		___.tic("negascout");
@@ -103,10 +103,10 @@ void testtree(){ //for thesis
 		___.toc();
 		___COUT1(tree.visited);
 		); 
-						// Ò»¶¨×îºó²âÊÔ£¬Òò½áµãÖµ±£´æÓÚ½áµãÄÚ
+						// ä¸€å®šæœ€åæµ‹è¯•ï¼Œå› ç»“ç‚¹å€¼ä¿å­˜äºç»“ç‚¹å†…
 	//___REPORT(		   tree.negamax2(p); ); 
 		
-		// ½öµ±¾ùÎª widea, wideb Ê±ÏÂËÄÊ½¾ù³ÉÁ¢
+		// ä»…å½“å‡ä¸º widea, wideb æ—¶ä¸‹å››å¼å‡æˆç«‹
 	___ASSERT(a == b && a == c); 
 	___ASSERT(u == v && u == p->value && u == w && u == x && u == y); 
 	___ASSERT(a == u * ( p->flip ? -1 : 1)); 
@@ -115,36 +115,36 @@ void testtree(){ //for thesis
 }
 /*
 void testtree(){
-		// ÕâĞ©ËÑË÷Ëã·¨¾ùÖ»ÀûÓÃÒ¶½áµãµÄÖµ»ØËİ£¬²»ÊÜÇ°ÃæËã·¨Ó°Ïì
+		// è¿™äº›æœç´¢ç®—æ³•å‡åªåˆ©ç”¨å¶ç»“ç‚¹çš„å€¼å›æº¯ï¼Œä¸å—å‰é¢ç®—æ³•å½±å“
 	___REPORT(
 		TREE tree; 
 		srand((unsigned)time(0)); 
 		NODE* p = tree.root(); 
 	)
 
-		// Ò¶½áµãÖµÎªÕæÊµÖµ£¬Î´ÅĞ¶ÏÊÇ·ñÎª·­×ªÖµ
+		// å¶ç»“ç‚¹å€¼ä¸ºçœŸå®å€¼ï¼Œæœªåˆ¤æ–­æ˜¯å¦ä¸ºç¿»è½¬å€¼
 	VALUE widea = TREE::VALUE_MIN; 
 	VALUE wideb = TREE::VALUE_MAX; 
 	VALUE narrowa = 10; 
 	VALUE narrowb = 20; 
 	___REPORT( VALUE a = tree.minmax(p); ); 
-						// µ±½çÖµ²»µ±£¬ÇÒÓĞÇ³²ãÒ¶½áµãÊ±·µ»ØÖµ¿ÉÄÜÔ½½ç£¬
-						// ²ãÊıÉÔÉî£¬·µ»ØÖµ»á±»Ä¨Æ½£¬Ôò·µ»ØÔ­Ê¼½çÖµ
+						// å½“ç•Œå€¼ä¸å½“ï¼Œä¸”æœ‰æµ…å±‚å¶ç»“ç‚¹æ—¶è¿”å›å€¼å¯èƒ½è¶Šç•Œï¼Œ
+						// å±‚æ•°ç¨æ·±ï¼Œè¿”å›å€¼ä¼šè¢«æŠ¹å¹³ï¼Œåˆ™è¿”å›åŸå§‹ç•Œå€¼
 	___REPORT( VALUE b = tree.alphabeta_minmax(p, widea, wideb); ); 
-						// µ±½çÖµ²»µ±£¬·µ»ØÖµ±ÈÕæÊµÖµ¸ß¹ÀµÍ¹À¶¼ÓĞ¿ÉÄÜ
-						// µ«Ò»¶¨´¦ÔÚ½çÍâÍ¬²à
+						// å½“ç•Œå€¼ä¸å½“ï¼Œè¿”å›å€¼æ¯”çœŸå®å€¼é«˜ä¼°ä½ä¼°éƒ½æœ‰å¯èƒ½
+						// ä½†ä¸€å®šå¤„åœ¨ç•Œå¤–åŒä¾§
 	___REPORT( VALUE c = tree.failsoft_minmax(p, widea, wideb); ); 
 
 		// ________ class TREESEARCH _________
-		// Ò¶½áµãÖµÎªÕæÊµÖµ
+		// å¶ç»“ç‚¹å€¼ä¸ºçœŸå®å€¼
 	TREESEARCH treesearch; 
 	___REPORT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
 	___ASSERT(a == aa); 
 		// ________ class TREESEARCH _________
 
-		// ÏÂÃæ min Ò¶½áµãÎª·­×ªÖµ£¬Èç·­×ª¹ıÔò²»ÔÙ·­×ª
-		// µ±Í·½áµãÎª min ½áµãÊ±£¬´«ÈëµÄ½çÖµÊµÎª(-beta, -alpha)
-		// ËùÒÔÈç¹ûÇøÓò×ã¹»´ó£¬½á¹ûÓëÉÏÒ»ÖÂ£¬·ñÔò¿ÉÄÜ²¢²»Ò»ÖÂ
+		// ä¸‹é¢ min å¶ç»“ç‚¹ä¸ºç¿»è½¬å€¼ï¼Œå¦‚ç¿»è½¬è¿‡åˆ™ä¸å†ç¿»è½¬
+		// å½“å¤´ç»“ç‚¹ä¸º min ç»“ç‚¹æ—¶ï¼Œä¼ å…¥çš„ç•Œå€¼å®ä¸º(-beta, -alpha)
+		// æ‰€ä»¥å¦‚æœåŒºåŸŸè¶³å¤Ÿå¤§ï¼Œç»“æœä¸ä¸Šä¸€è‡´ï¼Œå¦åˆ™å¯èƒ½å¹¶ä¸ä¸€è‡´
 	VALUE newwidea = p->ismax ? widea : -wideb; 
 	VALUE newwideb = p->ismax ? wideb : -widea; 
 	VALUE newnarrowa = p->ismax ? narrowa : -narrowb; 
@@ -152,13 +152,13 @@ void testtree(){
 	___REPORT( VALUE u = tree.negamax(p); ); 
 	___REPORT( VALUE v = tree.alphabeta_negamax(p, newwidea, newwideb); ); 
 	___REPORT( VALUE w = tree.failsoft_negamax(p, newwidea, newwideb); ); 
-						// µ±ĞÖµÜ½áµãÎŞĞòÊ±ËÑË÷µÄ½áµãÍùÍù¸ü¶à
+						// å½“å…„å¼Ÿç»“ç‚¹æ— åºæ—¶æœç´¢çš„ç»“ç‚¹å¾€å¾€æ›´å¤š
 	___REPORT( VALUE x = tree.negascout(p, newwidea, newwideb); ); 
 	___REPORT( VALUE y = tree.mtdf(p); ); 
-						// Ò»¶¨×îºó²âÊÔ£¬Òò½áµãÖµ±£´æÓÚ½áµãÄÚ
+						// ä¸€å®šæœ€åæµ‹è¯•ï¼Œå› ç»“ç‚¹å€¼ä¿å­˜äºç»“ç‚¹å†…
 	___REPORT(		   tree.negamax2(p); ); 
 		
-		// ½öµ±¾ùÎª widea, wideb Ê±ÏÂËÄÊ½¾ù³ÉÁ¢
+		// ä»…å½“å‡ä¸º widea, wideb æ—¶ä¸‹å››å¼å‡æˆç«‹
 	___ASSERT(a == b && a == c); 
 	___ASSERT(u == v && u == p->value && u == w && u == x && u == y); 
 	___ASSERT(a == u * ( p->flip ? -1 : 1)); 
@@ -211,7 +211,7 @@ void testsize(){
 		); 
 }
 
-		// Í¬Ò»ÊµÏÖÎÄ¼şÄÚµÄº¯Êı static ¶ÔÏóÖµ²Å¿ÉÒÔ±£³Ö
+		// åŒä¸€å®ç°æ–‡ä»¶å†…çš„å‡½æ•° static å¯¹è±¡å€¼æ‰å¯ä»¥ä¿æŒ
 void t_t_teststatic(){						
 	___REPORT(
 		___COUT2(st_g_ctr.fcount [U_RANDU], g_ctr.fcount [U_RANDU]); 
@@ -248,9 +248,9 @@ void teststatic(){
 }
 
 void testc (){
-		// time() ·µ»Ø×Ô 1970 Äê 1 ÔÂ 1 ÈÕ 00:00:00µ½µ±Ç°Ê±¼äµÄÃëÊı¡£
-		// clock() ·µ»Ø×Ô³ÌĞòÔËĞĞµ½´ËÊ±µÄ CPU Ê±ÖÓ¼ÆÊ±µ¥ÔªÊı¡£
-		// time.h ÖĞÓĞ typedef long clock_t; CLOCKS_PER_SEC
+		// time() è¿”å›è‡ª 1970 å¹´ 1 æœˆ 1 æ—¥ 00:00:00åˆ°å½“å‰æ—¶é—´çš„ç§’æ•°ã€‚
+		// clock() è¿”å›è‡ªç¨‹åºè¿è¡Œåˆ°æ­¤æ—¶çš„ CPU æ—¶é’Ÿè®¡æ—¶å•å…ƒæ•°ã€‚
+		// time.h ä¸­æœ‰ typedef long clock_t; CLOCKS_PER_SEC
 	
 	___REPORT(
 		___COUT1(CLOCKS_PER_SEC); 
@@ -262,7 +262,7 @@ void testc (){
 		cout<<"time over now"<< endl; 
 		
 		long double i = 50000000; 
-		//clock_t start, finish; // ·ÇÀ¨ºÅÖ®ÍâµÄ¶ººÅÓëºê³åÍ»
+		//clock_t start, finish; // éæ‹¬å·ä¹‹å¤–çš„é€—å·ä¸å®å†²çª
 		clock_t start; 
 		clock_t finish; 
 		start = clock(); 
@@ -271,28 +271,28 @@ void testc (){
 		___COUT1((double)(finish - start)/CLOCKS_PER_SEC); 
 		); 
 
-		// »ù±¾ĞÍµÄÏà»¥¸³Öµ
-		// Õâ¸öÕûÊıÓÉ's''r''r''h'Æ´½Ó, ²»ÄÜ³¬¹ı 5 ¸ö
-		// a Îª char ÀàĞÍÊ±È¡×îºó 8 Î»£¬¹Ê»¹ÊÇ 'h'
+		// åŸºæœ¬å‹çš„ç›¸äº’èµ‹å€¼
+		// è¿™ä¸ªæ•´æ•°ç”±'s''r''r''h'æ‹¼æ¥, ä¸èƒ½è¶…è¿‡ 5 ä¸ª
+		// a ä¸º char ç±»å‹æ—¶å–æœ€å 8 ä½ï¼Œæ•…è¿˜æ˜¯ 'h'
 	___REPORT(
 	//	int a = 'srrh'; 
 	//	char b = a; 
 	//	___COUT2(a, b); 
 		); 
-		// ¸¡µãÊı°´Î»¶ÁÎªunsigned
+		// æµ®ç‚¹æ•°æŒ‰ä½è¯»ä¸ºunsigned
 	___REPORT(							
 		float f = 374.342; 
 		___COUT4(						
-			(*(unsigned *)&f),			// ÕıÈ·
-			(*(unsigned *)((void*)&f)), // ÕıÈ·
-			((unsigned)f),				// ´íÎó
-			(static_cast<unsigned>(f))  // ´íÎó
+			(*(unsigned *)&f),			// æ­£ç¡®
+			(*(unsigned *)((void*)&f)), // æ­£ç¡®
+			((unsigned)f),				// é”™è¯¯
+			(static_cast<unsigned>(f))  // é”™è¯¯
 			); 
 		); 
 }
 
 void testcpp(){
-		// °´ÖµÓë°´ÒıÓÃ·µ»Ø
+		// æŒ‰å€¼ä¸æŒ‰å¼•ç”¨è¿”å›
 	___REPORT(							
 		TEST t; 
 		int a = 30; 
@@ -388,10 +388,10 @@ void testrand (){
 }
 
 void test_array_if (){
-		// DEBUG Ê±ÄÚÁªº¯Êı²»ÆğĞ§£¬turncolor() Ê¹ĞÔÄÜ´ó´óÏÂ½µ£¬¶øºê²»¡£
-		// RELEASE Ê±Á½Õß´óÖÂÒ»Ñù£¬ÄÚÁªÆğĞ§¡£
-		// ¶Ô COLOR ÖØÔØÔËËã·û~ ÔÚ debug Ê±ĞÔÄÜÀàËÆturncolor()£¬
-		// RELEASE Ê±Ò²´ó´óÏÂ½µ£¨ÔËËã·ûÌú¶¨ÄÚÁª£¿£©¡£
+		// DEBUG æ—¶å†…è”å‡½æ•°ä¸èµ·æ•ˆï¼Œturncolor() ä½¿æ€§èƒ½å¤§å¤§ä¸‹é™ï¼Œè€Œå®ä¸ã€‚
+		// RELEASE æ—¶ä¸¤è€…å¤§è‡´ä¸€æ ·ï¼Œå†…è”èµ·æ•ˆã€‚
+		// å¯¹ COLOR é‡è½½è¿ç®—ç¬¦~ åœ¨ debug æ—¶æ€§èƒ½ç±»ä¼¼turncolor()ï¼Œ
+		// RELEASE æ—¶ä¹Ÿå¤§å¤§ä¸‹é™ï¼ˆè¿ç®—ç¬¦é“å®šå†…è”ï¼Ÿï¼‰ã€‚
 	srand(unsigned(time(0))); 
 	bool p = rand()&1; 
 	COLOR clr; 
@@ -437,20 +437,20 @@ void testtransptable(){
 	___COUT1(tt.get(rnd.vb[0])); 
 
 	for (int i = 0; i<5; ++i)
-		//×¢ÒâÁ½¶ÔÀ¨ºÅ
+		//æ³¨æ„ä¸¤å¯¹æ‹¬å·
 		cout << HASH<BITB>()(rnd.vb[1]) << endl; 
 }
 
 /* class TEST */
 
-		// ·µ»ØÒıÓÃ ºÍ ·µ»ØÖ¸Õë Ô­Àí»ù±¾Ò»Ñù£¬
-		// Óï·¨ÉÏ²»±ØÔÙÒª * ºÍÈ¡Ö·²Ù×÷·û
-		// ·µ»ØÒıÓÃ ²»ÄÜ·µ»ØÁÙÊ±±äÁ¿ºÍÎŞĞ§ÒıÓÃ
-		// ·µ»ØÒıÓÃ ÊÊºÏÓÚ·µ»Ø½Ï´ó sizeof µÄ¶ÔÏó£¬
-		// ¼´´óÓÚ 4 BYTE£¬ÒòÎªÖ¸ÕëÒ»°ã¾Í 4 BYTE
-		// °´ÒıÓÃ´«µİ²ÎÊı ºÍ °´Öµ´«µİ²ÎÊı  ËùÒÔÒ²Ò»Ñù£¬
-		// ×¢Òâ±ØÒªÊ±¼Ó const ·ÀÖ¹¸Ä±ä²ÎÊıÖµ
-		// int& q = t.minus5(p); ÔòÓï¾ä²»ºÏ·¨
+		// è¿”å›å¼•ç”¨ å’Œ è¿”å›æŒ‡é’ˆ åŸç†åŸºæœ¬ä¸€æ ·ï¼Œ
+		// è¯­æ³•ä¸Šä¸å¿…å†è¦ * å’Œå–å€æ“ä½œç¬¦
+		// è¿”å›å¼•ç”¨ ä¸èƒ½è¿”å›ä¸´æ—¶å˜é‡å’Œæ— æ•ˆå¼•ç”¨
+		// è¿”å›å¼•ç”¨ é€‚åˆäºè¿”å›è¾ƒå¤§ sizeof çš„å¯¹è±¡ï¼Œ
+		// å³å¤§äº 4 BYTEï¼Œå› ä¸ºæŒ‡é’ˆä¸€èˆ¬å°± 4 BYTE
+		// æŒ‰å¼•ç”¨ä¼ é€’å‚æ•° å’Œ æŒ‰å€¼ä¼ é€’å‚æ•°  æ‰€ä»¥ä¹Ÿä¸€æ ·ï¼Œ
+		// æ³¨æ„å¿…è¦æ—¶åŠ  const é˜²æ­¢æ”¹å˜å‚æ•°å€¼
+		// int& q = t.minus5(p); åˆ™è¯­å¥ä¸åˆæ³•
 int& TEST::add100(int& a) const { 
 	a += 100; 
 	return a; 
@@ -461,9 +461,9 @@ int	 TEST::minus5(int& a) const {
 	return a; 
 }
 
-		// s == ""          ²âÊÔÈ«²¿º¯Êı
-		// s == "u""bb"...  ²âÊÔÏàÓ¦×é
-		// s == "U_RANDU"	  ²âÊÔÖ¸¶¨º¯Êı
+		// s == ""          æµ‹è¯•å…¨éƒ¨å‡½æ•°
+		// s == "u""bb"...  æµ‹è¯•ç›¸åº”ç»„
+		// s == "U_RANDU"	  æµ‹è¯•æŒ‡å®šå‡½æ•°
 void TEST::time (string s){
 	tested_ctr.clear(); 
 	swap(snap_ctr, g_ctr); 

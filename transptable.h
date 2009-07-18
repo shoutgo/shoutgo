@@ -23,7 +23,7 @@ class FSM {
 	vector<vector<T> >	sons; 
 	VVI					freq; 
 private:
-	//-// ÓÐÖØ¸´¼ÆËã
+	//-// æœ‰é‡å¤è®¡ç®—
 	bool fatherfind(T fa){
 		return find(father.begin (), father.end (), fa) != father.end (); 
 	}
@@ -58,7 +58,7 @@ public:
 			&& sons.size () == freq.size ())
 	}
 	MOVE  getmove(T fa, int i){
-		//-// Ã»ÓÐÅÐ¶Ï²ÎÊýÓÐÐ§ÐÔ
+		//-// æ²¡æœ‰åˆ¤æ–­å‚æ•°æœ‰æ•ˆæ€§
 		int id = fathertag(fa); 
 		return g_init.getmove (sons[id][i]); 
 	}
@@ -66,7 +66,7 @@ public:
 		return freq[fathertag(fa)][i];
 	}
 	int getfreq(T fa, T son){
-		// ÌØÊâÖµ make_pair(0, 0); 
+		// ç‰¹æ®Šå€¼ make_pair(0, 0); 
 		if (fa == 0 && son == 0)
 			return 0; 
 		int id = fathertag(fa); 
@@ -159,85 +159,85 @@ public:
 /* class TERM */
 
 enum SHAPETERM {
-	CHONG_TM, //³å
-	JIA2_TM, //¼Ð
-	YA_TM, //Ñ¹
-	BAN_TM, //°â
-	NIU_TM, //Å¤
-	DING_TM, //¶¥
-	CI_TM, //´Ì
-	WA_TM, //ÍÚ
-	DUAN_TM, //¶Ï
-	ZHEN_TM, //Õò
-	DA1_TM, //´î
-	KUA_TM, //¿ç
-	PENG_TM, //Åö
-	KAO_TM, //¿¿
-	QU_TM, //Çú
-	TUO_TM, //ÍÐ
-	LIAN_TM, //Á¬
-	HU_TM, //»¢
-	TING_TM, //Í¦
-	DANG_TM, //µ²	
-	TIE_TM, //Ìù
-	GONG_TM, //¹°
-	JIE_TM, //½Ó
-	ZHAN_TM, //Õ³
-	PU_TM, //ÆË
-	ZHENG_TM, //Õ÷
-	JIA1_TM, //¼Ï
-	JI_TM, //¼·
-	GUN_TM, //¹ö
-	JU_TM, //¾Û
-	BIDING_TM, //±Ç¶¥
-	FANJIA_TM, //·´¼Ð
-	FEIYA_TM, //·ÉÑ¹
-	LIANBAN_TM, //Á¬°â
-	PA_TM, //ÅÀ
-	TUI_TM, //ÍË
-	CHANG_TM, //³¤
-	SHUANG_TM, //Ë«
-	LI_TM, //Á¢
-	JIAN_TM, //¼â
-	BING_TM, //²¢
-	GUAN_TM, //¹Ø
-	GUAI_TM, //¹Õ
-	JIANCHONG_TM, //¼ç³å
-	JIANDING_TM, //¼â¶¥
-	DIANFANG_TM, //µã·½
-	YUXINGSANJIAO_TM, //ÓÞÐÎÈý½Ç
-	SANZIZHENGZHONG_TM, //Èý×ÓÕýÖÐ
-	CHUANXIANGYAN_TM, //´©ÏóÑÛ
+	CHONG_TM, //å†²
+	JIA2_TM, //å¤¹
+	YA_TM, //åŽ‹
+	BAN_TM, //æ‰³
+	NIU_TM, //æ‰­
+	DING_TM, //é¡¶
+	CI_TM, //åˆº
+	WA_TM, //æŒ–
+	DUAN_TM, //æ–­
+	ZHEN_TM, //é•‡
+	DA1_TM, //æ­
+	KUA_TM, //è·¨
+	PENG_TM, //ç¢°
+	KAO_TM, //é 
+	QU_TM, //æ›²
+	TUO_TM, //æ‰˜
+	LIAN_TM, //è¿ž
+	HU_TM, //è™Ž
+	TING_TM, //æŒº
+	DANG_TM, //æŒ¡	
+	TIE_TM, //è´´
+	GONG_TM, //æ‹±
+	JIE_TM, //æŽ¥
+	ZHAN_TM, //ç²˜
+	PU_TM, //æ‰‘
+	ZHENG_TM, //å¾
+	JIA1_TM, //æž·
+	JI_TM, //æŒ¤
+	GUN_TM, //æ»š
+	JU_TM, //èš
+	BIDING_TM, //é¼»é¡¶
+	FANJIA_TM, //åå¤¹
+	FEIYA_TM, //é£žåŽ‹
+	LIANBAN_TM, //è¿žæ‰³
+	PA_TM, //çˆ¬
+	TUI_TM, //é€€
+	CHANG_TM, //é•¿
+	SHUANG_TM, //åŒ
+	LI_TM, //ç«‹
+	JIAN_TM, //å°–
+	BING_TM, //å¹¶
+	GUAN_TM, //å…³
+	GUAI_TM, //æ‹
+	JIANCHONG_TM, //è‚©å†²
+	JIANDING_TM, //å°–é¡¶
+	DIANFANG_TM, //ç‚¹æ–¹
+	YUXINGSANJIAO_TM, //æ„šå½¢ä¸‰è§’
+	SANZIZHENGZHONG_TM, //ä¸‰å­æ­£ä¸­
+	CHUANXIANGYAN_TM, //ç©¿è±¡çœ¼
 
-	XIAOFEI_TM, //Ð¡·É
-	DAFEI_TM, //´ó·É
-	CHAODAFEI_TM, //³¬´ó·É
-	XIANGFEI_TM, //Ïó²½·É
-	GUA_TM, //¹Ò
-	DI_TM, //µÞ
-	LIERCAISAN_TM, //Á¢¶þ²ðÈý
-	ERJIANCHAI_TM, //¶þ¼ä²ð
-	ERJIANTIAO_TM, //¶þ¼äÌø
-	TIAO_TM, //Ìø
+	XIAOFEI_TM, //å°é£ž
+	DAFEI_TM, //å¤§é£ž
+	CHAODAFEI_TM, //è¶…å¤§é£ž
+	XIANGFEI_TM, //è±¡æ­¥é£ž
+	GUA_TM, //æŒ‚
+	DI_TM, //ç¼”
+	LIERCAISAN_TM, //ç«‹äºŒæ‹†ä¸‰
+	ERJIANCHAI_TM, //äºŒé—´æ‹†
+	ERJIANTIAO_TM, //äºŒé—´è·³
+	TIAO_TM, //è·³
 };
 
 enum SHAPELIBTERM{
-	PANJIAOQUSI_TM, //ÅÌ½ÇÇúËÄ
-	DAERHUANYI_TM, //´ò¶þ»¹Ò»
-	JINJIDULI_TM, //½ð¼¦¶ÀÁ¢
-	DATOUGUI_TM, //´óÍ·¹í
-	DAOTUOXUE_TM, //µ¹ÍÑÑ¥
-	ZHANGSINIU_TM, //ÕÍËÀÅ£
+	PANJIAOQUSI_TM, //ç›˜è§’æ›²å››
+	DAERHUANYI_TM, //æ‰“äºŒè¿˜ä¸€
+	JINJIDULI_TM, //é‡‘é¸¡ç‹¬ç«‹
+	DATOUGUI_TM, //å¤§å¤´é¬¼
+	DAOTUOXUE_TM, //å€’è„±é´
+	ZHANGSINIU_TM, //èƒ€æ­»ç‰›
 }; 
 
 enum LIBTERM{
-	DA3_TM, //´ò
-	FANDA_TM, //·´´ò
-	SHUANGDA_TM, //Ë«´ò
-	HUANZHENG_TM, //»ºÕ÷
-	//JIEBUGUI_TM, //½Ó²»¹é
-	TI_TM, //Ìá
-	ZIJINQI_TM, //×Ô½ôÆø
+	DA3_TM, //æ‰“
+	FANDA_TM, //åæ‰“
+	SHUANGDA_TM, //åŒæ‰“
+	HUANZHENG_TM, //ç¼“å¾
+	//JIEBUGUI_TM, //æŽ¥ä¸å½’
+	TI_TM, //æ
+	ZIJINQI_TM, //è‡ªç´§æ°”
 }; 
 
 class TERM {
@@ -250,7 +250,7 @@ public:
 		}
 }; 
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 enum	TT_FUN	{
 	TT_TRANSPTABLE = FTT* FUN_MAX, TT_FUN_SIZE}; 

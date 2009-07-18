@@ -75,12 +75,12 @@ struct EVENT {
 
 /* class KO */
 
-// ½ÙÄ¿µÄÖÁÉÙ°üÀ¨£ºÊ¹½Ùµã¿ÕÆğ£¬Ê¹½ÙµãÕ³Æğ£¬ÒÔ´Ë½ô±ÆÌá×Ó
+// åŠ«ç›®çš„è‡³å°‘åŒ…æ‹¬ï¼šä½¿åŠ«ç‚¹ç©ºèµ·ï¼Œä½¿åŠ«ç‚¹ç²˜èµ·ï¼Œä»¥æ­¤ç´§é€¼æå­
 class KO {
 	pair<POS, POS>	pos2; 
 	int				history; 
-	int				liberty; //»ºÆø½Ù
-	vector<KO>		vk; //Ïà¹ØÁªµÄ½Ù
+	int				liberty; //ç¼“æ°”åŠ«
+	vector<KO>		vk; //ç›¸å…³è”çš„åŠ«
 }; 
 
 /* class AREA */
@@ -147,7 +147,7 @@ public:
 private:
 	ZOBRIST			zobrist; 
 public:
-	INCREMENT		inc; // ÎªÁËÖ´ĞĞ scan() ÔİÊ±½«Æä public
+	INCREMENT		inc; // ä¸ºäº†æ‰§è¡Œ scan() æš‚æ—¶å°†å…¶ public
 	PATFREQ			patfreq; 
 	EVENT			event; 
 	AREA			area; 
@@ -189,7 +189,7 @@ public:
 	friend	ostream& operator<< (ostream&, const INFOGO&); 
 }; 
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 enum	INFO_FUN	{
 	INFO_INFOGO1 = FINFO * FUN_MAX, 

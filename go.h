@@ -106,7 +106,7 @@ void play( MODE_PLAY mode){
 	}
 }
 
-// Ö»²é¿´ sgftree µÄÖ÷·ÖÖ§
+// åªæŸ¥çœ‹ sgftree çš„ä¸»åˆ†æ”¯
 template <class T>
 void review(){ 
 	string f = INOUT().selectsgf( SGFPATH ); 
@@ -172,32 +172,32 @@ void review(){
 
 template <class T>
 void sgftree(){
-	// ³õÊ¼²¼¾Ö
+	// åˆå§‹å¸ƒå±€
 	SGFROOT *root = INOUT().sgf2tree(INOUT().selectsgf()); 
 	SGFNODE *cnode = new SGFNODE; 
 	T* t_ptr = new T; 
 	if (!root->intro.empty ())
 		cout << root->intro << endl; 
 	root->fuseki(t_ptr); 
-	// Î±¸ù
+	// ä¼ªæ ¹
 	cnode->sons = root->sons; 
 	for (int i = 0; i<cnode->sons .size (); ++i)
 		cnode->sons [i]->father = cnode; 
-	// ¶à´Î²é¿´		
+	// å¤šæ¬¡æŸ¥çœ‹		
 	for(; ; ){
-		// ÏÔÊ¾²¢ÌáÊ¾ ( Ò²¿ÉÒÔÌáÊ¾×î½üµÄ bigson ¸¸²ã´Î )
+		// æ˜¾ç¤ºå¹¶æç¤º ( ä¹Ÿå¯ä»¥æç¤ºæœ€è¿‘çš„ bigson çˆ¶å±‚æ¬¡ )
 		BITB bb; 
 		for (int i = 0; i<cnode->sons .size (); ++i)
 			bb |= cnode->sons[i]->pos; 
 		cout << (*t_ptr)(bb); 
-		// Èç¹ûµ½´ïÒ¶½áµã
+		// å¦‚æœåˆ°è¾¾å¶ç»“ç‚¹
 		if (cnode->sons.empty ()){
 			for (; ; ) {		
 				cout<< endl << ">  ";
 				cout<< "the leaf node now. end ? [y/n] "; 
 				string tmp = getline()[0]; 
 				if ( tmp == "y" ) {
-					// ËÆºõ»¹ÒªÉ¾³ı×î³õÄÇ¸ö cnode
+					// ä¼¼ä¹è¿˜è¦åˆ é™¤æœ€åˆé‚£ä¸ª cnode
 					delete root; 
 					t_ptr->delfromroot(); 
 					return; 
@@ -206,19 +206,19 @@ void sgftree(){
 					break;
 			}
 		}
-		// Ñ¡ÔñºÏÊÊ·ÖÖ§
+		// é€‰æ‹©åˆé€‚åˆ†æ”¯
 		int m; 
 		for(; ; ){
 			cout<< endl << ">  "; 
 			VS in = getline(); 
-			// ¼ò»¯²Ù×÷
+			// ç®€åŒ–æ“ä½œ
 			if (in[0] == "end")
 				return; 
 			if (in[0] == "y" && !cnode->sons.empty() ){
 				cnode = cnode->sons[0]; 
 				break; 
 			}
-			// ÊäÈëÒ»¸öºÏ·¨Î»ÖÃ
+			// è¾“å…¥ä¸€ä¸ªåˆæ³•ä½ç½®
 			POS pos = INOUT().in2pos(t_ptr->getlastpos(), in[0]); 
 			if (bb[pos]){
 				for (int i = 0; i<cnode->sons.size (); ++i)
@@ -226,7 +226,7 @@ void sgftree(){
 						cnode = cnode->sons [i]; 
 				break; 
 			}				
-			// ºóÍË (²»²ÉÓÃÌø½ø·½Ê½£¬ÒòÎª¿ÉÄÜºÍ×ø±êÊäÈë·¨³åÍ»)
+			// åé€€ (ä¸é‡‡ç”¨è·³è¿›æ–¹å¼ï¼Œå› ä¸ºå¯èƒ½å’Œåæ ‡è¾“å…¥æ³•å†²çª)
 			else if (in[0][0] == '-'){
 				m = atoi(in[0].c_str ()); 
 				for (; m<0 && (t_ptr->father); ++m ){
@@ -238,11 +238,11 @@ void sgftree(){
 				t_ptr->sons .clear (); 
 				break; 
 			}
-			// Èç¹ûÊÇÃüÁî
+			// å¦‚æœæ˜¯å‘½ä»¤
 			command_test(in); 
 			command_state(*t_ptr, in); 
 		}
-		// ¸üĞÂ
+		// æ›´æ–°
 		t_ptr = t_ptr->move_tree(cnode->pos, cnode->color ); 
 		t_ptr->update(); 
 	}

@@ -116,9 +116,9 @@ void AIMGRAPH::setup(vector<AIM> va){
 
 /* class TARGET */
 
-//×¢Òâunique()Ö»ÕûºÏÏàÁÚµÄÏàÍ¬ÔªËØ£¬
-//ËùÒÔ×îºÃÏÈÅÅĞò²ÅÄÜÉ¾³ı¼ä¸ôµ«ÏàÍ¬Õß£»
-//³ı·ÇÃ¿´ÎÖ»²åÈëÒ»¸öĞÂÔªËØ¡£´ıÍêÉÆ¡£
+//æ³¨æ„unique()åªæ•´åˆç›¸é‚»çš„ç›¸åŒå…ƒç´ ï¼Œ
+//æ‰€ä»¥æœ€å¥½å…ˆæ’åºæ‰èƒ½åˆ é™¤é—´éš”ä½†ç›¸åŒè€…ï¼›
+//é™¤éæ¯æ¬¡åªæ’å…¥ä¸€ä¸ªæ–°å…ƒç´ ã€‚å¾…å®Œå–„ã€‚
 TARGET::TARGET(AIM a, int ma, const PBC& ob, const PBC& en, 
 			   int pr, bool se, int pa )
 			   :aim(a), maxdepth(ma), obj(ob), env(en), 
@@ -202,18 +202,18 @@ TARGETS		operator & (const TARGET& a, const TARGET& b){
 TARGETS		operator ~ (TARGETS a)	{
 	vector<TARGETS>	 vts(a.nut.size ()); 
 	VT vt; 
-	for (int i = 0; i<a.nut.size (); ++i)						//½« a.nut °´ĞĞ£¨Óë½á¹¹£©Ã¿¸öÔªËØÈ¡~ºó
-		for (int j = 0; j<a.nut[i].size (); ++j){				//ÊúÅÅ£¨»ò½á¹¹£©ĞÎ³ÉÒ»¸ötargets, ¹²a.nut.size()¸ö
+	for (int i = 0; i<a.nut.size (); ++i)						//å°† a.nut æŒ‰è¡Œï¼ˆä¸ç»“æ„ï¼‰æ¯ä¸ªå…ƒç´ å–~å
+		for (int j = 0; j<a.nut[i].size (); ++j){				//ç«–æ’ï¼ˆæˆ–ç»“æ„ï¼‰å½¢æˆä¸€ä¸ªtargets, å…±a.nut.size()ä¸ª
 			vt.clear (); 
 			vt.push_back (~a.nut[i][j]); 
 			vts[i].nut.push_back (vt); 
 		}
 	TARGETS tmp = vts[0]; 
-	for (int i = 1; i<vts.size (); ++i)							//½«ÕâĞ©targetsÁ¬&
+	for (int i = 1; i<vts.size (); ++i)							//å°†è¿™äº›targetsè¿&
         tmp = tmp & vts[i]; 
-	for (int i = 0; i<tmp.nut.size (); ++i)						//¹éÕûÃ¿ĞĞ£¨Óë½á¹¹£©
+	for (int i = 0; i<tmp.nut.size (); ++i)						//å½’æ•´æ¯è¡Œï¼ˆä¸ç»“æ„ï¼‰
 		unique(tmp.nut[i].begin (), tmp.nut[i].end ()); 
-	unique(tmp.nut.begin (), tmp.nut.end ()); //¹éÕûËùÓĞĞĞ£¨»ò½á¹¹£©
+	unique(tmp.nut.begin (), tmp.nut.end ()); //å½’æ•´æ‰€æœ‰è¡Œï¼ˆæˆ–ç»“æ„ï¼‰
 	return tmp; 
 }
 
@@ -312,54 +312,54 @@ BITB		TARGETSEARCH::scope ( INFOGO* infop, TARGET tg){
 			case DAJIANG		: break; 
 		case PUBLICAREA: break; 
 			case ZHANDACHANG:
-				//get:¹«º£
-				//optimize:×î¿Õ¿õ´¦»òÁÚµĞ×îÈõ´¦
+				//get:å…¬æµ·
+				//optimize:æœ€ç©ºæ—·å¤„æˆ–é‚»æ•Œæœ€å¼±å¤„
 				break; 
 			case ZHIGAODIAN:
 				//env, obj
-				//get:Ë«·½Áì¿Õ½»½Ó´¦or¹«¿Õ
+				//get:åŒæ–¹é¢†ç©ºäº¤æ¥å¤„orå…¬ç©º
 				break; 
 		case HIS_CLUSTER: break; 
 			case GE:
 				//env, obj, obj
-				//___ASSERT:Á½objÍ¬ÊôÒ»Èº
-				//get:ÈıÕßÁì¿ÕÁìº£½»½Ó´¦
-				//select:ÓëenvÏàÁ¬Õß
+				//___ASSERT:ä¸¤objåŒå±ä¸€ç¾¤
+				//get:ä¸‰è€…é¢†ç©ºé¢†æµ·äº¤æ¥å¤„
+				//select:ä¸envç›¸è¿è€…
 				break; 
 			case FENG:
 				//env, env, obj
-				//get:ÈıÕßÁì¿Õ½»½Ó´¦
-				//select:ÓëÁ½envÏàÁ¬Õß
+				//get:ä¸‰è€…é¢†ç©ºäº¤æ¥å¤„
+				//select:ä¸ä¸¤envç›¸è¿è€…
 				break; 
 			case GAN:
 				//env, env, obj
-				//get:objµÄÁìº£ÓëenvÖ®Ò»ÏàÁ¬Õß
-				//optimize:Ä³env¸üĞèÒªÕßorĞÂÔöÄ¿¸ü´óÕß
+				//get:objçš„é¢†æµ·ä¸envä¹‹ä¸€ç›¸è¿è€…
+				//optimize:æŸenvæ›´éœ€è¦è€…oræ–°å¢ç›®æ›´å¤§è€…
 				break; 
 			case SHA:break; 
 				case POYAN:
 					//env, obj
-					//get:objÁìº£ÖĞÑÛĞÎ×î·á¸»´¦
-					//optimize:ÓëenvÁªÂçĞÔ¸ü´óÕß
+					//get:objé¢†æµ·ä¸­çœ¼å½¢æœ€ä¸°å¯Œå¤„
+					//optimize:ä¸envè”ç»œæ€§æ›´å¤§è€…
 					break; 
 				case SUOYANWEI:
 					//env, obj
-					//get:objÁìº£ÖĞÇÒÓëenvÏàÁ¬Õß
+					//get:objé¢†æµ·ä¸­ä¸”ä¸envç›¸è¿è€…
 					break; 
 		case HIS_MASS:break; 
 			case _ZHENGXING:
 				//env, obj
-				//get:objÁÚÓòÄÚÓëenvÏàÁ¬Õß
-				//select:Ê¹obj¶Ïµã±©Â¶»òÔö¶àÕß
+				//get:objé‚»åŸŸå†…ä¸envç›¸è¿è€…
+				//select:ä½¿objæ–­ç‚¹æš´éœ²æˆ–å¢å¤šè€…
 				break; 
 			case CHIZI:break; 
 				case DA:
 					//env, obj
-					//Ê¹objÏòĞ¡¿Õ¼äÌÓ
+					//ä½¿objå‘å°ç©ºé—´é€ƒ
 					break; 
 				case JIA:
 					//env, obj
-					//get:ĞÂÔöµãĞÎ³Éobj°üÎ§È¦
+					//get:æ–°å¢ç‚¹å½¢æˆobjåŒ…å›´åœˆ
 					break; 
 				case GUN:
 					//env, obj
@@ -367,76 +367,76 @@ BITB		TARGETSEARCH::scope ( INFOGO* infop, TARGET tg){
 					break; 
 				case JIEBUGUI:
 					//env, obj
-					//get:½ÓÉÏÖ®ºóobjÖ»ÓĞÒ»¿ÚÆø
+					//get:æ¥ä¸Šä¹‹åobjåªæœ‰ä¸€å£æ°”
 					break; 
 				case ZHENGZI:
 					//env, obj
-					//ËÑË÷
+					//æœç´¢
 					break; 
 				case DAOTUOXUE:
 					//env, obj
-					//ÔÚ±»Ìá¿éÄÚ½ôobjµÄÆø
+					//åœ¨è¢«æå—å†…ç´§objçš„æ°”
 					break; 
 				case DAOPU:
 					//env, obj
-					//ËÍËÀºóÊ¹obj´¥±ß»ò´¥ÎÒ·½°²È«¿é²¢²»ÄÜĞÎ³ÉÕæÑÛ
+					//é€æ­»åä½¿objè§¦è¾¹æˆ–è§¦æˆ‘æ–¹å®‰å…¨å—å¹¶ä¸èƒ½å½¢æˆçœŸçœ¼
 					break; 
 		case HIS_POTENTIAL:break; 
 			case QINGXIAO:
 				//cluster
-				//___ASSERT:·ÇÖĞÑëĞÍ¾Ş¿Õ
-				//get:clusterÖĞÆğÇÅÁº×÷ÓÃµÄ¹Â×ÓÉÏ·½(¼ç³å, Õò, Âí²½·É, ÅöµÈ)		
+				//___ASSERT:éä¸­å¤®å‹å·¨ç©º
+				//get:clusterä¸­èµ·æ¡¥æ¢ä½œç”¨çš„å­¤å­ä¸Šæ–¹(è‚©å†², é•‡, é©¬æ­¥é£, ç¢°ç­‰)		
 				break; 
 			case BI:
 				//cluster
-				//get:clusterËùÔÚ·½ĞÎÇøÓò×óÓÒÊÊµ±¾àÀë(¼ä¶ş»ò¼äÈı)
+				//get:clusteræ‰€åœ¨æ–¹å½¢åŒºåŸŸå·¦å³é€‚å½“è·ç¦»(é—´äºŒæˆ–é—´ä¸‰)
 				break; 
 			case SHENGTUI:
 				//env, cluster
-				//get:ÓëenvÏàÁ¬ÇÒÍ»Èëcluster±ß¿Õ
+				//get:ä¸envç›¸è¿ä¸”çªå…¥clusterè¾¹ç©º
 				break; 
 			case QINSHI:
 				//cluster
-				//get:cluster·ÀÏßÖ®ÉÏ×î±¡Èõ´¦
+				//get:clusteré˜²çº¿ä¹‹ä¸Šæœ€è–„å¼±å¤„
 				break; 
 			case DARU:
 				//cluster
-				//get:cluster×îÊèËÉ×î¶àÀûÓÃÖ®´¦	
+				//get:clusteræœ€ç–æ¾æœ€å¤šåˆ©ç”¨ä¹‹å¤„	
 				break; 
 		case MY_CLUSTER:break; 
 			case _GE:
 				//env, env
-				//get:Á½env½»½Ó´¦
+				//get:ä¸¤enväº¤æ¥å¤„
 				break; 
 			case TUWEI:
 				//env, cluster, cluster
-				//get:ÈıÕß½»½Ó´¦
+				//get:ä¸‰è€…äº¤æ¥å¤„
 				break; 
 			case SHENGGEN:
 				//env
-				//get:À©´óÁìº£
+				//get:æ‰©å¤§é¢†æµ·
 				break; 
 			case ZUOHUO:break; 
 				case ZUOYAN:
-					//get:ÑÛĞÎ×î·á¸»´¦
+					//get:çœ¼å½¢æœ€ä¸°å¯Œå¤„
 					break; 
 				case KUOYANWEI:
-					//get:À©´óÑÛÓò, ²»Ò»¶¨ÊÇÁìº£
+					//get:æ‰©å¤§çœ¼åŸŸ, ä¸ä¸€å®šæ˜¯é¢†æµ·
 					break; 
 		case MY_MASS				: break; 
 			case ZHENGXING		:
 				//env, obj
-				//get:objÁÚÓòÄÚÓëenvÏàÁ¬Õß
-				//select:Ê¹obj¶Ïµã¼õÉÙÕß
+				//get:objé‚»åŸŸå†…ä¸envç›¸è¿è€…
+				//select:ä½¿objæ–­ç‚¹å‡å°‘è€…
 				break; 
 			case JIUZI			: break; 
 				case _DA:
 					//env, obj
-					//½Ó
+					//æ¥
 					break; 
 				case _JIA:
 					//env, obj
-					//get:´Ó°üÎ§È¦Í»Î§
+					//get:ä»åŒ…å›´åœˆçªå›´
 					break; 
 				case _GUN:
 					//env, obj
@@ -444,41 +444,41 @@ BITB		TARGETSEARCH::scope ( INFOGO* infop, TARGET tg){
 					break; 
 				case _JIEBUGUI:
 					//env, obj
-					//get:×Ô½Ó
+					//get:è‡ªæ¥
 					break; 
 				case _ZHENGZI:
 					//env, obj
-					//ËÑË÷
+					//æœç´¢
 					break; 
 				case _DAOTUOXUE:
 					//env, obj
-					//·À±¸ÔÚ±»Ìá¿éÄÚ½ôobjµÄÆø
+					//é˜²å¤‡åœ¨è¢«æå—å†…ç´§objçš„æ°”
 					break; 
 				case _DAOPU:
 					//env, obj
-					//×Ô½Ó
+					//è‡ªæ¥
 					break; 
 		case MY_POTENTIAL				: break; 
 			case KUOZHANG		: 
 				//cluster
-				//___ASSERT:·ÇÖĞÑëĞÍ¾Ş¿Õ
-				//get:clusterÖĞÆğÇÅÁº×÷ÓÃµÄ¹Â×ÓÉÏ·½(¼ç³å, Õò, Âí²½·É, ÅöµÈ)	
+				//___ASSERT:éä¸­å¤®å‹å·¨ç©º
+				//get:clusterä¸­èµ·æ¡¥æ¢ä½œç”¨çš„å­¤å­ä¸Šæ–¹(è‚©å†², é•‡, é©¬æ­¥é£, ç¢°ç­‰)	
 				break; 
 			case CHAI			: 
 				//cluster
-				//get:clusterËùÔÚ·½ĞÎÇøÓò×óÓÒÊÊµ±¾àÀë(¼ä¶ş»ò¼äÈı)
+				//get:clusteræ‰€åœ¨æ–¹å½¢åŒºåŸŸå·¦å³é€‚å½“è·ç¦»(é—´äºŒæˆ–é—´ä¸‰)
 				break; 
 			case _SHENGTUI			: 
 				//env, cluster
-				//get:ÓëenvÏàÁ¬ÇÒÍ»Èëcluster±ß¿Õ
+				//get:ä¸envç›¸è¿ä¸”çªå…¥clusterè¾¹ç©º
 				break; 
 			case _QINSHI			: 
 				//cluster
-				//get:cluster·ÀÏßÖ®ÉÏ×î±¡Èõ´¦
+				//get:clusteré˜²çº¿ä¹‹ä¸Šæœ€è–„å¼±å¤„
 				break; 
 			case _DARU		: 
 				//cluster
-				//get:cluster×îÊèËÉ×î¶àÀûÓÃÖ®´¦	
+				//get:clusteræœ€ç–æ¾æœ€å¤šåˆ©ç”¨ä¹‹å¤„	
 				break; 
 
 		default	: 	;
@@ -512,7 +512,7 @@ RESULT		TARGETSEARCH::leafvalue ( INFOGO* infop, TARGET tg){
 	}
 }
 
-// targets ÖÁÉÙÓĞÒ»ĞĞ£¬Ã¿ĞĞ±ØÓĞÔªËØÊÇÇ°Ìá
+// targets è‡³å°‘æœ‰ä¸€è¡Œï¼Œæ¯è¡Œå¿…æœ‰å…ƒç´ æ˜¯å‰æ
 VM TARGETSEARCH::findpath(INFOGO * infop, TARGETS tgs) {
 	VM vm; 
 	BITB b, bb; 
@@ -523,7 +523,7 @@ VM TARGETSEARCH::findpath(INFOGO * infop, TARGETS tgs) {
 			bb &= scope(infop, tgs.nut[i][j]); 
 		b |= bb; 
 	}
-	//-// ´Ë´¦ÀûÓÃ¶¨Ê½¿âµÄ×ß²½ÆµÂÊÀ´ÅÅĞò
+	//-// æ­¤å¤„åˆ©ç”¨å®šå¼åº“çš„èµ°æ­¥é¢‘ç‡æ¥æ’åº
 	VI	allvi(BS*BS, 0), vi, idsort;
 	COLOR trn = tgs.nut[0][0].passtimes ? infop->getlastclr ():infop->turn ();
 	for (int i = 0; i<ZOBRIST::ZOBRIST_KIND; ++i) {
@@ -539,7 +539,7 @@ VM TARGETSEARCH::findpath(INFOGO * infop, TARGETS tgs) {
 			break;
 	if (!vm.empty())
 		return vm;
-	//-// ´Ë´¦ÀûÓÃÄ£Ê½¿âµÄ×ß²½ÆµÂÊÀ´ÅÅĞò
+	//-// æ­¤å¤„åˆ©ç”¨æ¨¡å¼åº“çš„èµ°æ­¥é¢‘ç‡æ¥æ’åº
 	//g_learn.setpatfreq(infop);
 	int m = 3;  
 	vi = infop->getf_patfreq(m, b, trn);
@@ -576,8 +576,8 @@ bool TARGETSEARCH::isleaf(INFOGO * infop, TARGETS tgs){
 	return b; 
 }
 
-// Îª·ÀÖ¹ÍÑ½Ú£¬Ó¦ÔÚleafvalue(INFOGO*, TARGET)ÖĞ
-// µ÷ÓÃisleaf(INFOGO*, TARGET)
+// ä¸ºé˜²æ­¢è„±èŠ‚ï¼Œåº”åœ¨leafvalue(INFOGO*, TARGET)ä¸­
+// è°ƒç”¨isleaf(INFOGO*, TARGET)
 RESULT TARGETSEARCH::leafvalue(INFOGO * infop, TARGETS tgs){
 	RESULT r, rr; 
 	r = upbound(); 
@@ -623,7 +623,7 @@ RESULT TARGETSEARCH::recordpath(RESULT result, MOVE move) {
 }
 
 /*
-// ´ÖÁ£¶ÈËÑË÷
+// ç²—ç²’åº¦æœç´¢
 void	TARGETSEARCH::lookfor(){
 	aim = forward(aim); 
 	for (; ; ){
@@ -638,7 +638,7 @@ void	TARGETSEARCH::lookfor(){
 }
 */
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_TS::timefunc (string which) {
 	RANDER  r; 

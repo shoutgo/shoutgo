@@ -3,173 +3,173 @@
 
 /* class COMMAND */
 
-// �򻯹���˫�ָ�ȡǰһ��ĸ������ȡǰ����ĸ��
+// 简化规则：双字各取前一字母，单字取前两字母。
 COMMAND::COMMAND() {
 	cmd[HELP_C] = CMD ( BIND<string, char*>()(2, "help", "he"), 
 		"[command]", 
 		"...", 
-		"��ʾȫ����ĳ������İ�����Ϣ"); 
+		"显示全部或某个命令的帮助信息"); 
 	cmd[VERSION_C] = CMD ( BIND<string, char*>()(2, "version", "ve" ), 
 		"[ ]", 
 		"...", 
-		"��ʾ�汾��Ϣ"); 
+		"显示版本信息"); 
 	cmd[CMD_C] = CMD ( BIND<string, char*>()(2, "cmd", "cm"), 
 		"[ ]", 
 		"...", 
-		"ִ�� CMD.EXE ����"); 
+		"执行 CMD.EXE 程序"); 
 	cmd[THESIS_C] = CMD ( BIND<string, char*>()(2, "thesis", "th"), 
 		"[ ]", 
 		"...", 
-		"ִ��һϵ�ж�������"); 
+		"执行一系列定制命令"); 
 	cmd[FONT_C] = CMD ( BIND<string, char*>()(2, "font", "fo"), 
 		"[ ]", 
 		"...", 
-		"ִ�� FONT.EXE ����"); 
+		"执行 FONT.EXE 程序"); 
 	cmd[SAVECODE_C] = CMD ( BIND<string, char*>()(2, "savecode", "sc"), 
 		"[ ]", 
 		"...", 
-		"���汾����Դ����"); 
+		"保存本程序源代码"); 
 	cmd[PLAY_C] = CMD ( BIND<string, char*>()(2, "play", "pl"), 
 		"[MAN_PC, PC_PC, MAN_MAN]", 
 		"...", 
-		"��ָ����ʽ����"); 
+		"按指定方式下棋"); 
 	cmd[FIR_C] = CMD ( BIND<string, char*>()(2, "fir", "fi"), 
 		"[MAN_PC, PC_PC, MAN_MAN]", 
 		"...", 
-		"��ָ����ʽ��������"); 
+		"按指定方式下五子棋"); 
 	cmd[REVIEW_C] = CMD ( BIND<string, char*>()(2, "review", "re"), 
 		"[ ]", 
 		"...", 
-		"���� SGF �ļ�����ʾ"); 
+		"读入 SGF 文件并演示"); 
 	cmd[SGFTREE_C] = CMD ( BIND<string, char*>()(2, "sgftree", "st"), 
 		"[ ]", 
 		"...", 
-		"������ʽ���� SGF �ļ�����ʾ"); 
+		"以树方式读入 SGF 文件并演示"); 
 	cmd[INPUTPAT_C] = CMD ( BIND<string, char*>()(2, "inputpat", "ip"), 
 		"[ ]", 
 		"...", 
-		"����ģʽ"); 
+		"输入模式"); 
 	cmd[ACTIVE_C] = CMD ( BIND<string, char*>()(2, "active", "ac"), 
 		"[ ]", 
 		"...", 
-		"�������в��Ժ���"); 
+		"激活所有测试函数"); 
 	cmd[TRACK_C] = CMD ( BIND<string, char*>()(2, "track", "tr"), 
 		"[numb]", 
 		"...", 
-		"�����쳣�����������ִ�е� numb ��������"); 
+		"跟踪异常计数器中最后执行的 numb 个函数名"); 
 	cmd[COUNTERSET_C] = CMD ( BIND<string, char*>()(2, "counterset", "cs"), 
 		"[numb]", 
 		"...", 
-		"���ü�����״̬"); 
+		"设置计数器状态"); 
 	cmd[COUNTER_C] = CMD ( BIND<string, char*>()(2, "counter", "co"), 
 		"[ ]", 
 		"...", 
-		"��ʾ������״̬"); 
+		"显示计数器状态"); 
 	cmd[TIME_C] = CMD ( BIND<string, char*>()(2, "time", "ti"), 
 		"[function( eg: \"\", \"u\", \"U_RANDU\" )]", 
 		"...", 
-		"����ȫ����������������ض�����"); 
+		"测试全部函数、函数组或特定函数"); 
 	cmd[SIZE_C] = CMD ( BIND<string, char*>()(2, "size", "si"), 
 		"[ ]", 
 		"...", 
-		"��ʾ����Ĵ�С"); 
+		"显示各类的大小"); 
 	//cmd[NEWLINE_C] = CMD ( BIND<string, char*>()(3, "newline", "nl", ";"), 
 	//	"[ ]", 
 	//	"...", 
-	//	"����"); 
+	//	"换行"); 
 	cmd[EXIT_C] = CMD ( BIND<string, char*>()(2, "exit", "ex"), 
 		"[ ]", 
 		"...", 
-		"�˳�������"); 
+		"退出本程序"); 
 
 	cmd[PASS_C] = CMD ( BIND<string, char*>()(1, "pass"), 
 		"[ ]", 
 		"...", 
-		"��Ȩһ��"); 
+		"弃权一手"); 
 	cmd[END_C] = CMD ( BIND<string, char*>()(1, "end"), 
 		"[ ]", 
 		"...", 
-		"������ǰ��������"); 
+		"结束当前命令或棋局"); 
 	cmd[HISTORY_C] = CMD ( BIND<string, char*>()(2, "history", "hi"), 
 		"[ ]", 
 		"...", 
-		"��ʾ��ʷֵ"); 
+		"显示历史值"); 
 	cmd[SHOWBOARD_C] = CMD ( BIND<string, char*>()(2, "showboard", "sb"), 
 		"[ ]", 
 		"...", 
-		"��ʾ����"); 
+		"显示棋盘"); 
 	cmd[DELTAMASSMAPS_C] = CMD ( BIND<string, char*>()(2, "deltamassmaps", "dm"), 
 		"[numb]", 
 		"...", 
-		"��ʾ numb �����ŵı仯����"); 
+		"显示 numb 级棋团的变化区域"); 
 	cmd[MASSMAPS_C] = CMD ( BIND<string, char*>()(2, "massmaps", "mm"), 
 		"[numb]", 
 		"...", 
-		"��ʾ numb ������"); 
+		"显示 numb 级棋团"); 
 	cmd[CLUSTER_C] = CMD ( BIND<string, char*>()(2, "cluster", "cl"), 
 		"[ ]", 
 		"...", 
-		"��ʾ��Ⱥ"); 
+		"显示棋群"); 
 	cmd[POTENTIAL_C] = CMD ( BIND<string, char*>()(2, "potential", "po"), 
 		"[ ]", 
 		"...", 
-		"��ʾ��"); 
+		"显示势"); 
 	cmd[PUBLICAREA_C] = CMD ( BIND<string, char*>()(2, "publicarea", "pa"), 
 		"[ ]", 
 		"...", 
-		"��ʾ������"); 
+		"显示公共区"); 
 	cmd[ALIVE_C] = CMD ( BIND<string, char*>()(2, "alive", "al"), 
 		"[ ]", 
 		"...", 
-		"��ʾ����Ⱥ"); 
+		"显示活棋群"); 
 	cmd[DEAD_C] = CMD ( BIND<string, char*>()(2, "dead", "de"), 
 		"[ ]", 
 		"...", 
-		"��ʾ����Ⱥ"); 
+		"显示死棋群"); 
 	cmd[UNCLEAR_C] = CMD ( BIND<string, char*>()(2, "unclear", "un"), 
 		"[ ]", 
 		"...", 
-		"��ʾ���������Ⱥ"); 
+		"显示死活不明的棋群"); 
 	cmd[LAND_C] = CMD ( BIND<string, char*>()(2, "land", "la"), 
 		"[ ]", 
 		"...", 
-		"��ʾ��Ⱥ�ġ�½�ء�"); 
+		"显示棋群的“陆地”"); 
 	cmd[SEA_C] = CMD ( BIND<string, char*>()(2, "sea", "se"), 
 		"[ ]", 
 		"...", 
-		"��ʾ��Ⱥ�ġ�����"); 
+		"显示棋群的“海洋”"); 
 	cmd[AIR_C] = CMD ( BIND<string, char*>()(2, "air", "ai"), 
 		"[ ]", 
 		"...", 
-		"��ʾ��Ⱥ�ġ���ա�"); 
+		"显示棋群的“领空”"); 
 	cmd[SCAN_C] = CMD ( BIND<string, char*>()(2, "scan", "sc"), 
 		"[ ]", 
 		"...", 
-		"ɨ�赱ǰ��ֵ���Ϣ"); 
+		"扫描当前棋局的信息"); 
 	cmd[TRYMOVE_C] = CMD ( BIND<string, char*>()(2, "trymove", "tm"), 
 		"[pos/numb][command]", 
 		"...", 
-		"����һ������ numb ����ִ��һ������"); 
+		"试下一步或倒退 numb 步并执行一个命令"); 
 	cmd[ZOBRIST_C] = CMD ( BIND<string, char*>()(2, "zobrist", "zo"), 
 		"[numb]", 
 		"...", 
-		"���յ� numb �� ZOBRIST ����ʾ�����߲�"); 
+		"参照第 numb 个 ZOBRIST 库显示可能走步"); 
 	cmd[PEMIS_C] = CMD ( BIND<string, char*>()(2, "pemis", "pe"), 
 		"[numb]", 
 		"...", 
-		"���յ� numb �� PEMIS ����ʾ�����߲�"); 
+		"参照第 numb 个 PEMIS 库显示可能走步"); 
 	cmd[SAVE_C] = CMD ( BIND<string, char*>()(2, "save", "sa"), 
 		"[ ]", 
 		"...", 
-		"���浱ǰ���Ϊ���ļ�"); 
+		"保存当前棋局为类文件"); 
 	cmd[SAVE2SGF_C] = CMD ( BIND<string, char*>()(2, "save2sgf", "ss"), 
 		"[ ]", 
 		"...", 
-		"���浱ǰ���Ϊ SGF �ļ�"); 
+		"保存当前棋局为 SGF 文件"); 
 	cmd[BACK_SAVE2TXT_C] = CMD ( BIND<string, char*>()(3, "-save2txt", "-s", "-st"), 
 		"[ ]", 
 		"...", 
-		"����������浱ǰ������"); 
+		"后置命令，保存当前输出结果"); 
 }
 
 int COMMAND::which(string s){
@@ -222,13 +222,13 @@ void prompt(const GO& go, MODE_PROMPT mode){
 			break; 
 		case PREMOVE_MAN:
 			cout<< endl
-				<<(go.turn() == BLACK ? "��":"��")
+				<<(go.turn() == BLACK ? "●":"○")
 				<<" History: "<<go .gethistory() << endl
 				<<">  "; 
 			break; 
 		case PREMOVE_PC:
 			cout<<endl
-				<<(go.turn() == BLACK ? "��":"��")
+				<<(go.turn() == BLACK ? "●":"○")
 				<<" History: "<<go .gethistory() << endl 
 				<<">  " <<endl; 
 			break; 

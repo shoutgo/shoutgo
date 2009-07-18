@@ -1,472 +1,472 @@
-play MODE ÎÊÌâ, ¼Ó»ÚÆå¹¦ÄÜ
-¿âµÄsave() load():Ğ´Èë¿â¶ÔÓ¦µÄsgf, ±È¶Ô\\SGF£¬Ñ§Ï°ĞÂÎÄ¼ş¡£
+play MODE é—®é¢˜, åŠ æ‚”æ£‹åŠŸèƒ½
+åº“çš„save() load():å†™å…¥åº“å¯¹åº”çš„sgf, æ¯”å¯¹\\SGFï¼Œå­¦ä¹ æ–°æ–‡ä»¶ã€‚
 info2bmp()
 Term().insert()
-ÓÃº¯ÊıÖ¸ÕëĞÎÊ½Ğ´back_save()
-ËæÊ±ºóÌ¨±£´æÆå¾Ö
+ç”¨å‡½æ•°æŒ‡é’ˆå½¢å¼å†™back_save()
+éšæ—¶åå°ä¿å­˜æ£‹å±€
 helpmore()
-¸ÄÔìcommand active()
-joseki()[numb]ÏÂ±êµ÷µÃºÍÊäÈë·¨Ò»ÖÂ¡¡
-inputpat()µÄÈ¥Áô
-print(VI vi, BITB mask)ÒÔ²ÊÉ«ĞÎÊ½Êä³öVI£¬ÏÔÊ¾ÆµÂÊµÈĞÅÏ¢£¬setw(3), ÅäºÏprint(go)
-BITB(vecpos), BITB().serialize(), BITB().serialize(VVI, int sortnumb); ITRÖĞ?
-¸ÄÔìFSMÒÔÊÊºÏÓÚÅÅĞò
-dry¸ÄÃûÎªhull
-¹Ù×ÓÄ£ĞÍ
+æ”¹é€ command active()
+joseki()[numb]ä¸‹æ ‡è°ƒå¾—å’Œè¾“å…¥æ³•ä¸€è‡´ã€€
+inputpat()çš„å»ç•™
+print(VI vi, BITB mask)ä»¥å½©è‰²å½¢å¼è¾“å‡ºVIï¼Œæ˜¾ç¤ºé¢‘ç‡ç­‰ä¿¡æ¯ï¼Œsetw(3), é…åˆprint(go)
+BITB(vecpos), BITB().serialize(), BITB().serialize(VVI, int sortnumb); ITRä¸­?
+æ”¹é€ FSMä»¥é€‚åˆäºæ’åº
+dryæ”¹åä¸ºhull
+å®˜å­æ¨¡å‹
 class POS
 toupper()
 ambiguous figure
-class GO ¿ÉÒÔÊ¹ÃüÁî¶àÖØÇ¶Ì×
+class GO å¯ä»¥ä½¿å‘½ä»¤å¤šé‡åµŒå¥—
 grid(), stone(), SCREEN_MODE, TEXT_MODE
-ÖØĞ´class NN
+é‡å†™class NN
 
 //______________________________________________________________________
 
-// Ê±¼ä²âÊÔ¶¼±£Áô
-// »ºÊ½¼ÆËã±£³Ö
-// Ìõ¼ş±àÒëÔçµãÊµÏÖ
-// ÏÈÑéÖ¤ÕıÈ·£¬ÔÙĞŞ¸Ä
-// Í³¼Æº¯ÊıÔÚ´úÂëÖĞµÄ³öÏÖ´ÎÊı£¬¾ö¶¨ÖØ²»ÖØÔØÔËËã·û
-// Ìæ»»Ö®Ç°Ò»¶¨ÒªÖ´ĞĞ²éÕÒ£¡£¡£¡£¡£¡
-// inline ¼ÓÔÚÓĞÖ¸ÕëµÄº¯ÊıÇ°ÒªÉ÷ÖØ£¬»áµ¼ÖÂ±àÒë´íÎó
+// æ—¶é—´æµ‹è¯•éƒ½ä¿ç•™
+// ç¼“å¼è®¡ç®—ä¿æŒ
+// æ¡ä»¶ç¼–è¯‘æ—©ç‚¹å®ç°
+// å…ˆéªŒè¯æ­£ç¡®ï¼Œå†ä¿®æ”¹
+// ç»Ÿè®¡å‡½æ•°åœ¨ä»£ç ä¸­çš„å‡ºç°æ¬¡æ•°ï¼Œå†³å®šé‡ä¸é‡è½½è¿ç®—ç¬¦
+// æ›¿æ¢ä¹‹å‰ä¸€å®šè¦æ‰§è¡ŒæŸ¥æ‰¾ï¼ï¼ï¼ï¼ï¼
+// inline åŠ åœ¨æœ‰æŒ‡é’ˆçš„å‡½æ•°å‰è¦æ…é‡ï¼Œä¼šå¯¼è‡´ç¼–è¯‘é”™è¯¯
 
-// ĞŞÕı£ºVIR, default
-// ITR µÄ public ÁÙÊ±±äÁ¿Çå³ı
-// ÖØÔØbitboard +-
-// ITRÄ³Ğ©±äÁ¿static
-// BITBÖĞfor(++BS)¿ì»¹ÊÇtransformËã·¨¿ì£¿
+// ä¿®æ­£ï¼šVIR, default
+// ITR çš„ public ä¸´æ—¶å˜é‡æ¸…é™¤
+// é‡è½½bitboard +-
+// ITRæŸäº›å˜é‡static
+// BITBä¸­for(++BS)å¿«è¿˜æ˜¯transformç®—æ³•å¿«ï¼Ÿ
 
-// ¸´ÊıµÄÓ¦ÓÃ£¬³Ë i Ïàµ±ÓÚ½«ÏòÁ¿×óĞı 90 ¶È
-// NN ÓÃ Varray
-// GO¡¡¼Ó¡¡bool whenxx, ¸Äbb[0], bb[1]? º¯ÊıÒÆÎ»£¿
-// ko¡¡Êı¾İ½á¹¹
-// ¹Ù×ÓÄ£ĞÍ
-// ÄÚ²¿µş´úÆ÷
-// ³£ÓÃº¯Êı¸Ä²é±í·¨
-// ÃæÏòËã·¨£¬¸ÄÔìfor
-// static »¯£¿	http://www.pkuer.net/wmkj/study/CPlusPlus/7/2/1.htm
-// ºÏ·¨ĞÔ"È¥¼ì²â", Èçpos
+// å¤æ•°çš„åº”ç”¨ï¼Œä¹˜ i ç›¸å½“äºå°†å‘é‡å·¦æ—‹ 90 åº¦
+// NN ç”¨ Varray
+// GOã€€åŠ ã€€bool whenxx, æ”¹bb[0], bb[1]? å‡½æ•°ç§»ä½ï¼Ÿ
+// koã€€æ•°æ®ç»“æ„
+// å®˜å­æ¨¡å‹
+// å†…éƒ¨å ä»£å™¨
+// å¸¸ç”¨å‡½æ•°æ”¹æŸ¥è¡¨æ³•
+// é¢å‘ç®—æ³•ï¼Œæ”¹é€ for
+// static åŒ–ï¼Ÿ	http://www.pkuer.net/wmkj/study/CPlusPlus/7/2/1.htm
+// åˆæ³•æ€§"å»æ£€æµ‹", å¦‚pos
 
-// ²âÊÔ hash_map
-// ²âÊÔdouble, floatËÄÔòÔËËã
+// æµ‹è¯• hash_map
+// æµ‹è¯•double, floatå››åˆ™è¿ç®—
 
-// Îª±ÜÃâÆµ·±ÉêÇëÁÙÊ±±äÁ¿£¬¿ÉÔÚÀàÄÚ private »¯
-// Ô­Ôò£ºÔÚÆäÕı³£×÷ÓÃÇøÓòÄÚ²»±»ÆäËüº¯Êı¸Ä±ä
-// ÃüÃû¹æ·¶£º	tmp_
+// ä¸ºé¿å…é¢‘ç¹ç”³è¯·ä¸´æ—¶å˜é‡ï¼Œå¯åœ¨ç±»å†… private åŒ–
+// åŸåˆ™ï¼šåœ¨å…¶æ­£å¸¸ä½œç”¨åŒºåŸŸå†…ä¸è¢«å…¶å®ƒå‡½æ•°æ”¹å˜
+// å‘½åè§„èŒƒï¼š	tmp_
 // int			i, j, k, m, n, x, y
 // BITB		b, bb
 // GO		g, gg
 // POS			p, pp
-// ÎªÈ·±£ÍòÎŞÒ»Ê§¿ÉÒÔÕâÑùÃüÃû£º i_myfun, j_myfun, k_myfun
+// ä¸ºç¡®ä¿ä¸‡æ— ä¸€å¤±å¯ä»¥è¿™æ ·å‘½åï¼š i_myfun, j_myfun, k_myfun
 //
 //______________________________________________________________________
 
 
 
-ÆåĞÎÊõÓï
-Ä¿±êÊõÓï
-È«¾ÖÊõÓï
+æ£‹å½¢æœ¯è¯­
+ç›®æ ‡æœ¯è¯­
+å…¨å±€æœ¯è¯­
 
 
-ºÏÄ¿µÄ
-¹Ù×Ó
-ÆåĞÎ
-½Ù²Ä
-ÓàÎ¶
-ÏÈÊÖ
-¼æ¹Ë
-¸´ÔÓ¶È
-Æø
-ÇáÖØ
-Òş±ÎĞÔ
+åˆç›®çš„
+å®˜å­
+æ£‹å½¢
+åŠ«æ
+ä½™å‘³
+å…ˆæ‰‹
+å…¼é¡¾
+å¤æ‚åº¦
+æ°”
+è½»é‡
+éšè”½æ€§
 
-»»Î»Ë¼¿¼Ô­Ôò
-¶Ô¿¹Ô­Ôò
-ÈÌÄÍÔ­Ôò
-ÊÔÌ½Ô­Ôò
-¶Ô¿¹µÃ³ÑºóĞ§Ô­Ôò
-ÍÑÏÈÔ­Ôò
-Ë³ÊÆÔ­Ôò
+æ¢ä½æ€è€ƒåŸåˆ™
+å¯¹æŠ—åŸåˆ™
+å¿è€åŸåˆ™
+è¯•æ¢åŸåˆ™
+å¯¹æŠ—å¾—é€åæ•ˆåŸåˆ™
+è„±å…ˆåŸåˆ™
+é¡ºåŠ¿åŸåˆ™
 +
-ÀûÒæ×î´óÔ­Ôò
-ÊÕÒæÆ½ºâÔ­Ôò
-ãĞÖµÔ­Ôò
-	¼±ËùÔ­Ôò
-	ÆÆµØÔ­Ôò
-	É±ÆåÔ­Ôò
-	»îÆåÔ­Ôò
-	ÆÆ¿ÕÔ­Ôò
-	Î§¿ÕÔ­Ôò
+åˆ©ç›Šæœ€å¤§åŸåˆ™
+æ”¶ç›Šå¹³è¡¡åŸåˆ™
+é˜ˆå€¼åŸåˆ™
+	æ€¥æ‰€åŸåˆ™
+	ç ´åœ°åŸåˆ™
+	æ€æ£‹åŸåˆ™
+	æ´»æ£‹åŸåˆ™
+	ç ´ç©ºåŸåˆ™
+	å›´ç©ºåŸåˆ™
 
-ÆåĞÎÊÂ¼ş
-ÆøÊÂ¼ş
-Ìá×ÓÊÂ¼ş
-³ÔÆåÊÂ¼ş
-½ÙÊÂ¼ş
+æ£‹å½¢äº‹ä»¶
+æ°”äº‹ä»¶
+æå­äº‹ä»¶
+åƒæ£‹äº‹ä»¶
+åŠ«äº‹ä»¶
 
 
 
 http://www.enstudy.net/Article/ShowArticle.asp?ArticleID = 1835
 
-Î§ÆåÊõÓïÖĞÓ¢ÎÄ¶ÔÕÕ   
+å›´æ£‹æœ¯è¯­ä¸­è‹±æ–‡å¯¹ç…§   
 
-   ¶ÎÎ» dan grading
-   ¼¶ kyu
-   ¶ÁÃë byo-yomi
-   ÆÛÕĞ hamete£¨trick play£©
-   ºñ thickness
-   Æø liberty
-   Çá karui£¨light£©
-   Ê§×Å slip
-   ±¾ÊÖ honte£¨proper move£©
-   ¶ÔÉ± semeai
-   ºÃÊÖ tesuji
-   ºóÊÖ gote
-   ½Ù ko
-   »ºÆø½Ù yose-ko£¨approach-move-ko£©
-   ½î suji
-   Ë«»î seki£¨impasse£©
-   ÍÑÏÈ kenuki
-   ÎŞÓÇ½Ù hanami-ko
-   ½»»» furikawari£¨exchange£©
-   Î¶µÀ aji£¨potential£©
-   ÏÈÊÖµÃÀû kikashi
-   ÑÛ eye
-   ĞÇĞ¡Ä¿²¼¾Ö hoshi-komoku fuseki
-   Ò»¼ä¼Ğ ikken bsasme
-   ÊÖ½î tesuji
-   ¼ûºÏ miai
-   ´óÄ£Ñù×÷Õ½ big moyo £¬ large moyo
-   ÉúËÀ½Ù tsume-ko
-   ½Ù²Ä kozai
-   ÏÈÊÖ sente
-   ¶¨Ê½ formalized series of moves
-   Î§ contain
-   ²ğ extend
-   Á¢ sagari
-   ½Ğ³Ô atari£¨cheok£©
-   ´òÈë uehikomi
-   ¹Ò½Ç kakari
-   ±Æ tsume£¨checking extension£©
-   ¼Ğ hasami£¨pincer£©
-   ¼Ï geta
-   ¼â diagonal move
-   ¿Õ chi £¬territory
-   ³¤ nobi
-   ÇĞ¶Ï cut-in
-   ÌÚÅ² sabaki
-   ÌáÍ¨ ponnuki
-   ÍÚ warikom£¨wedge£©
-   Ñ¹ kake£¨pressing move£©£¬oshi£¨push£©
-   ¼·È¥ÑÛ sashikomi
-   ¶Ïµã cutting point
-   ¿ÕÌá ponnuki
-   ¶Ï cut
-   ¿¿ tsuke
-   Ìø jump
-   µ² osae
-   ´ò atari
-   Ìá×Ó take
-   ÍĞ½Ç touke£¨corner£©
+   æ®µä½ dan grading
+   çº§ kyu
+   è¯»ç§’ byo-yomi
+   æ¬ºæ‹› hameteï¼ˆtrick playï¼‰
+   åš thickness
+   æ°” liberty
+   è½» karuiï¼ˆlightï¼‰
+   å¤±ç€ slip
+   æœ¬æ‰‹ honteï¼ˆproper moveï¼‰
+   å¯¹æ€ semeai
+   å¥½æ‰‹ tesuji
+   åæ‰‹ gote
+   åŠ« ko
+   ç¼“æ°”åŠ« yose-koï¼ˆapproach-move-koï¼‰
+   ç­‹ suji
+   åŒæ´» sekiï¼ˆimpasseï¼‰
+   è„±å…ˆ kenuki
+   æ— å¿§åŠ« hanami-ko
+   äº¤æ¢ furikawariï¼ˆexchangeï¼‰
+   å‘³é“ ajiï¼ˆpotentialï¼‰
+   å…ˆæ‰‹å¾—åˆ© kikashi
+   çœ¼ eye
+   æ˜Ÿå°ç›®å¸ƒå±€ hoshi-komoku fuseki
+   ä¸€é—´å¤¹ ikken bsasme
+   æ‰‹ç­‹ tesuji
+   è§åˆ miai
+   å¤§æ¨¡æ ·ä½œæˆ˜ big moyo ï¼Œ large moyo
+   ç”Ÿæ­»åŠ« tsume-ko
+   åŠ«æ kozai
+   å…ˆæ‰‹ sente
+   å®šå¼ formalized series of moves
+   å›´ contain
+   æ‹† extend
+   ç«‹ sagari
+   å«åƒ atariï¼ˆcheokï¼‰
+   æ‰“å…¥ uehikomi
+   æŒ‚è§’ kakari
+   é€¼ tsumeï¼ˆchecking extensionï¼‰
+   å¤¹ hasamiï¼ˆpincerï¼‰
+   æ· geta
+   å°– diagonal move
+   ç©º chi ï¼Œterritory
+   é•¿ nobi
+   åˆ‡æ–­ cut-in
+   è…¾æŒª sabaki
+   æé€š ponnuki
+   æŒ– warikomï¼ˆwedgeï¼‰
+   å‹ kakeï¼ˆpressing moveï¼‰ï¼Œoshiï¼ˆpushï¼‰
+   æŒ¤å»çœ¼ sashikomi
+   æ–­ç‚¹ cutting point
+   ç©ºæ ponnuki
+   æ–­ cut
+   é  tsuke
+   è·³ jump
+   æŒ¡ osae
+   æ‰“ atari
+   æå­ take
+   æ‰˜è§’ toukeï¼ˆcornerï¼‰
 
 
 http://www.weiqi361.com/html/2004/07/20040715001801.shtml
 
-²¿·ÖÓ¢ÎÄÎ§ÆåÊõÓï
+éƒ¨åˆ†è‹±æ–‡å›´æ£‹æœ¯è¯­
 
 
-aji Î¶£¬ÓàÎ¶ (*)
+aji å‘³ï¼Œä½™å‘³ (*)
 
-aji-keshi ½âÏûÓàÎ¶ (*)
+aji-keshi è§£æ¶ˆä½™å‘³ (*)
 
-amashi (*)Õâ´Ê³£ÓÃ£¬µ«ÖĞÎÄÎ§ÆåÊõÓïÖĞÃ»ÓĞÕıÊ½µÄ·­Òë¡£Ô­À´×¨Ö¸½­»§Ê±ÆÚÖ´°×ÕßµÄÒ»ÖÖÕ½ÂÔ£¬ÏÈÈ¡ÊµµØÈ»ºóÔÙÇÖÏûºÚÊÆ£¬ÖÎÀí¹ÂÆå¡£½­»§Ê±ÆÚ
-µÄÃû¼Ò°ËÊÀ°²¾®ÖªµÃÏÉÖª£¬ÏÖ´úµÄÛàÌïÈÙÄĞ¡¢ÕÔÖÎÑ«¶¼ÊÇ¡°amashi¡±µÄ¸ßÊÖ¡£´ÓÕâÒ»ÒâÒåÉÏÀ´Ëµ£¬ÕâÒ»´ÊµÄÒâË¼¾ÍÊÇÏÖÔÚËùÎ½µÄ¡°ÏÈÀÌºóÏ´¡±¡£
+amashi (*)è¿™è¯å¸¸ç”¨ï¼Œä½†ä¸­æ–‡å›´æ£‹æœ¯è¯­ä¸­æ²¡æœ‰æ­£å¼çš„ç¿»è¯‘ã€‚åŸæ¥ä¸“æŒ‡æ±Ÿæˆ·æ—¶æœŸæ‰§ç™½è€…çš„ä¸€ç§æˆ˜ç•¥ï¼Œå…ˆå–å®åœ°ç„¶åå†ä¾µæ¶ˆé»‘åŠ¿ï¼Œæ²»ç†å­¤æ£‹ã€‚æ±Ÿæˆ·æ—¶æœŸ
+çš„åå®¶å…«ä¸–å®‰äº•çŸ¥å¾—ä»™çŸ¥ï¼Œç°ä»£çš„å‚ç”°è£ç”·ã€èµµæ²»å‹‹éƒ½æ˜¯â€œamashiâ€çš„é«˜æ‰‹ã€‚ä»è¿™ä¸€æ„ä¹‰ä¸Šæ¥è¯´ï¼Œè¿™ä¸€è¯çš„æ„æ€å°±æ˜¯ç°åœ¨æ‰€è°“çš„â€œå…ˆæåæ´—â€ã€‚
 
-atari ´ò³Ô (*)
+atari æ‰“åƒ (*)
 
--bango ·¬Æå
+-bango ç•ªæ£‹
 
-byo-yomi ¶ÁÃë (*)
+byo-yomi è¯»ç§’ (*)
 
-carpenter"s square Ğ¡Çú³ß (*)
+carpenter"s square å°æ›²å°º (*)
 
-chuban (middle game) ÖĞÅÌ (*)
+chuban (middle game) ä¸­ç›˜ (*)
 
-dame µ¥¹Ù£¬Æø (*)
+dame å•å®˜ï¼Œæ°” (*)
 
-dan ¶Î (*)
+dan æ®µ (*)
 
-empty triangle ¿ÕÈı½Ç (*)
+empty triangle ç©ºä¸‰è§’ (*)
 
-eye ÑÛ (*)
+eye çœ¼ (*)
 
-furikawari (exchange, trade, swap) ×ª»»¡¢½»»» (*)
+furikawari (exchange, trade, swap) è½¬æ¢ã€äº¤æ¢ (*)
 
-fuseki ²¼¾Ö (*)
+fuseki å¸ƒå±€ (*)
 
-geta ¼Ï (*)
+geta æ· (*)
 
-gaisei (outside influence) ÍâÊÆ (*)
+gaisei (outside influence) å¤–åŠ¿ (*)
 
-gankei (eye shape) ÑÛĞÎ (*)
+gankei (eye shape) çœ¼å½¢ (*)
 
-go ³(ÔÚÈÕ±¾×¨Ö¸Î§Æå)£¬Î§Æå (*)
+go ç¢(åœ¨æ—¥æœ¬ä¸“æŒ‡å›´æ£‹)ï¼Œå›´æ£‹ (*)
 
-goban Î§ÆåÅÌ (*)
+goban å›´æ£‹ç›˜ (*)
 
-godokoro ³Ëù(ÆåËù)
+godokoro ç¢æ‰€(æ£‹æ‰€)
 
-Gosei ³Ê¥(Ğ¡ÆåÊ¥)
+Gosei ç¢åœ£(å°æ£‹åœ£)
 
-gote ºóÊÖ (*)
+gote åæ‰‹ (*)
 
-gote no sente ºóÖĞÏÈ
+gote no sente åä¸­å…ˆ
 
-gukei (bad shape) ÓŞĞÎ (*)
+gukei (bad shape) æ„šå½¢ (*)
 
-gyaku sente (reverse sente) ÄæÏÈÊÖ (*)
+gyaku sente (reverse sente) é€†å…ˆæ‰‹ (*)
 
-gyaku yose (reverse yose) Äæ¹Ù×Ó (*)
+gyaku yose (reverse yose) é€†å®˜å­ (*)
 
-hamete (trick move) Ç¶ÊÖ (*)
+hamete (trick move) åµŒæ‰‹ (*)
 
-hanami-ko ¿´»¨½Ù(¼´ÎŞÓÇ½Ù)
+hanami-ko çœ‹èŠ±åŠ«(å³æ— å¿§åŠ«)
 
-hana-zuke (nose attachment) ±Ç¶¥ (*)
+hana-zuke (nose attachment) é¼»é¡¶ (*)
 
-hane °â (*)
+hane æ‰³ (*)
 
-hane-kaeshi ·´°â£¬Á¬°â
+hane-kaeshi åæ‰³ï¼Œè¿æ‰³
 
-hangan (half an eye) °ëÑÛ
+hangan (half an eye) åŠçœ¼
 
-han-ko °ë½Ù
+han-ko åŠåŠ«
 
-han-moku (half a point) °ëÄ¿ (*)
+han-moku (half a point) åŠç›® (*)
 
-hasami (pincer attack) ¼Ğ¹¥(Èç¶¨Ê½ÖĞµÄÒ»¼ä¼Ğ¡¢¶ş¼ä¼ĞµÈµÈ) (*)
+hasami (pincer attack) å¤¹æ”»(å¦‚å®šå¼ä¸­çš„ä¸€é—´å¤¹ã€äºŒé—´å¤¹ç­‰ç­‰) (*)
 
-hasami-kaeshi ·´¼Ğ(¶ÔÓ¦ÓÚÉÏÊö¼Ğ¹¥Ö®·´¼Ğ)
+hasami-kaeshi åå¤¹(å¯¹åº”äºä¸Šè¿°å¤¹æ”»ä¹‹åå¤¹)
 
-haya-go ¿ìÆå (*)
+haya-go å¿«æ£‹ (*)
 
-hazama ´©ÏóÑÛ
+hazama ç©¿è±¡çœ¼
 
-hazama tobi Ïó·É
+hazama tobi è±¡é£
 
-hiraki (extension) ¿ª²ğ(Èç²ğ¶ş¡¢²ğÈıµÈµÈ) (*)
+hiraki (extension) å¼€æ‹†(å¦‚æ‹†äºŒã€æ‹†ä¸‰ç­‰ç­‰) (*)
 
-hon-ko (real ko) ±¾½Ù
+hon-ko (real ko) æœ¬åŠ«
 
-Honinbo ±¾Òò·»(*)
+Honinbo æœ¬å› åŠ(*)
 
-honte ±¾ÊÖ (*)
+honte æœ¬æ‰‹ (*)
 
-hoshi (star point) ĞÇ (*)
+hoshi (star point) æ˜Ÿ (*)
 
-igo Î§Æå(ÕıÊ½µÄÃû³Æ£¬ÓëÉÏÃæµÄ¡°³¡±Ïà¶ÔÕÕ) (*)
+igo å›´æ£‹(æ­£å¼çš„åç§°ï¼Œä¸ä¸Šé¢çš„â€œç¢â€ç›¸å¯¹ç…§) (*)
 
-ikken Ò»¼ä(³£¼ûµÄÓĞÒÔÏÂËÄÖÖ)£º
+ikken ä¸€é—´(å¸¸è§çš„æœ‰ä»¥ä¸‹å››ç§)ï¼š
 
-ikken-basami (one-space pincer) Ò»¼ä¼Ğ (*)
+ikken-basami (one-space pincer) ä¸€é—´å¤¹ (*)
 
-ikken-biraki (one-space extension) Ò»¼ä²ğ (*)
+ikken-biraki (one-space extension) ä¸€é—´æ‹† (*)
 
-ikken-jimari (one-space enclosure) µ¥¹ØÊØ½Ç (*)
+ikken-jimari (one-space enclosure) å•å…³å®ˆè§’ (*)
 
-ikken-tobi (one-space jump) Ò»¼äÌø(µ¥¹ØÌø) (*)
+ikken-tobi (one-space jump) ä¸€é—´è·³(å•å…³è·³) (*)
 
-insei ÔºÉú (*)
+insei é™¢ç”Ÿ (*)
 
-ishi-no-shita µ¹ÍÑÑ¥ (*)
+ishi-no-shita å€’è„±é´ (*)
 
-ji (territory) µØ (*)
+ji (territory) åœ° (*)
 
-jigo (a drawn game) ºÍÆå£¬³ÖÆå (*)
+jigo (a drawn game) å’Œæ£‹ï¼ŒæŒæ£‹ (*)
 
-joseki ¶¨Ê½ (*)
+joseki å®šå¼ (*)
 
-joban (opening game) ĞòÅÌ (*)
+joban (opening game) åºç›˜ (*)
 
-josen ¶¨ÏÈ
+josen å®šå…ˆ
 
-jozu ÉÏÊÖ£¬ÓÖ³£Ö¸½­»§Ê±ÆÚµÄÆß¶Î (*)
+jozu ä¸Šæ‰‹ï¼Œåˆå¸¸æŒ‡æ±Ÿæˆ·æ—¶æœŸçš„ä¸ƒæ®µ (*)
 
-jubango Ê®·¬Æå (*)
+jubango åç•ªæ£‹ (*)
 
-Judan Sen Ê®¶ÎÕ½
+Judan Sen åæ®µæˆ˜
 
-jun-Meijin ×¼ÃûÈË
+jun-Meijin å‡†åäºº
 
-kabe (wall) ±Ú (*)
+kabe (wall) å£ (*)
 
-kakari (approach move) ¹Ò½Ç (*)
+kakari (approach move) æŒ‚è§’ (*)
 
-kake ·ÉÑ¹
+kake é£å‹
 
-kake-me (false eye) ¼ÙÑÛ (*)
+kake-me (false eye) å‡çœ¼ (*)
 
-keshi Ïû£¬ÇÖÏû (*)
+keshi æ¶ˆï¼Œä¾µæ¶ˆ (*)
 
-ki Æå
+ki æ£‹
 
-kiai ÆøºÏ
+kiai æ°”åˆ
 
-kishi ÆåÊ¿ (*)
+kishi æ£‹å£« (*)
 
-ki-in ÆåÔº (*)
+ki-in æ£‹é™¢ (*)
 
-kido ÆåµÀ (*)
+kido æ£‹é“ (*)
 
-kifu ÆåÆ× (*)
+kifu æ£‹è°± (*)
 
-kikashi (a forcing move requring an answer) ÏÈÊÖÀû (*)
+kikashi (a forcing move requring an answer) å…ˆæ‰‹åˆ© (*)
 
-kiri (cut) ÇĞ¶Ï (*)
+kiri (cut) åˆ‡æ–­ (*)
 
-kiri-chigai (crosscut) Å¤¶Ï (*)
+kiri-chigai (crosscut) æ‰­æ–­ (*)
 
-Kisei ÆåÊ¥ (*)
+Kisei æ£‹åœ£ (*)
 
-ko ½Ù (*)
+ko åŠ« (*)
 
-kogeima Ğ¡·É£¬Ğ¡¹ğÂí(Ì¨Íå°æµÄÊé³£ÓÃ) (*)
+kogeima å°é£ï¼Œå°æ¡‚é©¬(å°æ¹¾ç‰ˆçš„ä¹¦å¸¸ç”¨) (*)
 
-komi ÌùÄ¿ (*)
+komi è´´ç›® (*)
 
-komoku Ğ¡Ä¿ (*)
+komoku å°ç›® (*)
 
-kosumi (diagonal move) Ğ¡¼â (*)
+kosumi (diagonal move) å°å°– (*)
 
-kosumi-tsuke ¼â¶¥
+kosumi-tsuke å°–é¡¶
 
-kozai (ko threat) ½Ù²Ä (*)
+kozai (ko threat) åŠ«æ (*)
 
-kyu ¼¶ (*)
+kyu çº§ (*)
 
-kyusho (vital point) ¼±Ëù (*)
+kyusho (vital point) æ€¥æ‰€ (*)
 
-liberty Æø (*)
+liberty æ°” (*)
 
-magari (turning move) Çú (*)
+magari (turning move) æ›² (*)
 
-magari-tsuke ¹ÕÍ·
+magari-tsuke æ‹å¤´
 
-mane-go (mimic go) Ä£·ÂÆå (*)
+mane-go (mimic go) æ¨¡ä»¿æ£‹ (*)
 
-mannen-ko (thousand-year ko) ÍòÄê½Ù (*)
+mannen-ko (thousand-year ko) ä¸‡å¹´åŠ« (*)
 
-me (eye) ÑÛ(*)
+me (eye) çœ¼(*)
 
-me-gatachi (eye shape) ÑÛĞÎ
+me-gatachi (eye shape) çœ¼å½¢
 
-mekura-go (blindfold go) Ã¤Æå
+mekura-go (blindfold go) ç›²æ£‹
 
-Meijin ÃûÈË (*)
+Meijin åäºº (*)
 
-menjo Ãâ×´£¬ÆåÁ¦Ö¤Êé (*)
+menjo å…çŠ¶ï¼Œæ£‹åŠ›è¯ä¹¦ (*)
 
-miai ¼ûºÏ (*)
+miai è§åˆ (*)
 
-mokuhazushi (5-3 point) Ä¿Íâ(*)
+mokuhazushi (5-3 point) ç›®å¤–(*)
 
-moyo Ä£Ñù (*)
+moyo æ¨¡æ · (*)
 
-myoshu (A brilliant move) ÃîÊÖ (*)
+myoshu (A brilliant move) å¦™æ‰‹ (*)
 
-nadare (avalanche joseki) Ñ©±À (*)
+nadare (avalanche joseki) é›ªå´© (*)
 
-nidan-bane (two-step hane) Á¬°â (*)
+nidan-bane (two-step hane) è¿æ‰³ (*)
 
-nigiri ²ÂÏÈ (*)
+nigiri çŒœå…ˆ (*)
 
-Nihon Ki-inÈÕ±¾ÆåÔº
+Nihon Ki-inæ—¥æœ¬æ£‹é™¢
 
-niken ¶ş¼ä(ÓÃÓÚÏÂÁĞÊõÓï)
+niken äºŒé—´(ç”¨äºä¸‹åˆ—æœ¯è¯­)
 
-niken-basami (two-space pincer) ¶ş¼ä¼Ğ(*)
+niken-basami (two-space pincer) äºŒé—´å¤¹(*)
 
-niken-biraki (two-space extension) ¶ş¼ä²ğ(*)
+niken-biraki (two-space extension) äºŒé—´æ‹†(*)
 
-niken-jimari (two-space corner enclosure) ¶ş¼äÊØ½Ç
+niken-jimari (two-space corner enclosure) äºŒé—´å®ˆè§’
 
-niken-taka-basami (high two-space pincer) ¶ş¼ä¸ß¼Ğ(*)
+niken-taka-basami (high two-space pincer) äºŒé—´é«˜å¤¹(*)
 
-niken-taka-gakari (two-space high approach) ¶ş¼ä¸ß¹Ò(*)
+niken-taka-gakari (two-space high approach) äºŒé—´é«˜æŒ‚(*)
 
-niken-tobi (two-space jump) ¶ş¼äÌø(*)
+niken-tobi (two-space jump) äºŒé—´è·³(*)
 
-niren-sei ¶şÁ¬ĞÇ(*)
+niren-sei äºŒè¿æ˜Ÿ(*)
 
-nobi (solid extension) ³¤(*)
+nobi (solid extension) é•¿(*)
 
-nozoki (peep) ´Ì(*)
+nozoki (peep) åˆº(*)
 
-nurui (lukewarm, slack) »º(*)
+nurui (lukewarm, slack) ç¼“(*)
 
-oba (large fuseki point or extension) ´ó³¡£¬³£ÓÃ ¡°large point¡±
+oba (large fuseki point or extension) å¤§åœºï¼Œå¸¸ç”¨ â€œlarge pointâ€
 
-ogeima (large-knight approach move) ´ó·É¹Ò£¬´ó¹ğÂí(Ì¨ÍåÓÃ·¨)
+ogeima (large-knight approach move) å¤§é£æŒ‚ï¼Œå¤§æ¡‚é©¬(å°æ¹¾ç”¨æ³•)
 
-ogeima-jimari (large-knight"s corner enclosure) ´ó·ÉÊØ½Ç (*)
+ogeima-jimari (large-knight"s corner enclosure) å¤§é£å®ˆè§’ (*)
 
-oki-go (Handicap Go) ÈÃ×ÓÆå(*)
+oki-go (Handicap Go) è®©å­æ£‹(*)
 
-omoi (heavy) ÖØ(*)
+omoi (heavy) é‡(*)
 
-onadare (large avalanche joseki) ´óÑ©±À(*)
+onadare (large avalanche joseki) å¤§é›ªå´©(*)
 
-osae (block) µ² (*)
+osae (block) æŒ¡ (*)
 
-oshi (pushing move) Ñ¹ (*)
+oshi (pushing move) å‹ (*)
 
-o-shiro go (castle game) Óù³ÇÆå
+o-shiro go (castle game) å¾¡åŸæ£‹
 
-Paduk (º«Óï)Î§Æå
+Paduk (éŸ©è¯­)å›´æ£‹
 
-poka (blunder) (*) ¶ñÊÖ£¬´í×Å(mistake)£¬Â©×Å(oversight)£¬ÒÔÉÏ¼¸¸ö´ÊÒåÏà½ü£¬
-µ«ÓĞ³Ì¶ÈÉÏµÄ²î±ğ¡£
+poka (blunder) (*) æ¶æ‰‹ï¼Œé”™ç€(mistake)ï¼Œæ¼ç€(oversight)ï¼Œä»¥ä¸Šå‡ ä¸ªè¯ä¹‰ç›¸è¿‘ï¼Œ
+ä½†æœ‰ç¨‹åº¦ä¸Šçš„å·®åˆ«ã€‚
 
-ponnuki ¿ª»¨(*)
+ponnuki å¼€èŠ±(*)
 
-Ranka ÀÃ¿Â(Î§ÆåµÄ±ğÃû)
+Ranka çƒ‚æŸ¯(å›´æ£‹çš„åˆ«å)
 
-rengo (team go) Á¬Æå
+rengo (team go) è¿æ£‹
 
-ryo-atari (double atari) Ë«´ò(*)
+ryo-atari (double atari) åŒæ‰“(*)
 
-ryo-ko (double ko) Ë«½Ù(Í¬Ê±´òÁ½¸ö½Ù)(*)
+ryo-ko (double ko) åŒåŠ«(åŒæ—¶æ‰“ä¸¤ä¸ªåŠ«)(*)
 
-ryo-gote (double gote) Ë«·½ºóÊÖ(*)
+ryo-gote (double gote) åŒæ–¹åæ‰‹(*)
 
-ryo-sente (double sente) Ë«·½ÏÈÊÖ(*)
+ryo-sente (double sente) åŒæ–¹å…ˆæ‰‹(*)
 
-sabaki (making light, flexible shape in order to save a group) ÌÚÅ²(*)
+sabaki (making light, flexible shape in order to save a group) è…¾æŒª(*)
 
-sagari (a descent) Á¢(*)
+sagari (a descent) ç«‹(*)
 
-sandan-bane (triple hane) ÈıÁ¬°â
+sandan-bane (triple hane) ä¸‰è¿æ‰³
 
-san-ko (triple ko) Èı½Ù (*) 
+san-ko (triple ko) ä¸‰åŠ« (*) 
 
-sangen Èı¼ä(ÓÃÓÚÏÂÁĞÊõÓï)
+sangen ä¸‰é—´(ç”¨äºä¸‹åˆ—æœ¯è¯­)
 
-sangen-basami (two-space pincer) Èı¼ä¼Ğ
+sangen-basami (two-space pincer) ä¸‰é—´å¤¹
 
-sangen-biraki (two-space extension) Èı¼ä²ğ
+sangen-biraki (two-space extension) ä¸‰é—´æ‹†
 
-sangen-tobi (two-space jump) Èı¼äÌø
+sangen-tobi (two-space jump) ä¸‰é—´è·³
 
-san-san (the 3-3 point) ÈıÈı
+san-san (the 3-3 point) ä¸‰ä¸‰
 
-sanren-sei ÈıÁ¬ĞÇ(*)
+sanren-sei ä¸‰è¿æ˜Ÿ(*)
 
-saru-suberi (the monkey jump) ´ó·ÉÉìÍÈ(ÊÕ¹Ù)
+saru-suberi (the monkey jump) å¤§é£ä¼¸è…¿(æ”¶å®˜)
 
-seki Ë«»î(*)
+seki åŒæ´»(*)
 
-sekito shibori (the stone-tower squeeze) ´óÍ·¹í(¡°Ê¯Ëş¡±)
+sekito shibori (the stone-tower squeeze) å¤§å¤´é¬¼(â€œçŸ³å¡”â€)
 
-seme (attacking) ¹¥»÷(*)
+seme (attacking) æ”»å‡»(*)
 
 semeai (a capt

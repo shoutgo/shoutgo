@@ -1,7 +1,7 @@
 #ifndef _DEFINE
 #define _DEFINE
 
-//_______ Í·ÎÄ¼ş°üº¬¹ØÏµ ________
+//_______ å¤´æ–‡ä»¶åŒ…å«å…³ç³» ________
 //
 // define.h 
 //   utility.h 
@@ -9,7 +9,7 @@
 //       itr.h 
 //       board.h 
 //   transptable.h
-//         infoboard.h ¡¡
+//         infoboard.h ã€€
 //   search.h *
 //           targetsearch.h
 //   nn.h *
@@ -21,7 +21,7 @@
 //               test.h 
 //               go.h
 //
-//______ÓĞ * Õß½ö±»½ôÁÚµÄÉÏ¼¶°üº¬
+//______æœ‰ * è€…ä»…è¢«ç´§é‚»çš„ä¸Šçº§åŒ…å«
 
 #include <iostream>		// VS2008
 //#include <tchar.h>		// VS2008
@@ -171,7 +171,7 @@ public:
 	friend ostream& operator<< (ostream& os, setx s); 
 }; 
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 #define MACRO_ALL			1
 
@@ -201,7 +201,7 @@ public:
 #define F_MACRO		1
 #define TG_MACRO	1
 
-/* ÑéÖ¤ºê£º²ÎÊıÑéÖ¤ºÍÕıÈ·ĞÔÑéÖ¤ */
+/* éªŒè¯å®ï¼šå‚æ•°éªŒè¯å’Œæ­£ç¡®æ€§éªŒè¯ */
 
 void ___assert(bool exp, string s, string _f_ = "", long _l_ = 0); 
 void ___parassert(bool exp, string s); 
@@ -238,7 +238,7 @@ void ___parassert(bool exp, string s);
 #define ___PARASSERT(exp)		{}
 #endif
 
-/* ±¨¸æºê£º´òÓ¡ºêÌæ»»ºóµÄÖ´ĞĞ´úÂëºÍÖ´ĞĞ½á¹û */
+/* æŠ¥å‘Šå®ï¼šæ‰“å°å®æ›¿æ¢åçš„æ‰§è¡Œä»£ç å’Œæ‰§è¡Œç»“æœ */
 
 #if MACRO_REPORT
 #define ___PRINT(code)					{	\
@@ -252,8 +252,8 @@ void ___parassert(bool exp, string s);
 	cout<<" "<< s << endl; \
 }
 
-		// code Ö®ºóµÄÓï¾äÓĞÊ±²»»áµ½´ï£¬ËùÒÔ code ÄÚ²»Ó¦º¬ return
-		// ºê²ÎÊı°´¶ººÅ·Ö¸î£¬ËùÒÔ code ÄÚÒ²²»ÄÜº¬·ÇÀ¨ºÅÄÚµÄ¶ººÅ
+		// code ä¹‹åçš„è¯­å¥æœ‰æ—¶ä¸ä¼šåˆ°è¾¾ï¼Œæ‰€ä»¥ code å†…ä¸åº”å« return
+		// å®å‚æ•°æŒ‰é€—å·åˆ†å‰²ï¼Œæ‰€ä»¥ code å†…ä¹Ÿä¸èƒ½å«éæ‹¬å·å†…çš„é€—å·
 #define ___REPORT(code)												\
 	cout<<"_________________________________________code:"<< endl; \
 	___PRINT(code)													\
@@ -264,12 +264,12 @@ void ___parassert(bool exp, string s);
 #define ___REPORT(code)	code
 #endif
 
-/* Êä³öºê£ºÊä³ö±äÁ¿£¬±¨¸æº¯ÊıÄÚ²¿×´Ì¬ */
+/* è¾“å‡ºå®ï¼šè¾“å‡ºå˜é‡ï¼ŒæŠ¥å‘Šå‡½æ•°å†…éƒ¨çŠ¶æ€ */
 
 #if MACRO_ALL && MACRO_COUT
-		// ºêºÍÄ£°åÖ»ÊÇÌæ´ú£¬ÆäÄÚ³öÏÖµÄÀà²»±ØÉùÃ÷ÔÚÇ°; 
-		// ¶àÁË²ÎÊı¿ÉÒÔ£¬ÉÙÁË²»ĞĞ
-		// ×¢ÒâºêÃûÀ¨ºÅÖ®Ç°²»ÄÜÓĞ¿Õ¸ñ
+		// å®å’Œæ¨¡æ¿åªæ˜¯æ›¿ä»£ï¼Œå…¶å†…å‡ºç°çš„ç±»ä¸å¿…å£°æ˜åœ¨å‰; 
+		// å¤šäº†å‚æ•°å¯ä»¥ï¼Œå°‘äº†ä¸è¡Œ
+		// æ³¨æ„å®åæ‹¬å·ä¹‹å‰ä¸èƒ½æœ‰ç©ºæ ¼
 template <class T>
 	void ___cout(T t, string s) {
 		if (typeid(T) == typeid(int) || 
@@ -315,7 +315,7 @@ template <class T>
 #define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{}
 #endif
 
-/* ¼ÆÊıºê£ºº¯ÊıÖ´ĞĞ´ÎÊı»òÖ´ĞĞµ½´ïÎ»ÖÃ */
+/* è®¡æ•°å®ï¼šå‡½æ•°æ‰§è¡Œæ¬¡æ•°æˆ–æ‰§è¡Œåˆ°è¾¾ä½ç½® */
 
 #if MACRO_ALL && MACRO_FUNCOUNT
 //#define ___FUNCOUNT(fun)	g_ctr.addfcount(fun); 
@@ -336,7 +336,7 @@ template <class T>
 #define ___LINECOUNT(i)		{}
 #endif
 
-/* ¼ÆÊ±ºê */
+/* è®¡æ—¶å® */
 
 #if MACRO_ALL && MACRO_TIME
 #define ___TIME(id, code)								\
@@ -352,7 +352,7 @@ template <class T>
 #define ___TIME(id, code)	{}
 #endif
 
-/* ¿ØÖÆºê */
+/* æ§åˆ¶å® */
 
 #if MACRO_ALL && MACRO_CONTROL
 //#include "conio.h"	// _kbhit() _getch()						// VS2008
@@ -362,7 +362,7 @@ template <class T>
 #define ___ESC	{}
 #endif
 
-/* Ê±¼äÀà */
+/* æ—¶é—´ç±» */
 
 class TIMER{							
 private:
@@ -377,12 +377,12 @@ public:
 	void	silenttoc_(); 
 }; 
 
-/* ¼ÆÊıÀà */
+/* è®¡æ•°ç±» */
 
 const int  FUN_MAX = 100; 
 enum FUNGROUP		{FU = 0, FBB, FGO, FINFO, FIO, FITR, FF, FTG, 
 						FS, FTS, FTT, FNN, FL, FBR, FSIZE}; 
-		// Ô­Ôò£º²»Ê¹ test.h ±»°üº¬, ËùÒÔ¼ÆÊıÆ÷ÀàÒ²ÖÃÓÚ´Ë
+		// åŸåˆ™ï¼šä¸ä½¿ test.h è¢«åŒ…å«, æ‰€ä»¥è®¡æ•°å™¨ç±»ä¹Ÿç½®äºæ­¤
 class COUNTER {		
 public:
 	static const int LINES_MAX; 
@@ -408,7 +408,7 @@ public:
 	}
 	template <typename T>
 		void setftrack(T id){
-			ftrack.pop_front(); //-// ¶àÓà£¿
+			ftrack.pop_front(); //-// å¤šä½™ï¼Ÿ
 			ftrack.push_back((int)id); 
 	}
 	template <typename T>
@@ -423,7 +423,7 @@ public:
 	friend COUNTER operator - (const COUNTER& a, const COUNTER& c); 
 }; 
 
-/* Ëæ»úÆ÷Àà */
+/* éšæœºå™¨ç±» */
 
 class RANDER {
 public:
@@ -440,10 +440,10 @@ public:
 	RANDER(int n = 6, int nb = 4, int ng = 1); 
 }; 
 
-/* _______________________________ ·Ç²âÊÔÇø _______________________________ */
+/* _______________________________ éæµ‹è¯•åŒº _______________________________ */
 
 
-/* ³õÊ¼»¯Àà*/
+/* åˆå§‹åŒ–ç±»*/
 
 class INIT {
 private:
@@ -495,7 +495,7 @@ public:
 	bool	save_xorand(string filename); 
 }; 
 
-/* ×éºÏÀà */
+/* ç»„åˆç±» */
 
 #include "stdarg.h"		// va_list va_start() va_arg() va_end()		// VS2008
 
@@ -516,7 +516,7 @@ public:
 	}
 }; 
 
-/* È«¾Ö±äÁ¿ */
+/* å…¨å±€å˜é‡ */
 
 static COUNTER		st_g_ctr; 
 

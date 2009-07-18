@@ -12,8 +12,8 @@
 
 INCREMENT::INCREMENT(){
 	tag.assign (BS*BS+1, NULL_TAG); 
-	// color ÓëÆäËü³ÉÔ±²»Ò»Ñù£¬ÒòÎªÎŞ×Ó´¦µÄ×ÅÉ«ÊÇÓĞÒâÒåµÄ£¬
-	// ¶øÎŞ×Ó´¦µÄÆäËü³ÉÔ±ÊÇÃ»ÓĞÒâÒåµÄ£¨ÓÃÏàÓ¦µÄNULLÁ¿±íÊ¾£©
+	// color ä¸å…¶å®ƒæˆå‘˜ä¸ä¸€æ ·ï¼Œå› ä¸ºæ— å­å¤„çš„ç€è‰²æ˜¯æœ‰æ„ä¹‰çš„ï¼Œ
+	// è€Œæ— å­å¤„çš„å…¶å®ƒæˆå‘˜æ˜¯æ²¡æœ‰æ„ä¹‰çš„ï¼ˆç”¨ç›¸åº”çš„NULLé‡è¡¨ç¤ºï¼‰
 	color.assign (BS*BS+1, EMPTY); 
 	color.back() = NULL_CLR; 
 	
@@ -71,7 +71,7 @@ void INCREMENT::settag(int i, int t){
 	tag[i] = t; 
 }
 
-// ³ıÁËtag, color ÆäËü 4 ÏòÁ¿²¢²»Ò»¶¨ÍêÈ«ÏàµÈ£»²»ÄÜÖ±½Ó±È½Ï
+// é™¤äº†tag, color å…¶å®ƒ 4 å‘é‡å¹¶ä¸ä¸€å®šå®Œå…¨ç›¸ç­‰ï¼›ä¸èƒ½ç›´æ¥æ¯”è¾ƒ
 bool INCREMENT::operator == (const INCREMENT& ic) const {
 	for (int i = 0; i<BS*BS + 1; ++i){
 		if (ic.gettag(i) != gettag(i)) {
@@ -115,7 +115,7 @@ void ZOBRIST::setzobrist(int i, const POS& lastpos, COLOR lastclr, const BITB& k
 		ITR itr(kill); 
 		for (POS p = itr.stonebegin (); !itr.stoneend(); p = itr.stonenext ())
 			key[i] ^= g_init.getrand(p, ~lastclr); 
-		// Î´¼õËÀ×ÓÊı
+		// æœªå‡æ­»å­æ•°
 		++ count[i]; 
 }
 
@@ -241,11 +241,11 @@ bool INFOGO::move  ( const POS& pos, COLOR clr) {
 	// kill
 	// ___________________________________
 
-	// ×Ó½û»ò½Ù½ûÊ±£¬²»ÄÜÂä×Ó£¬·µ»Ø
+	// å­ç¦æˆ–åŠ«ç¦æ—¶ï¼Œä¸èƒ½è½å­ï¼Œè¿”å›
 	if (ic != EMPTY)	             
 		return 0; 
 	
-	// È¡¸÷ÏàÁÚÎ»£¬¼ì²é¸÷ÏàÁÚ¿é
+	// å–å„ç›¸é‚»ä½ï¼Œæ£€æŸ¥å„ç›¸é‚»å—
 	POS		tmphotko; 
 	bool	mvable = 0; 
 	BITB	killenemysite = NULL_BB; 
@@ -256,27 +256,27 @@ bool INFOGO::move  ( const POS& pos, COLOR clr) {
 	kill = NULL_BB; 
 	for (int i = 0; i<near4p.size (); ++i){
 		COLOR c = inc.getcolor (n[i]); 
-		// Èç¹ûÎª¿ÕÎ»£¬¿ÉÂä×Ó  // »ò½ÙÎ»£¿²»±Ø£¬²»¿ÉÄÜÂäÔÚ½ÙÎ»Ö®ÅÔ¡£
+		// å¦‚æœä¸ºç©ºä½ï¼Œå¯è½å­  // æˆ–åŠ«ä½ï¼Ÿä¸å¿…ï¼Œä¸å¯èƒ½è½åœ¨åŠ«ä½ä¹‹æ—ã€‚
 		if (c == EMPTY ) 
 			mvable = 1; 
-		// Èç¹ûÎª 1 ÆøµÄÒìÉ«¿é
+		// å¦‚æœä¸º 1 æ°”çš„å¼‚è‰²å—
 		else if ( (c == ~clr) && (inc.getliberty (n[i]) == 1) ) {
-			// ¿ÉÂä×Ó
+			// å¯è½å­
 			mvable = 1; 
-			// ¼ÇÂ¼¿ÉÄÜ½ÙÎ»
+			// è®°å½•å¯èƒ½åŠ«ä½
 			tmphotko = near4p[i]; 
-			// ¼ÇÂ¼Îª¿ÉÌá¿é£¨ºÏ³ÉÁËÃ¿¿é£¬¿ÉÄÜÓĞ¿éÏàÍ¬£©
+			// è®°å½•ä¸ºå¯æå—ï¼ˆåˆæˆäº†æ¯å—ï¼Œå¯èƒ½æœ‰å—ç›¸åŒï¼‰
 			kill |= inc.getcontent (n[i]); 
-			// ¼ÇÂ¼´Ë¿ÉÌá¿éµÄµĞ¿é
+			// è®°å½•æ­¤å¯æå—çš„æ•Œå—
 			killenemysite |= inc.getenemysite (n[i]); 
 		}
-		// ·ñÔòÈç¹ûÎª´óÓÚ 1 ÆøµÄÍ¬É«¿é£¬¿ÉÂä×Ó
+		// å¦åˆ™å¦‚æœä¸ºå¤§äº 1 æ°”çš„åŒè‰²å—ï¼Œå¯è½å­
 		else if ((c == clr) && (inc.getliberty(n[i]) > 1))
 			mvable = 1; 
-		// ²»ÖĞ¶Ï£¬¸÷ÏàÁÚ¿é¼ì²âÍê
+		// ä¸ä¸­æ–­ï¼Œå„ç›¸é‚»å—æ£€æµ‹å®Œ
 	}
 
-	// Èç¹û²»ÄÜÂä×Ó£¬·µ»Ø
+	// å¦‚æœä¸èƒ½è½å­ï¼Œè¿”å›
 	if (mvable == 0) 
 		return 0; 
 
@@ -290,28 +290,28 @@ bool INFOGO::move  ( const POS& pos, COLOR clr) {
 	// liberty		->
 	// _____________________________________
 	
-	// ¶Ô¸÷¿ÉÌá¿éµÄ¸÷Î»ÖÃµÄ¶ÔÓ¦ÑÕÉ«¼°¿éÍ·
+	// å¯¹å„å¯æå—çš„å„ä½ç½®çš„å¯¹åº”é¢œè‰²åŠå—å¤´
     ITR itr; 
 	itr = ITR(kill); 
 	for(POS p = itr.stonebegin(); !itr.stoneend(); p = itr.stonenext()) {
 		int m = pos2i(p); 
-		// ¸üĞÂÑÕÉ«
+		// æ›´æ–°é¢œè‰²
 		inc.setcolor (m, EMPTY); 
-		// ²Á³ıÔ­¼ÇÂ¼
+		// æ“¦é™¤åŸè®°å½•
 		inc.settag (m, NULL_TAG); 
 	}
 	
-	// ¶Ô¿ÉÌá¿éµÄµĞ¿é£¨ÒòÂä×Ó·¢ÉúÁËÈÚºÏµÄ»áÔÚ¸üĞÂÂä×Ó´¦Ê±¼ÌĞø¸üĞÂ£©
+	// å¯¹å¯æå—çš„æ•Œå—ï¼ˆå› è½å­å‘ç”Ÿäº†èåˆçš„ä¼šåœ¨æ›´æ–°è½å­å¤„æ—¶ç»§ç»­æ›´æ–°ï¼‰
 	itr = ITR(killenemysite); 
 	for(POS p = itr.tagbegin(); !itr.tagend(); p = itr.tagnext()) {
 		int m = pos2i(p); 
-		//  tmp:´ËµĞ¿éµÄµĞ¿é¡¡Óë¡¡¿ÉÌá¿éµÄÖØºÏ²¿
+		//  tmp:æ­¤æ•Œå—çš„æ•Œå—ã€€ä¸ã€€å¯æå—çš„é‡åˆéƒ¨
 		BITB tmp = (inc.getenemysite (m) & kill); 
-		//  ¸üĞÂ´ËµĞ¿éµÄµĞ¿é£ºÈ¥µô tmp
+		//  æ›´æ–°æ­¤æ•Œå—çš„æ•Œå—ï¼šå»æ‰ tmp
 		inc.setenemysite(m, inc.getenemysite (m)^tmp); 
-		//  ¸üĞÂ´ËµĞ¿éµÄÆøµã£ºÑ¹Èëtmp 
+		//  æ›´æ–°æ­¤æ•Œå—çš„æ°”ç‚¹ï¼šå‹å…¥tmp 
 		inc.setlibertysite (m, inc.getlibertysite(m)|tmp); 
-		//  ¸üĞÂ´ËµĞ¿éµÄÆø£º¼ÓÉÏtmpµÄµãÊı
+		//  æ›´æ–°æ­¤æ•Œå—çš„æ°”ï¼šåŠ ä¸Štmpçš„ç‚¹æ•°
 		inc.setliberty(m, inc.getliberty (m)+tmp.count ()); 
 	}
 
@@ -325,58 +325,58 @@ bool INFOGO::move  ( const POS& pos, COLOR clr) {
 	// liberty		->
 	// _____________________________________
 	
-	// ¸üĞÂÂä×Ó´¦¼°ÆäÖÜ±ßÎ»ÖÃĞÅÏ¢
+	// æ›´æ–°è½å­å¤„åŠå…¶å‘¨è¾¹ä½ç½®ä¿¡æ¯
 	BITB  newcontent = BITB(pos); 
 	BITB  newlibertysite = NULL_BB; 
 	BITB  newenemysite = NULL_BB; 
 	int	  newtag = ip; 
-	// ¶Ô¸÷ÏàÁÚÎ»
+	// å¯¹å„ç›¸é‚»ä½
 	for(int i = 0; i<near4p.size (); ++i){
 		COLOR c = inc.getcolor (n[i]); 
-		// Èç¹ûÎª¿ÕÎ» // »ò½ÙÎ»£¿²»±Ø£¬ÒòÎª½ÙÎ»ÅÔ±ßÒ»¶¨ÊÇ×Ó
+		// å¦‚æœä¸ºç©ºä½ // æˆ–åŠ«ä½ï¼Ÿä¸å¿…ï¼Œå› ä¸ºåŠ«ä½æ—è¾¹ä¸€å®šæ˜¯å­
 		if ((c == EMPTY))  
-			// ¼ÇÂ¼ÎªĞÂÆøµãÖ®Ò»
+			// è®°å½•ä¸ºæ–°æ°”ç‚¹ä¹‹ä¸€
 			newlibertysite |= near4p[i]; 
-		// Èç¹ûÎªÒìÉ«¿é
+		// å¦‚æœä¸ºå¼‚è‰²å—
 		else if (c == ~clr) {
-			// ¼ÇÂ¼ÎªĞÂµĞÈËÖ®Ò»
+			// è®°å½•ä¸ºæ–°æ•Œäººä¹‹ä¸€
 			newenemysite |= near4p[i]; 
-			// Í¬Ê±¸üĞÂÎªµĞ¿éµÄµĞÈËÖ®Ò»
+			// åŒæ—¶æ›´æ–°ä¸ºæ•Œå—çš„æ•Œäººä¹‹ä¸€
 			inc.setenemysite (n[i], inc.getenemysite (n[i])|pos); 
-			// ĞŞÕı£ºÈç¹ûÂä×Ó´¦ÊÇµĞ¿éÖ®Æøµã£¨Í¬Ò»¿éÈ·±£Ö»²Ù×÷Ò»´Î£©
+			// ä¿®æ­£ï¼šå¦‚æœè½å­å¤„æ˜¯æ•Œå—ä¹‹æ°”ç‚¹ï¼ˆåŒä¸€å—ç¡®ä¿åªæ“ä½œä¸€æ¬¡ï¼‰
 			if (inc.getlibertysite(n[i])[pos]){			
-				// È¥µô´ËÆøµã
+				// å»æ‰æ­¤æ°”ç‚¹
 				inc.setlibertysite(n[i], inc.getlibertysite(n[i])^pos); 
-				// ¼õµôÒ»Æø
+				// å‡æ‰ä¸€æ°”
 				inc.setliberty (n[i], inc.getliberty (n[i])-1); 
 			}
 		}
-		// Èç¹ûÊÇÍ¬É«¿é
+		// å¦‚æœæ˜¯åŒè‰²å—
 		else {
-			// Éú³ÉĞÂÆåÍ·¡¡//-// < ¶ÔÂğ£¿ ÔÚÄ¿Ç°µÄ tag() ¶¨ÒåÏÂÕıÈ·
+			// ç”Ÿæˆæ–°æ£‹å¤´ã€€//-// < å¯¹å—ï¼Ÿ åœ¨ç›®å‰çš„ tag() å®šä¹‰ä¸‹æ­£ç¡®
 			if (inc.gettag(n[i]) < newtag)
 				newtag = inc.gettag(n[i]); 
-			// Éú³ÉĞÂÆå¿é£ºÑ¹ÈëÔ­Æå¿é
+			// ç”Ÿæˆæ–°æ£‹å—ï¼šå‹å…¥åŸæ£‹å—
 			newcontent |= inc.getcontent (n[i]); 
-			// Éú³ÉĞÂÆø¿é£ºÑ¹ÈëÔ­Æø¿é
+			// ç”Ÿæˆæ–°æ°”å—ï¼šå‹å…¥åŸæ°”å—
 			newlibertysite |= inc.getlibertysite(n[i]); 
-			// Éú³ÉĞÂµĞ¿é£ºÑ¹ÈëÔ­µĞ¿é
+			// ç”Ÿæˆæ–°æ•Œå—ï¼šå‹å…¥åŸæ•Œå—
 			newenemysite |= inc.getenemysite (n[i]); 
-			// ²Á³ıÔ­¼ÇÂ¼ĞÅÏ¢£¬Í¬Ò»¿éµÄĞÅÏ¢Ö»ĞèÀûÓÃÒ»´Î£¬ÖØ¸´Ò²Ã»´í
+			// æ“¦é™¤åŸè®°å½•ä¿¡æ¯ï¼ŒåŒä¸€å—çš„ä¿¡æ¯åªéœ€åˆ©ç”¨ä¸€æ¬¡ï¼Œé‡å¤ä¹Ÿæ²¡é”™
 			// inc.settag(n[i], NULL_TAG); 
 		}
 	}
-	// ĞŞÕı£ºÈç¹ûĞÂÆø¿é°üº¬Âä×Ó´¦£¬ÌŞ³ı£¨µ±Âä×ÓÎª¶À×ÓÊ±²»ÄÜ²Ù×÷£©
+	// ä¿®æ­£ï¼šå¦‚æœæ–°æ°”å—åŒ…å«è½å­å¤„ï¼Œå‰”é™¤ï¼ˆå½“è½å­ä¸ºç‹¬å­æ—¶ä¸èƒ½æ“ä½œï¼‰
 	if (newlibertysite[pos]) 
 		newlibertysite ^= pos; 
 
-	// ¸üĞÂĞÂÆå¿éµÄ¸÷Î»ÖÃµÄÆåÍ·£¨ÓëÂä×Ó·¢ÉúÁËÈÚºÏµÄ»áÔÚ´Ë½ø¼ÌĞø¸üĞÂ£©
+	// æ›´æ–°æ–°æ£‹å—çš„å„ä½ç½®çš„æ£‹å¤´ï¼ˆä¸è½å­å‘ç”Ÿäº†èåˆçš„ä¼šåœ¨æ­¤è¿›ç»§ç»­æ›´æ–°ï¼‰
 	itr = ITR(newcontent); 
 	for(POS pp = itr.stonebegin(); !itr.stoneend(); pp = itr.stonenext()) {
 		int m = pos2i(pp); 
 		inc.settag (m, newtag); 
 	}
-	// ¸üĞÂĞÂÆå¿éµÄÆäËüĞÅÏ¢
+	// æ›´æ–°æ–°æ£‹å—çš„å…¶å®ƒä¿¡æ¯
 	inc.setcolor(ip, clr); 
 	inc.setcontent (ip, newcontent); 
 	inc.setlibertysite (ip, newlibertysite); 
@@ -388,7 +388,7 @@ bool INFOGO::move  ( const POS& pos, COLOR clr) {
 	// xx, oo, hotko, history, lastpos, lastclr
 	// ______________________________________
 
-	// ÅÌÃæ¸üĞÂ£ºÂä×Ó£¬¼ÇÂ¼ÀúÊ·£¬×ß²½£¬½Ù
+	// ç›˜é¢æ›´æ–°ï¼šè½å­ï¼Œè®°å½•å†å²ï¼Œèµ°æ­¥ï¼ŒåŠ«
 	if (clr == BLACK) 
 		xx |= pos, oo ^= kill; 
 	else 
@@ -396,7 +396,7 @@ bool INFOGO::move  ( const POS& pos, COLOR clr) {
     ++history; 
 	lastpos = pos; 
 	lastclr = clr; 
-	// Èç¹ûÂä×ÓÎª¶À×Ó£¬Ìá×ÓÎª¶À×Ó£¬ÇÒÂä×ÓÎª 1 Æø£¬ÔòÔ­Ìá×ÓÎ»Îª½ÙÎ»
+	// å¦‚æœè½å­ä¸ºç‹¬å­ï¼Œæå­ä¸ºç‹¬å­ï¼Œä¸”è½å­ä¸º 1 æ°”ï¼Œåˆ™åŸæå­ä½ä¸ºåŠ«ä½
 	if (hotko != NULL_POS)
 		inc.setcolor (pos2i(hotko), EMPTY); 
 	if (kill.count() == 1 
@@ -429,7 +429,7 @@ VG	INFOGO::partition(int n)  const {
 	return vg; 
 }
 /*
-// É«Óò¾«È·»¯
+// è‰²åŸŸç²¾ç¡®åŒ–
 PBB	INFOGO::lastpartition(int n) const {	
 	___FUNCOUNT( INFO_LASTPARTITION); 
 	GO     gp = partition(n).back(); 
@@ -527,11 +527,11 @@ INFOGO* INFOGO::move_tree(const POS& pos, COLOR clr){
 	}
 }
 
-// Ç° 4 ¶ÔÓ¦½Ç¶¨Ê½£¬ºó 4 ¶ÔÓ¦±ß¶¨Ê½£¬×îºóÎªÈ«¾Ö¶¨Ê½
-// Î´¿¼ÂÇÕ÷×Ó
-// Î´¿¼ÂÇ½Ùµã
-// Î´¿¼ÂÇ×Å×Ó·½(¼ÙÉèÑ§Ï°Ê±Êı¾İ¼¯×ã¹»´ó£¬¸÷ÖÖ¶Ô³ÆÇé¿ö¶¼ÒÑ³öÏÖ¹ı£¬
-// °üÀ¨ÑÕÉ«£¬¹ÊÏÖÔÚÃ»ÓĞ±ØÒª¿¼ÂÇÕâĞ©, ¶ÔÓ¦ÓÃ·½Ê½Ã»ÓĞÓ°Ïì£© 
+// å‰ 4 å¯¹åº”è§’å®šå¼ï¼Œå 4 å¯¹åº”è¾¹å®šå¼ï¼Œæœ€åä¸ºå…¨å±€å®šå¼
+// æœªè€ƒè™‘å¾å­
+// æœªè€ƒè™‘åŠ«ç‚¹
+// æœªè€ƒè™‘ç€å­æ–¹(å‡è®¾å­¦ä¹ æ—¶æ•°æ®é›†è¶³å¤Ÿå¤§ï¼Œå„ç§å¯¹ç§°æƒ…å†µéƒ½å·²å‡ºç°è¿‡ï¼Œ
+// åŒ…æ‹¬é¢œè‰²ï¼Œæ•…ç°åœ¨æ²¡æœ‰å¿…è¦è€ƒè™‘è¿™äº›, å¯¹åº”ç”¨æ–¹å¼æ²¡æœ‰å½±å“ï¼‰ 
 void INFOGO::setzobrist () {
 	int m = pos2i(lastpos); 
 	BITB bb = (xx|oo).blockon( inc.getcontent(m) | inc.getenemysite(m)) | kill; 
@@ -645,7 +645,7 @@ int	INFOGO::samemassmapsnumb( ) const{
 	return -1; 
 }
 
-// ·µ»ØËùÓĞÅ¥ĞÎÇøÓò£¬¿ÉÄÜÓĞĞ©ÇøÓò²»Ö¹ËÄ×Ó
+// è¿”å›æ‰€æœ‰é’®å½¢åŒºåŸŸï¼Œå¯èƒ½æœ‰äº›åŒºåŸŸä¸æ­¢å››å­
 BITB INFOGO::cutingpos( ) const{
 	BITB tmpx, tmpo, tmp; 
 	tmpx.r[0] = xx.r[0] & xx.r[1]<<1 & oo.r[0]<<1 & oo.r[1]
@@ -669,7 +669,7 @@ BITB INFOGO::cutingpos( ) const{
 	return tmpx|tmpo; 
 }
 
-// Î´ÌŞ³ı½ûÈëµã¼°Ìá×Óµã£¬·µ»ØËùÓĞÇ±ÔÚÅ¥ĞÎÇøÓò
+// æœªå‰”é™¤ç¦å…¥ç‚¹åŠæå­ç‚¹ï¼Œè¿”å›æ‰€æœ‰æ½œåœ¨é’®å½¢åŒºåŸŸ
 BITB INFOGO::cutpos(COLOR sente) const{
 	INFOGO tmp = *this; 
 	switch (sente){
@@ -695,19 +695,19 @@ VT INFOGO::top( ) const{
 	PBC smass_his = area.getmass ( smass.first, turn()); 
 	PBC fmass = father->area .getmass (smass.first, getlastclr()); 
 	PBC fmass_his = father->area .getmass (smass.first, turn()); 
-	// ¶ÏÊÂ¼ş£¬±ØÈ»ÓĞÒì¿é°ëÁª£¨¼´¶Ï£©ÒÑ¿é°ëÁª£¨¼´¶Ï£©£¬¿ÉÄÜÓĞÒÑ¿éÁªÂç£¨È«Áª£©
+	// æ–­äº‹ä»¶ï¼Œå¿…ç„¶æœ‰å¼‚å—åŠè”ï¼ˆå³æ–­ï¼‰å·²å—åŠè”ï¼ˆå³æ–­ï¼‰ï¼Œå¯èƒ½æœ‰å·²å—è”ç»œï¼ˆå…¨è”ï¼‰
 	BITB cut = cutpos(getlastclr()).blockon(getlastpos()); 
 	if (cut[getlastpos()]) {
 		PBC f_his = father->area .getmass (cut, turn()); 
 		PBC s_my = area.getmass (cut, getlastclr()); 
-		vt.push_back (TARGET(DUAN, f_his, s_my)); //±»¶ÏÕß£¬¶ÏÕß
+		vt.push_back (TARGET(DUAN, f_his, s_my)); //è¢«æ–­è€…ï¼Œæ–­è€…
 	}
-	// ÒÑ¿éÁªÂç£¬ÂäÔÚ¸¸µÄÊ²Ã´É«Çø¶¼ÓĞ¿ÉÄÜ
+	// å·²å—è”ç»œï¼Œè½åœ¨çˆ¶çš„ä»€ä¹ˆè‰²åŒºéƒ½æœ‰å¯èƒ½
 	if ( fmass.first .blockcount() > 1)
-		vt.push_back (TARGET(LIANLUO, fmass, smass)); //ÁªÂç¶ÔÏó£¬ÁªÂçĞ§¹û
-	// Òì¿é¸ô¿ª£¬ÂäÔÚ¸¸µÄÊ²Ã´É«Çø¶¼ÓĞ¿ÉÄÜ
+		vt.push_back (TARGET(LIANLUO, fmass, smass)); //è”ç»œå¯¹è±¡ï¼Œè”ç»œæ•ˆæœ
+	// å¼‚å—éš”å¼€ï¼Œè½åœ¨çˆ¶çš„ä»€ä¹ˆè‰²åŒºéƒ½æœ‰å¯èƒ½
 	if ( fmass_his.first .blockcount() < smass_his.first .blockcount() )
-		vt.push_back (TARGET(GE, fmass_his, smass)); //¸ô¿ª¶ÔÏó£¬×è¸ôÕß
+		vt.push_back (TARGET(GE, fmass_his, smass)); //éš”å¼€å¯¹è±¡ï¼Œé˜»éš”è€…
 	return vt; 
 }
 */
@@ -719,7 +719,7 @@ PBC		AREA::getmass(const BITB& mask, COLOR clr) const {
 	return make_pair(massmaps[worknumb].getbb(clr).blockon (mask), clr); 
 }
 
-	// ·µ»ØÖµÖĞµÄ COLOR Ö¸BITB ÔÚ clustermap ÉÏµÄ color
+	// è¿”å›å€¼ä¸­çš„ COLOR æŒ‡BITB åœ¨ clustermap ä¸Šçš„ color
 PBC		AREA::getcluster(const BITB& mask) const {
 	/*
 	COLOR clr = clustermap[mask]; 
@@ -760,8 +760,8 @@ PBC		AREA::getpotential(const BITB& mask) const {
 	return pbc; 
 }
 
-	// Ğ´¹«¹²ÇøÈç¹ûÊÇ¹ÂÁ¢ÇøÔòÁ¬ÆämassmapĞ´Èë£¬
-	// ·ñÔòĞ´Èë¡°ÊÊµ±²¿·Ö¡±massmap¡¡¡£
+	// å†™å…¬å…±åŒºå¦‚æœæ˜¯å­¤ç«‹åŒºåˆ™è¿å…¶massmapå†™å…¥ï¼Œ
+	// å¦åˆ™å†™å…¥â€œé€‚å½“éƒ¨åˆ†â€massmapã€€ã€‚
 void	AREA::setclustermap(const BITB& mask, COLOR clr){
 	switch (clr) {
 		case BLACK:
@@ -782,16 +782,16 @@ void	AREA::setclustermap(const BITB& mask, COLOR clr){
 	}
 }
 
-	// ÀíÏë£ºÊÆÎŞÖØµş
+	// ç†æƒ³ï¼šåŠ¿æ— é‡å 
 void	AREA::setpotentialmap( ) {
 	potentialmap.xx = massmaps.back ().xx 
-		^ (massmaps.back ().xx & clustermap.oo)		// ¼õÈ¥ËÀÇøºÍÎ´¶¨Çø
-		| clustermap.xx; // ¼ÓÉÏ»îÇøºÍÎ´¶¨Çø¡¡ºÍ¶Ô·½ËÀÇø
+		^ (massmaps.back ().xx & clustermap.oo)		// å‡å»æ­»åŒºå’Œæœªå®šåŒº
+		| clustermap.xx; // åŠ ä¸Šæ´»åŒºå’Œæœªå®šåŒºã€€å’Œå¯¹æ–¹æ­»åŒº
 	potentialmap.oo = massmaps.back ().oo 
-		^ (massmaps.back ().oo & clustermap.xx)		// ¼õÈ¥ËÀÇøºÍÎ´¶¨Çø
-		| clustermap.oo; // ¼ÓÉÏ»îÇøºÍÎ´¶¨Çø¡¡ºÍ¶Ô·½ËÀÇø
-	// ¹ÂÁ¢µÄÎ´¶¨ÇøÉèÎª¶Ô·½É«
-	// ×¢Òâ¿ÉÄÜÓĞË«·½Î´¶¨ÇøÏà°¤
+		^ (massmaps.back ().oo & clustermap.xx)		// å‡å»æ­»åŒºå’Œæœªå®šåŒº
+		| clustermap.oo; // åŠ ä¸Šæ´»åŒºå’Œæœªå®šåŒºã€€å’Œå¯¹æ–¹æ­»åŒº
+	// å­¤ç«‹çš„æœªå®šåŒºè®¾ä¸ºå¯¹æ–¹è‰²
+	// æ³¨æ„å¯èƒ½æœ‰åŒæ–¹æœªå®šåŒºç›¸æŒ¨
 	BITB unclear = clustermap.xx & clustermap.oo; 
 	ITR itr = ITR( massmaps.back ().xx & unclear ); 
 	for (BITB tmp = itr.blockbegin(); !itr.blockend(); tmp = itr.blocknext()){
@@ -843,7 +843,7 @@ int		AREA::delta() const{
 ; 
 }
 
-	//¡¡×¢Òâ¿ÉÄÜÓĞË«·½Î´¶¨ÇøÏà°¤£¬²»Ó°Ïì´ËËã·¨
+	//ã€€æ³¨æ„å¯èƒ½æœ‰åŒæ–¹æœªå®šåŒºç›¸æŒ¨ï¼Œä¸å½±å“æ­¤ç®—æ³•
 bool		AREA::isolated(const PBC& pbc) const {
 	switch (pbc.second ) {
 		case BLACK:
@@ -863,7 +863,7 @@ STATE	AREA::clusterstate(const PBC& pbc) const {
 }
 
 bool	AREA::onland(const PBC& pbc, const POS& pos) const {
-	// ÊÔÊÔ²»µ¥¶ÀÌŞ³öÀ´¶øÊÇ²¢ĞĞ¼ÆËãµÄĞ§¹û£¨ÊÊÓÃÓÚÇó¸÷ÈºµÄ²ÎÊıÒ»ÑùÊ±£©
+	// è¯•è¯•ä¸å•ç‹¬å‰”å‡ºæ¥è€Œæ˜¯å¹¶è¡Œè®¡ç®—çš„æ•ˆæœï¼ˆé€‚ç”¨äºæ±‚å„ç¾¤çš„å‚æ•°ä¸€æ ·æ—¶ï¼‰
 	return (pbc.first & getbb(pbc.second )).land (3)[pos]; 
 }
 
@@ -876,7 +876,7 @@ BITB	AREA::getbb( COLOR clr) const {
 }
 
 void	AREA::setworknumb (const POS& pos) {
-	// ¸ù¾İ¾Ö²¿ºÍÈ«¾ÖÌØÕ÷Ñ°ÕÒÒ»¸öºÏÊÊµÄÎ»ÖÃ
+	// æ ¹æ®å±€éƒ¨å’Œå…¨å±€ç‰¹å¾å¯»æ‰¾ä¸€ä¸ªåˆé€‚çš„ä½ç½®
 	worknumb = massmaps.size()/2; 
 }
 
@@ -885,7 +885,7 @@ bool	AREA::newmass(const POS& pos, COLOR clr) const{
 }
 
 //vector< pair<int, PBC> > AREA::dist_mass(const POS& pos, COLOR clr) const{
-//	// Ö»¿¼ÂÇÏàÁÚÕß
+//	// åªè€ƒè™‘ç›¸é‚»è€…
 //	vector< pair<int, PBC> > vec; 
 //	PBC pbc = getmass(pos, clr); 
 //	GO tmp = massmaps[worknumb]; 
@@ -899,9 +899,9 @@ bool	AREA::newmass(const POS& pos, COLOR clr) const{
 //	return vec; 
 //}
 //
-//	// ÌáÈ¡µÄ cluster ²»×¼È·
+//	// æå–çš„ cluster ä¸å‡†ç¡®
 //vector< pair<int, PBC> > AREA::dist_cluster(const POS& pos) const{
-//	// Ö»¿¼ÂÇÏàÁÚÕß 
+//	// åªè€ƒè™‘ç›¸é‚»è€… 
 //	vector< pair<int, PBC> > vec; 
 //	BITB unclear = clustermap.xx & clustermap.oo; 
 //	PBC pbc = getcluster(pos); 
@@ -918,7 +918,7 @@ bool	AREA::newmass(const POS& pos, COLOR clr) const{
 //	return vec; 
 //}
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 void TEST_INFO::timefunc (string which) {
 	  

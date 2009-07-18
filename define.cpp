@@ -110,7 +110,7 @@ void COUNTER::reportftrack(int n){
 }
 
 COUNTER operator - (const COUNTER& a, const COUNTER& c) { 
-	//-// ÆäËü¼¸¸ö³ÉÔ±Î´´¦Àí
+	//-// å…¶å®ƒå‡ ä¸ªæˆå‘˜æœªå¤„ç†
 	COUNTER tmp = a; 
 	transform(a.lcount.begin(), a.lcount.end(), c.lcount .begin (), 
 		tmp.lcount.begin (), minus<int>()); 
@@ -154,7 +154,7 @@ INIT::INIT():inited(0){
 	}
 	set_id8_q8(); 
 	setzobristmask(); 
-	set_xorand_key2rand(); // ¿ÉÄÜ»á±» LEARN() ¸²¸Ç¡£
+	set_xorand_key2rand(); // å¯èƒ½ä¼šè¢« LEARN() è¦†ç›–ã€‚
 	setroute(); 
 	inited = 1; 
 }
@@ -177,18 +177,18 @@ VP& INIT::getnear4(const POS& p) {
 
 void INIT::setzobristmask(int width){
 	josekimask.assign (ZOBRIST::ZOBRIST_KIND, NULL_BB); 
-	// ½Ç¶¨Ê½ 
+	// è§’å®šå¼ 
 	josekimask[0] = strip(corner(EN), width, width, WS); 
 	josekimask[1] = strip(corner(WN), width, width, ES); 
 	josekimask[3] = strip(corner(WS), width, width, EN); 
 	josekimask[2] = strip(corner(ES), width, width, WN); 
-	// ±ß¶¨Ê½ 
+	// è¾¹å®šå¼ 
 	josekimask[4] = strip(corner(EN), BS-1, width, WS); 
 	josekimask[5] = strip(corner(WN), width, BS-1, ES); 
 	josekimask[7] = strip(corner(WS), BS-1, width, EN); 
 	josekimask[6] = strip(corner(ES), width, BS-1, WN); 
-	// ²¼¾Ö¶¨Ê½ 
-	// ´Ë mask Ä¿Ç°Î´²ÉÓÃ
+	// å¸ƒå±€å®šå¼ 
+	// æ­¤ mask ç›®å‰æœªé‡‡ç”¨
 	//josekimask[8] = ~(square(star(5), 3)); 
 	//josekimask[8] = ~NULL_BB; 
 	
@@ -205,11 +205,11 @@ void INIT::setzobristmask(int width){
 //     7
 // ___________
 void INIT::set_id8_q8 (){
-	// È«ÅÌÎ»ÖÃË÷Òı±ä»»
+	// å…¨ç›˜ä½ç½®ç´¢å¼•å˜æ¢
 	id8 = index8(BS, BS); 
-	// ½Ç¶¨Ê½ mask
+	// è§’å®šå¼ mask
 	q8 = index8(2, 2); 
-	// ±ß¶¨Ê½ mask
+	// è¾¹å®šå¼ mask
 	for (int which = 0; which <8; ++which){
 		for (int i = 4; i<8; ++i){
 			int x, n; 
@@ -240,7 +240,7 @@ void INIT::set_id8_q8 (){
 			if (x == 2 && n == 0)
 				q8[which].push_back( 6); 
 		}
-		// È«¾Ö mask £¬Ä¿Ç°Î´Ó¦ÓÃ
+		// å…¨å±€ mask ï¼Œç›®å‰æœªåº”ç”¨
 		q8[which].push_back(8); 
 	}
 }
@@ -255,7 +255,7 @@ void INIT::set_xorand_key2rand(){
 	}
 	key2rand[0] = NULL_MOVE; 
 
-	// ¼ì²âÖØ¸´ĞÔ
+	// æ£€æµ‹é‡å¤æ€§
 	___ASSERT(key2rand.size () == (2*BS*BS+1)); 
 	if (key2rand.size () != 2*BS*BS+1){
 		key2rand.clear (); 
@@ -306,8 +306,8 @@ BITB INIT::getjosekimask(int i) const {
 	return josekimask[i]; 
 }
 
-// µ±Ç°¶Ô³Æ·½Ê½ÏÂÊµ¼Ê¶ÔÓ¦µÄ¶¨Ê½ mask ×ø±ê
-// ´Ëº¯Êı½ö±»Ò»º¯ÊıÒıÓÃ£¬ËµÃ÷¶Ô³ÆĞÔ´¦Àí¼ò½à
+// å½“å‰å¯¹ç§°æ–¹å¼ä¸‹å®é™…å¯¹åº”çš„å®šå¼ mask åæ ‡
+// æ­¤å‡½æ•°ä»…è¢«ä¸€å‡½æ•°å¼•ç”¨ï¼Œè¯´æ˜å¯¹ç§°æ€§å¤„ç†ç®€æ´
 int INIT::getq8(int i) const {
 	return q8[0][i]; 
 }

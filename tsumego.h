@@ -42,8 +42,8 @@ public:
 		EYEKIND passbest = UNKOWN_WHENPASS
 		); 
 
-		// ÕâÁ½¸öº¯ÊýÒÔÇ°ÔÚ BITB Àï£¬Ó¦¸ÃÒÆ¹ýÀ´£¬
-		// ²»¹ýÔÝÎ´¸ÄÔìÆäÊµÏÖ²¿·Ö
+		// è¿™ä¸¤ä¸ªå‡½æ•°ä»¥å‰åœ¨ BITB é‡Œï¼Œåº”è¯¥ç§»è¿‡æ¥ï¼Œ
+		// ä¸è¿‡æš‚æœªæ”¹é€ å…¶å®žçŽ°éƒ¨åˆ†
 	pair<EYEKIND, VP >	eyekind(
 		ACTION action, 
 		BITB enemy, 
@@ -60,7 +60,7 @@ public:
 
 }; 
 
-/* _______________________________ ²âÊÔÇø _______________________________ */
+/* _______________________________ æµ‹è¯•åŒº _______________________________ */
 
 enum	TG_FUN	{
 	TG_TSUMEGO = FTG*FUN_MAX, TG_FUN_SIZE}; 

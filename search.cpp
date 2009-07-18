@@ -14,8 +14,8 @@ NODE* TREE::root(){
 	return p; 
 }
 
-		// numb �ǿ�ʼ����ʱ���䣬cout ʱ��������ϡ�
-		// �߼��ṹ������������㷨һ�������� cout ˳��һ����
+		// numb 是开始生成时分配，cout 时已生成完毕。
+		// 逻辑结构与下面各搜索算法一样，所以 cout 顺序一样。
 void TREE::gen(NODE* p){		
 	if (p->depth == DEPTH_MAX-1 || nodes >= NODE_MAX-1) {
 		p->isleaf = 1; 
@@ -60,51 +60,51 @@ ostream& operator<< (ostream& os, const NODE n){
 
 //_______________________________________________________________________
 //
-// alpha, beta �����壿
-// alpha ����Ϊ�ϲ� max ���Ŀǰ���ֵ����ֵ��
-// beta ����Ϊ�ϲ� min ���Ŀǰ���ֵ����ֵ��
-// ��Ϊ�����ķ���ֵ������Ϊ����ʵֵ��
-// ��Ϊ��Ӧ���� alpha <= beta ���Կɳ���Ϊ��ʵֵ�Ľ�ֵ��
-// �� negamax() ��������Ϊ�������η�ת��
-// ż���η�ת���Ϸ��ֵ����ֵ��
-// �������������ֵ� min ����ϸ��� alpha ��
-// ���ֵ� max ����ϸ��� beta ��
+// alpha, beta 的意义？
+// alpha 理解为上层 max 结点目前发现的最好值，
+// beta 理解为上层 min 结点目前发现的最好值，
+// 作为根结点的返回值才能认为是真实值。
+// 因为总应保持 alpha <= beta 所以可抽象为真实值的界值。
+// 在 negamax() 中则理解为在奇数次反转和
+// 偶数次反转层上发现的最好值。
+// 搜索过程是在兄弟 min 结点上更新 alpha ，
+// 在兄弟 max 结点上更新 beta 。
 
-// ���������壿
-// ��alpha, betaΪ���֦������ֵ�󣩺�õ������������ֵ��
-// alphabeta_minmax() ������֦��
-// ���ҽ���֦ǰ�Ľ��ֵ�޸�Ϊ��ֵ alpha �� beta��
-// ���ٻش�alpha, beta����Կ�������������ʵֵ�ˣ�
-// ��Ȼ��ԭ��������αֵ��
-// failsoft_minmax() �������֦��
-// ����ֵ����Կ����Ǽ�֦�����������ʵֵ��
-// ֻ���������ſ���Ȼ�ؽ���Ϊ���㷨�п��Եݹ���á�
+// 函数的意义？
+// 以alpha, beta为界剪枝（并改值后）后得到的新树的最好值。
+// alphabeta_minmax() 不仅剪枝，
+// 而且将剪枝前的结点值修改为界值 alpha 或 beta；
+// 而再回传alpha, beta则可以看作是新树的真实值了，
+// 当然对原树而言是伪值。
+// failsoft_minmax() 则仅仅剪枝，
+// 返回值则可以看作是剪枝后的新树的真实值。
+// 只有如此理解才可自然地解释为何算法中可以递归调用。
 
-// Ϊʲô����ϴ�αֵ����Ӱ��������ȷֵ��
-// ��Ϊ��ͬ�㼴ʹ���ڶ��αֵ����Ҳֻ���ϴ�һ����
-// �����αֵ��ʹ����ϴ���Ҳ����ΪԽ�������Ĩƽ����
+// 为什么如此上传伪值不会影响最终正确值？
+// 因为在同层即使存在多个伪值最终也只会上传一个，
+// 而这个伪值即使多次上传后也会因为越界而被“抹平”。
 
-// Ϊʲô��ֵ����ʱ���һ����ȷ��
-// ��ֵ�����϶��´��ݣ�����Ӧ���ϴ����Ǹ�����ͬ��ĳ���һ����������
-// ������ȷʵ����Ϊ�б������ѵ�ֵ�����ϲ㷢�֡�
+// 为什么界值合适时结果一定正确？
+// 界值是自上而下传递，最终应该上传的那个结点的同层的初界一定包含它，
+// 否则则确实是因为有比它更佳的值已在上层发现。
 
-// Ϊʲô��ֵ������ʱ��failsoft_minmax() �ܷ�ӳ��ʵֵ���Ĳࣿ
-// Ŀ��ֵû�б��ϴ�һ������Ϊ����������������
-// �����ڴ������Ĳ�û�й�ϵ����Ϊ����ֵӦ�ɴ�����������֦�Ľ���ͬ��
-// ��������֦�Ľ��ֵһ����Խ��ֵ( ���� alpha >= beta )��
-// ��Ŀ��ֵһ����Խ�磬��ΪĿ��ֵ��Ӧ���ţ�
-// ��������Ҳһ���Ǵ��ڽ���ͬ�ࡣ
-// �����ĸ����ĸ�С�Ͳ�һ������Ϊ���ſ����Ǹ���Ҳ�����Ǹ�С��
-// �������Ŀ��ֵ�ܴ���������֦��λ�ã�
-// �������ܱ���ȷ�ش������޷��϶�������������ȷֵ��
+// 为什么界值不合适时，failsoft_minmax() 能反映真实值在哪侧？
+// 目的值没有被上传一定是因为所在子树被剪掉，
+// 它处在此子树哪层没有关系，因为它的值应可传到与引发剪枝的结点的同层
+// 而引发剪枝的结点值一定是越界值( 导致 alpha >= beta )，
+// 而目的值一定更越界，因为目的值本应更优，
+// 所以它们也一定是处在界外同侧。
+// 至于哪个大哪个小就不一定，因为更优可能是更大也可能是更小。
+// 所以如果目的值总处在引发剪枝的位置，
+// 它还是能被正确回传，但无法断定它就是最终正确值。
 
-// Ϊʲô��ͬ���Ľ�ֵ����ͬ��������
-// failsoft_minmax()��failsoft_negamax() ���ֲ�һ ?
-// ���ͷ���Ϊ min ��㣬�����(alpha, beta)�൱��( -beta, -alpha)
-// ��ͷ���Ϊ max ���ʱ��֦����Ӧ����ȫһ����
+// 为什么以同样的界值搜索同样的树，
+// failsoft_minmax()和failsoft_negamax() 表现不一 ?
+// 如果头结点为 min 结点，则传入的(alpha, beta)相当于( -beta, -alpha)
+// 而头结点为 max 结点时剪枝过程应该完全一样！
 //_______________________________________________________________________
 
-		// �߼����֮����С�����㷨���������Ϊ��׼��
+		// 逻辑最简单之极大极小搜索算法，结果可作为标准。
 VALUE TREE::minmax(NODE* p){
 	++ visited;
 	if (p->isleaf){
@@ -131,24 +131,24 @@ VALUE TREE::alphabeta_minmax(NODE* p, VALUE alpha, VALUE beta){
 	}
 	if (p->ismax ){
 		for (int i = 0; i < p->sons.size(); ++i){
-							// alpha, beta ȷ��˳������Ϊ����ֵ
-							// ������Ӧ�ϲ��ʱ��һ���ᱻ"Ĩƽ"
-							// ���Կ���Ϊ��ֵ����������´���
+							// alpha, beta 确能顺传，因为界外值
+							// 传到相应上层的时候一定会被"抹平"
+							// 所以可作为界值深度优先向下传递
 			VALUE v = alphabeta_minmax ( p->sons[i], alpha, beta ); 
 			if (v > alpha){
 				alpha = v; 
 				if (alpha >= beta){
-					break; // ��֦֮�󷵻�Խ��� alpha ���� beta 
-							// ����Ӱ������ֵ����Ϊ�ܻᱻ beta "Ĩƽ"
+					break; // 剪枝之后返回越界的 alpha 还是 beta 
+							// 并不影响最终值，因为总会被 beta "抹平"
 				}
 			}
 		}
-		p->value = alpha; // ���ܸ���ԭ�����ʵֵ������Ӱ������ֵ��
-							// ��Ϊ��Ϊ�Ǽ�֦���أ���ʵֵ�ᱻ alpha "Ĩƽ"
-							// ��Ϊ��֦���أ����Խ���alphaֵ
-							// �ᱻ beta "Ĩƽ"
-							// �����ֵ�ɿ����Ƕ��Ӳ�һ����ȫ��
-							// ����ֵ����˽�㸳��ʵֵ��
+		p->value = alpha; // 可能高于原结点真实值，但不影响最终值，
+							// 因为当为非剪枝返回，真实值会被 alpha "抹平"
+							// 当为剪枝返回，则此越界的alpha值
+							// 会被 beta "抹平"
+							// 这个赋值可看作是对子层一个或全部
+							// 结点改值后给此结点赋真实值。
 		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 		return p->value; 
 	}
@@ -188,10 +188,10 @@ VALUE TREE::failsoft_minmax(NODE* p, VALUE alpha, VALUE beta){
 				}
 			}
 		}
-		p->value = better; // �����ѷ��ֵĽϺ�ֵ����һ������ʵֵ��
-							// �����ѱ������������������������ڣ�
-							// �����Ϊ����ʵֵ��
-							// ��ν��������ʵֵ��ԭ����αֵ��
+		p->value = better; // 返回已发现的较好值，不一定是真实值。
+							// 但若把被剪掉的子树看作根本不存在，
+							// 则可认为是真实值。
+							// 所谓新树的真实值，原树的伪值。
 		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 		return p->value; 
 	}
@@ -213,7 +213,7 @@ VALUE TREE::failsoft_minmax(NODE* p, VALUE alpha, VALUE beta){
 	}
 }
 
-		// ��ת�� min Ҷ����ֵ
+		// 翻转了 min 叶结点的值
 VALUE TREE::negamax(NODE* p){			
 	++ visited;
 	if (p->isleaf){
@@ -236,7 +236,7 @@ VALUE TREE::negamax(NODE* p){
 	return p->value; 
 }
 
-		// ��ת�� min Ҷ����ֵ, �޷���ֵ��ʽ
+		// 翻转了 min 叶结点的值, 无返回值形式
 void TREE::negamax2(NODE* p){			
 	++ visited;
 	if (p->isleaf){
@@ -258,7 +258,7 @@ void TREE::negamax2(NODE* p){
 	//-//cout<< *p<< endl; 
 }
 		
-		// ��ת�� min Ҷ����ֵ
+		// 翻转了 min 叶结点的值
 VALUE TREE::alphabeta_negamax(NODE* p, VALUE alpha, VALUE beta){
 	++ visited;
 	VALUE olda = alpha; 
@@ -287,7 +287,7 @@ VALUE TREE::alphabeta_negamax(NODE* p, VALUE alpha, VALUE beta){
 	return p->value; 
 }
 
-		// ��ת�� min Ҷ����ֵ
+		// 翻转了 min 叶结点的值
 VALUE TREE::failsoft_negamax(NODE* p, VALUE alpha, VALUE beta){
 	++ visited;
 	VALUE olda = alpha; 
@@ -317,7 +317,7 @@ VALUE TREE::failsoft_negamax(NODE* p, VALUE alpha, VALUE beta){
 	return p->value; 
 }
 
-		// ��ת�� min Ҷ����ֵ
+		// 翻转了 min 叶结点的值
 VALUE TREE::negascout(NODE* p, VALUE alpha, VALUE beta){
 	++ visited;
 	VALUE olda = alpha; 
@@ -338,7 +338,7 @@ VALUE TREE::negascout(NODE* p, VALUE alpha, VALUE beta){
 		alpha = better; 
 	for (int i = 1; i < p->sons.size(); ++i){
 		v = - negascout ( p->sons[i], -alpha-1, -alpha); 
-		// v == alpha + 1 ʱȷҲ��Ҫ������������Ϊ�����Ǽ�֦����
+		// v == alpha + 1 时确也需要重新搜索，因为可能是剪枝而来
 		if (v<beta && v>alpha)
 			v = -negascout(p->sons [i], -beta, -v); 
 		better = max(v, better); 
@@ -355,7 +355,7 @@ VALUE TREE::negascout(NODE* p, VALUE alpha, VALUE beta){
 	return p->value; 
 }
 
-		// ��ת�� min Ҷ����ֵ
+		// 翻转了 min 叶结点的值
 VALUE TREE::mtdf(NODE* p, VALUE guess){
 	++ visited;
     VALUE lowbound = INT_MIN; 
@@ -375,7 +375,7 @@ VALUE TREE::mtdf(NODE* p, VALUE guess){
 	return guess; 
 }
 
-/* _______________________________ ������ _______________________________ */
+/* _______________________________ 测试区 _______________________________ */
 
 void TEST_S::timefunc (string which) {
 	 RANDER  r; 
