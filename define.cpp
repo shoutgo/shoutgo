@@ -5,7 +5,7 @@
 
 void ___parassert(bool exp, string s){
 	if (!exp){
-		cerr << setx(R) << "___parassert(" << s << ") is failure ! ";
+		cerr << setx(RG) << "___parassert(" << s << ") is failure ! ";
 		cout << setx(W) << endl; 
 	} 
 }

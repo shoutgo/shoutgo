@@ -126,7 +126,7 @@ VALUE TREE::alphabeta_minmax(NODE* p, VALUE alpha, VALUE beta){
 	VALUE olda = alpha; 
 	VALUE oldb = beta; 
 	if (p->isleaf){
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
 		return (p->value); 
 	}
 	if (p->ismax ){
@@ -149,7 +149,7 @@ VALUE TREE::alphabeta_minmax(NODE* p, VALUE alpha, VALUE beta){
 							// 会被 beta "抹平"
 							// 这个赋值可看作是对子层一个或全部
 							// 结点改值后给此结点赋真实值。
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 		return p->value; 
 	}
 	else {
@@ -163,7 +163,7 @@ VALUE TREE::alphabeta_minmax(NODE* p, VALUE alpha, VALUE beta){
 			}
 		}
 		p->value = beta; 
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 		return p->value; 
 	}
 }
@@ -173,7 +173,7 @@ VALUE TREE::failsoft_minmax(NODE* p, VALUE alpha, VALUE beta){
 	VALUE olda = alpha; 
 	VALUE oldb = beta; 
 	if (p->isleaf){
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
 		return (p->value); 
 	}
 	if (p->ismax ){
@@ -192,7 +192,7 @@ VALUE TREE::failsoft_minmax(NODE* p, VALUE alpha, VALUE beta){
 							// 但若把被剪掉的子树看作根本不存在，
 							// 则可认为是真实值。
 							// 所谓新树的真实值，原树的伪值。
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 		return p->value; 
 	}
 	else {
@@ -208,7 +208,7 @@ VALUE TREE::failsoft_minmax(NODE* p, VALUE alpha, VALUE beta){
 			}
 		}
 		p->value = better; 
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 		return p->value; 
 	}
 }
@@ -268,7 +268,7 @@ VALUE TREE::alphabeta_negamax(NODE* p, VALUE alpha, VALUE beta){
 			p->flip = 1; 
 			p->value *= -1; 
 		}
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
 		return (p->value); 
 	}
 	VALUE v; 
@@ -283,7 +283,7 @@ VALUE TREE::alphabeta_negamax(NODE* p, VALUE alpha, VALUE beta){
 	if (! p->ismax )
 		p->flip = 1; 
 	p->value = alpha; 
-	//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+	//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 	return p->value; 
 }
 
@@ -297,7 +297,7 @@ VALUE TREE::failsoft_negamax(NODE* p, VALUE alpha, VALUE beta){
 			p->flip = 1; 
 			p->value *= -1; 
 		}
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
 		return (p->value); 
 	}
 	VALUE v, better = INT_MIN; 
@@ -313,7 +313,7 @@ VALUE TREE::failsoft_negamax(NODE* p, VALUE alpha, VALUE beta){
 	if (! p->ismax )
 		p->flip = 1; 
 	p->value = better; 
-	//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+	//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 	return p->value; 
 }
 
@@ -327,7 +327,7 @@ VALUE TREE::negascout(NODE* p, VALUE alpha, VALUE beta){
 			p->flip = 1; 
 			p->value *= -1; 
 		}
-		//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<setx(W)<< endl; 
+		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
 		return (p->value); 
 	}
 	VALUE v; 
@@ -351,7 +351,7 @@ VALUE TREE::negascout(NODE* p, VALUE alpha, VALUE beta){
 	if (! p->ismax )
 		p->flip = 1; 
 	p->value = better; 
-	//-//cout<< *p <<setx(R|G)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+	//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
 	return p->value; 
 }
 

@@ -19,7 +19,7 @@ public:
 	string	axis( const POS& pos) const; 
 	void	print( const GO& go, const BITB& mask = FULL_BB); 
 	void	print( const GO& go, const GO& markgo, 
-					RGB xxc = B, RGB ooc = G, RGB xoc = R); 
+					RGB xxc = RB, RGB ooc = GB, RGB xoc = RG); 
 	/*
 	string	axis ( string board); 
 	string	print__ ( const GO&, const BITB& markbb = NULL_BB, 

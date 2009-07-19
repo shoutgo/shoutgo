@@ -6,17 +6,17 @@
 
 LEARN::LEARN(string sgfpath){
 	// 因为缓式计算的关系，要保证都 load(), 应该用 &&
-	if ( g_init.load_xorand_key2rand (LIBPATH + "xorand") &&
-		lib_pemis.load( LIBPATH + "pemis") &&
-		lib_zobrist[0].load( LIBPATH + "zobrist0") &&
-		lib_zobrist[1].load( LIBPATH + "zobrist1") &&
-		lib_zobrist[2].load( LIBPATH + "zobrist2") &&
-		lib_zobrist[3].load( LIBPATH + "zobrist3") &&
-		lib_zobrist[4].load( LIBPATH + "zobrist4") &&
-		lib_zobrist[5].load( LIBPATH + "zobrist5") &&
-		lib_zobrist[6].load( LIBPATH + "zobrist6") &&
-		lib_zobrist[7].load( LIBPATH + "zobrist7") &&
-		lib_zobrist[8].load( LIBPATH + "zobrist8") ){
+	if ( g_init.load_xorand_key2rand ("lib/xorand") &&
+		lib_pemis.load( "lib/pemis") &&
+		lib_zobrist[0].load( "lib/zobrist0") &&
+		lib_zobrist[1].load( "lib/zobrist1") &&
+		lib_zobrist[2].load( "lib/zobrist2") &&
+		lib_zobrist[3].load( "lib/zobrist3") &&
+		lib_zobrist[4].load( "lib/zobrist4") &&
+		lib_zobrist[5].load( "lib/zobrist5") &&
+		lib_zobrist[6].load( "lib/zobrist6") &&
+		lib_zobrist[7].load( "lib/zobrist7") &&
+		lib_zobrist[8].load( "lib/zobrist8") ){
 		clog <<"All FSMs been loaded ."<< endl; 
 	}
 	else {
@@ -27,29 +27,29 @@ LEARN::LEARN(string sgfpath){
 }
 
 LEARN::~LEARN(){
-	VS  vf = INOUT().getfilename(LIBPATH, "*"); 
-	if (find(vf.begin (), vf.end (), LIBPATH + "xorand") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "pemis") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist0") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist1") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist2") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist3") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist4") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist5") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist6") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist7") == vf.end() || 
-		find(vf.begin (), vf.end (), LIBPATH + "zobrist8") == vf.end() ) {
-			g_init.save_xorand (LIBPATH + "xorand"); 
-			lib_pemis.save( LIBPATH + "pemis"); 
-			lib_zobrist[0 ].save( LIBPATH + "zobrist0"); 
-			lib_zobrist[1 ].save( LIBPATH + "zobrist1"); 
-			lib_zobrist[2 ].save( LIBPATH + "zobrist2"); 
-			lib_zobrist[3 ].save( LIBPATH + "zobrist3"); 
-			lib_zobrist[4 ].save( LIBPATH + "zobrist4"); 
-			lib_zobrist[5 ].save( LIBPATH + "zobrist5"); 
-			lib_zobrist[6 ].save( LIBPATH + "zobrist6"); 
-			lib_zobrist[7 ].save( LIBPATH + "zobrist7"); 
-			lib_zobrist[8 ].save( LIBPATH + "zobrist8"); 
+	VS  vf = INOUT().getfilename("lib/", "*"); 
+	if (find(vf.begin (), vf.end (), "lib/xorand") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/pemis") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist0") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist1") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist2") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist3") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist4") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist5") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist6") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist7") == vf.end() || 
+		find(vf.begin (), vf.end (), "lib/zobrist8") == vf.end() ) {
+			g_init.save_xorand ("lib/xorand"); 
+			lib_pemis.save( "lib/pemis"); 
+			lib_zobrist[0 ].save( "lib/zobrist0"); 
+			lib_zobrist[1 ].save( "lib/zobrist1"); 
+			lib_zobrist[2 ].save( "lib/zobrist2"); 
+			lib_zobrist[3 ].save( "lib/zobrist3"); 
+			lib_zobrist[4 ].save( "lib/zobrist4"); 
+			lib_zobrist[5 ].save( "lib/zobrist5"); 
+			lib_zobrist[6 ].save( "lib/zobrist6"); 
+			lib_zobrist[7 ].save( "lib/zobrist7"); 
+			lib_zobrist[8 ].save( "lib/zobrist8"); 
 			clog << "All FSM been saved ." << endl; 
 			sleep(2000); 
 			
@@ -123,7 +123,7 @@ void LEARN::learn(VS vf){
 
 		___.toc();
 	}
-	INOUT().save2txt(vf, LIBPATH + "filenames.txt");
+	INOUT().save2txt(vf, "lib/filenames.txt");
 }
 
 void LEARN::visit(SGFNODE* p, INFOGO* infop, FPTR f ){
