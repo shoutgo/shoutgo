@@ -163,11 +163,20 @@ void INIT::set_id8_q8 (){
 }
 
 void INIT::set_xorand_key2rand(){
-	UL seed = (unsigned)clock(); 
+	/*
+	UL seed;
 	for(int i = 0; i<BS*BS; ++i){									
+			seed = (unsigned)clock(); 
 			xrand.push_back (rand32(seed)); 
 			key2rand[xrand[i]] = make_pair(i2pos(i), BLACK); 
 			orand.push_back (rand32(seed)); 
+			key2rand[orand[i]] = make_pair(i2pos(i), WHITE); 
+	}
+	*/
+	for(int i = 0; i<BS*BS; ++i){									
+			xrand.push_back (rand()); 
+			key2rand[xrand[i]] = make_pair(i2pos(i), BLACK); 
+			orand.push_back (rand()); 
 			key2rand[orand[i]] = make_pair(i2pos(i), WHITE); 
 	}
 	key2rand[0] = NULL_MOVE; 

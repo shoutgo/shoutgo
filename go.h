@@ -128,7 +128,7 @@ void review(){
 		//___ESC; 
 		//command_state(t, BIND<string, char*>()(1, "scan")); 
 	}
-	//for thesis
+	/*
 	GO goo,go;
 	INFOGO inff,inf;
 	___.tic("go.move()");
@@ -145,7 +145,7 @@ void review(){
 		inff = inf;
 	}
 	___.toc();
-	//for thesis
+	*/
 	cout << vect.back ();
 	cout << endl;
 	t = vect[0]; 

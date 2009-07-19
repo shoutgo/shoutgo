@@ -149,27 +149,25 @@ public:
 
 /* _______________________________ 测试区 _______________________________ */
 
-#define MACRO_ALL		1
+#define MACRO_ASSERT		0
+#define MACRO_PARASSERT		0
+#define MACRO_CONTROL		0
 
-#define MACRO_ASSERT		1
-#define MACRO_PARASSERT		1
-#define MACRO_CONTROL		1
-
-#define MACRO_CODEUNIT		1
-#define MACRO_COUT		1
+#define MACRO_CODEUNIT		0
+#define MACRO_COUT		0
 
 /* 验证宏：参数验证和正确性验证 */
 
 void ___assert(bool exp, string s, string _f_ = "", long _l_ = 0); 
 void ___parassert(bool exp, string s); 
 
-#if MACRO_ALL && MACRO_PARASSERT
+#if MACRO_PARASSERT
 #define	___PARASSERT(exp)	___parassert(exp, #exp); 
 #else
 #define ___PARASSERT(exp)	{}
 #endif
 
-#if MACRO_ALL && MACRO_ASSERT  
+#if MACRO_ASSERT  
 #define	___ASSERT(exp)		___assert(exp, #exp); 
 #else
 #define ___ASSERT(exp)		{}
@@ -177,7 +175,7 @@ void ___parassert(bool exp, string s);
 
 /* 控制宏 */
 
-#if MACRO_ALL && MACRO_CONTROL
+#if MACRO_CONTROL
 #define ___ESC	{}
 #else 
 #define ___ESC	{}
@@ -193,7 +191,8 @@ void ___parassert(bool exp, string s);
 
 /* 输出宏：输出变量，报告函数内部状态 */
 
-#if MACRO_ALL && MACRO_COUT
+#if MACRO_COUT
+
 template <class T>
 void ___cout(T t, string s) {
 	if (typeid(T) == typeid(int) || 
