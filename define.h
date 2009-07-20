@@ -124,12 +124,6 @@ const string B = "\033[1;34m";
 const string RG = "\033[1;33m";
 const string RB = "\033[1;35m";
 const string GB = "\033[1;36m";
-const string _R = "\033[0;41m";
-const string _G = "\033[0;42m";
-const string _B = "\033[0;44m";
-const string _RG = "\033[0;43m";
-const string _RB = "\033[0;45m";
-const string _GB = "\033[0;46m";
 const string W = "\033[0m";
 
 const		int			BS = 19; // max: 25

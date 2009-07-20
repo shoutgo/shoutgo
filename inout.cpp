@@ -39,24 +39,32 @@ string     INOUT::logo_() {
 	return s; 
 }
 
+string   INOUT::stone(const COLOR& clr) {
+	switch (clr) {
+		case BLACK: return " ● ";
+		case WHITE: return " ○ ";
+		case BLACK_WHITE: return " ⊙ ";
+	}
+}
+ 
 string   INOUT::grid(const POS& pos) {	
 	int		 r = pos.first; 
 	ROW		 p = pos.second; 
-	if (r == 0 && p == LEFTEST)		{return "┏"; }
-	if (r == 0 && p == 1)			{return "┓"; }
-	if (r == BS-1 && p == 1)		{return "┛"; }
-	if (r == BS-1 && p == LEFTEST)	{return "┗"; }
-	if (r == 0)						{return "┯"; }
-	if (p == 1)						{return "┨"; }
-	if (r == (BS-1))				{return "┷"; }
-	if (p == LEFTEST)				{return "┠"; }
+	if (r == 0 && p == LEFTEST)		{return " ┏━"; }
+	if (r == 0 && p == 1)			{return "━┓ "; }
+	if (r == BS-1 && p == 1)		{return "━┛ "; }
+	if (r == BS-1 && p == LEFTEST)	{return " ┗━"; }
+	if (r == 0)						{return "━┯━"; }
+	if (p == 1)						{return "─┨ "; }
+	if (r == (BS-1))				{return "━┷━"; }
+	if (p == LEFTEST)				{return " ┠─"; }
 	if ((BS >= 13) &&
 		((r == 3) || (r == MIDBS) || (r == (BS-1-3)) ) &&
 		((p == (1<<3)) || (p == (CENTEREST)) || (p == (1<<(BS-1-3)))))
-									{return "╋"; }
+									{return "─+─"; }
 	if (r == MIDBS && p == CENTEREST )
-									{return "╋"; }
-	else 							{return "┼"; }
+									{return "─+─"; }
+	else 							{return "─┼─"; }
 }
 
 POS		 INOUT::in2pos(const POS& pos, string in) {	
@@ -120,22 +128,23 @@ POS		 INOUT::jj2pos(string in, const POS& pp){
 }
 
 string INOUT::axis(const POS& pos) const {
-	if (!axisshow)
-		return "  "; 
-	//static string h = "ＺＹＸＷＶＵＴＳＲＱＰＯＮＭＬＫＪＩＨＧＦＥＤＣＢＡ";
-	static string h = " Z Y X W V U T S R Q P O N M L K J I H G F E D C B A"; 
-	static string v = " 1 2 3 4 5 6 7 8 91011121314151617181920212223242526";
+	static string nullstr = "   ";
+	static string h = " Z  Y  X  W  V  U  T  S  R  Q  P  O  N  M  L  K  J  I  H  G  F  E  D  C  B  A ";  
+	static string v = " 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ";
 	static string blanks = "";
+	if (!axisshow)
+		return nullstr; 
+	int w = nullstr.size();
 	if (pos == corner(WN))
-		return blanks + "  " + h.substr ( h.size()-BS*2,BS*2) + "  "+ "\n" 
-			 + blanks + v.substr (pos.first*2, 2); 
+		return blanks + nullstr + h.substr ( h.size()-BS*w,BS*w) + nullstr + "\n" 
+			 + blanks + v.substr (pos.first*w, w); 
 	else if (pos == corner(ES))
-		return v.substr (pos.first*2, 2) + "\n" 
-			 + blanks + "  " + h.substr ( h.size()-BS*2, BS*2) + "  "; 
+		return v.substr (pos.first*w, w) + "\n" 
+			 + blanks + nullstr + h.substr ( h.size()-BS*w, BS*w) + nullstr; 
 	else if (pos.second & LEFTEST)
-		return blanks + v.substr (pos.first*2, 2); 
+		return blanks + v.substr (pos.first*w, w); 
 	else if (pos.second & 1)
-		return v.substr (pos.first*2, 2); 
+		return v.substr (pos.first*w, w); 
 }
 
 void	INOUT::print(const GO& go, const BITB& mask) {	
@@ -147,13 +156,10 @@ void	INOUT::print(const GO& go, const BITB& mask) {
 		if ( mask[pos] ){ 
 			switch (go[pos]) {
 				case BLACK:				
-					s = "●"; break; 
 				case WHITE:				
-					s = "○"; break; 
 				case BLACK_WHITE:	   	
-					s = "⊙"; break; 
+					s = stone(go[pos]); break; 
 				case HOTKO:			    
-					s = grid(pos); break; 
 				case EMPTY:			    
 					s = grid(pos); break; 
 			}
@@ -179,13 +185,10 @@ void	INOUT::print(const GO& go, const GO& markgo, RGB xxc, RGB ooc, RGB xoc) {
 			cout << axis(pos); 
 		switch (go[pos]) {
 			case BLACK:				
-				s = "●"; break; 
 			case WHITE:				
-				s = "○"; break; 
 			case BLACK_WHITE:	   	
-				s = "⊙"; break; 
+				s = stone(go[pos]); break; 
 			case HOTKO:			    
-				s = grid(pos); break; 
 			case EMPTY:			    
 				s = grid(pos); break; 
 		}

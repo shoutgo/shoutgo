@@ -15,7 +15,8 @@ public:
 	INOUT(bool b = 1); 
 
 	string	logo_( ); 
-    string	grid( const POS&); 
+	string  stone( const COLOR&);
+	string	grid( const POS&); 
 	string	axis( const POS& pos) const; 
 	void	print( const GO& go, const BITB& mask = FULL_BB); 
 	void	print( const GO& go, const GO& markgo, 
