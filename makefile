@@ -17,4 +17,4 @@ main: $(OBJECTS)
 	rm -f $@.$$$$
 
 clean:
-	-rm main *.o *.d *~
+	-rm main *.o *.d *~ core.*

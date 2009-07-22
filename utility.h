@@ -62,9 +62,9 @@
 /*extern *//*inline */ VVVF randvvvf_ (int m, int n, int l);
 UL rand32 (UL & Seed, UL Multiplier = 16807);
 UL longmulmod (UL Multiplier, UL Multiplicand, UL Divisor);
+VS getline ();
 COLOR operator ~ (const COLOR c);
 /*extern *//*inline */ int str2i (string s, int minv, int maxv);
 /*extern *//*inline */ VI indexsort (const VI & vi);
-VS getline ();
 
 #endif /*  */

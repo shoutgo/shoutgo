@@ -38,4 +38,4 @@ public:
 /*inline*/ VI link4 (BITB b, POS p);
 /*inline*/ int link (BITB b, POS p);
 
-#endif /*  */
+#endif

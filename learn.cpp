@@ -82,7 +82,8 @@ LEARN::learn (VS vf)
        */
       delete p;
       ___.toc ();
-  } for (int v = 0; v < vf.size (); ++v)
+  }
+  for (int v = 0; v < vf.size (); ++v)
     {
       n_pemis = 0;
       ___.tic ("pemis");
@@ -113,7 +114,8 @@ LEARN::learn (VS vf)
 	  infop->delfromroot ();
 	} delete p;
       ___.toc ();
-    } INOUT ().save2txt (vf, "lib/filenames.txt");
+    }
+  INOUT ().save2txt (vf, "lib/filenames.txt");
 }
 
 void

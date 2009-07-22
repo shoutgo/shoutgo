@@ -64,7 +64,9 @@ public:
 
 
 /* class SEARCH */
-template < class T_RESULT, class T_NODE, class T_PATH, class T_CONTROL = bool > class SEARCH
+
+template < class T_RESULT, class T_NODE, class T_PATH, class T_CONTROL = bool >
+class SEARCH
 {
 public:
   int numb;

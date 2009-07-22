@@ -66,7 +66,7 @@ public:
   /*
      void            save2txt(string content, string filename = "go.txt"); 
      void            save2txt(const VVF& v, string filename = "datayx.txt"); 
-     void                 save2txt(const GO& go, string filename = "go.txt"); 
+     void            save2txt(const GO& go, string filename = "go.txt"); 
    */
   // 这个是利用输出重定向按字符方式保存
     template < typename T > void save2txt (const T & t, string filename);
@@ -84,7 +84,8 @@ public:
     template < typename T > void load (vector < vector < T > >&vvt, ifstream & file);
 };
 
-template < typename T > void
+template < typename T >
+void
 INOUT::save2txt (const T & t, string filename)
 {
   ofstream file (filename.c_str (), ios::app);
@@ -98,7 +99,8 @@ INOUT::save2txt (const T & t, string filename)
   // file << t; 与以上四句功能同
 }
 
-template < typename T > void
+template < typename T >
+void
 INOUT::save (const T & t, string filename)
 {
   ofstream file (filename.c_str (), ios::binary);
@@ -108,7 +110,8 @@ INOUT::save (const T & t, string filename)
   file.close ();
 }
 
-template < typename T > void
+template < typename T >
+void
 INOUT::load (T & t, string filename)
 {
   ifstream file (filename.c_str (), ios::binary);
@@ -118,7 +121,8 @@ INOUT::load (T & t, string filename)
   file.close ();
 }
 
-template < typename T > void
+template < typename T >
+void
 INOUT::save (const vector < T > &vt, ofstream & file)
 {
 
@@ -133,7 +137,8 @@ INOUT::save (const vector < T > &vt, ofstream & file)
   //file.close(); 
 }
 
-template < typename T > void
+template < typename T >
+void
 INOUT::load (vector < T > &vt, ifstream & file)
 {
 
@@ -153,7 +158,8 @@ INOUT::load (vector < T > &vt, ifstream & file)
   //file.close(); 
 }
 
-template < typename T > void
+template < typename T >
+void
 INOUT::save (const vector < vector < T > >&vvt, ofstream & file)
 {
 
@@ -173,7 +179,8 @@ INOUT::save (const vector < vector < T > >&vvt, ofstream & file)
   //file.close(); 
 }
 
-template < typename T > void
+template < typename T >
+void
 INOUT::load (vector < vector < T > >&vvt, ifstream & file)
 {
 
@@ -218,21 +225,24 @@ ostream & operator<< (ostream & os, const VI & veci);
 ostream & operator<< (ostream & os, const pair < EYEKIND, VP > &ts);
 ostream & operator<< (ostream & os, MPI m);
 
-template < class T > ostream & operator<< (ostream & os, const vector < T > &vt)
+template < class T >
+ostream & operator<< (ostream & os, const vector < T > &vt)
 {
   for (int i = 0; i < vt.size (); ++i)
     os << setw (22) << vt[i] << " ";
   return os;
 }
 
-template < class T > ostream & operator<< (ostream & os, const vector < vector < T > >&vvt)
+template < class T >
+ostream & operator<< (ostream & os, const vector < vector < T > >&vvt)
 {
   for (int i = 0; i < vvt.size (); ++i)
     os << vvt[i] << endl;
   return os;
 }
 
-template < class T, class S > ostream & operator<< (ostream & os, const pair < T, S > pts)
+template < class T, class S >
+ostream & operator<< (ostream & os, const pair < T, S > pts)
 {
   os << "[" << pts.first << ", " << pts.second << "] ";
   return os;

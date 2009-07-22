@@ -53,12 +53,14 @@ class PATFREQ
 {
 public:
   static const int PEMIS_KIND = 4;
-private:int x[PEMIS_KIND][BS * BS];
+private:
+  int x[PEMIS_KIND][BS * BS];
   int o[PEMIS_KIND][BS * BS];
 public:
   PATFREQ ()
   {
-  } void setflag ();
+  }
+  void setflag ();
   void setf (const POS & pos, COLOR clr, int i, int freq);
   int getf (const POS & pos, COLOR clr, int i) const;
   friend ostream & operator<< (ostream & os, const PATFREQ & pf);
@@ -181,6 +183,5 @@ public:
   bool operator == (const GO & go) const;
   friend ostream & operator<< (ostream &, const INFOGO &);
 };
-
 
 #endif

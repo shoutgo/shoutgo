@@ -4,9 +4,11 @@
 #include "bitboard.h"
 class GO
 {
-public:BITB xx;
+public:
+  BITB xx;
   BITB oo;
-protected:  BITB kill;
+protected:
+  BITB kill;
   POS hotko;
   POS lastpos;
   COLOR lastclr;
@@ -56,7 +58,7 @@ public:
   GO operator| (const GO & go) const;
   GO operator^ (const GO & go) const;
   COLOR operator[] (const POS & pos) const;
-  GO operator  () (const BITB & mark, const POS & markp = NULL_POS) const;
+  GO operator() (const BITB & mark, const POS & markp = NULL_POS) const;
   friend ostream & operator<< (ostream &, const GO &);
 };
 

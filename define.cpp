@@ -223,7 +223,8 @@ INIT::set_xorand_key2rand ()
       key2rand[xrand[i]] = make_pair (i2pos (i), BLACK);
       orand.push_back (rand ());
       key2rand[orand[i]] = make_pair (i2pos (i), WHITE);
-    } key2rand[0] = NULL_MOVE;
+    }
+  key2rand[0] = NULL_MOVE;
 
   // 检测重复性
   ___ASSERT (key2rand.size () == (2 * BS * BS + 1));
@@ -247,7 +248,6 @@ INIT::load_xorand_key2rand (string filename)
   INOUT ().load (orand, file);
   file.close ();
 
-  //
   for (int i = 0; i < BS * BS; ++i)
     {
       key2rand[xrand[i]] = make_pair (i2pos (i), BLACK);
@@ -275,14 +275,16 @@ void
 INIT::swap_xorand ()
 {
   swap (xrand, orand);
-} void
+}
 
+void
 INIT::swap_id8_q8 (int i, int j)
 {
   swap (id8[i], id8[j]);
   swap (q8[i], q8[j]);
-} BITB
+}
 
+BITB
 INIT::getjosekimask (int i) const
 {
   return josekimask[i];

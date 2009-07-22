@@ -19,7 +19,7 @@ template < class T >
 class FSM
 {
   vector < T > father;
-  vector < vector < T > >sons;
+  vector < vector < T > > sons;
   VVI freq;
 private:
   //-// 有重复计算
@@ -59,7 +59,8 @@ public:
 	sons.push_back (vector < T > (1, son));
 	freq.push_back (VI (1, 1));
       }
-  ___ASSERT (father.size () == sons.size () && sons.size () == freq.size ())}
+  ___ASSERT (father.size () == sons.size () && sons.size () == freq.size ())
+  }
   MOVE getmove (T fa, int i)
   {
 
@@ -265,7 +266,10 @@ class TERM
   FSM < ULL > liberty;
 public:
   TERM ();
-  template < class T > void insert (string patstr, vector < T >)
+
+  template < class T >
+  void
+  insert (string patstr, vector < T >)
   {
   }
 };

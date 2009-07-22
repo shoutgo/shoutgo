@@ -784,13 +784,15 @@ int
 randsqrt (int m)
 {
   return sqrtf ((float) (rand () % (m * m)));
-} int
+}
 
+int
 randlog_ (int m)
 {				//-// right ?
   return log ((float) (rand () + 1)) / 15 * m;
-} float
+}
 
+float
 randf ()
 {
   return ((float) rand () / (float) (rand () + 1) * (prob (1, 2) ? 1 : -1));

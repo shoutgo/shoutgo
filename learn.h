@@ -22,7 +22,9 @@ struct SGFROOT
   COLOR turn;
   vector < SGFNODE * >sons;
   ~SGFROOT ();
-  template < class T > void
+
+  template < class T >
+  void
   fuseki (T * t_ptr) const
   {
     for (int i = 0; i < xfuseki.size (); ++i)

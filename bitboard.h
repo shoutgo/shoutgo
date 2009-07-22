@@ -4,11 +4,14 @@
 #include "utility.h"
 class BITB
 {
-public:ROW r[BS];
-public:BITB (ROW x = 0);
+public:
+  ROW r[BS];
+public:
+  BITB (ROW x = 0);
   BITB (ROW a[]);
   BITB (const POS & p);
-public:void random ();
+public:
+  void random ();
   BITB ruboff (const BITB & mask) const;
   BITB ruboff (int width1, int width2) const;
   BITB diagonal () const;

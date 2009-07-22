@@ -275,7 +275,8 @@ test_array_if ()
     {
       a = xo[p];
       p = !p;
-    } ___.toc ();
+    }
+  ___.toc ();
   ___.tic ("from if", t);
   for (int i = 0; i < t; ++i)
     {

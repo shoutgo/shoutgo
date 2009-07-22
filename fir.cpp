@@ -1,10 +1,8 @@
 #include "fir.h"
 #include "inout.h"
 
-const int
-  FIR::FIRNUM = 4;
-const int
-  FIR::FIR_MAX = 10000;
+const int FIR::FIRNUM = 4;
+const int FIR::FIR_MAX = 10000;
 
   //性能优化可能大大提高速度，
   //但表现在搜索层次上可能只增加一两层，

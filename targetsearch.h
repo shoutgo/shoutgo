@@ -22,11 +22,13 @@ enum AIM
 
 class AIMGRAPH
 {
-public:static const LIKELIHOOD P_MAX = 100;
+public:
+  static const LIKELIHOOD P_MAX = 100;
   LIKELIHOOD p[AIM_SIZE];
   AIM father[AIM_SIZE];
-    vector < AIM > sons[AIM_SIZE];
-public:  AIMGRAPH ();
+  vector < AIM > sons[AIM_SIZE];
+public:
+  AIMGRAPH ();
   void setup (vector < AIM >);
   AIM forward (AIM);
   AIM backward (AIM);

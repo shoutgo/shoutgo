@@ -27,7 +27,8 @@ NN::producedata (int m, int n)
 	else
 	  vf.push_back (fmod ((float) rand (), xrange));
       datayx.push_back (vf);
-    } return datayx;
+    }
+  return datayx;
 }
 
 VF

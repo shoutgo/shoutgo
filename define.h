@@ -123,6 +123,7 @@ const VP NULL_VP;
 const int NOINIT = INT_MIN;
 const string SGFPATH = "sgf/";
 const string LIBPATH = "lib/";
+
 class setx
 {
 private:
@@ -130,7 +131,8 @@ private:
 public:
   setx (RGB x):c (x)
   {
-  } friend ostream & operator<< (ostream & os, setx s);
+  }
+  friend ostream & operator<< (ostream & os, setx s);
 };
 
 
@@ -144,19 +146,20 @@ public:
 #define MACRO_COUT		0
 
 /* 验证宏：参数验证和正确性验证 */
+
 void ___assert (bool exp, string s, string _f_ = "", long _l_ = 0);
 void ___parassert (bool exp, string s);
 
 #if MACRO_PARASSERT
-#  define	___PARASSERT(exp)	___parassert(exp, #exp);
+#  define ___PARASSERT(exp)	___parassert(exp, #exp);
 #else
 #  define ___PARASSERT(exp)	{}
 #endif
 
 #if MACRO_ASSERT
-#  define	___ASSERT(exp)		___assert(exp, #exp);
+#  define ___ASSERT(exp)	___assert(exp, #exp);
 #else
-#  define ___ASSERT(exp)		{}
+#  define ___ASSERT(exp)	{}
 #endif
 
 /* 控制宏 */
@@ -178,7 +181,8 @@ void ___parassert (bool exp, string s);
 /* 输出宏：输出变量，报告函数内部状态 */
 
 #if MACRO_COUT
-template < class T > void
+template < class T >
+void
 ___cout (T t, string s)
 {
   if (typeid (T) == typeid (int) || typeid (T) == typeid (unsigned) || typeid (T) == typeid (float) || typeid (T) == typeid (double) || typeid (T) == typeid (ULL) || typeid (T) == typeid (POS)
@@ -238,9 +242,9 @@ public:
   VU vu;
   VP vp;
   VS vs;
-    vector < DIRECTION > vd;
-    vector < COLOR > vc;
-    vector < ACTION > va;
+  vector < DIRECTION > vd;
+  vector < COLOR > vc;
+  vector < ACTION > va;
   VB vb;
   VG vg;
 public:
@@ -300,7 +304,7 @@ template < typename T, typename S >
 class BIND
 {
 public:vector < T > vt;
-  vector < T > &operator  ()(int numb,...)
+  vector < T > & operator()(int numb,...)
   {
     va_list ptr;
     va_start (ptr, numb);

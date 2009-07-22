@@ -74,14 +74,7 @@ AIMGRAPH::setup (vector < AIM > va)
 //注意unique()只整合相邻的相同元素，
 //所以最好先排序才能删除间隔但相同者；
 //除非每次只插入一个新元素。待完善。
-TARGET::TARGET (AIM a, int ma, const PBC & ob, const PBC & en, int pr, bool se, int pa):
-aim (a),
-maxdepth (ma),
-obj (ob),
-env (en),
-probvalue (pr),
-sentewish (se),
-passtimes (pa)
+TARGET::TARGET (AIM a, int ma, const PBC & ob, const PBC & en, int pr, bool se, int pa): aim (a), maxdepth (ma), obj (ob), env (en), probvalue (pr), sentewish (se), passtimes (pa)
 {
 }
 
@@ -123,8 +116,7 @@ TARGETS::TARGETS (const VVT & a):nut (a)
 
 TARGETS::TARGETS (const TARGET & t)
 {
-  VT
-    vt = VT (1, t);
+  VT vt = VT (1, t);
   nut.push_back (vt);
 }
 
@@ -133,34 +125,27 @@ TARGETS::TARGETS (const TARGET & t)
 bool
 operator == (const VT & vta, const VT & vtb)
 {
-  ST
-  sta (vta.begin (), vta.end ());
-  ST
-  stb (vtb.begin (), vtb.end ());
+  ST sta (vta.begin (), vta.end ());
+  ST stb (vtb.begin (), vtb.end ());
   return (sta == stb);
 }
 
 bool
 operator != (const VT & vta, const VT & vtb)
 {
-  ST
-  sta (vta.begin (), vta.end ());
-  ST
-  stb (vtb.begin (), vtb.end ());
+  ST sta (vta.begin (), vta.end ());
+  ST stb (vtb.begin (), vtb.end ());
   return (sta != stb);
 }
 
 TARGETS
 operator | (const TARGET & a, const TARGET & b)
 {
-  VT
-  vta (1, a);
-  VVT
-  vvt (1, vta);
+  VT vta (1, a);
+  VVT vvt (1, vta);
   if (a != b)
     {
-      VT
-      vtb (1, b);
+      VT vtb (1, b);
       vvt.push_back (vtb);
     }
   return TARGETS (vvt);
@@ -169,10 +154,8 @@ operator | (const TARGET & a, const TARGET & b)
 TARGETS
 operator & (const TARGET & a, const TARGET & b)
 {
-  VT
-  vta (1, a);
-  VVT
-  vvt (1, vta);
+  VT vta (1, a);
+  VVT vvt (1, vta);
   if (a != b)
     {
       vvt[0].push_back (b);
@@ -186,8 +169,7 @@ TARGETS
 operator ~ (TARGETS a)
 {
   vector < TARGETS > vts (a.nut.size ());
-  VT
-    vt;
+  VT vt;
   for (int i = 0; i < a.nut.size (); ++i)	//将 a.nut 按行（与结构）每个元素取~后
     for (int j = 0; j < a.nut[i].size (); ++j)
       {				//竖排（或结构）形成一个targets, 共a.nut.size()个
@@ -207,28 +189,23 @@ operator ~ (TARGETS a)
 bool
 operator == (const TARGETS & a, const TARGETS & b)
 {
-  SVT
-  svta (a.nut.begin (), a.nut.end ());
-  SVT
-  svtb (b.nut.begin (), b.nut.end ());
+  SVT svta (a.nut.begin (), a.nut.end ());
+  SVT svtb (b.nut.begin (), b.nut.end ());
   return (svta == svtb);
 }
 
 bool
 operator != (const TARGETS & a, const TARGETS & b)
 {
-  SVT
-  svta (a.nut.begin (), a.nut.end ());
-  SVT
-  svtb (b.nut.begin (), b.nut.end ());
+  SVT svta (a.nut.begin (), a.nut.end ());
+  SVT svtb (b.nut.begin (), b.nut.end ());
   return (svta != svtb);
 }
 
 TARGETS
 operator | (const TARGETS & a, const TARGETS & b)
 {
-  TARGETS
-    tmp = a;
+  TARGETS tmp = a;
   copy (b.nut.begin (), b.nut.end (), tmp.nut.end ());
   unique (tmp.nut.begin (), tmp.nut.end ());
   return tmp;
@@ -237,28 +214,26 @@ operator | (const TARGETS & a, const TARGETS & b)
 TARGETS
 operator & (const TARGETS & a, const TARGETS & b)
 {
-  TARGETS
-    tmp;
+  TARGETS tmp;
   for (int i = 0; i < b.nut.size (); ++i)
     {
       copy (a.nut.begin (), a.nut.end (), tmp.nut.end ());
       for (int j = 0; j < a.nut.size (); ++j)
 	{
-	  int
-	    m = a.nut.size () * i + j;
+	  int m = a.nut.size () * i + j;
 	  copy (b.nut[j].begin (), b.nut[j].end (), tmp.nut[m].end ());
 	  unique (tmp.nut[m].begin (), tmp.nut[m].end ());
-    }} unique (tmp.nut.begin (), tmp.nut.end ());
+        }
+    }
+  unique (tmp.nut.begin (), tmp.nut.end ());
   return tmp;
 }
 
 TARGETS
 operator | (const TARGETS & a, const TARGET & b)
 {
-  TARGETS
-    tmp = a;
-  VT
-  vt (1, b);
+  TARGETS tmp = a;
+  VT vt (1, b);
   tmp.nut.push_back (vt);
   unique (tmp.nut.begin (), tmp.nut.end ());
   return tmp;
@@ -267,13 +242,13 @@ operator | (const TARGETS & a, const TARGET & b)
 TARGETS
 operator & (const TARGETS & a, const TARGET & b)
 {
-  TARGETS
-    tmp = a;
+  TARGETS tmp = a;
   for (int i = 0; i < a.nut.size (); ++i)
     {
       tmp.nut[i].push_back (b);
       unique (tmp.nut[i].begin (), tmp.nut[i].end ());
-    } return tmp;
+    }
+  return tmp;
 }
 
 TARGETS

@@ -19,15 +19,14 @@ BITB::BITB (const POS & p)
   for (int i = 0; i < BS; ++i)
     r[i] = 0;
   r[p.first] = p.second;
-} void
+}
 
+void
 BITB::random ()
 {
   srand ((unsigned) clock ());	// 测试时可用time()   2006.9.23
   for (int i = 0; i < BS; ++i)
     r[i] = ((rand () << 15) + rand ()) & ROWMASK;
-
-  //-//
 }
 
 BLOCK
@@ -684,8 +683,7 @@ pair < EYEKIND, VP > BITB::eyekind (ACTION action) const
     return make_pair (SOMEEYE, NULL_VP);
   if ((action == AFTERDELETE) || (action == KILL))
     {
-      VP
-	jointp = jointpos ();
+      VP jointp = jointpos ();
       switch (jointp.size ())
 	{
 	case 0:
@@ -812,8 +810,6 @@ pair < BITB, PII > BITB::relation_ (const BITB & bb) const
     }
 }
 
-
-///////////
 BITB
 BITB::operator~ () const
 {
@@ -877,20 +873,23 @@ BITB::operator &= (const BITB & bb)
 {
   for (int i = 0; i < BS; ++i)
     r[i] &= bb.r[i];
-} void
+}
 
+void
 BITB::operator |= (const BITB & bb)
 {
   for (int i = 0; i < BS; ++i)
     r[i] |= bb.r[i];
-} void
+}
 
+void
 BITB::operator ^= (const BITB & bb)
 {
   for (int i = 0; i < BS; ++i)
     r[i] ^= bb.r[i];
-} bool
+}
 
+bool
 BITB::operator< (const BITB & bb) const
 {
   for (int i = 0; i < BS; ++i)
@@ -1010,21 +1009,21 @@ void	 BITB::operator &= (const POS& pos)		{
 	r[pos.first] &= pos.second; 
 }
 */
+
 void
 BITB::operator |= (const POS & pos)
 {
   r[pos.first] |= pos.second;
-} void
+}
 
+void
 BITB::operator ^= (const POS & pos)
 {
   r[pos.first] ^= pos.second;
-} bool
+}
 
-BITB::operator[] (const POS & pos)
-     const
-     {
-
-       return (r[pos.first] & pos.second) >
-	 0;
-     }
+bool
+BITB::operator[] (const POS & pos) const
+{
+  return (r[pos.first] & pos.second) > 0;
+}
