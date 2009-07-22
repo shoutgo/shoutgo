@@ -22,7 +22,7 @@
 //               go.h
 //
 //______有 * 者仅被紧邻的上级包含
-//
+
 using namespace std;
 
 #include <string>
@@ -63,6 +63,7 @@ const string eyekindname[] = { "ENEMY_ALIVE", "FALSEEYE", "ONEEYE", "CO_ONEEYE",
 class BITB;
 class GO;
 class LEARN;
+
 typedef string RGB;
 typedef int VALUE;
 typedef unsigned ROW, KEY, LIKELIHOOD;
@@ -109,6 +110,7 @@ const string RG = "\033[1;33m";
 const string RB = "\033[1;35m";
 const string GB = "\033[1;36m";
 const string W = "\033[0m";
+
 const int BS = 19;		// max: 25
 const float KOMI = 7.5;
 const int MIDBS = (BS - 1) / 2;
@@ -197,12 +199,12 @@ ___cout (T t, string s)
 #  define ___COUT2(a, b)	{___COUT1(a)		___COUT1(b)}
 #  define ___COUT3(a, b, c)	{___COUT2(a, b)		___COUT1(c)}
 #  define ___COUT4(a, b, c, d)	{___COUT3(a, b, c)	___COUT1(d)}
-#  define ___COUT5(a, b, c, d, e)			{___COUT4(a, b, c, d)		___COUT1(e)}
-#  define ___COUT6(a, b, c, d, e, f)			{___COUT5(a, b, c, d, e)	 ___COUT1 (f)}
-#  define ___COUT7(a, b, c, d, e, f, g)			{___COUT5(a, b, c, d, e)	 ___COUT2 (f, g)}
-#  define ___COUT8(a, b, c, d, e, f, g, h)		{___COUT5(a, b, c, d, e)	 ___COUT3 (f, g, h)}
-#  define ___COUT9(a, b, c, d, e, f, g, h, i)		{___COUT5(a, b, c, d, e)	 ___COUT4 (f, g, h, i)}
-#  define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{___COUT5(a, b, c, d, e)	 ___COUT5 (f, g, h, i, j)}
+#  define ___COUT5(a, b, c, d, e)			{___COUT4(a, b, c, d)    ___COUT1(e)}
+#  define ___COUT6(a, b, c, d, e, f)			{___COUT5(a, b, c, d, e) ___COUT1 (f)}
+#  define ___COUT7(a, b, c, d, e, f, g)			{___COUT5(a, b, c, d, e) ___COUT2 (f, g)}
+#  define ___COUT8(a, b, c, d, e, f, g, h)		{___COUT5(a, b, c, d, e) ___COUT3 (f, g, h)}
+#  define ___COUT9(a, b, c, d, e, f, g, h, i)		{___COUT5(a, b, c, d, e) ___COUT4 (f, g, h, i)}
+#  define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{___COUT5(a, b, c, d, e) ___COUT5 (f, g, h, i, j)}
 #else
 #  define ___COUT1(var)					{}
 #  define ___COUT2(a, b)				{}

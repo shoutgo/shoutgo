@@ -859,13 +859,13 @@ BITB BITB::operator<<  (int n)  const {
 		tmp.r[i] = (r[i]<<n)&ROWMASK; 
 	return tmp; 
 }
-void	 BITB::operator> >= (int n)	{ 
+void	 BITB::operator>>= (int n)	{ 
 	for (int i = 0; i<BS; ++i)  
-		r[i]> >= n; 
+		r[i]>>= n; 
 }
 void	 BITB::operator< <= (int n)	{ 
 	for (int i = 0; i<BS; ++i)  
-		r[i]< <= n, r[i] &= ROWMASK; 
+		r[i]<<= n, r[i] &= ROWMASK; 
 }			
 */
 void

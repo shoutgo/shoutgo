@@ -80,8 +80,8 @@ public:
     template < typename T > void load (vector < T > &vt, ifstream & file);
 
   // 这两个按二进制方式保存及读入二维向量类
-    template < typename T > void save (const vector < vector < T > >&vvt, ofstream & file);
-    template < typename T > void load (vector < vector < T > >&vvt, ifstream & file);
+    template < typename T > void save (const vector < vector < T > > & vvt, ofstream & file);
+    template < typename T > void load (vector < vector < T > > & vvt, ifstream & file);
 };
 
 template < typename T >
@@ -160,7 +160,7 @@ INOUT::load (vector < T > &vt, ifstream & file)
 
 template < typename T >
 void
-INOUT::save (const vector < vector < T > >&vvt, ofstream & file)
+INOUT::save (const vector < vector < T > > & vvt, ofstream & file)
 {
 
   //ofstream      file(filename.c_str (), ios::binary); 
@@ -181,7 +181,7 @@ INOUT::save (const vector < vector < T > >&vvt, ofstream & file)
 
 template < typename T >
 void
-INOUT::load (vector < vector < T > >&vvt, ifstream & file)
+INOUT::load (vector < vector < T > > & vvt, ifstream & file)
 {
 
   //ifstream file(filename.c_str (), ios::binary); 
@@ -234,7 +234,7 @@ ostream & operator<< (ostream & os, const vector < T > &vt)
 }
 
 template < class T >
-ostream & operator<< (ostream & os, const vector < vector < T > >&vvt)
+ostream & operator<< (ostream & os, const vector < vector < T > > & vvt)
 {
   for (int i = 0; i < vvt.size (); ++i)
     os << vvt[i] << endl;

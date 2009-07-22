@@ -67,9 +67,11 @@ LEARN::learn (VS vf)
 	      for (int j = 0; j < p->sons.size (); ++j)
 		{
 		  visit (p->sons[j], infop, &LEARN::insert_zobrist);
-		} g_init.swap_id8_q8 (0, i);
+		}
+	      g_init.swap_id8_q8 (0, i);
 	      infop->delfromroot ();
-	    } g_init.swap_xorand ();
+	    }
+	  g_init.swap_xorand ();
 	}
       /*
          // 16 种对称方式下编码都一样
@@ -112,7 +114,8 @@ LEARN::learn (VS vf)
 	{
 	  visit (p->sons[i], infop, &LEARN::insert_pemis);
 	  infop->delfromroot ();
-	} delete p;
+	}
+      delete p;
       ___.toc ();
     }
   INOUT ().save2txt (vf, "lib/filenames.txt");
@@ -149,7 +152,7 @@ LEARN::insert_zobrist (INFOGO * infop)
 void
 LEARN::insert_pemis (INFOGO * infop)
 {
-  vector < pair < ULL, ULL > >vpuu = pemis (infop);
+  vector < pair < ULL, ULL > > vpuu = pemis (infop);
   for (int i = 0; i < vpuu.size (); ++i)
     if (vpuu[i].first != 0 || vpuu[i].second != 0)
       {
@@ -158,11 +161,11 @@ LEARN::insert_pemis (INFOGO * infop)
       }
 }
 
-vector < pair < ULL, ULL > >LEARN::pemis (INFOGO * infop)
+vector < pair < ULL, ULL > > LEARN::pemis (INFOGO * infop)
 {
 
   // 此处可生成各种掩码
-  vector < pair < ULL, ULL > >vpuu;
+  vector < pair < ULL, ULL > > vpuu;
   BITB
     tmp;
   ULL
@@ -198,7 +201,7 @@ vector < pair < ULL, ULL > >LEARN::pemis (INFOGO * infop)
 void
 LEARN::setpatfreq (INFOGO * infop)
 {
-  vector < pair < ULL, ULL > >vpuu;
+  vector < pair < ULL, ULL > > vpuu;
   ITR itr;
   INFOGO *sonp;
   for (POS pos = itr.posbegin (); !itr.posend (); pos = itr.posnext ())

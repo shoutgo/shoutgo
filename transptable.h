@@ -95,7 +95,8 @@ public:
   }
   void sort_ ()
   {
-  } bool save (string filename)
+  }
+  bool save (string filename)
   {
     ofstream file (filename.c_str (), ios::binary);
     if (!file)

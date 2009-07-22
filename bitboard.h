@@ -76,8 +76,8 @@ public:
 
   //BITB operator>>  (int n)  const; 
   //BITB operator<<  (int n)  const; 
-  //void   operator> >= (int n); 
-  //void   operator< <= (int n); 
+  //void   operator>>= (int n); 
+  //void   operator<<= (int n); 
   bool operator< (const BITB & bb) const;
 
   //bool   operator <= (const BITB& bb) const; 

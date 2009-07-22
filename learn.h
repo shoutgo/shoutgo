@@ -56,7 +56,7 @@ public:
   void visit (SGFNODE * p, INFOGO * infop, FPTR f);
   void insert_zobrist (INFOGO * infop);
   void insert_pemis (INFOGO * infop);
-  vector < pair < ULL, ULL > >pemis (INFOGO * infop);
+  vector < pair < ULL, ULL > > pemis (INFOGO * infop);
   void setpatfreq (INFOGO * infop);
 };
 
