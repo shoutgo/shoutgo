@@ -1,45 +1,57 @@
 #include "tsumego.h"
 #include "inout.h"
 
-PBB		TSUMEGO::randomeye(int m, int n, MODE_RANDOMEYE mode){
-	___PARASSERT(m>n); 
-	BITB enemy; 
-	for(; ; ){
-		random (ILLEGALIZE); 
-		ITR itr(oo); 
-		for(BITB space = itr.blockbegin(); !itr.blockend (); space = itr.blocknext()){
-			enemy = space&xx; 
-			if( (!space.touchboarder()) && (enemy != space) ) {
-				if ((mode == LESS_LESS) && (space.count() <= m) && (enemy.count() <= n) )
-					return make_pair(space, enemy); 
-				if ((mode == BIGGER_LESS) && ((space.count()>m)||(space.count()<n)) )
-					oo ^= space; 
-				if ((mode == LESS_LESS_CENTER) && (space.count() <= m) 
-					&& (enemy.count() <= n) && space[star(5)] )
-					return make_pair(space, enemy); 
-				if ((mode == EQ_EQ) && (space.count() == m) && (enemy.count() == n) )
-					return make_pair(space, enemy); 
-			}	
-			else oo ^= space; 
-		}
-		if (mode == BIGGER_LESS)  return make_pair(oo, xx&oo); 
+PBB
+TSUMEGO::randomeye (int m, int n, MODE_RANDOMEYE mode)
+{
+  ___PARASSERT (m > n);
+  BITB enemy;
+  for (;;)
+    {
+      random (ILLEGALIZE);
+      ITR itr (oo);
+      for (BITB space = itr.blockbegin (); !itr.blockend (); space = itr.blocknext ())
+	{
+	  enemy = space & xx;
+	  if ((!space.touchboarder ()) && (enemy != space))
+	    {
+	      if ((mode == LESS_LESS) && (space.count () <= m) && (enemy.count () <= n))
+		return make_pair (space, enemy);
+	      if ((mode == BIGGER_LESS) && ((space.count () > m) || (space.count () < n)))
+		oo ^= space;
+	      if ((mode == LESS_LESS_CENTER) && (space.count () <= m) && (enemy.count () <= n) && space[star (5)])
+		return make_pair (space, enemy);
+	      if ((mode == EQ_EQ) && (space.count () == m) && (enemy.count () == n))
+		return make_pair (space, enemy);
+	    }
+
+	  else
+	    oo ^= space;
 	}
+      if (mode == BIGGER_LESS)
+	return make_pair (oo, xx & oo);
+    }
 }
 
-void	TSUMEGO::randomtsumgo(int publicliberty, int m, int n, MODE_RANDOMEYE mode){
-	PBB pbb = randomeye(m, n, mode); 
-	xx = pbb.second; 
-	oo = pbb.first; 
-	BITB di2 = oo.dilate (2); 
-	oo ^= di2; 
-    xx |= (di2.dilate (2)^di2); 
-	ITR itr(di2.dilate(1)^di2); 
-	for (POS pos = itr.randomstonebegin(); !itr.randomstoneend(); pos = itr.randomstonenext()){
-		if ((publicliberty--) <= 0) break; 
-		xx ^= pos; 
-	}
-	legalize(); 
+void
+TSUMEGO::randomtsumgo (int publicliberty, int m, int n, MODE_RANDOMEYE mode)
+{
+  PBB pbb = randomeye (m, n, mode);
+  xx = pbb.second;
+  oo = pbb.first;
+  BITB di2 = oo.dilate (2);
+  oo ^= di2;
+  xx |= (di2.dilate (2) ^ di2);
+  ITR itr (di2.dilate (1) ^ di2);
+  for (POS pos = itr.randomstonebegin (); !itr.randomstoneend (); pos = itr.randomstonenext ())
+    {
+      if ((publicliberty--) <= 0)
+	break;
+      xx ^= pos;
+    }
+  legalize ();
 }
+
 
 /*		// 这部分从 GO 里搬来
 pair<EYEKIND, VP > TSUMEGO::tsumego(COLOR sente) {
@@ -242,11 +254,16 @@ PBB			TSUMEGO::update(ACTION action, BITB enemy, POS pos){
 	}											
 }
 */
-GO	 TSUMEGO::snap() const {  
-	return *this; 
+
+GO
+TSUMEGO::snap () const
+{
+  return *this;
 }
 
-void	TSUMEGO::restore(const GO& go){ 
-	// *this = go; 
-}
+void
+TSUMEGO::restore (const GO & go)
+{
 
+  // *this = go; 
+}

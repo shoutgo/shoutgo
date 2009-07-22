@@ -4,36 +4,38 @@
 #include "infoboard.h"
 
 /* FIR : Four or Five In a Row */
-
-class FIR :public INFOGO {
+class FIR:public INFOGO
+{
 public:
-	static const int	FIRNUM; 
-	static const int	FIR_MAX; 
-	int			nodenum; 
-	VP			vecp; 
+  static const int FIRNUM;
+  static const int FIR_MAX;
+  int nodenum;
+  VP vecp;
 public:
-	FIR():nodenum(0){}
+  FIR ():nodenum (0)
+  {
+  }
 public:
-	PIP			minmax(int n); 
-	PIP			alphabeta(int n, int alpha, int beta); 
-	void		scope(int = 5); 
+  PIP minmax (int n);
+  PIP alphabeta (int n, int alpha, int beta);
+  void scope (int = 5);
+  PIP leafvalue ();
+  bool over ();
+  void init ()
+  {
+  }
+  void update ()
+  {
+  }
+  POS genmove ();
+  bool moveable (POS pos, COLOR clr);
+  bool move (POS pos, COLOR clr);
+  GO snap () const;
+  void restore (const GO &);
+};
 
-	PIP			leafvalue(); 
-	bool		over(); 
+/*inline*/ bool ppless (const PIP & m1, const PIP & m2);
+/*inline*/ VI link4 (BITB b, POS p);
+/*inline*/ int link (BITB b, POS p);
 
-	void		init(){}		
-	void		update(){}  	
-	POS			genmove(); 
-	bool		moveable(POS pos, COLOR clr); 
-	bool		move(POS pos, COLOR clr); 
-
-	GO			snap() const; 
-	void		restore(const GO&); 
-
-}; 
-
-/*inline*/ bool		ppless(const PIP & m1, const PIP & m2); 
-/*inline*/ VI		link4(BITB b, POS p); 
-/*inline*/ int		link(BITB b, POS p); 
-
-#endif
+#endif /*  */

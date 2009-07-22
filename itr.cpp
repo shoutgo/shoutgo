@@ -1,143 +1,212 @@
-#include "itr.h"  
+#include "itr.h"
 #include "inout.h"
 
-ITR::ITR():pp(make_pair(0, 0)){	
-}
-ITR::ITR(const BITB& b):bb(b){	
-}
-
-////
-POS ITR::ioposbegin(){	
-	pp.first = 0; 
-	pp.second = LEFTEST; 
-	return pp; 
-}
-bool ITR::ioposend(){	
-	return pp.first == BS; 
-}
-POS ITR::ioposnext(){	
-	if (pp.second == 1)    
-		++pp.first, 
-		pp.second <<= (BS-1); 
-	else pp.second >>= 1; 
-	return pp; 
-}
-////
-POS ITR::posbegin(){	
-	pp.first = 0; 
-	pp.second = 1; 
-	return pp; 
-}
-bool ITR::posend(){	
-	return pp.first == BS; 
-}
-POS ITR::posnext(){	
-	if (pp.second == LEFTEST)    
-		++pp.first, 
-		pp.second = 1; 
-	else pp.second <<= 1; 
-	return pp; 
-}
-////
-POS ITR::stonebegin(){	
-	for(int i = 0; i<BS; ++i) 
-		if (bb.r[i]>0){
-			pp.first = i, pp.second = (((bb.r[i]^(bb.r[i]-1))+1)>>1); 
-			return pp; 
-		}
-	return NULL_POS; 
-}
-bool ITR::stoneend(){	
-	return bb == NULL_BB; 
-}
-POS ITR::stonenext(){	
-	bb ^= pp; 
-	for(; !posend(); posnext())
-		if (bb[pp]) 
-			return pp; 
-	return NULL_POS; 
-}
-////
-POS ITR::tagbegin(){	
-	for(int i = 0; i<BS; ++i) 
-		if (bb.r[i]>0){
-			pp.first = i, pp.second = (((bb.r[i]^(bb.r[i]-1))+1)>>1); 
-			return pp; 
-		}
-	return NULL_POS; 
-}
-bool ITR::tagend(){	
-	return bb == NULL_BB; 
-}
-POS ITR::tagnext(){	
-	bb ^= bb.blockat(pp); 
-	for(int i = 0; i<BS; ++i) 
-		if (bb.r[i]>0){
-			pp.first = i, pp.second = (((bb.r[i]^(bb.r[i]-1))+1)>>1); 
-			return pp; 
-		}
-	return NULL_POS; 
-}
-////
-BITB ITR::blockbegin(){	
-	return 	oneblock = bb.blockat(stonebegin()); 
+ITR::ITR ():pp (make_pair (0, 0))
+{
 }
 
-bool ITR::blockend(){	
-	return bb == NULL_BB; 
+ITR::ITR (const BITB & b):bb (b)
+{
 }
 
-BITB ITR::blocknext(){	
-	bb ^= oneblock; 
-	return oneblock = bb.blockat(stonebegin()); 
+POS
+ITR::ioposbegin ()
+{
+  pp.first = 0;
+  pp.second = LEFTEST;
+  return pp;
 }
-////
-POS ITR::randomposbegin(){	
-	for (int i = 0; i<BS*BS; ++i)
-		vecpos.push_back (i2pos(i)); 
-	srand((unsigned)time(0)); 
-	random_shuffle(vecpos.begin (), vecpos.end ()); 
-    return vecpos.back (); 
+
+bool
+ITR::ioposend ()
+{
+  return pp.first == BS;
 }
-bool ITR::randomposend(){	
-	return vecpos.empty(); 
+
+POS
+ITR::ioposnext ()
+{
+  if (pp.second == 1)
+    ++pp.first, pp.second <<= (BS - 1);
+
+  else
+    pp.second >>= 1;
+  return pp;
 }
-POS ITR::randomposnext(){	
-	vecpos.pop_back (); 
-	return vecpos.back (); 
+
+POS
+ITR::posbegin ()
+{
+  pp.first = 0;
+  pp.second = 1;
+  return pp;
 }
-////
-POS ITR::randomstonebegin(){	
-	for(stonebegin(); !stoneend(); stonenext())
-		vecpos.push_back (pp); 
-	srand((unsigned)time(0)); 
-	random_shuffle(vecpos.begin(), vecpos.end ()); 
-    return vecpos.back (); 
+
+bool
+ITR::posend ()
+{
+  return pp.first == BS;
 }
-bool ITR::randomstoneend(){	
-	return vecpos.empty(); 
+
+POS
+ITR::posnext ()
+{
+  if (pp.second == LEFTEST)
+    ++pp.first, pp.second = 1;
+
+  else
+    pp.second <<= 1;
+  return pp;
 }
-POS ITR::randomstonenext(){	
-	vecpos.pop_back (); 
-	return vecpos.back (); 
+
+POS
+ITR::stonebegin ()
+{
+  for (int i = 0; i < BS; ++i)
+    if (bb.r[i] > 0)
+      {
+	pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
+	return pp;
+      }
+  return NULL_POS;
 }
-////
-POS ITR::randomemptybegin(){	
-	bb = ~bb; 
-	for(stonebegin(); !stoneend(); stonenext())
-		vecpos.push_back (pp); 
-	srand((unsigned)time(0)); 
-	random_shuffle(vecpos.begin (), vecpos.end ()); 
-    return vecpos.back (); 
+
+bool
+ITR::stoneend ()
+{
+  return bb == NULL_BB;
 }
-bool ITR::randomemptyend(){	
-	return vecpos.empty(); 
+
+POS
+ITR::stonenext ()
+{
+  bb ^= pp;
+  for (; !posend (); posnext ())
+    if (bb[pp])
+      return pp;
+  return NULL_POS;
 }
-POS ITR::randomemptynext(){	
-	vecpos.pop_back (); 
-	return vecpos.back (); 
+
+POS
+ITR::tagbegin ()
+{
+  for (int i = 0; i < BS; ++i)
+    if (bb.r[i] > 0)
+      {
+	pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
+	return pp;
+      }
+  return NULL_POS;
 }
-////
+
+bool
+ITR::tagend ()
+{
+  return bb == NULL_BB;
+}
+
+POS
+ITR::tagnext ()
+{
+  bb ^= bb.blockat (pp);
+  for (int i = 0; i < BS; ++i)
+    if (bb.r[i] > 0)
+      {
+	pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
+	return pp;
+      }
+  return NULL_POS;
+}
+
+BITB
+ITR::blockbegin ()
+{
+  return oneblock = bb.blockat (stonebegin ());
+}
+
+bool
+ITR::blockend ()
+{
+  return bb == NULL_BB;
+}
+
+BITB
+ITR::blocknext ()
+{
+  bb ^= oneblock;
+  return oneblock = bb.blockat (stonebegin ());
+}
+
+POS
+ITR::randomposbegin ()
+{
+  for (int i = 0; i < BS * BS; ++i)
+    vecpos.push_back (i2pos (i));
+  srand ((unsigned) time (0));
+  random_shuffle (vecpos.begin (), vecpos.end ());
+  return vecpos.back ();
+}
+
+bool
+ITR::randomposend ()
+{
+  return vecpos.empty ();
+}
+
+POS
+ITR::randomposnext ()
+{
+  vecpos.pop_back ();
+  return vecpos.back ();
+}
+
+POS
+ITR::randomstonebegin ()
+{
+  for (stonebegin (); !stoneend (); stonenext ())
+    vecpos.push_back (pp);
+  srand ((unsigned) time (0));
+  random_shuffle (vecpos.begin (), vecpos.end ());
+  return vecpos.back ();
+}
+
+bool
+ITR::randomstoneend ()
+{
+  return vecpos.empty ();
+}
+
+POS
+ITR::randomstonenext ()
+{
+  vecpos.pop_back ();
+  return vecpos.back ();
+}
+
+POS
+ITR::randomemptybegin ()
+{
+  bb = ~bb;
+  for (stonebegin (); !stoneend (); stonenext ())
+    vecpos.push_back (pp);
+  srand ((unsigned) time (0));
+  random_shuffle (vecpos.begin (), vecpos.end ());
+  return vecpos.back ();
+}
+
+bool
+ITR::randomemptyend ()
+{
+  return vecpos.empty ();
+}
+
+POS
+ITR::randomemptynext ()
+{
+  vecpos.pop_back ();
+  return vecpos.back ();
+}
+
 /*
 map<POS, VB >		ITR::makemapmask(int a, int b){	
 	for (POS pos = posbegin(); !posend (); pos = posnext())

@@ -1,62 +1,74 @@
-#include "search.h"							
+#include "search.h"
 #include "inout.h"
 
-NODE* TREE::root(){
-	NODE* p = new NODE; 
-	nodes = 0; 
-	visited = 0;
-	p->numb = nodes; 
-	p->ismax = prob(1, 2); 
-	p->depth = 0; 
-	p->isleaf = 0; 
-	p->father = 0; 
-    gen(p); 
-	return p; 
+NODE *
+TREE::root ()
+{
+  NODE *p = new NODE;
+  nodes = 0;
+  visited = 0;
+  p->numb = nodes;
+  p->ismax = prob (1, 2);
+  p->depth = 0;
+  p->isleaf = 0;
+  p->father = 0;
+  gen (p);
+  return p;
 }
 
-		// numb 是开始生成时分配，cout 时已生成完毕。
-		// 逻辑结构与下面各搜索算法一样，所以 cout 顺序一样。
-void TREE::gen(NODE* p){		
-	if (p->depth == DEPTH_MAX-1 || nodes >= NODE_MAX-1) {
-		p->isleaf = 1; 
-		p->value = randu(VALUE_MAX-VALUE_MIN)+VALUE_MIN; 
-		//-//cout<<*p<< endl; 
-		return; 
-	}
-	for (int i = 0; i<SON_MAX && nodes<NODE_MAX-1; ++i){
-		if (prob(1, 2))
-			continue; 
-		NODE* s = new NODE; 
-		++nodes; 
-		s->numb = nodes; 
-		s->ismax = !(p->ismax); 
-		s->depth = p->depth +1; 
-		s->isleaf = 0; 
-		s->father = p; 
-		p->sons.push_back(s); 
-		gen(s); 
-	}
-	if (p->sons.empty()) {
-		p->isleaf = 1; 
-		p->value = randu(VALUE_MAX-VALUE_MIN) + VALUE_MIN; 
-	}
-	//-//cout<<*p<< endl; 
+
+  // numb 是开始生成时分配，cout 时已生成完毕。
+  // 逻辑结构与下面各搜索算法一样，所以 cout 顺序一样。
+void
+TREE::gen (NODE * p)
+{
+  if (p->depth == DEPTH_MAX - 1 || nodes >= NODE_MAX - 1)
+    {
+      p->isleaf = 1;
+      p->value = randu (VALUE_MAX - VALUE_MIN) + VALUE_MIN;
+
+      //-//cout<<*p<< endl; 
+      return;
+    }
+  for (int i = 0; i < SON_MAX && nodes < NODE_MAX - 1; ++i)
+    {
+      if (prob (1, 2))
+	continue;
+      NODE *s = new NODE;
+      ++nodes;
+      s->numb = nodes;
+      s->ismax = !(p->ismax);
+      s->depth = p->depth + 1;
+      s->isleaf = 0;
+      s->father = p;
+      p->sons.push_back (s);
+      gen (s);
+    }
+  if (p->sons.empty ())
+    {
+      p->isleaf = 1;
+      p->value = randu (VALUE_MAX - VALUE_MIN) + VALUE_MIN;
+    }
+
+  //-//cout<<*p<< endl; 
 }
 
-ostream& operator<< (ostream& os, const NODE n){
-	string s(n.depth, '\t'); 
-	cout<< s
-		<< "[" << n.numb << "]"
-		//<< "_" << n.depth
-		<< "_" << (n.ismax ? "max" : "min")
-		//<< "_(" << (n.father ? (n.father->numb) : 0) <<")"
-		<< " " << n.value 
-		//<< " " << (n.flip ? -n.value : n.value )
-		<< " " << (n.isleaf ? "leaf " : ""); 
-	//if (n.numb == 0)
-	//	cout << (n.ismax ? "max ":"min "); 
-	return os; 
+ostream & operator<< (ostream & os, const NODE n)
+{
+  string s (n.depth, '\t');
+  cout << s << "[" << n.numb << "]"
+    //<< "_" << n.depth
+    << "_" << (n.ismax ? "max" : "min")
+    //<< "_(" << (n.father ? (n.father->numb) : 0) <<")"
+    << " " << n.value
+    //<< " " << (n.flip ? -n.value : n.value )
+    << " " << (n.isleaf ? "leaf " : "");
+
+  //if (n.numb == 0)
+  //      cout << (n.ismax ? "max ":"min "); 
+  return os;
 }
+
 
 //_______________________________________________________________________
 //
@@ -104,274 +116,349 @@ ostream& operator<< (ostream& os, const NODE n){
 // 而头结点为 max 结点时剪枝过程应该完全一样！
 //_______________________________________________________________________
 
-		// 逻辑最简单之极大极小搜索算法，结果可作为标准。
-VALUE TREE::minmax(NODE* p){
-	++ visited;
-	if (p->isleaf){
-		//-//cout<< *p<< endl; 
-		return (p->value); 
-	}
-	VALUE v, better = (p->ismax) ? INT_MIN : INT_MAX; 
-	for (int i = 0; i < p->sons.size(); ++i){
-		v = minmax ( p->sons[i] ); 
-		better = (p->ismax) ? max(better, v)	: min(better, v); 
-	}
-	p->value = better; 
-	//-//cout<< *p<< endl; 
-	return p->value; 
+  // 逻辑最简单之极大极小搜索算法，结果可作为标准。
+VALUE
+TREE::minmax (NODE * p)
+{
+  ++visited;
+  if (p->isleaf)
+    {
+
+      //-//cout<< *p<< endl; 
+      return (p->value);
+    }
+  VALUE v, better = (p->ismax) ? INT_MIN : INT_MAX;
+  for (int i = 0; i < p->sons.size (); ++i)
+    {
+      v = minmax (p->sons[i]);
+      better = (p->ismax) ? max (better, v) : min (better, v);
+    } p->value = better;
+
+  //-//cout<< *p<< endl; 
+  return p->value;
 }
 
-VALUE TREE::alphabeta_minmax(NODE* p, VALUE alpha, VALUE beta){	
-	++ visited;
-	VALUE olda = alpha; 
-	VALUE oldb = beta; 
-	if (p->isleaf){
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
-		return (p->value); 
-	}
-	if (p->ismax ){
-		for (int i = 0; i < p->sons.size(); ++i){
-							// alpha, beta 确能顺传，因为界外值
-							// 传到相应上层的时候一定会被"抹平"
-							// 所以可作为界值深度优先向下传递
-			VALUE v = alphabeta_minmax ( p->sons[i], alpha, beta ); 
-			if (v > alpha){
-				alpha = v; 
-				if (alpha >= beta){
-					break; // 剪枝之后返回越界的 alpha 还是 beta 
-							// 并不影响最终值，因为总会被 beta "抹平"
-				}
-			}
+VALUE
+TREE::alphabeta_minmax (NODE * p, VALUE alpha, VALUE beta)
+{
+  ++visited;
+  VALUE olda = alpha;
+  VALUE oldb = beta;
+  if (p->isleaf)
+    {
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
+      return (p->value);
+    }
+  if (p->ismax)
+    {
+      for (int i = 0; i < p->sons.size (); ++i)
+	{
+	  // alpha, beta 确能顺传，因为界外值
+	  // 传到相应上层的时候一定会被"抹平"
+	  // 所以可作为界值深度优先向下传递
+	  VALUE v = alphabeta_minmax (p->sons[i], alpha, beta);
+	  if (v > alpha)
+	    {
+	      alpha = v;
+	      if (alpha >= beta)
+		{
+		  break;	// 剪枝之后返回越界的 alpha 还是 beta 
+		  // 并不影响最终值，因为总会被 beta "抹平"
 		}
-		p->value = alpha; // 可能高于原结点真实值，但不影响最终值，
-							// 因为当为非剪枝返回，真实值会被 alpha "抹平"
-							// 当为剪枝返回，则此越界的alpha值
-							// 会被 beta "抹平"
-							// 这个赋值可看作是对子层一个或全部
-							// 结点改值后给此结点赋真实值。
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
-		return p->value; 
+	    }
 	}
-	else {
-		for (int i = 0; i < p->sons.size(); ++i){
-			VALUE v = alphabeta_minmax ( p->sons[i], alpha, beta ); 
-			if (v < beta){
-				beta = v; 
-				if (alpha >= beta){
-					break; 
-				}
-			}
+      p->value = alpha;		// 可能高于原结点真实值，但不影响最终值，
+      // 因为当为非剪枝返回，真实值会被 alpha "抹平"
+      // 当为剪枝返回，则此越界的alpha值
+      // 会被 beta "抹平"
+      // 这个赋值可看作是对子层一个或全部
+      // 结点改值后给此结点赋真实值。
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+      return p->value;
+    }
+  else
+    {
+      for (int i = 0; i < p->sons.size (); ++i)
+	{
+	  VALUE v = alphabeta_minmax (p->sons[i], alpha, beta);
+	  if (v < beta)
+	    {
+	      beta = v;
+	      if (alpha >= beta)
+		{
+		  break;
 		}
-		p->value = beta; 
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
-		return p->value; 
+	    }
 	}
+      p->value = beta;
+
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "                        <<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+      return p->value;
+    }
 }
 
-VALUE TREE::failsoft_minmax(NODE* p, VALUE alpha, VALUE beta){	
-	++ visited;
-	VALUE olda = alpha; 
-	VALUE oldb = beta; 
-	if (p->isleaf){
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
-		return (p->value); 
-	}
-	if (p->ismax ){
-		VALUE v, better = INT_MIN; 
-		for (int i = 0; i < p->sons.size(); ++i){
-			v = failsoft_minmax ( p->sons[i], alpha, beta ); 
-			better = max(better, v); 
-			if (v > alpha){
-				alpha = v; 
-				if (alpha >= beta){
-					break; 
-				}
-			}
+VALUE
+TREE::failsoft_minmax (NODE * p, VALUE alpha, VALUE beta)
+{
+  ++visited;
+  VALUE olda = alpha;
+  VALUE oldb = beta;
+  if (p->isleaf)
+    {
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
+      return (p->value);
+    }
+  if (p->ismax)
+    {
+      VALUE v, better = INT_MIN;
+      for (int i = 0; i < p->sons.size (); ++i)
+	{
+	  v = failsoft_minmax (p->sons[i], alpha, beta);
+	  better = max (better, v);
+	  if (v > alpha)
+	    {
+	      alpha = v;
+	      if (alpha >= beta)
+		{
+		  break;
 		}
-		p->value = better; // 返回已发现的较好值，不一定是真实值。
-							// 但若把被剪掉的子树看作根本不存在，
-							// 则可认为是真实值。
-							// 所谓新树的真实值，原树的伪值。
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
-		return p->value; 
+	    }
 	}
-	else {
-		VALUE v, better = INT_MAX; 
-		for (int i = 0; i < p->sons.size(); ++i){
-			v = failsoft_minmax ( p->sons[i], alpha, beta ); 
-			better = min(better, v); 
-			if (v < beta){
-				beta = v; 
-				if (alpha >= beta){
-					break; 
-				}
-			}
+      p->value = better;	// 返回已发现的较好值，不一定是真实值。
+      // 但若把被剪掉的子树看作根本不存在，
+      // 则可认为是真实值。
+      // 所谓新树的真实值，原树的伪值。
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "                        <<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+      return p->value;
+    }
+  else
+    {
+      VALUE v, better = INT_MAX;
+      for (int i = 0; i < p->sons.size (); ++i)
+	{
+	  v = failsoft_minmax (p->sons[i], alpha, beta);
+	  better = min (better, v);
+	  if (v < beta)
+	    {
+	      beta = v;
+	      if (alpha >= beta)
+		{
+		  break;
 		}
-		p->value = better; 
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "			<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
-		return p->value; 
+	    }
 	}
+      p->value = better;
+
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "                        <<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+      return p->value;
+    }
 }
 
-		// 翻转了 min 叶结点的值
-VALUE TREE::negamax(NODE* p){			
-	++ visited;
-	if (p->isleaf){
-		if (p->flip == 0 && ! p->ismax){
-			p->flip = 1; 
-			p->value *= -1; 
-		}
-		//-//cout<< *p<< endl; 
-		return (p->value); 
+
+  // 翻转了 min 叶结点的值
+VALUE
+TREE::negamax (NODE * p)
+{
+  ++visited;
+  if (p->isleaf)
+    {
+      if (p->flip == 0 && !p->ismax)
+	{
+	  p->flip = 1;
+	  p->value *= -1;
 	}
-	VALUE v, better = INT_MIN; 
-	for (int i = 0; i < p->sons.size(); ++i){
-		v = -negamax ( p->sons[i] ); 
-		better = max(better, v); 
-	}
-	if (! p->ismax )
-		p->flip = 1; 
-	p->value = better; 
-	//-//cout<< *p<< endl; 
-	return p->value; 
+
+      //-//cout<< *p<< endl; 
+      return (p->value);
+    }
+  VALUE v, better = INT_MIN;
+  for (int i = 0; i < p->sons.size (); ++i)
+    {
+      v = -negamax (p->sons[i]);
+      better = max (better, v);
+  } if (!p->ismax)
+    p->flip = 1;
+  p->value = better;
+
+  //-//cout<< *p<< endl; 
+  return p->value;
 }
 
-		// 翻转了 min 叶结点的值, 无返回值形式
-void TREE::negamax2(NODE* p){			
-	++ visited;
-	if (p->isleaf){
-		if (p->flip == 0 && ! p->ismax){
-			p->flip = 1; 
-			p->value *= -1; 
-		}
-		//-//cout<< *p<< endl; 
-		return; 
+
+  // 翻转了 min 叶结点的值, 无返回值形式
+void
+TREE::negamax2 (NODE * p)
+{
+  ++visited;
+  if (p->isleaf)
+    {
+      if (p->flip == 0 && !p->ismax)
+	{
+	  p->flip = 1;
+	  p->value *= -1;
 	}
-	VALUE better = INT_MIN; 
-	for (int i = 0; i < p->sons.size(); ++i){
-		negamax2 ( p->sons[i] ); 
-		better = max(better, - p->sons[i]->value ); 
-	}
-	if (! p->ismax )
-		p->flip = 1; 
-	p->value = better; 
-	//-//cout<< *p<< endl; 
-}
-		
-		// 翻转了 min 叶结点的值
-VALUE TREE::alphabeta_negamax(NODE* p, VALUE alpha, VALUE beta){
-	++ visited;
-	VALUE olda = alpha; 
-	VALUE oldb = beta; 
-	if (p->isleaf){
-		if (p->flip == 0 && ! p->ismax){
-			p->flip = 1; 
-			p->value *= -1; 
-		}
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
-		return (p->value); 
-	}
-	VALUE v; 
-	for (int i = 0; i < p->sons.size(); ++i){
-		v = -alphabeta_negamax ( p->sons[i], -beta, -alpha ); 
-		if (v > alpha){
-			alpha = v; 
-			if (alpha >= beta)
-				break; 
-		}
-	}
-	if (! p->ismax )
-		p->flip = 1; 
-	p->value = alpha; 
-	//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
-	return p->value; 
+
+      //-//cout<< *p<< endl; 
+      return;
+    }
+  VALUE better = INT_MIN;
+  for (int i = 0; i < p->sons.size (); ++i)
+    {
+      negamax2 (p->sons[i]);
+      better = max (better, -p->sons[i]->value);
+  } if (!p->ismax)
+    p->flip = 1;
+  p->value = better;
+
+  //-//cout<< *p<< endl; 
 }
 
-		// 翻转了 min 叶结点的值
-VALUE TREE::failsoft_negamax(NODE* p, VALUE alpha, VALUE beta){
-	++ visited;
-	VALUE olda = alpha; 
-	VALUE oldb = beta; 
-	if (p->isleaf){
-		if (p->flip == 0 && ! p->ismax){
-			p->flip = 1; 
-			p->value *= -1; 
-		}
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
-		return (p->value); 
+
+  // 翻转了 min 叶结点的值
+VALUE
+TREE::alphabeta_negamax (NODE * p, VALUE alpha, VALUE beta)
+{
+  ++visited;
+  VALUE olda = alpha;
+  VALUE oldb = beta;
+  if (p->isleaf)
+    {
+      if (p->flip == 0 && !p->ismax)
+	{
+	  p->flip = 1;
+	  p->value *= -1;
 	}
-	VALUE v, better = INT_MIN; 
-	for (int i = 0; i < p->sons.size(); ++i){
-		v = -failsoft_negamax ( p->sons[i], -beta, -alpha ); 
-		better = max(v, better); 
-		if (v > alpha){
-			alpha = v; 
-			if (alpha >= beta)
-				break; 
-		}
+
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
+      return (p->value);
+    }
+  VALUE v;
+  for (int i = 0; i < p->sons.size (); ++i)
+    {
+      v = -alphabeta_negamax (p->sons[i], -beta, -alpha);
+      if (v > alpha)
+	{
+	  alpha = v;
+	  if (alpha >= beta)
+	    break;
 	}
-	if (! p->ismax )
-		p->flip = 1; 
-	p->value = better; 
-	//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
-	return p->value; 
+    }
+  if (!p->ismax)
+    p->flip = 1;
+  p->value = alpha;
+
+  //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+  return p->value;
 }
 
-		// 翻转了 min 叶结点的值
-VALUE TREE::negascout(NODE* p, VALUE alpha, VALUE beta){
-	++ visited;
-	VALUE olda = alpha; 
-	VALUE oldb = beta; 
-	if (p->isleaf){
-		if (p->flip == 0 && ! p->ismax){
-			p->flip = 1; 
-			p->value *= -1; 
-		}
-		//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
-		return (p->value); 
+
+  // 翻转了 min 叶结点的值
+VALUE
+TREE::failsoft_negamax (NODE * p, VALUE alpha, VALUE beta)
+{
+  ++visited;
+  VALUE olda = alpha;
+  VALUE oldb = beta;
+  if (p->isleaf)
+    {
+      if (p->flip == 0 && !p->ismax)
+	{
+	  p->flip = 1;
+	  p->value *= -1;
 	}
-	VALUE v; 
-	VALUE better = -negascout(p->sons [0], -beta, -alpha); 
-	if (better >= beta)
-		return better; 
-	else 
-		alpha = better; 
-	for (int i = 1; i < p->sons.size(); ++i){
-		v = - negascout ( p->sons[i], -alpha-1, -alpha); 
-		// v == alpha + 1 时确也需要重新搜索，因为可能是剪枝而来
-		if (v<beta && v>alpha)
-			v = -negascout(p->sons [i], -beta, -v); 
-		better = max(v, better); 
-		if (v>alpha){
-			alpha = v; 
-			if (alpha >= beta)
-				break; 
-		}
+
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
+      return (p->value);
+    }
+  VALUE v, better = INT_MIN;
+  for (int i = 0; i < p->sons.size (); ++i)
+    {
+      v = -failsoft_negamax (p->sons[i], -beta, -alpha);
+      better = max (v, better);
+      if (v > alpha)
+	{
+	  alpha = v;
+	  if (alpha >= beta)
+	    break;
 	}
-	if (! p->ismax )
-		p->flip = 1; 
-	p->value = better; 
-	//-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "		<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
-	return p->value; 
+    }
+  if (!p->ismax)
+    p->flip = 1;
+  p->value = better;
+
+  //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+  return p->value;
 }
 
-		// 翻转了 min 叶结点的值
-VALUE TREE::mtdf(NODE* p, VALUE guess){
-	++ visited;
-    VALUE lowbound = INT_MIN; 
-	VALUE upbound = INT_MAX; 
-	VALUE beta; 
-	while (lowbound < upbound){
-		if (guess == lowbound)
-			beta = guess+1; 
-		else 
-			beta = guess; 
-		guess = failsoft_negamax(p, beta-1, beta); 
-		if (guess >= beta)
-			lowbound = guess; 
-		else 
-			upbound = guess; 
+
+  // 翻转了 min 叶结点的值
+VALUE
+TREE::negascout (NODE * p, VALUE alpha, VALUE beta)
+{
+  ++visited;
+  VALUE olda = alpha;
+  VALUE oldb = beta;
+  if (p->isleaf)
+    {
+      if (p->flip == 0 && !p->ismax)
+	{
+	  p->flip = 1;
+	  p->value *= -1;
 	}
-	return guess; 
+
+      //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
+      return (p->value);
+    }
+  VALUE v;
+  VALUE better = -negascout (p->sons[0], -beta, -alpha);
+  if (better >= beta)
+    return better;
+
+  else
+    alpha = better;
+  for (int i = 1; i < p->sons.size (); ++i)
+    {
+      v = -negascout (p->sons[i], -alpha - 1, -alpha);
+
+      // v == alpha + 1 时确也需要重新搜索，因为可能是剪枝而来
+      if (v < beta && v > alpha)
+	v = -negascout (p->sons[i], -beta, -v);
+      better = max (v, better);
+      if (v > alpha)
+	{
+	  alpha = v;
+	  if (alpha >= beta)
+	    break;
+	}
+    }
+  if (!p->ismax)
+    p->flip = 1;
+  p->value = better;
+
+  //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "<<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
+  return p->value;
 }
 
+
+  // 翻转了 min 叶结点的值
+VALUE
+TREE::mtdf (NODE * p, VALUE guess)
+{
+  ++visited;
+  VALUE lowbound = INT_MIN;
+  VALUE upbound = INT_MAX;
+  VALUE beta;
+  while (lowbound < upbound)
+    {
+      if (guess == lowbound)
+	beta = guess + 1;
+      else
+	beta = guess;
+      guess = failsoft_negamax (p, beta - 1, beta);
+      if (guess >= beta)
+	lowbound = guess;
+      else
+	upbound = guess;
+    }
+  return guess;
+}
