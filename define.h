@@ -124,7 +124,7 @@ const MOVE NULL_MOVE = make_pair (NULL_POS, NULL_CLR);
 const VP NULL_VP;
 const int NOINIT = INT_MIN;
 const string SGFPATH = "sgf/";
-const string LIBPATH = "lib/";
+const string LIBPATH = "encodelib/";
 
 class setx
 {

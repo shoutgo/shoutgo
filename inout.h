@@ -68,20 +68,23 @@ public:
      void            save2txt(const VVF& v, string filename = "datayx.txt"); 
      void            save2txt(const GO& go, string filename = "go.txt"); 
    */
+  template < class T > bool save (const FSM < T > & fsm, string filename);
+  template < class T > bool load (FSM < T > & fsm, string filename);
+
   // 这个是利用输出重定向按字符方式保存
-    template < typename T > void save2txt (const T & t, string filename);
+  template < typename T > void save2txt (const T & t, string filename);
 
   // 这两个按二进制方式保存及读入单个类
-    template < typename T > void save (const T & t, string filename);
-    template < typename T > void load (T & t, string filename);
+  template < typename T > void save (const T & t, string filename);
+  template < typename T > void load (T & t, string filename);
 
   // 这两个按二进制方式保存及读入一维向量类
-    template < typename T > void save (const vector < T > &vt, ofstream & file);
-    template < typename T > void load (vector < T > &vt, ifstream & file);
+  template < typename T > void save (const vector < T > &vt, ofstream & file);
+  template < typename T > void load (vector < T > &vt, ifstream & file);
 
   // 这两个按二进制方式保存及读入二维向量类
-    template < typename T > void save (const vector < vector < T > > & vvt, ofstream & file);
-    template < typename T > void load (vector < vector < T > > & vvt, ifstream & file);
+  template < typename T > void save (const vector < vector < T > > & vvt, ofstream & file);
+  template < typename T > void load (vector < vector < T > > & vvt, ifstream & file);
 };
 
 template < typename T >
@@ -246,6 +249,40 @@ ostream & operator<< (ostream & os, const pair < T, S > pts)
 {
   os << "[" << pts.first << ", " << pts.second << "] ";
   return os;
+}
+
+template < class T >
+bool INOUT::save (const FSM < T > & fsm, string filename)
+{
+  ofstream file (filename.c_str (), ios::binary);
+  if (!file)
+    {
+      cerr << filename << " : open fail !" << endl;
+      return 0;
+    }
+  save (fsm.father, file); 
+  save (fsm.sons, file); 
+  save (fsm.freq, file); 
+  file.close ();
+  clog << "A FSM been saved in " << filename << " ." << endl;
+  return 1;
+}
+
+template < class T >
+bool INOUT::load (FSM < T > & fsm, string filename)
+{
+  ifstream file (filename.c_str (), ios::binary);
+  if (!file)
+    {
+      cerr << filename << " : open fail !" << endl;
+      return 0;
+    }
+  load (fsm.father, file); 
+  load (fsm.sons, file); 
+  load (fsm.freq, file); 
+  file.close ();
+  clog << "A FSM been loaded from " << filename << " ." << endl;
+  return 1;
 }
 
 #endif

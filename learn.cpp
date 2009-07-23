@@ -5,17 +5,25 @@
 /* class LEARN */
 LEARN::LEARN (string sgfpath)
 {
-
+  INOUT io;
   // 因为缓式计算的关系，要保证都 load(), 应该用 &&
-  if (g_init.load_xorand_key2rand ("lib/xorand") && lib_pemis.load ("lib/pemis") && lib_zobrist[0].load ("lib/zobrist0") && lib_zobrist[1].load ("lib/zobrist1")
-      && lib_zobrist[2].load ("lib/zobrist2") && lib_zobrist[3].load ("lib/zobrist3") && lib_zobrist[4].load ("lib/zobrist4") && lib_zobrist[5].load ("lib/zobrist5")
-      && lib_zobrist[6].load ("lib/zobrist6") && lib_zobrist[7].load ("lib/zobrist7") && lib_zobrist[8].load ("lib/zobrist8"))
+  if (g_init.load_xorand_key2rand ("encodelib/xorand")
+      && io.load (lib_pemis, "encodelib/pemis")
+      && io.load (lib_zobrist[0], "encodelib/zobrist0")
+      && io.load (lib_zobrist[1], "encodelib/zobrist1")
+      && io.load (lib_zobrist[2], "encodelib/zobrist2")
+      && io.load (lib_zobrist[3], "encodelib/zobrist3")
+      && io.load (lib_zobrist[4], "encodelib/zobrist4")
+      && io.load (lib_zobrist[5], "encodelib/zobrist5")
+      && io.load (lib_zobrist[6], "encodelib/zobrist6")
+      && io.load (lib_zobrist[7], "encodelib/zobrist7")
+      && io.load (lib_zobrist[8], "encodelib/zobrist8"))
     {
       clog << "All FSMs been loaded ." << endl;
     }
   else
     {
-      VS vf = INOUT ().getfilename (sgfpath, "*.sgf");
+      VS vf = io.getfilename (sgfpath, "*.sgf");
       clog << "Learning from these file :" << endl << vf;
       learn (vf);
     }
@@ -23,23 +31,31 @@ LEARN::LEARN (string sgfpath)
 
 LEARN::~LEARN ()
 {
-  VS vf = INOUT ().getfilename ("lib/", "*");
-  if (find (vf.begin (), vf.end (), "lib/xorand") == vf.end () || find (vf.begin (), vf.end (), "lib/pemis") == vf.end () || find (vf.begin (), vf.end (), "lib/zobrist0") == vf.end ()
-      || find (vf.begin (), vf.end (), "lib/zobrist1") == vf.end () || find (vf.begin (), vf.end (), "lib/zobrist2") == vf.end () || find (vf.begin (), vf.end (), "lib/zobrist3") == vf.end ()
-      || find (vf.begin (), vf.end (), "lib/zobrist4") == vf.end () || find (vf.begin (), vf.end (), "lib/zobrist5") == vf.end () || find (vf.begin (), vf.end (), "lib/zobrist6") == vf.end ()
-      || find (vf.begin (), vf.end (), "lib/zobrist7") == vf.end () || find (vf.begin (), vf.end (), "lib/zobrist8") == vf.end ())
+  INOUT io;
+  VS vf = io.getfilename ("encodelib/", "*");
+  if (find (vf.begin (), vf.end (), "encodelib/xorand") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/pemis") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist0") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist1") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist2") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist3") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist4") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist5") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist6") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist7") == vf.end ()
+      || find (vf.begin (), vf.end (), "encodelib/zobrist8") == vf.end ())
     {
-      g_init.save_xorand ("lib/xorand");
-      lib_pemis.save ("lib/pemis");
-      lib_zobrist[0].save ("lib/zobrist0");
-      lib_zobrist[1].save ("lib/zobrist1");
-      lib_zobrist[2].save ("lib/zobrist2");
-      lib_zobrist[3].save ("lib/zobrist3");
-      lib_zobrist[4].save ("lib/zobrist4");
-      lib_zobrist[5].save ("lib/zobrist5");
-      lib_zobrist[6].save ("lib/zobrist6");
-      lib_zobrist[7].save ("lib/zobrist7");
-      lib_zobrist[8].save ("lib/zobrist8");
+      g_init.save_xorand ("encodelib/xorand");
+      io.save (lib_pemis, "encodelib/pemis");
+      io.save (lib_zobrist[0], "encodelib/zobrist0");
+      io.save (lib_zobrist[1], "encodelib/zobrist1");
+      io.save (lib_zobrist[2], "encodelib/zobrist2");
+      io.save (lib_zobrist[3], "encodelib/zobrist3");
+      io.save (lib_zobrist[4], "encodelib/zobrist4");
+      io.save (lib_zobrist[5], "encodelib/zobrist5");
+      io.save (lib_zobrist[6], "encodelib/zobrist6");
+      io.save (lib_zobrist[7], "encodelib/zobrist7");
+      io.save (lib_zobrist[8], "encodelib/zobrist8");
       clog << "All FSM been saved ." << endl;
       sleep (2000);
     }
@@ -118,7 +134,7 @@ LEARN::learn (VS vf)
       delete p;
       ___.toc ();
     }
-  INOUT ().save2txt (vf, "lib/filenames.txt");
+  INOUT ().save2txt (vf, "encodelib/filenames.txt");
 }
 
 void

@@ -18,6 +18,7 @@
 template < class T >
 class FSM
 {
+public:
   vector < T > father;
   vector < vector < T > > sons;
   VVI freq;
@@ -96,38 +97,6 @@ public:
   void sort_ ()
   {
   }
-  bool save (string filename)
-  {
-    ofstream file (filename.c_str (), ios::binary);
-    if (!file)
-      {
-	cerr << filename << " : open fail !" << endl;
-	return 0;
-      }
-
-    //INOUT().save(father, file); 
-    //INOUT().save(sons, file); 
-    //INOUT().save(freq, file); 
-    file.close ();
-    clog << "A FSM been saved in " << filename << " ." << endl;
-    return 1;
-  }
-  bool load (string filename)
-  {
-    ifstream file (filename.c_str (), ios::binary);
-    if (!file)
-      {
-	cerr << filename << " : open fail !" << endl;
-	return 0;
-      }
-
-    //INOUT().load(father, file); 
-    //INOUT().load(sons, file); 
-    //INOUT().load(freq, file); 
-    file.close ();
-    clog << "A FSM been loaded from " << filename << " ." << endl;
-    return 1;
-  }
   bool operator == (const FSM < T > f2)
   {
     return (father == f2.father && sons == f2.sons && freq == f2.freq);
@@ -146,7 +115,8 @@ public:
 template < class T = BITB >
 class HASH
 {
-public:size_t operator  ()(const BITB & bb) const
+public:
+  size_t operator  ()(const BITB & bb) const
   {
     return (size_t) rand ();
   }
