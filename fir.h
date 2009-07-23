@@ -20,7 +20,8 @@ public:
   PIP alphabeta (int n, int alpha, int beta);
   void scope (int = 5);
   PIP leafvalue ();
-  bool over ();
+  bool over () const;
+  bool endgame () const;
   void init ()
   {
   }

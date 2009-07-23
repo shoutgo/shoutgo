@@ -30,7 +30,10 @@ FIR::minmax (int n)
     {
       add (pos, turn ());
       if (over ())
+      {
+        //restore (snapgo);
 	return make_pair ((getlastclr () == BLACK) ? FIR_MAX : -FIR_MAX, lastpos);
+      }
       vec.push_back (make_pair (minmax (n - 1).first, pos));
       restore (snapgo);
     }
@@ -98,10 +101,16 @@ FIR::leafvalue ()
 }
 
 bool
-FIR::over ()
+FIR::over () const
 {
   VI vi = link4 (getbb (getlastclr ()), lastpos);
   return find (vi.begin (), vi.end (), FIRNUM) != vi.end ();
+}
+
+bool
+FIR::endgame () const
+{
+  return over ();
 }
 
 POS
@@ -133,8 +142,13 @@ FIR::snap () const
 void
 FIR::restore (const GO & go)
 {
-
-  // *this = go; 
+  xx = go.xx;
+  oo = go.oo;
+  hotko = go.gethotko ();
+  history = go.gethistory ();
+  lastpos = go.getlastpos ();
+  lastclr = go.getlastclr ();
+  kill = go.getkill ();
 }
 
 bool
