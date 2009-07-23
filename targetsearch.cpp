@@ -34,7 +34,7 @@ AIMGRAPH::forward (AIM a)
   else
     for (int i = 0; i < sons[a].size (); ++i)
       if (prob (p[a], 100))
-	return sons[a][i];
+        return sons[a][i];
   return forward (a);
 }
 
@@ -170,19 +170,19 @@ operator ~ (TARGETS a)
 {
   vector < TARGETS > vts (a.nut.size ());
   VT vt;
-  for (int i = 0; i < a.nut.size (); ++i)	//将 a.nut 按行（与结构）每个元素取~后
+  for (int i = 0; i < a.nut.size (); ++i)       //将 a.nut 按行（与结构）每个元素取~后
     for (int j = 0; j < a.nut[i].size (); ++j)
-      {				//竖排（或结构）形成一个targets, 共a.nut.size()个
-	vt.clear ();
-	vt.push_back (~a.nut[i][j]);
-	vts[i].nut.push_back (vt);
+      {                         //竖排（或结构）形成一个targets, 共a.nut.size()个
+        vt.clear ();
+        vt.push_back (~a.nut[i][j]);
+        vts[i].nut.push_back (vt);
       } TARGETS
     tmp = vts[0];
-  for (int i = 1; i < vts.size (); ++i)	//将这些targets连&
+  for (int i = 1; i < vts.size (); ++i) //将这些targets连&
     tmp = tmp & vts[i];
-  for (int i = 0; i < tmp.nut.size (); ++i)	//归整每行（与结构）
+  for (int i = 0; i < tmp.nut.size (); ++i)     //归整每行（与结构）
     unique (tmp.nut[i].begin (), tmp.nut[i].end ());
-  unique (tmp.nut.begin (), tmp.nut.end ());	//归整所有行（或结构）
+  unique (tmp.nut.begin (), tmp.nut.end ());    //归整所有行（或结构）
   return tmp;
 }
 
@@ -219,10 +219,10 @@ operator & (const TARGETS & a, const TARGETS & b)
     {
       copy (a.nut.begin (), a.nut.end (), tmp.nut.end ());
       for (int j = 0; j < a.nut.size (); ++j)
-	{
-	  int m = a.nut.size () * i + j;
-	  copy (b.nut[j].begin (), b.nut[j].end (), tmp.nut[m].end ());
-	  unique (tmp.nut[m].begin (), tmp.nut[m].end ());
+        {
+          int m = a.nut.size () * i + j;
+          copy (b.nut[j].begin (), b.nut[j].end (), tmp.nut[m].end ());
+          unique (tmp.nut[m].begin (), tmp.nut[m].end ());
         }
     }
   unique (tmp.nut.begin (), tmp.nut.end ());
@@ -552,10 +552,10 @@ TARGETSEARCH::isleaf (INFOGO * infop, TARGET tg)
     {
     case ROOT:
       if (tg.maxdepth <= 0)
-	return 1;
+        return 1;
 
       else
-	return 0;
+        return 0;
     default:
       return 0;
     }
@@ -585,12 +585,12 @@ TARGETSEARCH::findpath (INFOGO * infop, TARGETS tgs)
 {
   VM vm;
   BITB b, bb;
-  b = NULL_BB;			//
+  b = NULL_BB;                  //
   for (int i = 0; i < tgs.nut.size (); ++i)
     {
       bb = FULL_BB;
       for (int j = 0; j < tgs.nut[i].size (); ++j)
-	bb &= scope (infop, tgs.nut[i][j]);
+        bb &= scope (infop, tgs.nut[i][j]);
       b |= bb;
     }
   //-// 此处利用定式库的走步频率来排序
@@ -619,7 +619,7 @@ TARGETSEARCH::findpath (INFOGO * infop, TARGETS tgs)
   for (int i = BS * BS - 1; i >= 0; --i)
     if (vi[idsort[i]] > 1)
       {
-	vm.push_back (make_pair (i2pos (idsort[i]), trn));
+        vm.push_back (make_pair (i2pos (idsort[i]), trn));
       }
 
     else
@@ -643,14 +643,14 @@ TARGETSEARCH::isleaf (INFOGO * infop, TARGETS tgs)
     {
       bb = 1;
       for (int j = 0; j < tgs.nut[i].size (); ++j)
-	{
-	  bb &= isleaf (infop, tgs.nut[i][j]);
-	  if (!bb)
-	    break;
-	}
+        {
+          bb &= isleaf (infop, tgs.nut[i][j]);
+          if (!bb)
+            break;
+        }
       b |= bb;
       if (b)
-	break;
+        break;
     }
   return b;
 }
@@ -667,8 +667,8 @@ TARGETSEARCH::leafvalue (INFOGO * infop, TARGETS tgs)
     {
       rr = RESULT ();
       for (int j = 0; j < tgs.nut[i].size (); ++j)
-	rr += leafvalue (infop, tgs.nut[i][j]);
-      r = min (r, rr);		////////////////
+        rr += leafvalue (infop, tgs.nut[i][j]);
+      r = min (r, rr);          ////////////////
     } return r;
 }
 
@@ -719,16 +719,16 @@ TARGETSEARCH::recordpath (RESULT result, MOVE move)
 
 /*
 // 粗粒度搜索
-void	TARGETSEARCH::lookfor(){
-	aim = forward(aim); 
-	for (; ; ){
-		ensure(); 
-		get(aim); 
-		select(); 
-		optimize(); 
-		if (stop()) 
-			return; 
-		aim = anti(aim); 
-	}
+void    TARGETSEARCH::lookfor(){
+        aim = forward(aim); 
+        for (; ; ){
+                ensure(); 
+                get(aim); 
+                select(); 
+                optimize(); 
+                if (stop()) 
+                        return; 
+                aim = anti(aim); 
+        }
 }
 */

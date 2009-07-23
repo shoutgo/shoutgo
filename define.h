@@ -69,8 +69,8 @@ typedef int VALUE;
 typedef unsigned ROW, KEY, LIKELIHOOD;
 typedef unsigned long UL;
 typedef unsigned long long ULL;
-typedef float ParaTYPE;		//-//
-typedef BITB MASK, BLOCK;	//, CHAIN, MASS, CLUSTER; 
+typedef float ParaTYPE;         //-//
+typedef BITB MASK, BLOCK;       //, CHAIN, MASS, CLUSTER; 
 typedef pair < int, ROW > POS;
 typedef pair < int, int > PII;
 typedef pair < unsigned, unsigned > PUU;
@@ -97,11 +97,11 @@ typedef vector < VK > VVK;
 typedef map < POS, int > MPI;
 
 /*
-const       RGB			I = 0x0008; 
-const       RGB			B = 0x0001|I; 
-const       RGB			G = 0x0002|I; 
-const       RGB			R = 0x0004|I; 
-const       RGB			W = (R|G|B)^I; 
+const       RGB                 I = 0x0008; 
+const       RGB                 B = 0x0001|I; 
+const       RGB                 G = 0x0002|I; 
+const       RGB                 R = 0x0004|I; 
+const       RGB                 W = (R|G|B)^I; 
 */
 const string R = "\033[1;31m";
 const string G = "\033[1;32m";
@@ -111,7 +111,7 @@ const string RB = "\033[1;35m";
 const string GB = "\033[1;36m";
 const string W = "\033[0m";
 
-const int BS = 19;		// max: 25
+const int BS = 19;              // max: 25
 const float KOMI = 7.5;
 const int MIDBS = (BS - 1) / 2;
 const ROW LEFTEST = 1 << (BS - 1);
@@ -140,12 +140,12 @@ public:
 
 /* _______________________________ 测试区 _______________________________ */
 
-#define MACRO_ASSERT		0
-#define MACRO_PARASSERT		0
-#define MACRO_CONTROL		0
+#define MACRO_ASSERT            0
+#define MACRO_PARASSERT         0
+#define MACRO_CONTROL           0
 
-#define MACRO_CODEUNIT		0
-#define MACRO_COUT		0
+#define MACRO_CODEUNIT          0
+#define MACRO_COUT              0
 
 /* 验证宏：参数验证和正确性验证 */
 
@@ -153,31 +153,31 @@ void ___assert (bool exp, string s, string _f_ = "", long _l_ = 0);
 void ___parassert (bool exp, string s);
 
 #if MACRO_PARASSERT
-#  define ___PARASSERT(exp)	___parassert(exp, #exp);
+#  define ___PARASSERT(exp)     ___parassert(exp, #exp);
 #else
-#  define ___PARASSERT(exp)	{}
+#  define ___PARASSERT(exp)     {}
 #endif
 
 #if MACRO_ASSERT
-#  define ___ASSERT(exp)	___assert(exp, #exp);
+#  define ___ASSERT(exp)        ___assert(exp, #exp);
 #else
-#  define ___ASSERT(exp)	{}
+#  define ___ASSERT(exp)        {}
 #endif
 
 /* 控制宏 */
 
 #if MACRO_CONTROL
-#  define ___ESC	{}
+#  define ___ESC        {}
 #else
-#  define ___ESC	{}
+#  define ___ESC        {}
 #endif
 
 /* 分组宏：将代码分组 */
 
 #if MACRO_CODEUNIT
-#  define ___CODEUNIT(code)	code
+#  define ___CODEUNIT(code)     code
 #else
-#  define ___CODEUNIT(code)	code
+#  define ___CODEUNIT(code)     code
 #endif
 
 /* 输出宏：输出变量，报告函数内部状态 */
@@ -195,27 +195,27 @@ ___cout (T t, string s)
 }
 
 
-#  define ___COUT1(var)		___cout(var, #var);
-#  define ___COUT2(a, b)	{___COUT1(a)		___COUT1(b)}
-#  define ___COUT3(a, b, c)	{___COUT2(a, b)		___COUT1(c)}
-#  define ___COUT4(a, b, c, d)	{___COUT3(a, b, c)	___COUT1(d)}
-#  define ___COUT5(a, b, c, d, e)			{___COUT4(a, b, c, d)    ___COUT1(e)}
-#  define ___COUT6(a, b, c, d, e, f)			{___COUT5(a, b, c, d, e) ___COUT1 (f)}
-#  define ___COUT7(a, b, c, d, e, f, g)			{___COUT5(a, b, c, d, e) ___COUT2 (f, g)}
-#  define ___COUT8(a, b, c, d, e, f, g, h)		{___COUT5(a, b, c, d, e) ___COUT3 (f, g, h)}
-#  define ___COUT9(a, b, c, d, e, f, g, h, i)		{___COUT5(a, b, c, d, e) ___COUT4 (f, g, h, i)}
-#  define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{___COUT5(a, b, c, d, e) ___COUT5 (f, g, h, i, j)}
+#  define ___COUT1(var)         ___cout(var, #var);
+#  define ___COUT2(a, b)        {___COUT1(a)            ___COUT1(b)}
+#  define ___COUT3(a, b, c)     {___COUT2(a, b)         ___COUT1(c)}
+#  define ___COUT4(a, b, c, d)  {___COUT3(a, b, c)      ___COUT1(d)}
+#  define ___COUT5(a, b, c, d, e)                       {___COUT4(a, b, c, d)    ___COUT1(e)}
+#  define ___COUT6(a, b, c, d, e, f)                    {___COUT5(a, b, c, d, e) ___COUT1 (f)}
+#  define ___COUT7(a, b, c, d, e, f, g)                 {___COUT5(a, b, c, d, e) ___COUT2 (f, g)}
+#  define ___COUT8(a, b, c, d, e, f, g, h)              {___COUT5(a, b, c, d, e) ___COUT3 (f, g, h)}
+#  define ___COUT9(a, b, c, d, e, f, g, h, i)           {___COUT5(a, b, c, d, e) ___COUT4 (f, g, h, i)}
+#  define ___COUT10(a, b, c, d, e, f, g, h, i, j)       {___COUT5(a, b, c, d, e) ___COUT5 (f, g, h, i, j)}
 #else
-#  define ___COUT1(var)					{}
-#  define ___COUT2(a, b)				{}
-#  define ___COUT3(a, b, c)				{}
-#  define ___COUT4(a, b, c, d)				{}
-#  define ___COUT5(a, b, c, d, e)			{}
-#  define ___COUT6(a, b, c, d, e, f)			{}
-#  define ___COUT7(a, b, c, d, e, f, g)			{}
-#  define ___COUT8(a, b, c, d, e, f, g, h)		{}
-#  define ___COUT9(a, b, c, d, e, f, g, h, i)		{}
-#  define ___COUT10(a, b, c, d, e, f, g, h, i, j)	{}
+#  define ___COUT1(var)                                 {}
+#  define ___COUT2(a, b)                                {}
+#  define ___COUT3(a, b, c)                             {}
+#  define ___COUT4(a, b, c, d)                          {}
+#  define ___COUT5(a, b, c, d, e)                       {}
+#  define ___COUT6(a, b, c, d, e, f)                    {}
+#  define ___COUT7(a, b, c, d, e, f, g)                 {}
+#  define ___COUT8(a, b, c, d, e, f, g, h)              {}
+#  define ___COUT9(a, b, c, d, e, f, g, h, i)           {}
+#  define ___COUT10(a, b, c, d, e, f, g, h, i, j)       {}
 #endif
 
 /* 时间类 */

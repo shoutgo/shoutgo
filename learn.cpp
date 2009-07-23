@@ -1,6 +1,6 @@
 #include "learn.h"
 #include "inout.h"
-#include <unistd.h>		// sleep()      // VS2008
+#include <unistd.h>             // sleep()      // VS2008
 
 /* class LEARN */
 LEARN::LEARN (string sgfpath)
@@ -74,21 +74,21 @@ LEARN::learn (VS vf)
 
       // 16 种对称方式编码不一样
       for (int k = 0; k < 2; ++k)
-	{
-	  for (int i = 0; i < 8; ++i)
-	    {
-	      infop = new INFOGO;
-	      g_init.swap_id8_q8 (0, i);
-	      p->fuseki (infop);
-	      for (int j = 0; j < p->sons.size (); ++j)
-		{
-		  visit (p->sons[j], infop, &LEARN::insert_zobrist);
-		}
-	      g_init.swap_id8_q8 (0, i);
-	      infop->delfromroot ();
-	    }
-	  g_init.swap_xorand ();
-	}
+        {
+          for (int i = 0; i < 8; ++i)
+            {
+              infop = new INFOGO;
+              g_init.swap_id8_q8 (0, i);
+              p->fuseki (infop);
+              for (int j = 0; j < p->sons.size (); ++j)
+                {
+                  visit (p->sons[j], infop, &LEARN::insert_zobrist);
+                }
+              g_init.swap_id8_q8 (0, i);
+              infop->delfromroot ();
+            }
+          g_init.swap_xorand ();
+        }
       /*
          // 16 种对称方式下编码都一样
          infop = new INFOGO; 
@@ -127,10 +127,10 @@ LEARN::learn (VS vf)
       infop = new INFOGO;
       p->fuseki (infop);
       for (int i = 0; i < p->sons.size (); ++i)
-	{
-	  visit (p->sons[i], infop, &LEARN::insert_pemis);
-	  infop->delfromroot ();
-	}
+        {
+          visit (p->sons[i], infop, &LEARN::insert_pemis);
+          infop->delfromroot ();
+        }
       delete p;
       ___.toc ();
     }
@@ -157,11 +157,11 @@ LEARN::insert_zobrist (INFOGO * infop)
       KEY f = infop->father->getzobrist (i);
       KEY s = infop->getzobrist (i);
       if (f != s)
-	{
-	  KEY k = g_init.getrand (infop->getlastpos (), infop->getlastclr ());
-	  lib_zobrist[g_init.getq8 (i)].insert (f, k);
-	  ++n_zobrist;		//-//for thesis
-	}
+        {
+          KEY k = g_init.getrand (infop->getlastpos (), infop->getlastclr ());
+          lib_zobrist[g_init.getq8 (i)].insert (f, k);
+          ++n_zobrist;          //-//for thesis
+        }
     }
 }
 
@@ -172,8 +172,8 @@ LEARN::insert_pemis (INFOGO * infop)
   for (int i = 0; i < vpuu.size (); ++i)
     if (vpuu[i].first != 0 || vpuu[i].second != 0)
       {
-	lib_pemis.insert (vpuu[i].first, vpuu[i].second);
-	++n_pemis;		//-//for thesis
+        lib_pemis.insert (vpuu[i].first, vpuu[i].second);
+        ++n_pemis;              //-//for thesis
       }
 }
 
@@ -198,10 +198,10 @@ vector < pair < ULL, ULL > > LEARN::pemis (INFOGO * infop)
     {
       tmp = infop->father->xx.blockon (vecb[i]) | infop->father->oo.blockon (vecb[i]);
       if (tmp.empty () && !g_init.getroute (R4)[infop->getlastpos ()])
-	{
-	  vpuu.push_back (make_pair (0, 0));	//此特殊值在 getfreq()中调用
-	  continue;
-	}
+        {
+          vpuu.push_back (make_pair (0, 0));    //此特殊值在 getfreq()中调用
+          continue;
+        }
       f = infop->father->pemis64 (tmp);
       tmp = infop->xx.blockon (vecb[i]) | infop->oo.blockon (vecb[i]);
       s = infop->pemis64 (tmp);
@@ -224,30 +224,30 @@ LEARN::setpatfreq (INFOGO * infop)
     {
       sonp = infop->move_tree (pos, BLACK);
       if (sonp != infop)
-	{
-	  vpuu = pemis (sonp);
-	  for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
-	    infop->patfreq.setf (pos, BLACK, i, lib_pemis.getfreq (vpuu[i].first, vpuu[i].second));
-	  delete sonp;
-	  infop->sons.pop_back ();
-	}
+        {
+          vpuu = pemis (sonp);
+          for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
+            infop->patfreq.setf (pos, BLACK, i, lib_pemis.getfreq (vpuu[i].first, vpuu[i].second));
+          delete sonp;
+          infop->sons.pop_back ();
+        }
 
       else
-	for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
-	  infop->patfreq.setf (pos, BLACK, i, -1);
+        for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
+          infop->patfreq.setf (pos, BLACK, i, -1);
       sonp = infop->move_tree (pos, WHITE);
       if (sonp != infop)
-	{
-	  vpuu = pemis (sonp);
-	  for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
-	    infop->patfreq.setf (pos, WHITE, i, lib_pemis.getfreq (vpuu[i].first, vpuu[i].second));
-	  delete sonp;
-	  infop->sons.pop_back ();
-	}
+        {
+          vpuu = pemis (sonp);
+          for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
+            infop->patfreq.setf (pos, WHITE, i, lib_pemis.getfreq (vpuu[i].first, vpuu[i].second));
+          delete sonp;
+          infop->sons.pop_back ();
+        }
 
       else
-	for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
-	  infop->patfreq.setf (pos, WHITE, i, -1);
+        for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
+          infop->patfreq.setf (pos, WHITE, i, -1);
     }
 }
 

@@ -20,7 +20,7 @@ ___assert (bool exp, string s, string _f_, long _l_)
     {
       cerr << setx (R) << "___assert(" << s << ") is failure ! ";
       if (!_f_.empty ())
-	cout << " [" << _f_ << " (" << _l_ << ")]";
+        cout << " [" << _f_ << " (" << _l_ << ")]";
       cout << setx (W) << endl;
     }
 }
@@ -41,7 +41,7 @@ void
 TIMER::toc ()
 {
   dif = clock () - ticat;
-  cout << std::setw (10) << std::right << dif << " CPUs" << endl;	// ms
+  cout << std::setw (10) << std::right << dif << " CPUs" << endl;       // ms
   ticat = clock ();
 }
 
@@ -59,7 +59,7 @@ RANDER::RANDER (int n, int nb, int ng)
     {
       vi.push_back (rand ());
       vu.push_back (rand ());
-      vp.push_back (make_pair (randu (BS), 1 << randu (BS)));	//ok
+      vp.push_back (make_pair (randu (BS), 1 << randu (BS)));   //ok
       vs.push_back ("sdfsdf+sdf");
       vd.push_back (CENTER);
       vc.push_back (WHITE);
@@ -94,7 +94,7 @@ INIT::INIT ():inited (0)
     }
   set_id8_q8 ();
   setzobristmask ();
-  set_xorand_key2rand ();	// 可能会被 LEARN() 覆盖。
+  set_xorand_key2rand ();       // 可能会被 LEARN() 覆盖。
   setroute ();
   inited = 1;
 }
@@ -168,36 +168,36 @@ INIT::set_id8_q8 ()
   for (int which = 0; which < 8; ++which)
     {
       for (int i = 4; i < 8; ++i)
-	{
-	  int x, n;
-	  switch (i)
-	    {
-	    case 4:
-	      x = max (q8[which][0], q8[which][1]);
-	      n = min (q8[which][0], q8[which][1]);
-	      break;
-	    case 5:
-	      x = max (q8[which][1], q8[which][3]);
-	      n = min (q8[which][1], q8[which][3]);
-	      break;
-	    case 6:
-	      x = max (q8[which][2], q8[which][0]);
-	      n = min (q8[which][2], q8[which][0]);
-	      break;
-	    case 7:
-	      x = max (q8[which][3], q8[which][2]);
-	      n = min (q8[which][3], q8[which][2]);
-	      break;
-	    }
-	  if (x == 1 && n == 0)
-	    q8[which].push_back (4);
-	  if (x == 3 && n == 1)
-	    q8[which].push_back (5);
-	  if (x == 3 && n == 2)
-	    q8[which].push_back (7);
-	  if (x == 2 && n == 0)
-	    q8[which].push_back (6);
-	}
+        {
+          int x, n;
+          switch (i)
+            {
+            case 4:
+              x = max (q8[which][0], q8[which][1]);
+              n = min (q8[which][0], q8[which][1]);
+              break;
+            case 5:
+              x = max (q8[which][1], q8[which][3]);
+              n = min (q8[which][1], q8[which][3]);
+              break;
+            case 6:
+              x = max (q8[which][2], q8[which][0]);
+              n = min (q8[which][2], q8[which][0]);
+              break;
+            case 7:
+              x = max (q8[which][3], q8[which][2]);
+              n = min (q8[which][3], q8[which][2]);
+              break;
+            }
+          if (x == 1 && n == 0)
+            q8[which].push_back (4);
+          if (x == 3 && n == 1)
+            q8[which].push_back (5);
+          if (x == 3 && n == 2)
+            q8[which].push_back (7);
+          if (x == 2 && n == 0)
+            q8[which].push_back (6);
+        }
 
       // 全局 mask ，目前未应用
       q8[which].push_back (8);
@@ -316,15 +316,15 @@ MOVE & INIT::getmove (KEY key)
 void
 INIT::setroute ()
 {
-  route.push_back (frame (star (CENTER), MIDBS - 2));	//R3
-  route.push_back (frame (star (CENTER), MIDBS - 3));	//R4
-  route.push_back (frame (star (CENTER), MIDBS - 4));	//R5
-  route.push_back (square (star (CENTER), MIDBS - 4));	//R4UP
-  route.push_back (~route[R4UP]);			//R4DOWN
-  route.push_back (strip (star (EAST), MIDBS, 0, MIDBS, MIDBS));	//R4DOWN_EAST
-  route.push_back (strip (star (SOUTH), 0, MIDBS, MIDBS, MIDBS));	//R4DOWN_SOUTH
-  route.push_back (strip (star (WEST), MIDBS, MIDBS, MIDBS, 0));	//R4DOWN_WEST
-  route.push_back (strip (star (NORTH), MIDBS, MIDBS, 0, MIDBS));	//R4DOWN_NORTH
+  route.push_back (frame (star (CENTER), MIDBS - 2));   //R3
+  route.push_back (frame (star (CENTER), MIDBS - 3));   //R4
+  route.push_back (frame (star (CENTER), MIDBS - 4));   //R5
+  route.push_back (square (star (CENTER), MIDBS - 4));  //R4UP
+  route.push_back (~route[R4UP]);                       //R4DOWN
+  route.push_back (strip (star (EAST), MIDBS, 0, MIDBS, MIDBS));        //R4DOWN_EAST
+  route.push_back (strip (star (SOUTH), 0, MIDBS, MIDBS, MIDBS));       //R4DOWN_SOUTH
+  route.push_back (strip (star (WEST), MIDBS, MIDBS, MIDBS, 0));        //R4DOWN_WEST
+  route.push_back (strip (star (NORTH), MIDBS, MIDBS, 0, MIDBS));       //R4DOWN_NORTH
 }
 
 BITB

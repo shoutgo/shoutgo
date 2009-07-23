@@ -17,6 +17,7 @@ public:
   string logo_ ();
   string stone (const COLOR &);
   string grid (const POS &);
+  string midgrid (const COLOR l, const COLOR r, const POS & pos);
   string axis (const POS & pos) const;
   void print (const GO & go, const BITB & mask = FULL_BB);
   void print (const GO & go, const GO & markgo, RGB xxc = RB, RGB ooc = GB, RGB xoc = RG);
@@ -199,10 +200,10 @@ INOUT::load (vector < vector < T > > & vvt, ifstream & file)
       file.read ((char *) &n, sizeof (int));
       vector < T > vt;
       for (int j = 0; j < n; ++j)
-	{
-	  file.read ((char *) &t, sizeof (T));
-	  vt.push_back (t);
-	}
+        {
+          file.read ((char *) &t, sizeof (T));
+          vt.push_back (t);
+        }
       vvt.push_back (vt);
     }
 

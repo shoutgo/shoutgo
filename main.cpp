@@ -62,7 +62,7 @@ command_test (VS in)
     {
       ofstream file ("GO.txt", ios::app);
       if (!file)
-	cerr << "GO.txt" << " : open fail !" << endl;
+        cerr << "GO.txt" << " : open fail !" << endl;
       streambuf *old = cout.rdbuf ();
       cout.rdbuf (file.rdbuf ());
       in.pop_back ();
@@ -75,10 +75,10 @@ command_test (VS in)
     {
     case HELP_C:
       if (in.size () > 1)
-	g_cmd.help (g_cmd.which (in[1]));
+        g_cmd.help (g_cmd.which (in[1]));
 
       else
-	g_cmd.help ();
+        g_cmd.help ();
       break;
     case SIZE_C:
       testsize ();
@@ -95,7 +95,7 @@ command_state (const INFOGO & info, VS in)
     {
       ofstream file ("GO.txt", ios::app);
       if (!file)
-	cerr << "GO.txt" << " : open fail !" << endl;
+        cerr << "GO.txt" << " : open fail !" << endl;
       streambuf *old = cout.rdbuf ();
       cout.rdbuf (file.rdbuf ());
       in.pop_back ();
@@ -127,18 +127,18 @@ command_state (const INFOGO & info, VS in)
       break;
     case DELTAMASSMAPS_C:
       if (!info.father)
-	break;
+        break;
       if (in.size () > 1)
-	m = str2i (in[1], 0, info.area.massmaps.size () - 1);
+        m = str2i (in[1], 0, info.area.massmaps.size () - 1);
       else
-	m = info.area.massmaps.size () - 1;
+        m = info.area.massmaps.size () - 1;
       INOUT ().print (info, info.area.massmaps[m] ^ info.father->area.massmaps[m]);
       break;
     case MASSMAPS_C:
       if (in.size () > 1)
-	m = str2i (in[1], 0, info.area.massmaps.size () - 1);
+        m = str2i (in[1], 0, info.area.massmaps.size () - 1);
       else
-	m = info.area.massmaps.size () - 1;
+        m = info.area.massmaps.size () - 1;
       INOUT ().print (info, info.area.massmaps[m]);
       break;
     case CLUSTER_C:
@@ -172,20 +172,20 @@ command_state (const INFOGO & info, VS in)
       break;
     case TRYMOVE_C:
       if (in.size () < 3)
-	break;
+        break;
       inf = info;
       if (in[1][0] == '-')
-	{
-	  infp = &inf;
-	  m = str2i (in[1], INT_MIN, -1);
-	  for (int i = m; i < 0 && infp->father; ++i)
-	    infp = infp->father;
-	}
+        {
+          infp = &inf;
+          m = str2i (in[1], INT_MIN, -1);
+          for (int i = m; i < 0 && infp->father; ++i)
+            infp = infp->father;
+        }
       else
-	{
-	  infp = inf.move_tree (INOUT ().in2pos (inf.getlastpos (), in[1]), inf.turn ());
-	  infp->update ();
-	}
+        {
+          infp = inf.move_tree (INOUT ().in2pos (inf.getlastpos (), in[1]), inf.turn ());
+          infp->update ();
+        }
       reverse (in.begin (), in.end ());
       in.pop_back ();
       in.pop_back ();
@@ -194,25 +194,25 @@ command_state (const INFOGO & info, VS in)
       break;
     case ZOBRIST_C:
       if (in.size () > 1)
-	m = str2i (in[1], 0, ZOBRIST::ZOBRIST_KIND - 1);
+        m = str2i (in[1], 0, ZOBRIST::ZOBRIST_KIND - 1);
       else
-	m = ZOBRIST::ZOBRIST_KIND - 1;
+        m = ZOBRIST::ZOBRIST_KIND - 1;
       vi = info.getf_zobrist (m, FULL_BB, info.turn ());
       for (POS pos = itr.posbegin (); !itr.posend (); pos = itr.posnext ())
-	if (vi[pos2i (pos)] > 0)
-	  bb |= pos;
+        if (vi[pos2i (pos)] > 0)
+          bb |= pos;
       cout << info (bb);
       break;
     case PEMIS_C:
       if (in.size () > 1)
-	m = str2i (in[1], 0, PATFREQ::PEMIS_KIND - 1);
+        m = str2i (in[1], 0, PATFREQ::PEMIS_KIND - 1);
       else
-	m = PATFREQ::PEMIS_KIND - 1;
+        m = PATFREQ::PEMIS_KIND - 1;
       inf = info;
       vi = inf.getf_patfreq (m, FULL_BB, inf.turn ());
       for (POS pos = itr.posbegin (); !itr.posend (); pos = itr.posnext ())
-	if (vi[pos2i (pos)] > 1)
-	  bb |= pos;
+        if (vi[pos2i (pos)] > 1)
+          bb |= pos;
       cout << inf (bb);
       break;
     case SAVE_C:

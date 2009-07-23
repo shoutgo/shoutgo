@@ -29,12 +29,12 @@ struct SGFROOT
   {
     for (int i = 0; i < xfuseki.size (); ++i)
       {
-	(*t_ptr).move (xfuseki[i], BLACK);
-	(*t_ptr).update ();
+        (*t_ptr).move (xfuseki[i], BLACK);
+        (*t_ptr).update ();
     } for (int i = 0; i < ofuseki.size (); ++i)
       {
-	(*t_ptr).move (ofuseki[i], WHITE);
-	(*t_ptr).update ();
+        (*t_ptr).move (ofuseki[i], WHITE);
+        (*t_ptr).update ();
       }
     // 因存在 sgfnode->color ，并不需要下一句。
     // t_ptr->setturn(turn); 

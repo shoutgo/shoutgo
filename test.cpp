@@ -12,7 +12,7 @@ make_pair (int a, unsigned b)
 
 void
 testtree ()
-{				//for thesis
+{                               //for thesis
   // 这些搜索算法均只利用叶结点的值回溯，不受前面算法影响
   ___CODEUNIT (TREE tree; srand ((unsigned) time (0)); NODE * p = tree.root (); ___COUT1 (tree.nodes););
   VALUE a, b, c, u, v, w, x, y;
@@ -33,12 +33,12 @@ testtree ()
   ___CODEUNIT (tree.visited = 0; ___.tic ("failsoft_minmax"); c = tree.failsoft_minmax (p, widea, wideb); ___.toc (); ___COUT1 (tree.visited););
 
 /*
-		// ________ class TREESEARCH _________
-		// 叶结点值为真实值
-	TREESEARCH treesearch; 
-	___CODEUNIT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
-	___ASSERT(a == aa); 
-		// ________ class TREESEARCH _________
+                // ________ class TREESEARCH _________
+                // 叶结点值为真实值
+        TREESEARCH treesearch; 
+        ___CODEUNIT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
+        ___ASSERT(a == aa); 
+                // ________ class TREESEARCH _________
 */
   // 下面 min 叶结点为翻转值，如翻转过则不再翻转
   // 当头结点为 min 结点时，传入的界值实为(-beta, -alpha)
@@ -68,55 +68,55 @@ testtree ()
 
 /*
 void testtree(){
-		// 这些搜索算法均只利用叶结点的值回溯，不受前面算法影响
-	___CODEUNIT(
-		TREE tree; 
-		srand((unsigned)time(0)); 
-		NODE* p = tree.root(); 
-	)
+                // 这些搜索算法均只利用叶结点的值回溯，不受前面算法影响
+        ___CODEUNIT(
+                TREE tree; 
+                srand((unsigned)time(0)); 
+                NODE* p = tree.root(); 
+        )
 
-		// 叶结点值为真实值，未判断是否为翻转值
-	VALUE widea = TREE::VALUE_MIN; 
-	VALUE wideb = TREE::VALUE_MAX; 
-	VALUE narrowa = 10; 
-	VALUE narrowb = 20; 
-	___CODEUNIT( VALUE a = tree.minmax(p); ); 
-						// 当界值不当，且有浅层叶结点时返回值可能越界，
-						// 层数稍深，返回值会被抹平，则返回原始界值
-	___CODEUNIT( VALUE b = tree.alphabeta_minmax(p, widea, wideb); ); 
-						// 当界值不当，返回值比真实值高估低估都有可能
-						// 但一定处在界外同侧
-	___CODEUNIT( VALUE c = tree.failsoft_minmax(p, widea, wideb); ); 
+                // 叶结点值为真实值，未判断是否为翻转值
+        VALUE widea = TREE::VALUE_MIN; 
+        VALUE wideb = TREE::VALUE_MAX; 
+        VALUE narrowa = 10; 
+        VALUE narrowb = 20; 
+        ___CODEUNIT( VALUE a = tree.minmax(p); ); 
+                                                // 当界值不当，且有浅层叶结点时返回值可能越界，
+                                                // 层数稍深，返回值会被抹平，则返回原始界值
+        ___CODEUNIT( VALUE b = tree.alphabeta_minmax(p, widea, wideb); ); 
+                                                // 当界值不当，返回值比真实值高估低估都有可能
+                                                // 但一定处在界外同侧
+        ___CODEUNIT( VALUE c = tree.failsoft_minmax(p, widea, wideb); ); 
 
-		// ________ class TREESEARCH _________
-		// 叶结点值为真实值
-	TREESEARCH treesearch; 
-	___CODEUNIT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
-	___ASSERT(a == aa); 
-		// ________ class TREESEARCH _________
+                // ________ class TREESEARCH _________
+                // 叶结点值为真实值
+        TREESEARCH treesearch; 
+        ___CODEUNIT( VALUE aa = treesearch.minmax(p); cout<< aa << endl; ); 
+        ___ASSERT(a == aa); 
+                // ________ class TREESEARCH _________
 
-		// 下面 min 叶结点为翻转值，如翻转过则不再翻转
-		// 当头结点为 min 结点时，传入的界值实为(-beta, -alpha)
-		// 所以如果区域足够大，结果与上一致，否则可能并不一致
-	VALUE newwidea = p->ismax ? widea : -wideb; 
-	VALUE newwideb = p->ismax ? wideb : -widea; 
-	VALUE newnarrowa = p->ismax ? narrowa : -narrowb; 
-	VALUE newnarrowb = p->ismax ? narrowb : -narrowa; 
-	___CODEUNIT( VALUE u = tree.negamax(p); ); 
-	___CODEUNIT( VALUE v = tree.alphabeta_negamax(p, newwidea, newwideb); ); 
-	___CODEUNIT( VALUE w = tree.failsoft_negamax(p, newwidea, newwideb); ); 
-						// 当兄弟结点无序时搜索的结点往往更多
-	___CODEUNIT( VALUE x = tree.negascout(p, newwidea, newwideb); ); 
-	___CODEUNIT( VALUE y = tree.mtdf(p); ); 
-						// 一定最后测试，因结点值保存于结点内
-	___CODEUNIT(		   tree.negamax2(p); ); 
-		
-		// 仅当均为 widea, wideb 时下四式均成立
-	___ASSERT(a == b && a == c); 
-	___ASSERT(u == v && u == p->value && u == w && u == x && u == y); 
-	___ASSERT(a == u * ( p->flip ? -1 : 1)); 
-	___ASSERT(c == w * ( p->flip ? -1 : 1)); 
-	___COUT8(a,b,c,u,v,w,x,y);
+                // 下面 min 叶结点为翻转值，如翻转过则不再翻转
+                // 当头结点为 min 结点时，传入的界值实为(-beta, -alpha)
+                // 所以如果区域足够大，结果与上一致，否则可能并不一致
+        VALUE newwidea = p->ismax ? widea : -wideb; 
+        VALUE newwideb = p->ismax ? wideb : -widea; 
+        VALUE newnarrowa = p->ismax ? narrowa : -narrowb; 
+        VALUE newnarrowb = p->ismax ? narrowb : -narrowa; 
+        ___CODEUNIT( VALUE u = tree.negamax(p); ); 
+        ___CODEUNIT( VALUE v = tree.alphabeta_negamax(p, newwidea, newwideb); ); 
+        ___CODEUNIT( VALUE w = tree.failsoft_negamax(p, newwidea, newwideb); ); 
+                                                // 当兄弟结点无序时搜索的结点往往更多
+        ___CODEUNIT( VALUE x = tree.negascout(p, newwidea, newwideb); ); 
+        ___CODEUNIT( VALUE y = tree.mtdf(p); ); 
+                                                // 一定最后测试，因结点值保存于结点内
+        ___CODEUNIT(               tree.negamax2(p); ); 
+                
+                // 仅当均为 widea, wideb 时下四式均成立
+        ___ASSERT(a == b && a == c); 
+        ___ASSERT(u == v && u == p->value && u == w && u == x && u == y); 
+        ___ASSERT(a == u * ( p->flip ? -1 : 1)); 
+        ___ASSERT(c == w * ( p->flip ? -1 : 1)); 
+        ___COUT8(a,b,c,u,v,w,x,y);
 }
 */
 
@@ -124,22 +124,22 @@ void
 testnewpos ()
 {
   ___CODEUNIT (NEWPOS newpos;
-	       newpos.first = 1;
-	       newpos.second = 0x10;
-	       ___COUT1 (newpos);
-	       ___ASSERT (typeid (PII) == typeid (make_pair (4, 5)));
-	       ___ASSERT (typeid (NEWPOS) == typeid (make_pair (4, (unsigned) 5)));
-	       ___ASSERT (typeid (PUU) == typeid (make_pair ((unsigned) 4, (unsigned) 5))); unsigned n = 5; ___ASSERT (typeid (NEWPOS) == typeid (make_pair (4, n))););
+               newpos.first = 1;
+               newpos.second = 0x10;
+               ___COUT1 (newpos);
+               ___ASSERT (typeid (PII) == typeid (make_pair (4, 5)));
+               ___ASSERT (typeid (NEWPOS) == typeid (make_pair (4, (unsigned) 5)));
+               ___ASSERT (typeid (PUU) == typeid (make_pair ((unsigned) 4, (unsigned) 5))); unsigned n = 5; ___ASSERT (typeid (NEWPOS) == typeid (make_pair (4, n))););
 }
 
 void
 testsize ()
 {
-  ___COUT2 ((ULL) 512 * 1024 * 1024 * sizeof (long double),	// memory 500M
-	    UINT_MAX);
+  ___COUT2 ((ULL) 512 * 1024 * 1024 * sizeof (long double),     // memory 500M
+            UINT_MAX);
   ___COUT10 (sizeof (bool), sizeof (int), sizeof (long), sizeof (float), sizeof (double), sizeof (long double), sizeof (BITB), sizeof (GO), sizeof (INFOGO), sizeof (INCREMENT));
   ___COUT10 (sizeof (INOUT), sizeof (ITR), sizeof (FIR), sizeof (TSUMEGO), sizeof (NN), sizeof (TRANSPTABLE < BITB, int >), sizeof (SEARCH < RESULT, INFOGO, MOVE, TARGETS >),
-	     sizeof (TARGETSEARCH), sizeof (LEARN), sizeof (BRAIN));
+             sizeof (TARGETSEARCH), sizeof (LEARN), sizeof (BRAIN));
 }
 
 void
@@ -150,27 +150,27 @@ testc ()
   // clock() 返回自程序运行到此时的 CPU 时钟计时单元数。
   // time.h 中有 typedef long clock_t; CLOCKS_PER_SEC
   ___CODEUNIT (___COUT1 (CLOCKS_PER_SEC);
-	       int w = 4;
-	       clock_t goal;
-	       goal = w * CLOCKS_PER_SEC + clock (); cout << "wait for " << w << " second ..." << endl; while (goal > clock ()); cout << "time over now" << endl; long double i = 50000000;
-	       //clock_t start, finish; // 非括号之外的逗号与宏冲突
-	       clock_t start; clock_t finish; start = clock (); while (i--); finish = clock (); ___COUT1 ((double) (finish - start) / CLOCKS_PER_SEC););
+               int w = 4;
+               clock_t goal;
+               goal = w * CLOCKS_PER_SEC + clock (); cout << "wait for " << w << " second ..." << endl; while (goal > clock ()); cout << "time over now" << endl; long double i = 50000000;
+               //clock_t start, finish; // 非括号之外的逗号与宏冲突
+               clock_t start; clock_t finish; start = clock (); while (i--); finish = clock (); ___COUT1 ((double) (finish - start) / CLOCKS_PER_SEC););
 
   // 基本型的相互赋值
   // 这个整数由's''r''r''h'拼接, 不能超过 5 个
   // a 为 char 类型时取最后 8 位，故还是 'h'
   ___CODEUNIT (
-		//      int a = 'srrh'; 
-		//      char b = a; 
-		//      ___COUT2(a, b); 
+                //      int a = 'srrh'; 
+                //      char b = a; 
+                //      ___COUT2(a, b); 
     );
 
   // 浮点数按位读为unsigned
-  ___CODEUNIT (float f = 374.342; ___COUT4 ((*(unsigned *) &f),	// 正确
-					    (*(unsigned *) ((void *) &f)),	// 正确
-					    ((unsigned) f),	// 错误
-					    (static_cast < unsigned >(f))	// 错误
-	       ););
+  ___CODEUNIT (float f = 374.342; ___COUT4 ((*(unsigned *) &f), // 正确
+                                            (*(unsigned *) ((void *) &f)),      // 正确
+                                            ((unsigned) f),     // 错误
+                                            (static_cast < unsigned >(f))       // 错误
+               ););
 }
 
 void
@@ -179,17 +179,17 @@ testcpp ()
 
   // 按值与按引用返回
   ___CODEUNIT (TEST t;
-	       int a = 30;
-	       int b = t.add100 (a);
-	       ___COUT2 (a, b);
-	       ___ASSERT (a == 130 && b == 130);
-	       b += 7;
-	       ___COUT2 (a, b);
-	       ___ASSERT (a == 130 && b == 137);
-	       int &c = t.add100 (a);
-	       ___COUT2 (a, c);
-	       ___ASSERT (a == 230 && c == 230);
-	       c += 7; ___COUT2 (a, c); ___ASSERT (a == 237 && c == 237); int k = a + 3; ___COUT2 (a, c); ___ASSERT (a == 237 && c == 237); a += 3; ___COUT2 (a, c); ___ASSERT (a == 240 && c == 240););
+               int a = 30;
+               int b = t.add100 (a);
+               ___COUT2 (a, b);
+               ___ASSERT (a == 130 && b == 130);
+               b += 7;
+               ___COUT2 (a, b);
+               ___ASSERT (a == 130 && b == 137);
+               int &c = t.add100 (a);
+               ___COUT2 (a, c);
+               ___ASSERT (a == 230 && c == 230);
+               c += 7; ___COUT2 (a, c); ___ASSERT (a == 237 && c == 237); int k = a + 3; ___COUT2 (a, c); ___ASSERT (a == 237 && c == 237); a += 3; ___COUT2 (a, c); ___ASSERT (a == 240 && c == 240););
 }
 
 void
@@ -210,30 +210,30 @@ teststl ()
 
 void
 testload ()
-{				/*
-				   ___CODEUNIT(
-				   VI vi; 
-				   VI loadedvi; 
-				   vi.assign (4, -3); 
-				   vi.resize(7); 
-				   INOUT().save<int>(vi, "vi"); 
-				   INOUT().load<int>(loadedvi, "vi"); 
-				   ___COUT2(vi, loadedvi); 
-				   ___ASSERT(vi == loadedvi); 
+{                               /*
+                                   ___CODEUNIT(
+                                   VI vi; 
+                                   VI loadedvi; 
+                                   vi.assign (4, -3); 
+                                   vi.resize(7); 
+                                   INOUT().save<int>(vi, "vi"); 
+                                   INOUT().load<int>(loadedvi, "vi"); 
+                                   ___COUT2(vi, loadedvi); 
+                                   ___ASSERT(vi == loadedvi); 
 
-				   VVI vvi; 
-				   VVI loadedvvi; 
-				   vi.resize(4); 
-				   vvi.push_back (vi); 
-				   vi.resize(2); 
-				   vvi.push_back (vi); 
-				   vi.resize(7); 
-				   vvi.push_back (vi); 
-				   INOUT().save<int>(vvi, "vvi"); 
-				   INOUT().load<int>(loadedvvi, "vvi"); 
-				   ___COUT2(vvi, loadedvvi); 
-				   ___ASSERT(vvi == loadedvvi); 
-				   ); */
+                                   VVI vvi; 
+                                   VVI loadedvvi; 
+                                   vi.resize(4); 
+                                   vvi.push_back (vi); 
+                                   vi.resize(2); 
+                                   vvi.push_back (vi); 
+                                   vi.resize(7); 
+                                   vvi.push_back (vi); 
+                                   INOUT().save<int>(vvi, "vvi"); 
+                                   INOUT().load<int>(loadedvvi, "vvi"); 
+                                   ___COUT2(vvi, loadedvvi); 
+                                   ___ASSERT(vvi == loadedvvi); 
+                                   ); */
 }
 
 void
@@ -281,10 +281,10 @@ test_array_if ()
   for (int i = 0; i < t; ++i)
     {
       if (clr == BLACK)
-	a = go.xx;
+        a = go.xx;
 
       else
-	a = go.oo;
+        a = go.oo;
 
       //clr = clr == WHITE ? BLACK : WHITE; 
       clr = ~clr;

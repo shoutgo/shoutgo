@@ -48,12 +48,25 @@ INOUT::stone (const COLOR & clr)
   switch (clr)
     {
     case BLACK:
-      return " ● ";
+      return "●";
     case WHITE:
-      return " ○ ";
+      return "○";
     case BLACK_WHITE:
-      return " ⊙ ";
+      return "⊙";
     }
+}
+
+string 
+INOUT::midgrid (const COLOR l, const COLOR r, const POS & pos)
+{
+  if (pos.second & LEFTEST)
+    return "";
+  else if (l == BLACK || l == WHITE || l == BLACK_WHITE || r == BLACK || r == WHITE || r == BLACK_WHITE)
+    return " ";
+  if (pos.first == 0 || pos.first == (BS - 1))
+    return "━";
+  else
+    return "─";
 }
 
 string
@@ -62,27 +75,27 @@ INOUT::grid (const POS & pos)
   int r = pos.first;
   ROW p = pos.second;
   if (r == 0 && p == LEFTEST)
-      return " ┏━";
+      return "┏";
   if (r == 0 && p == 1)
-      return "━┓ ";
+      return "┓";
   if (r == BS - 1 && p == 1)
-      return "━┛ ";
+      return "┛";
   if (r == BS - 1 && p == LEFTEST)
-      return " ┗━";
+      return "┗";
   if (r == 0)
-      return "━┯━";
+      return "┯";
   if (p == 1)
-      return "─┨ ";
+      return "┨";
   if (r == (BS - 1))
-      return "━┷━";
+      return "┷";
   if (p == LEFTEST)
-      return " ┠─";
+      return "┠";
   if ((BS >= 13) && ((r == 3) || (r == MIDBS) || (r == (BS - 1 - 3))) && ((p == (1 << 3)) || (p == (CENTEREST)) || (p == (1 << (BS - 1 - 3)))))
-      return "─+─";
+      return "+";
   if (r == MIDBS && p == CENTEREST)
-      return "─+─";
+      return "+";
   else
-      return "─┼─";
+      return "┼";
 }
 
 POS
@@ -103,22 +116,22 @@ INOUT::in2pos (const POS & pos, string in)
     {
     case 5:
       if (!isdigit (in[3]) || !isdigit (in[4]))
-	return NULL_POS;
+        return NULL_POS;
       break;
     case 3:
       in += "11";
       break;
     case 4:
       if (!isdigit (in[3]))
-	return NULL_POS;
+        return NULL_POS;
       if (op == "++")
-	in += "0";
+        in += "0";
       if (op == "-+")
-	in.insert (3, "0");
+        in.insert (3, "0");
       if (op == "--")
-	in += "0";
+        in += "0";
       if (op == "+-")
-	in.insert (3, "0");
+        in.insert (3, "0");
       break;
     }
   if (in.size () > 5)
@@ -174,21 +187,22 @@ INOUT::jj2pos (string in, const POS & pp)
 string
 INOUT::axis (const POS & pos) const
 {
-  static string nullstr = "   ";
-  static string h = " Z  Y  X  W  V  U  T  S  R  Q  P  O  N  M  L  K  J  I  H  G  F  E  D  C  B  A ";
-  static string v = " 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ";
-  static string blanks = "";
+  static string h = "Z Y X W V U T S R Q P O N M L K J I H G F E D C B A ";
+  static string l = " 1 2 3 4 5 6 7 8 91011121314151617181920212223242526";
+  static string r = "1 2 3 4 5 6 7 8 9 1011121314151617181920212223242526";
+  static string nullaxis = "  ";
+  static string leftmargin = "";
   if (!axisshow)
-    return nullstr;
-  int w = nullstr.size ();
+    return nullaxis;
+  int w = nullaxis.size ();
   if (pos == corner (WN))
-    return blanks + nullstr + h.substr (h.size () - BS * w, BS * w) + nullstr + "\n" + blanks + v.substr (pos.first * w, w);
+    return leftmargin + nullaxis + " " + h.substr (h.size () - BS * w, BS * w) + " " + nullaxis + "\n" + leftmargin + l.substr (pos.first * w, w) + " ";
   else if (pos == corner (ES))
-    return v.substr (pos.first * w, w) + "\n" + blanks + nullstr + h.substr (h.size () - BS * w, BS * w) + nullstr;
+    return " " + r.substr (pos.first * w, w) + "\n" + leftmargin + nullaxis + " " + h.substr (h.size () - BS * w, BS * w) + " " + nullaxis;
   else if (pos.second & LEFTEST)
-    return blanks + v.substr (pos.first * w, w);
+    return leftmargin + l.substr (pos.first * w, w) + " ";
   else if (pos.second & 1)
-    return v.substr (pos.first * w, w);
+    return " " + r.substr (pos.first * w, w);
 }
 
 void
@@ -196,35 +210,38 @@ INOUT::print (const GO & go, const BITB & mask)
 {
   string s;
   ITR itr;
+  COLOR preclr = NULL_CLR;
   for (POS pos = itr.ioposbegin (); !itr.ioposend (); pos = itr.ioposnext ())
     {
       if (pos.second & LEFTEST && mask.r[pos.first])
-	cout << axis (pos);
+        cout << axis (pos);
       if (mask[pos])
-	{
-	  switch (go[pos])
-	    {
-	    case BLACK:
-	    case WHITE:
-	    case BLACK_WHITE:
-	      s = stone (go[pos]);
-	      break;
-	    case HOTKO:
-	    case EMPTY:
-	      s = grid (pos);
-	      break;
-	    }
-	  if (pos == go.getlastpos ())
-	    cout << setx (R) << s << setx (W);
-	  else if (pos == go.gethotko ())
-	    cout << setx (B) << s << setx (W);
-	  else if (go.getkill ()[pos])
-	    cout << setx (G) << s << setx (W);
-	  else
-	    cout << s;
-	}
+        {
+          s = midgrid (preclr, go[pos], pos);
+          switch (go[pos])
+            {
+            case BLACK:
+            case WHITE:
+            case BLACK_WHITE:
+              s += stone (go[pos]);
+              break;
+            case HOTKO:
+            case EMPTY:
+              s += grid (pos);
+              break;
+            }
+          if (pos == go.getlastpos ())
+            cout << setx (R) << s << setx (W);
+          else if (pos == go.gethotko ())
+            cout << setx (B) << s << setx (W);
+          else if (go.getkill ()[pos])
+            cout << setx (G) << s << setx (W);
+          else
+            cout << s;
+        }
       if (pos.second == 1 && mask.r[pos.first])
-	cout << axis (pos) << endl;
+        cout << axis (pos) << endl;
+      preclr = go[pos];
     }
 }
 
@@ -233,392 +250,395 @@ INOUT::print (const GO & go, const GO & markgo, RGB xxc, RGB ooc, RGB xoc)
 {
   string s;
   ITR itr;
+  COLOR preclr = NULL_CLR;
   for (POS pos = itr.ioposbegin (); !itr.ioposend (); pos = itr.ioposnext ())
     {
       if (pos.second & LEFTEST)
-	cout << axis (pos);
+        cout << axis (pos);
+      s = midgrid (preclr, go[pos], pos);
       switch (go[pos])
-	{
-	case BLACK:
-	case WHITE:
-	case BLACK_WHITE:
-	  s = stone (go[pos]);
-	  break;
-	case HOTKO:
-	case EMPTY:
-	  s = grid (pos);
-	  break;
-	}
+        {
+        case BLACK:
+        case WHITE:
+        case BLACK_WHITE:
+          s += stone (go[pos]);
+          break;
+        case HOTKO:
+        case EMPTY:
+          s += grid (pos);
+          break;
+        }
       if (pos == go.getlastpos ())
-	cout << setx (R) << s << setx (W);
+        cout << setx (R) << s << setx (W);
       else if (pos == go.gethotko ())
-	cout << setx (B) << s << setx (W);
+        cout << setx (B) << s << setx (W);
       else if (go.getkill ()[pos])
-	cout << setx (G) << s << setx (W);
+        cout << setx (G) << s << setx (W);
       else if (markgo[pos] == BLACK)
-	cout << setx (xxc) << s << setx (W);
+        cout << setx (xxc) << s << setx (W);
       else if (markgo[pos] == WHITE)
-	cout << setx (ooc) << s << setx (W);
+        cout << setx (ooc) << s << setx (W);
       else if (markgo[pos] == BLACK_WHITE)
-	cout << setx (xoc) << s << setx (W);
+        cout << setx (xoc) << s << setx (W);
       else
-	cout << s;
+        cout << s;
       if (pos.second == 1)
-	cout << axis (pos) << endl;
+        cout << axis (pos) << endl;
+      preclr = go[pos];
     }
 }
 
 
 /*
-string	INOUT::axis (string board) {
-	___ASSERT(board.size () == (2*BS*BS+BS)); 
-	string v = " 1 2 3 4 5 6 7 8 91011121314151617181920212223242526"; 
-	string h = " A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"; 
-	board = v.substr (0, 2) + board; 
-	for (int p = 0, i = 0; p<board.size (); ++p)
-		if (board.substr (p, 1) == "\n"){
-			board.replace(p, 1, v.substr(i, 2)+"\n"+v.substr(i+2, 2)); 
-			i += 2; 
-			p += 3; 
-		}
-	board.replace (p-2, 2, ""); 
-	board = "  " + h.substr (0, BS*2) +"  \n" 
-			+ board + "  " + h.substr (0, BS*2) +"  \n"; 
-	return board; 
+string  INOUT::axis (string board) {
+        ___ASSERT(board.size () == (2*BS*BS+BS)); 
+        string v = " 1 2 3 4 5 6 7 8 91011121314151617181920212223242526"; 
+        string h = " A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"; 
+        board = v.substr (0, 2) + board; 
+        for (int p = 0, i = 0; p<board.size (); ++p)
+                if (board.substr (p, 1) == "\n"){
+                        board.replace(p, 1, v.substr(i, 2)+"\n"+v.substr(i+2, 2)); 
+                        i += 2; 
+                        p += 3; 
+                }
+        board.replace (p-2, 2, ""); 
+        board = "  " + h.substr (0, BS*2) +"  \n" 
+                        + board + "  " + h.substr (0, BS*2) +"  \n"; 
+        return board; 
 }
 
 string   INOUT::print__(const GO& go, const BITB& bb, 
-					  const POS& pp, MODE_PRINT mode) {	
-	for (int i = 0; i<BS; ++i) 
-		___ASSERT((go.xx.r [i]| go.oo.r [i]) <= ROWMASK); 
-	string s = ""; 
-	ITR itr; 
-	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
-		if (bb[pos]){
-			if (mode == BITB_P)				
-				s += "☉"; 
-			if (mode == ONEAREA_P && (go[pos] == EMPTY)) 
-				s += "☉"; 
-			if (mode == BLOCK_P||mode == BOARD_P||mode == ONEAREA_P) {		
-				if(go[pos] == BLACK)			 
-					s += "◆"; 
-			    if(go[pos] == WHITE)          
-					s += "◇"; 
-			    if(go[pos] == BLACK_WHITE)     
-					s += "⊙"; 
-			    if(go[pos] == HOTKO)             
-					s += "╬"; 
-			}
-			if (pos.second == 1)
-				s += "\n"; 
-			continue; 
-		}
-		switch (go[pos]) {
-			case BLACK:	
-				if (pos == pp) {
-					s += "◆"; 
-					break; 
-				}
-				if (pos == go.getlastpos() ) 
-					s += "■"; 
-				else                 
-					s += "●"; 
-				break; 
-			case WHITE:	
-				if (pos == pp) 	{
-					s += "◇"; 
-					break; 
-				}
-				if (pos == go.getlastpos() ) 
-					s += "□"; 
-				else		         
-					s += "○"; 
-				break; 
-			case BLACK_WHITE:	    
-				s += "⊙"; 
-				break; 
-			case HOTKO:		
-				s += "╬"; 
-				break; 
-			case EMPTY:				 
-				s += grid(pos); 
-				break; 
-		}
-		if (pos.second == 1)         
-			s += "\n"; 
-	}
-	//cout<<(s += "\n"); 
-	return s; 
+                                          const POS& pp, MODE_PRINT mode) {     
+        for (int i = 0; i<BS; ++i) 
+                ___ASSERT((go.xx.r [i]| go.oo.r [i]) <= ROWMASK); 
+        string s = ""; 
+        ITR itr; 
+        for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
+                if (bb[pos]){
+                        if (mode == BITB_P)                             
+                                s += "☉"; 
+                        if (mode == ONEAREA_P && (go[pos] == EMPTY)) 
+                                s += "☉"; 
+                        if (mode == BLOCK_P||mode == BOARD_P||mode == ONEAREA_P) {              
+                                if(go[pos] == BLACK)                     
+                                        s += "◆"; 
+                            if(go[pos] == WHITE)          
+                                        s += "◇"; 
+                            if(go[pos] == BLACK_WHITE)     
+                                        s += "⊙"; 
+                            if(go[pos] == HOTKO)             
+                                        s += "╬"; 
+                        }
+                        if (pos.second == 1)
+                                s += "\n"; 
+                        continue; 
+                }
+                switch (go[pos]) {
+                        case BLACK:     
+                                if (pos == pp) {
+                                        s += "◆"; 
+                                        break; 
+                                }
+                                if (pos == go.getlastpos() ) 
+                                        s += "■"; 
+                                else                 
+                                        s += "●"; 
+                                break; 
+                        case WHITE:     
+                                if (pos == pp)  {
+                                        s += "◇"; 
+                                        break; 
+                                }
+                                if (pos == go.getlastpos() ) 
+                                        s += "□"; 
+                                else                     
+                                        s += "○"; 
+                                break; 
+                        case BLACK_WHITE:           
+                                s += "⊙"; 
+                                break; 
+                        case HOTKO:             
+                                s += "╬"; 
+                                break; 
+                        case EMPTY:                              
+                                s += grid(pos); 
+                                break; 
+                }
+                if (pos.second == 1)         
+                        s += "\n"; 
+        }
+        //cout<<(s += "\n"); 
+        return s; 
 }
 
-string   INOUT::printbitboard(const BITB& bb) {	
-	string s; 
-	ITR itr; 
-	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
-		switch (bb[pos]) {
-			case 1:	            
-				s += "◎"; 
-				break; 
-			case 0: 			
-				s += grid(pos); 
-				break; 
-		}
-		if (pos.second == 1)     
-			s += "\n"; 
-	}
-	cout<<(s += "\n"); 
-	return s; 
+string   INOUT::printbitboard(const BITB& bb) { 
+        string s; 
+        ITR itr; 
+        for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
+                switch (bb[pos]) {
+                        case 1:             
+                                s += "◎"; 
+                                break; 
+                        case 0:                         
+                                s += grid(pos); 
+                                break; 
+                }
+                if (pos.second == 1)     
+                        s += "\n"; 
+        }
+        cout<<(s += "\n"); 
+        return s; 
 }
 */
 /*
-string	 INOUT::printlabel ( const GO& go, 
-							const pair<VB, VB >& pvv, MODE_PRINTLABEL mode) {	
-	string black = "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ"; 
-	string white = "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"; 
-	string blk = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
-	string wht = "abcdefghijklmnopqrstuvwxyz"; 
-	string s = ""; 
-	VB vx = pvv.first, vo = pvv.second; 
-	BITB xlabel, olabel, publiclabel; 
-	for (int i = 0; i<vx.size (); ++i)	xlabel |= vx[i]; 
-	for (int i = 0; i<vo.size (); ++i)	olabel |= vo[i]; 
-	publiclabel = xlabel & olabel; 
-	publiclabel ^= publiclabel & (go.xx | go.oo); 
-	ITR itr; 
-	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
-		bool labelfound = 0; 
-		// 不加 break 以观察各点的归属是否唯一
-		for (int i = 0; i<vx.size (); ++i)
-			if ((mode == L_CLUSTER && vx[i][pos]) ||
-				(mode == L_AREA1 && vx[i][pos] 
-				&& go[pos] != BLACK && go[pos] != WHITE)){
-					if (publiclabel[pos])   
-						s += blk[i]; 
-					else	            	
-						s += black.substr(2*i, 2); 
-				labelfound = 1; 
-				// break; 
-			}
-			else if (mode == L_AREA2 && vx[i][pos]&&go[pos] != WHITE){
-				if (go[pos] == BLACK) s += black.substr(2*i, 2); 
-				else 
-					if (publiclabel[pos]) 
-						s += blk[i]; 
-					else 
-						s = s+blk[i]+"."; 
-				labelfound = 1; 
-				// break; 
-			}
-		for (int i = 0; i<vo.size (); ++i)
-			if ((mode == L_CLUSTER && vo[i][pos]) 
-				||								   
-				(mode == L_AREA1 && vo[i][pos]
-				&& go[pos] != BLACK && go[pos] != WHITE)){ 
-					if (publiclabel[pos])   
-						s += wht[i]; 
-					else	            	
-						s += white.substr(2*i, 2); 
-				labelfound = 1; 
-				// break; 
-			}
-			else if (mode == L_AREA2 && vo[i][pos]&&go[pos] != BLACK){
-				if (go[pos] == WHITE) 
-					s += white.substr(2*i, 2); 
-				else 
-					if (publiclabel[pos]) 
-						s += wht[i]; 
-					else 
-						s = s+"."+wht[i]; 
-				labelfound = 1; 
-				// break; 
-			}	
-		if (!labelfound)
-			switch (go[pos]) {
-				case BLACK:			s += "●"; break; 
-				case WHITE:			s += "○"; break; 
-				case BLACK_WHITE:	s += "⊙"; break; 
-				case HOTKO:			s += "╬"; break; 
-				case EMPTY:			s += grid(pos); break; 
-			}														
-		if (pos.second == 1)			
-			s += "\n"; 
-	}
-	cout<<(s += "\n"); 
-	return s; 
+string   INOUT::printlabel ( const GO& go, 
+                                                        const pair<VB, VB >& pvv, MODE_PRINTLABEL mode) {       
+        string black = "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ"; 
+        string white = "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"; 
+        string blk = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+        string wht = "abcdefghijklmnopqrstuvwxyz"; 
+        string s = ""; 
+        VB vx = pvv.first, vo = pvv.second; 
+        BITB xlabel, olabel, publiclabel; 
+        for (int i = 0; i<vx.size (); ++i)      xlabel |= vx[i]; 
+        for (int i = 0; i<vo.size (); ++i)      olabel |= vo[i]; 
+        publiclabel = xlabel & olabel; 
+        publiclabel ^= publiclabel & (go.xx | go.oo); 
+        ITR itr; 
+        for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
+                bool labelfound = 0; 
+                // 不加 break 以观察各点的归属是否唯一
+                for (int i = 0; i<vx.size (); ++i)
+                        if ((mode == L_CLUSTER && vx[i][pos]) ||
+                                (mode == L_AREA1 && vx[i][pos] 
+                                && go[pos] != BLACK && go[pos] != WHITE)){
+                                        if (publiclabel[pos])   
+                                                s += blk[i]; 
+                                        else                    
+                                                s += black.substr(2*i, 2); 
+                                labelfound = 1; 
+                                // break; 
+                        }
+                        else if (mode == L_AREA2 && vx[i][pos]&&go[pos] != WHITE){
+                                if (go[pos] == BLACK) s += black.substr(2*i, 2); 
+                                else 
+                                        if (publiclabel[pos]) 
+                                                s += blk[i]; 
+                                        else 
+                                                s = s+blk[i]+"."; 
+                                labelfound = 1; 
+                                // break; 
+                        }
+                for (int i = 0; i<vo.size (); ++i)
+                        if ((mode == L_CLUSTER && vo[i][pos]) 
+                                ||                                                                 
+                                (mode == L_AREA1 && vo[i][pos]
+                                && go[pos] != BLACK && go[pos] != WHITE)){ 
+                                        if (publiclabel[pos])   
+                                                s += wht[i]; 
+                                        else                    
+                                                s += white.substr(2*i, 2); 
+                                labelfound = 1; 
+                                // break; 
+                        }
+                        else if (mode == L_AREA2 && vo[i][pos]&&go[pos] != BLACK){
+                                if (go[pos] == WHITE) 
+                                        s += white.substr(2*i, 2); 
+                                else 
+                                        if (publiclabel[pos]) 
+                                                s += wht[i]; 
+                                        else 
+                                                s = s+"."+wht[i]; 
+                                labelfound = 1; 
+                                // break; 
+                        }       
+                if (!labelfound)
+                        switch (go[pos]) {
+                                case BLACK:                     s += "●"; break; 
+                                case WHITE:                     s += "○"; break; 
+                                case BLACK_WHITE:       s += "⊙"; break; 
+                                case HOTKO:                     s += "╬"; break; 
+                                case EMPTY:                     s += grid(pos); break; 
+                        }                                                                                                               
+                if (pos.second == 1)                    
+                        s += "\n"; 
+        }
+        cout<<(s += "\n"); 
+        return s; 
 }
 
-string	 INOUT::printcluster ( const GO& go, const pair<VB, VB >& pvv) {	
-	return printlabel(go, pvv, L_CLUSTER); 
+string   INOUT::printcluster ( const GO& go, const pair<VB, VB >& pvv) {        
+        return printlabel(go, pvv, L_CLUSTER); 
 }
 
-string	 INOUT::printarea ( const GO& go, const pair<VB, VB >& pvv) {	
-	return printlabel(go, pvv, L_AREA1); // mode = L_AREA1 or L_AREA2
+string   INOUT::printarea ( const GO& go, const pair<VB, VB >& pvv) {   
+        return printlabel(go, pvv, L_AREA1); // mode = L_AREA1 or L_AREA2
 }
 
-string	 INOUT::printonearea ( const GO& go, const BITB& bb) {	
-	return print__(go, bb, NULL_POS, ONEAREA_P); 
+string   INOUT::printonearea ( const GO& go, const BITB& bb) {  
+        return print__(go, bb, NULL_POS, ONEAREA_P); 
 }
 
-string	 INOUT::printpublicarea ( const GO& go, const BITB& bb) {	
-	return print__(go, bb, NULL_POS, BITB_P); 
+string   INOUT::printpublicarea ( const GO& go, const BITB& bb) {       
+        return print__(go, bb, NULL_POS, BITB_P); 
 }
 
-string   INOUT::printblock(const GO& go, const BITB& blk, const POS& pos) {	
-	return	print__(go, blk, pos, BLOCK_P); 
+string   INOUT::printblock(const GO& go, const BITB& blk, const POS& pos) {     
+        return  print__(go, blk, pos, BLOCK_P); 
 }
 
 string   INOUT::printlibertysite(const GO& go, 
-								 const BITB& libsite, const POS& pos) {	
-	return	print__(go, libsite, pos, BITB_P); 
+                                                                 const BITB& libsite, const POS& pos) { 
+        return  print__(go, libsite, pos, BITB_P); 
 }
 
-string   INOUT::printpartition(const VG& vg){	
-	string black = "●⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇"; 
-	string white = "○⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛"; 
-	string s = ""; 
-	int find; 
-	ITR itr; 
-	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
-		find = 0; 
-		for (int i = 0; i<(int)(vg.size ()); ++i){
-			switch (vg[i][pos]) {
-				case BLACK:	 
-					{++find; 
-					s += (black.substr(2*i, 2)); 
-					break; }
-				case WHITE:	          
-					{++find; 
-					s += (white.substr(2*i, 2)); 
-					break; }
-				case BLACK_WHITE:	  
-					{++find; 
-					s += "⊙"; 
-					break; }
-				case HOTKO:			  
-					{++find; 
-					s += "╬"; 
-					break; }
-			}															  
-		if (find>0)  
-			break; 
-		}
-		if (find == 0)                     
-			s += grid(pos); 
-		if (pos.second == 1)                
-			s += "\n"; 
-	}
-	cout<<s; 
-	return s; 
+string   INOUT::printpartition(const VG& vg){   
+        string black = "●⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇"; 
+        string white = "○⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛"; 
+        string s = ""; 
+        int find; 
+        ITR itr; 
+        for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
+                find = 0; 
+                for (int i = 0; i<(int)(vg.size ()); ++i){
+                        switch (vg[i][pos]) {
+                                case BLACK:      
+                                        {++find; 
+                                        s += (black.substr(2*i, 2)); 
+                                        break; }
+                                case WHITE:               
+                                        {++find; 
+                                        s += (white.substr(2*i, 2)); 
+                                        break; }
+                                case BLACK_WHITE:         
+                                        {++find; 
+                                        s += "⊙"; 
+                                        break; }
+                                case HOTKO:                       
+                                        {++find; 
+                                        s += "╬"; 
+                                        break; }
+                        }                                                                                                                         
+                if (find>0)  
+                        break; 
+                }
+                if (find == 0)                     
+                        s += grid(pos); 
+                if (pos.second == 1)                
+                        s += "\n"; 
+        }
+        cout<<s; 
+        return s; 
 }
 
-string   INOUT::printliberty(const GO& go, const VI& vec){		
-	
-	//-// 20个字符不够用, 可能导致运行时错误, 待改进
-	string black = "◎⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇"; 
-	string white = "☉⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛"; 
-	string s = ""; 
-	int i; 
-	ITR itr; 
-	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
-		i = pos2i(pos); 
-		if (vec[i] == 0) {
-			s += grid(pos); 
-			if (i%BS == 0)   
-				s += "\n"; 
-			continue; 
-		}											
-		if (go[pos] == BLACK)
-			s += black.substr (2*vec[i], 2); 
-		else 
-			s += white.substr (2*vec[i], 2); 
-		if (i%BS == 0)      
-			s += "\n"; 
-	}															
-	cout<<(s += "\n"); 
-	return s; 
+string   INOUT::printliberty(const GO& go, const VI& vec){              
+        
+        //-// 20个字符不够用, 可能导致运行时错误, 待改进
+        string black = "◎⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇"; 
+        string white = "☉⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛"; 
+        string s = ""; 
+        int i; 
+        ITR itr; 
+        for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
+                i = pos2i(pos); 
+                if (vec[i] == 0) {
+                        s += grid(pos); 
+                        if (i%BS == 0)   
+                                s += "\n"; 
+                        continue; 
+                }                                                                                       
+                if (go[pos] == BLACK)
+                        s += black.substr (2*vec[i], 2); 
+                else 
+                        s += white.substr (2*vec[i], 2); 
+                if (i%BS == 0)      
+                        s += "\n"; 
+        }                                                                                                                       
+        cout<<(s += "\n"); 
+        return s; 
 }
 */
 /*
 // 此 mask 可以呈不规则形状
-string	INOUT::printpat(const GO& old, const BITB& mask){	
-	string s = ""; 
-	GO go = GO(old.xx & mask, old.oo & mask); 
-	BITB squarem = mask.project (); 
-	ITR itr; 
-	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
-		if (squarem[pos]){
-			switch (go[pos]) {
-				case BLACK:				
-					//if (mask[pos]) 
-						s += "●"; 
-					//else 
-					//	s += "  "; 
-					break; 
-				case WHITE:				
-					//if (mask[pos])
-						s += "○"; 
-					//else 
-					//	s += "  "; 
-					break; 
-				case BLACK_WHITE:	   	
-					//if (mask[pos])
-						s += "⊙"; 
-					//else 
-					//	s += "  "; 
-					break; 
-				case HOTKO:			    
-					//if (mask[pos]) 
-						s += grid(pos); 
-					//else 
-					//	s += "  "; 
-					break; 
-				case EMPTY:			    
-					//if (mask[pos]) 
-						s += grid(pos); 
-					//else 
-					//	s += "  "; 
-					break; 
-			}
-		}
-		if (pos.second == 1 && squarem.r[pos.first])             
-			s += "\n"; 
-	}
-	for (int pp = s.find ("╋"); pp != s.npos; pp = s.find ("╋"))
-        	s.replace(pp, 2, "┼"); 
-	cout<<(s += "\n"); 
-	return s; 
+string  INOUT::printpat(const GO& old, const BITB& mask){       
+        string s = ""; 
+        GO go = GO(old.xx & mask, old.oo & mask); 
+        BITB squarem = mask.project (); 
+        ITR itr; 
+        for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
+                if (squarem[pos]){
+                        switch (go[pos]) {
+                                case BLACK:                             
+                                        //if (mask[pos]) 
+                                                s += "●"; 
+                                        //else 
+                                        //      s += "  "; 
+                                        break; 
+                                case WHITE:                             
+                                        //if (mask[pos])
+                                                s += "○"; 
+                                        //else 
+                                        //      s += "  "; 
+                                        break; 
+                                case BLACK_WHITE:               
+                                        //if (mask[pos])
+                                                s += "⊙"; 
+                                        //else 
+                                        //      s += "  "; 
+                                        break; 
+                                case HOTKO:                         
+                                        //if (mask[pos]) 
+                                                s += grid(pos); 
+                                        //else 
+                                        //      s += "  "; 
+                                        break; 
+                                case EMPTY:                         
+                                        //if (mask[pos]) 
+                                                s += grid(pos); 
+                                        //else 
+                                        //      s += "  "; 
+                                        break; 
+                        }
+                }
+                if (pos.second == 1 && squarem.r[pos.first])             
+                        s += "\n"; 
+        }
+        for (int pp = s.find ("╋"); pp != s.npos; pp = s.find ("╋"))
+                s.replace(pp, 2, "┼"); 
+        cout<<(s += "\n"); 
+        return s; 
 }
 
 // 此 mask 可以呈不规则形状
-string	INOUT::printpat(const BITB& old, const BITB& mask) {	
-	string s; 
-	BITB bb = old&mask; 
-	BITB squarem = mask.project (); 
-	ITR itr; 
-	for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
-		if (squarem[pos]){
-			switch (bb[pos]) {
-				case 1:	           
-					//if (mask[pos]) 
-						s += "◎"; 
-					//else 
-					//	s += "  "; 
-					break; 
-				case 0: 			
-					//if (mask[pos])
-						s += grid(pos); 
-					//else 
-					//	s += "  "; 
-					break; 
-			}
-		}
-		if (pos.second == 1 && squarem.r[pos.first])   
-			s += "\n"; 
-	}
-	for (int pp = s.find ("╋"); pp != s.npos; pp = s.find ("╋"))
-        	s.replace(pp, 2, "┼"); 
-	cout<<(s += "\n"); 
-	return s; 
+string  INOUT::printpat(const BITB& old, const BITB& mask) {    
+        string s; 
+        BITB bb = old&mask; 
+        BITB squarem = mask.project (); 
+        ITR itr; 
+        for (POS pos = itr.ioposbegin(); !itr.ioposend(); pos = itr.ioposnext()) {
+                if (squarem[pos]){
+                        switch (bb[pos]) {
+                                case 1:            
+                                        //if (mask[pos]) 
+                                                s += "◎"; 
+                                        //else 
+                                        //      s += "  "; 
+                                        break; 
+                                case 0:                         
+                                        //if (mask[pos])
+                                                s += grid(pos); 
+                                        //else 
+                                        //      s += "  "; 
+                                        break; 
+                        }
+                }
+                if (pos.second == 1 && squarem.r[pos.first])   
+                        s += "\n"; 
+        }
+        for (int pp = s.find ("╋"); pp != s.npos; pp = s.find ("╋"))
+                s.replace(pp, 2, "┼"); 
+        cout<<(s += "\n"); 
+        return s; 
 }
 */
 
@@ -639,20 +659,20 @@ INOUT::in2pat (string s)
   for (p = 0; p < s.size (); ++p)
     {
       if (s.substr (p, 1) != "\n")
-	smn[m][n++] = s[p];
+        smn[m][n++] = s[p];
       else
-	{
-	  n = 0;
-	  ++m;
-	}
+        {
+          n = 0;
+          ++m;
+        }
     }
-  n = p / m - 1;		//-// 取模？                    
+  n = p / m - 1;                //-// 取模？                    
   for (p = 1; p < m - 1; ++p)
     {
       if (smn[p][0] == "-")
-	left = 1;
+        left = 1;
       if (smn[p][n - 1] == "-")
-	right = 1;
+        right = 1;
     }
   if (smn[0][0] == "-" && smn[m - 1][0] == "-" && m != 1)
     left = 1;
@@ -661,9 +681,9 @@ INOUT::in2pat (string s)
   for (p = 1; p < n - 1; ++p)
     {
       if (smn[0][p] == "-")
-	up = 1;
+        up = 1;
       if (smn[m - 1][p] == "-")
-	down = 1;
+        down = 1;
     }
   if (smn[0][0] == "-" && smn[0][n - 1] == "-" && n != 1)
     up = 1;
@@ -706,16 +726,16 @@ INOUT::in2pat (string s)
   for (int i = 0; i < m; ++i) //不认识的符号一律作空白点
     for (int j = 0; j < n; ++j)
       {
-	if (smn[i][j] == "x")
-	  {
-	    go.xx.r[i + i0] |= (1 << (j0 - j));
-	  }
-	else if (smn[i][j] == "o")
-	  {
-	    go.oo.r[i + i0] |= (1 << (j0 - j));
-	  }
+        if (smn[i][j] == "x")
+          {
+            go.xx.r[i + i0] |= (1 << (j0 - j));
+          }
+        else if (smn[i][j] == "o")
+          {
+            go.oo.r[i + i0] |= (1 << (j0 - j));
+          }
       }
-  return make_pair (go, mask);	//未经 project()
+  return make_pair (go, mask);  //未经 project()
 }
 
 
@@ -737,53 +757,53 @@ INOUT::readbuf (string filename)
 
 
 /*
-VP	INOUT::sgf2pos(string filename) {	
-	vector<PII >  vecpii = sgf2xy(filename); 
+VP      INOUT::sgf2pos(string filename) {       
+        vector<PII >  vecpii = sgf2xy(filename); 
     VP  vech; 
-	POS pos; 
-	for (int i = 0; i<vecpii.size (); ++i){
-		pos = _xy2pos(vecpii[i].first, vecpii[i].second ); 
-		if (outside(pos)){
-			cerr << filename <<" is a bad sgf file!"<< endl; 
-			return NULL_VP; 
-		}
-		vech.push_back (pos); 
-	}
-	return vech; 
+        POS pos; 
+        for (int i = 0; i<vecpii.size (); ++i){
+                pos = _xy2pos(vecpii[i].first, vecpii[i].second ); 
+                if (outside(pos)){
+                        cerr << filename <<" is a bad sgf file!"<< endl; 
+                        return NULL_VP; 
+                }
+                vech.push_back (pos); 
+        }
+        return vech; 
 }
 
-vector<PII >	INOUT::sgf2xy(string filename) {	
-	string s = readbuf(filename); 
-	vector<PII >  vechistory; 
-	int p = 0; 
-	while((p = s.find ("; B[", p)) != s.npos) {
-		vechistory.push_back (make_pair(s[p+3]-'a', (s[p+4]-'a'))); 
-		if((p = s.find ("; W[", p)) != s.npos){
-			vechistory.push_back (make_pair(s[p+3]-'a', (s[p+4]-'a'))); 
-		}
-	}
-	return vechistory; 
+vector<PII >    INOUT::sgf2xy(string filename) {        
+        string s = readbuf(filename); 
+        vector<PII >  vechistory; 
+        int p = 0; 
+        while((p = s.find ("; B[", p)) != s.npos) {
+                vechistory.push_back (make_pair(s[p+3]-'a', (s[p+4]-'a'))); 
+                if((p = s.find ("; W[", p)) != s.npos){
+                        vechistory.push_back (make_pair(s[p+3]-'a', (s[p+4]-'a'))); 
+                }
+        }
+        return vechistory; 
 }
 
-VVP			INOUT::sgfs2pos(const VS& vecf){	
-	VVP  vech; 
-	VP vp; 
-	for (int i = 0; i<vecf.size (); ++i){
-		vp = sgf2pos(vecf[i]); 
-		if (vp.empty()){
-			cerr << vecf[i] << " is a bad sgf file ! continue ..." << endl; 
-			continue; 
-		}
-		vech.push_back (vp); 
-	}
-	return vech; 
+VVP                     INOUT::sgfs2pos(const VS& vecf){        
+        VVP  vech; 
+        VP vp; 
+        for (int i = 0; i<vecf.size (); ++i){
+                vp = sgf2pos(vecf[i]); 
+                if (vp.empty()){
+                        cerr << vecf[i] << " is a bad sgf file ! continue ..." << endl; 
+                        continue; 
+                }
+                vech.push_back (vp); 
+        }
+        return vech; 
 }
 
-vector<vector<PII> > INOUT::sgfs2xy(const VS& vecf){	
-	vector<vector<PII > >  vech; 
-	for (int i = 0; i<vecf.size (); ++i)
-		vech.push_back (sgf2xy(vecf[i])); 
-	return vech; 
+vector<vector<PII> > INOUT::sgfs2xy(const VS& vecf){    
+        vector<vector<PII > >  vech; 
+        for (int i = 0; i<vecf.size (); ++i)
+                vech.push_back (sgf2xy(vecf[i])); 
+        return vech; 
 }
 */
 
@@ -794,10 +814,10 @@ SGFROOT *
 INOUT::sgf2tree (string filename)
 {
   string s = readbuf (filename.c_str ());
-  int unmatch = 0;		// 未匹配的左小括号（
-  int m = 0;			// 未匹配的左中括号［
-  int expand[1024] = { 0 };	// 从相应的未匹配的（处展开的节点层数，用以回溯
-  int p;			// 在 s 上的工作位置
+  int unmatch = 0;              // 未匹配的左小括号（
+  int m = 0;                    // 未匹配的左中括号［
+  int expand[1024] = { 0 };     // 从相应的未匹配的（处展开的节点层数，用以回溯
+  int p;                        // 在 s 上的工作位置
 
   /* 生成根结点 */
   SGFROOT *root = new SGFROOT;
@@ -815,8 +835,8 @@ INOUT::sgf2tree (string filename)
   if ((p = s.find ("AW[")) != s.npos)
     for (p += 2; s.substr (p, 1) == "["; p += 4)
       if (s.substr (p, 1) == "[")
-	//root->ofuseki.push_back(_xy2pos(s[p+1]-'a', (s[p+2]-'a'))); 
-	root->ofuseki.push_back (aa2pos (s.substr (p + 1, 2)));
+        //root->ofuseki.push_back(_xy2pos(s[p+1]-'a', (s[p+2]-'a'))); 
+        root->ofuseki.push_back (aa2pos (s.substr (p + 1, 2)));
 
   // 下一手该谁走
   if ((p = s.find ("PL[")) != s.npos)
@@ -836,76 +856,76 @@ INOUT::sgf2tree (string filename)
       // 普通字符均跳过
       // 遇到［ 时，到下一个］之间的内容一定已处理，跳过
       if (s.substr (p, 1) == "[")
-	++m;
+        ++m;
       else if (s.substr (p, 1) == "]")
-	--m;
+        --m;
       if (m != 0)
-	continue;
+        continue;
 
       // 一个分支开始，记录分支开始时的分支层数
       if (s.substr (p, 1) == "(")
-	{
-	  ++unmatch;
-	  expand[unmatch] = 0;
-	}
+        {
+          ++unmatch;
+          expand[unmatch] = 0;
+        }
       // 遇到；号，向前看3个字符
       else if (s.substr (p, 3) == ";B[" || s.substr (p, 3) == ";W[")
-	{
-	  ++expand[unmatch];
-	}
+        {
+          ++expand[unmatch];
+        }
       // 遇到 B 
       else if (s.substr (p - 1, 3) == ";B[")
-	{
-	  // 走子方有跳跃，加入PASS
-	  if (cnode->color == BLACK)
-	    {
-	      SGFNODE *newnode = new SGFNODE;
-	      cnode->sons.push_back (newnode);
-	      newnode->father = cnode;
-	      newnode->pos = PASS_POS;
-	      newnode->color = WHITE;
-	      cnode = newnode;
-	      ++expand[unmatch];
-	    }
-	  // 正常生成一个结点
-	  SGFNODE *newnode = new SGFNODE;
-	  cnode->sons.push_back (newnode);
-	  newnode->father = cnode;
-	  //newnode->pos = _xy2pos(s[p+2]-'a', (s[p+3]-'a') ); 
-	  newnode->pos = aa2pos (s.substr (p + 2, 2));
-	  newnode->color = BLACK;
-	  cnode = newnode;
-	}
+        {
+          // 走子方有跳跃，加入PASS
+          if (cnode->color == BLACK)
+            {
+              SGFNODE *newnode = new SGFNODE;
+              cnode->sons.push_back (newnode);
+              newnode->father = cnode;
+              newnode->pos = PASS_POS;
+              newnode->color = WHITE;
+              cnode = newnode;
+              ++expand[unmatch];
+            }
+          // 正常生成一个结点
+          SGFNODE *newnode = new SGFNODE;
+          cnode->sons.push_back (newnode);
+          newnode->father = cnode;
+          //newnode->pos = _xy2pos(s[p+2]-'a', (s[p+3]-'a') ); 
+          newnode->pos = aa2pos (s.substr (p + 2, 2));
+          newnode->color = BLACK;
+          cnode = newnode;
+        }
       // 遇到 W
       else if (s.substr (p - 1, 3) == ";W[")
-	{
-	  // 走子方有跳跃，加入PASS
-	  if (cnode->color == WHITE)
-	    {
-	      SGFNODE *newnode = new SGFNODE;
-	      cnode->sons.push_back (newnode);
-	      newnode->father = cnode;
-	      newnode->pos = PASS_POS;
-	      newnode->color = BLACK;
-	      cnode = newnode;
-	      ++expand[unmatch];
-	    }
-	  // 正常生成一个结点
-	  SGFNODE *newnode = new SGFNODE;
-	  cnode->sons.push_back (newnode);
-	  newnode->father = cnode;
-	  //newnode->pos = _xy2pos(s[p+2]-'a', (s[p+3]-'a') ); 
-	  newnode->pos = aa2pos (s.substr (p + 2, 2));
-	  newnode->color = WHITE;
-	  cnode = newnode;
-	}
+        {
+          // 走子方有跳跃，加入PASS
+          if (cnode->color == WHITE)
+            {
+              SGFNODE *newnode = new SGFNODE;
+              cnode->sons.push_back (newnode);
+              newnode->father = cnode;
+              newnode->pos = PASS_POS;
+              newnode->color = BLACK;
+              cnode = newnode;
+              ++expand[unmatch];
+            }
+          // 正常生成一个结点
+          SGFNODE *newnode = new SGFNODE;
+          cnode->sons.push_back (newnode);
+          newnode->father = cnode;
+          //newnode->pos = _xy2pos(s[p+2]-'a', (s[p+3]-'a') ); 
+          newnode->pos = aa2pos (s.substr (p + 2, 2));
+          newnode->color = WHITE;
+          cnode = newnode;
+        }
       // 一个分支结束，退回到合适层数
       else if (s.substr (p, 1) == ")")
-	{
-	  for (int i = 0; i < expand[unmatch]; ++i)
-	    cnode = cnode->father;
-	  --unmatch;
-	}
+        {
+          for (int i = 0; i < expand[unmatch]; ++i)
+            cnode = cnode->father;
+          --unmatch;
+        }
     }
   /* 真实的根结点 */
   root->sons = cnode->sons;
@@ -952,24 +972,24 @@ INOUT::infop2sgf (INFOGO * infop, string filename)
     {
       tmp = tmp + ";";
       if (!infop->xx.empty ())
-	{
-	  tmp = tmp + "AB";
-	  ITR itr (infop->xx);
-	  for (POS pos = itr.stonebegin (); !itr.stoneend (); pos = itr.stonenext ())
-	    tmp = tmp + "[" + pos2aa (pos) + "]";
-	}
+        {
+          tmp = tmp + "AB";
+          ITR itr (infop->xx);
+          for (POS pos = itr.stonebegin (); !itr.stoneend (); pos = itr.stonenext ())
+            tmp = tmp + "[" + pos2aa (pos) + "]";
+        }
       if (!infop->oo.empty ())
-	{
-	  tmp = tmp + "AW";
-	  ITR itr (infop->oo);
-	  for (POS pos = itr.stonebegin (); !itr.stoneend (); pos = itr.stonenext ())
-	    tmp = tmp + "[" + pos2aa (pos) + "]";
-	}
+        {
+          tmp = tmp + "AW";
+          ITR itr (infop->oo);
+          for (POS pos = itr.stonebegin (); !itr.stoneend (); pos = itr.stonenext ())
+            tmp = tmp + "[" + pos2aa (pos) + "]";
+        }
       if (!infop->sons.empty ())
-	{
-	  string s = (infop->sons[0]->getlastclr () == BLACK) ? "B" : "W";
-	  tmp = tmp + "PL[" + s + "]";
-	}
+        {
+          string s = (infop->sons[0]->getlastclr () == BLACK) ? "B" : "W";
+          tmp = tmp + "PL[" + s + "]";
+        }
     }
   tmp = tmp + _infop2sgf (infop);
   tmp = tmp + ")\n";
@@ -1074,33 +1094,33 @@ INOUT::selectsgf (string path)
 
 
 /*
-void	INOUT::save2txt( string content, string filename){	
-	// out, out|trunc, out|app, in|out, out|app
-	ofstream file(filename.c_str (), ios::out); 
-	if (!file) 
-		cerr<< filename << " : open fail !"<< endl; 
-	file<<content; 
-	file.close(); 
+void    INOUT::save2txt( string content, string filename){      
+        // out, out|trunc, out|app, in|out, out|app
+        ofstream file(filename.c_str (), ios::out); 
+        if (!file) 
+                cerr<< filename << " : open fail !"<< endl; 
+        file<<content; 
+        file.close(); 
 }
 
-void	INOUT::save2txt( const GO& go, string filename){	
-	ofstream file(filename.c_str (), ios::app); 
-	if (!file) 
-		cerr<< filename << " : open fail !"<< endl; 
-	streambuf* old = cout.rdbuf (); 
-	cout.rdbuf(file.rdbuf ()); 
-	cout<<go; 
-	cout.rdbuf (old); 
+void    INOUT::save2txt( const GO& go, string filename){        
+        ofstream file(filename.c_str (), ios::app); 
+        if (!file) 
+                cerr<< filename << " : open fail !"<< endl; 
+        streambuf* old = cout.rdbuf (); 
+        cout.rdbuf(file.rdbuf ()); 
+        cout<<go; 
+        cout.rdbuf (old); 
 }
 
-void   INOUT::save2txt(const VVF& vvf, string filename){	
-	ofstream file(filename.c_str (), ios::ate); 
-	if (!file) 
-		cerr<< filename << " : open fail !"<< endl; 
-	streambuf* old = cout.rdbuf (); 
-	cout.rdbuf(file.rdbuf ()); 
-	cout<<vvf; 
-	cout.rdbuf (old); 
+void   INOUT::save2txt(const VVF& vvf, string filename){        
+        ofstream file(filename.c_str (), ios::ate); 
+        if (!file) 
+                cerr<< filename << " : open fail !"<< endl; 
+        streambuf* old = cout.rdbuf (); 
+        cout.rdbuf(file.rdbuf ()); 
+        cout<<vvf; 
+        cout.rdbuf (old); 
 }
 */
 
@@ -1143,7 +1163,7 @@ ostream & operator << (ostream & os, const PATFREQ & pf)
   for (int i = 0; i < PATFREQ::PEMIS_KIND; ++i)
     for (int j = 0; j < BS * BS; ++j)
       {
-	os << j << ": " << pf.x[i][j] << " " << pf.o[i][j] << endl;
+        os << j << ": " << pf.x[i][j] << " " << pf.o[i][j] << endl;
       } return os;
 }
 
@@ -1181,16 +1201,16 @@ ostream & operator<< (ostream & os, const VS & vecs)
 
 /*
 ostream& operator<<(ostream& os, const VB&  vecb){
-	for(int i = 0; i<vecb.size (); ++i)
-		cout<<vecb[i]; 
-	return os; 
+        for(int i = 0; i<vecb.size (); ++i)
+                cout<<vecb[i]; 
+        return os; 
 }
 
 ostream& operator<<(ostream& os, const VP&  vecp){
-	for (int i = 0; i<vecp.size (); ++i){
-		cout<<vecp[i]<<" "; 
-	}
-	return os; 
+        for (int i = 0; i<vecp.size (); ++i){
+                cout<<vecp[i]<<" "; 
+        }
+        return os; 
 }
 */
 
@@ -1200,11 +1220,11 @@ ostream & operator<< (ostream & os, const VI & veci)
     {
       ITR itr;
       for (POS pos = itr.ioposbegin (); !itr.ioposend (); pos = itr.ioposnext ())
-	{
-	  cout << std::setw (4) << std::right << veci[pos2i (pos)];
-	  if (pos.second == 1)
-	    cout << endl;
-	}
+        {
+          cout << std::setw (4) << std::right << veci[pos2i (pos)];
+          if (pos.second == 1)
+            cout << endl;
+        }
     }
 
   else
@@ -1216,45 +1236,45 @@ ostream & operator<< (ostream & os, const VI & veci)
 
 /*
 ostream& operator<<(ostream& os, const VC&  vecc){
-	for (int i = 0; i<vecc.size (); ++i)
-		cout<<vecc[i]<<" "; 
-	return os; 
+        for (int i = 0; i<vecc.size (); ++i)
+                cout<<vecc[i]<<" "; 
+        return os; 
 }
 
 ostream& operator<<(ostream& os, const VF& vf){
     for(int i = 0; i<vf.size (); ++i)
-		cout<<vf[i]<< endl; 
-	return os; 
+                cout<<vf[i]<< endl; 
+        return os; 
 }
 
 ostream& operator<<(ostream& os, const VVF& vvf){
-	for(int i = 0; i<vvf.size (); ++i)
-		for(int j = 0; j<vvf[i].size(); ++j){
-			cout<<setw(7)<<vvf[i][j]; 
-			if (j == (vvf[i].size()-1))
-				cout<< endl; 
-		}
-	return os; 
+        for(int i = 0; i<vvf.size (); ++i)
+                for(int j = 0; j<vvf[i].size(); ++j){
+                        cout<<setw(7)<<vvf[i][j]; 
+                        if (j == (vvf[i].size()-1))
+                                cout<< endl; 
+                }
+        return os; 
 }
 
 ostream& operator<<(ostream& os, const VVI& vvi){
-	for(int i = 0; i<vvi.size (); ++i)
-		for(int j = 0; j<vvi[i].size(); ++j){
-			cout<<setw(7)<<vvi[i][j]; 
-			if (j == (vvi[i].size()-1))
-				cout<< endl; 
-		}
-	return os; 
+        for(int i = 0; i<vvi.size (); ++i)
+                for(int j = 0; j<vvi[i].size(); ++j){
+                        cout<<setw(7)<<vvi[i][j]; 
+                        if (j == (vvi[i].size()-1))
+                                cout<< endl; 
+                }
+        return os; 
 }
 
 ostream& operator<<(ostream& os, const PII& pii){
-	cout<<" ["<<pii.first<<", "<<pii.second <<"] "; 
-	return os; 
+        cout<<" ["<<pii.first<<", "<<pii.second <<"] "; 
+        return os; 
 }
 
 ostream& operator<<(ostream& os, const PUU&  puu){
-	cout<<" ["<<puu.first<<", "<<puu.second <<"] "; 
-	return os; 
+        cout<<" ["<<puu.first<<", "<<puu.second <<"] "; 
+        return os; 
 }
 */
 
@@ -1276,7 +1296,7 @@ ostream & operator<< (ostream & os, MPI m)
     {
       cout << setw (4) << m[p];
       if (p.second == 1)
-	cout << endl;
+        cout << endl;
     }
   cout << endl;
   return os;

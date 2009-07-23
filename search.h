@@ -80,40 +80,40 @@ public:
     if (isleaf (node, cntr))
       {
 
-	//cout<< *node << endl; 
-	return leafvalue (node, cntr);
+        //cout<< *node << endl; 
+        return leafvalue (node, cntr);
       }
     vector < T_PATH > paths = findpath (node, cntr);
     bool maxnode = ismax (node, cntr);
     T_RESULT tmp, better = maxnode ? downbound () : upbound ();
     for (int i = 0; i < paths.size (); ++i)
       {
-	T_NODE *sonp = findson (node, paths[i]);
-	tmp = minmax (sonp, control (node, cntr));
+        T_NODE *sonp = findson (node, paths[i]);
+        tmp = minmax (sonp, control (node, cntr));
 
-	//better = maxnode ? max(tmp, better):min(tmp, better); 
-	if (maxnode)
-	  {
-	    if (better < tmp)
-	      {
-		better = tmp;
-		better = recordpath (better, paths[i]);
-	      }
-	  }
+        //better = maxnode ? max(tmp, better):min(tmp, better); 
+        if (maxnode)
+          {
+            if (better < tmp)
+              {
+                better = tmp;
+                better = recordpath (better, paths[i]);
+              }
+          }
 
-	else if (tmp < better)
-	  {
-	    better = tmp;
-	    better = recordpath (better, paths[i]);
-	  }
+        else if (tmp < better)
+          {
+            better = tmp;
+            better = recordpath (better, paths[i]);
+          }
 
-	//  加deletefromsons()集中delete. 可不删，按指针登记到一 map 以供查询？
-	if (sonp != node)
-	  {
+        //  加deletefromsons()集中delete. 可不删，按指针登记到一 map 以供查询？
+        if (sonp != node)
+          {
 
-	    // node->sons.clear(); // node.sons 还没清空，
-	    delete sonp;
-	  }
+            // node->sons.clear(); // node.sons 还没清空，
+            delete sonp;
+          }
       }
 
     //cout<< *node << endl; 

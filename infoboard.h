@@ -83,8 +83,8 @@ class KO
 {
   pair < POS, POS > pos2;
   int history;
-  int liberty;			//缓气劫
-  vector < KO > vk;		//相关联的劫
+  int liberty;                  //缓气劫
+  vector < KO > vk;             //相关联的劫
 };
 
 
@@ -148,7 +148,7 @@ public:
 private:
   ZOBRIST zobrist;
 public:
-  INCREMENT inc;	// 为了执行 scan() 暂时将其 public
+  INCREMENT inc;        // 为了执行 scan() 暂时将其 public
   PATFREQ patfreq;
   EVENT event;
   AREA area;

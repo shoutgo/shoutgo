@@ -65,8 +65,8 @@ ITR::stonebegin ()
   for (int i = 0; i < BS; ++i)
     if (bb.r[i] > 0)
       {
-	pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
-	return pp;
+        pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
+        return pp;
       }
   return NULL_POS;
 }
@@ -93,8 +93,8 @@ ITR::tagbegin ()
   for (int i = 0; i < BS; ++i)
     if (bb.r[i] > 0)
       {
-	pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
-	return pp;
+        pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
+        return pp;
       }
   return NULL_POS;
 }
@@ -112,8 +112,8 @@ ITR::tagnext ()
   for (int i = 0; i < BS; ++i)
     if (bb.r[i] > 0)
       {
-	pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
-	return pp;
+        pp.first = i, pp.second = (((bb.r[i] ^ (bb.r[i] - 1)) + 1) >> 1);
+        return pp;
       }
   return NULL_POS;
 }
@@ -208,57 +208,57 @@ ITR::randomemptynext ()
 }
 
 /*
-map<POS, VB >		ITR::makemapmask(int a, int b){	
-	for (POS pos = posbegin(); !posend (); pos = posnext())
-		mapmask[pos] = makemask(pos, a, b); 
-	return mapmask; 
+map<POS, VB >           ITR::makemapmask(int a, int b){ 
+        for (POS pos = posbegin(); !posend (); pos = posnext())
+                mapmask[pos] = makemask(pos, a, b); 
+        return mapmask; 
 }
-VB ITR::makemask(const POS& p, int a, int b){	//-// 待优化
-	vecbb.clear (); 
-	for (int i = 0; i<a; ++i)
-		for(int j = 0; j<b; ++j){
-			bb = strip(p, i, j, a-i-1, b-j-1); 
-			if (bb.count () == a*b)
-				vecbb.push_back(bb ); //strip(p, i, j, a-i-1, b-j-1)
-		}
-	if (a != b) {
-		swap(a, b); 
-		for (int i = 0; i<a; ++i)
-			for(int j = 0; j<b; ++j){
-			bb = strip(p, i, j, a-i-1, b-j-1); 
-			if (bb.count () == a*b)
-				vecbb.push_back( bb); //strip(p, i, j, a-i-1, b-j-1)
-		}
-	}
-	return vecbb; 
+VB ITR::makemask(const POS& p, int a, int b){   //-// 待优化
+        vecbb.clear (); 
+        for (int i = 0; i<a; ++i)
+                for(int j = 0; j<b; ++j){
+                        bb = strip(p, i, j, a-i-1, b-j-1); 
+                        if (bb.count () == a*b)
+                                vecbb.push_back(bb ); //strip(p, i, j, a-i-1, b-j-1)
+                }
+        if (a != b) {
+                swap(a, b); 
+                for (int i = 0; i<a; ++i)
+                        for(int j = 0; j<b; ++j){
+                        bb = strip(p, i, j, a-i-1, b-j-1); 
+                        if (bb.count () == a*b)
+                                vecbb.push_back( bb); //strip(p, i, j, a-i-1, b-j-1)
+                }
+        }
+        return vecbb; 
 }
-BITB ITR::randommaskbegin(const POS& p, int a, int b){	
-	makemask(p, a, b); 
-	srand((unsigned)time(0)); 
-	random_shuffle(vecbb.begin (), vecbb.end ()); 
+BITB ITR::randommaskbegin(const POS& p, int a, int b){  
+        makemask(p, a, b); 
+        srand((unsigned)time(0)); 
+        random_shuffle(vecbb.begin (), vecbb.end ()); 
     return vecbb.back (); 
 }
-bool ITR::randommaskend(){	
-	return vecbb.empty(); 
+bool ITR::randommaskend(){      
+        return vecbb.empty(); 
 }
-BITB ITR::randommasknext(){	
-	vecbb.pop_back (); 
-	return vecbb.back (); 
+BITB ITR::randommasknext(){     
+        vecbb.pop_back (); 
+        return vecbb.back (); 
 }
-map<POS, VB >	ITR::makejosekimask(int width){	// 其实每个pos只对应一个mask？
-	BITB wn = strip(corner(WN), width, width, ES); 
-	BITB ws = strip(corner(WS), width, width, EN); 
-	BITB en = strip(corner(EN), width, width, WS); 
-	BITB es = strip(corner(ES), width, width, WN); 
-	for (POS pos = posbegin(); !posend (); pos = posnext()){
-		vecbb.clear(); 
-		if		(wn[pos]) vecbb.push_back(wn); 
-		else if (ws[pos]) vecbb.push_back(ws); 
-		else if (en[pos]) vecbb.push_back(en); 
-		else if (es[pos]) vecbb.push_back(es); 
-		//else            vecbb.push_back(NULL_BB); 
-		mapmask[pos] = vecbb; 
-	}
-	return mapmask; 
+map<POS, VB >   ITR::makejosekimask(int width){ // 其实每个pos只对应一个mask？
+        BITB wn = strip(corner(WN), width, width, ES); 
+        BITB ws = strip(corner(WS), width, width, EN); 
+        BITB en = strip(corner(EN), width, width, WS); 
+        BITB es = strip(corner(ES), width, width, WN); 
+        for (POS pos = posbegin(); !posend (); pos = posnext()){
+                vecbb.clear(); 
+                if              (wn[pos]) vecbb.push_back(wn); 
+                else if (ws[pos]) vecbb.push_back(ws); 
+                else if (en[pos]) vecbb.push_back(en); 
+                else if (es[pos]) vecbb.push_back(es); 
+                //else            vecbb.push_back(NULL_BB); 
+                mapmask[pos] = vecbb; 
+        }
+        return mapmask; 
 }
 */

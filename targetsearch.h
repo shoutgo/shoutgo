@@ -6,17 +6,17 @@
 
 /* class AIMGRAPH */
 enum AIM
-{ ROOT, HIS_CLUSTER, GE,	//
-  DUAN, FENG, GAN, SHENGTUI,	//
-  SHA, POYAN, SUOYANWEI, HIS_MASS, _ZHENGXING, CHIZI, DA, JIA, GUN, JIEBUGUI, DAOPU, ZHENGZI, DAOTUOXUE, HIS_POTENTIAL, _ZHIGAODIAN,	//双方近层高位生长子
-  QINGXIAO,			//一方近层高位生长子
-  BI,				//一方中距低位生长子
-  QINSHI,			//一方近层子
-  DARU,				//势内部子
-  MY_CLUSTER, _GE,		//
-  LIANLUO, TUWEI, _SHENGTUI,	//
-  SHENGGEN, ZUOHUO, ZUOYAN, KUOYANWEI, MY_MASS, ZHENGXING, JIUZI, _DA, _JIA, _GUN, _JIEBUGUI, _DAOPU, _ZHENGZI, _DAOTUOXUE, MY_POTENTIAL, ZHIGAODIAN,	//
-  KUOZHANG, CHAI, _QINSHI, _DARU, PUBLICAREA, ZHANDACHANG, FENTOU,	//
+{ ROOT, HIS_CLUSTER, GE,        //
+  DUAN, FENG, GAN, SHENGTUI,    //
+  SHA, POYAN, SUOYANWEI, HIS_MASS, _ZHENGXING, CHIZI, DA, JIA, GUN, JIEBUGUI, DAOPU, ZHENGZI, DAOTUOXUE, HIS_POTENTIAL, _ZHIGAODIAN,    //双方近层高位生长子
+  QINGXIAO,                     //一方近层高位生长子
+  BI,                           //一方中距低位生长子
+  QINSHI,                       //一方近层子
+  DARU,                         //势内部子
+  MY_CLUSTER, _GE,              //
+  LIANLUO, TUWEI, _SHENGTUI,    //
+  SHENGGEN, ZUOHUO, ZUOYAN, KUOYANWEI, MY_MASS, ZHENGXING, JIUZI, _DA, _JIA, _GUN, _JIEBUGUI, _DAOPU, _ZHENGZI, _DAOTUOXUE, MY_POTENTIAL, ZHIGAODIAN,   //
+  KUOZHANG, CHAI, _QINSHI, _DARU, PUBLICAREA, ZHANDACHANG, FENTOU,      //
   COMPLICATE, TENNUO, JIAO, YUWEI, SHIYINGSHOU, ZUOJIE, XUNJIE, CHANGSHENG, DUISHA, SIMPLIFY, DINGXING, LIYONG, ZHENGXIAN, DAJIANG, AIM_SIZE
 };
 
@@ -91,17 +91,17 @@ struct RESULT
 {
   int value;
   MOVE move;
-  unsigned a;			//合目的
-  unsigned b;			//官子
-  unsigned c;			//棋形
-  unsigned d;			//劫材
-  unsigned e;			//余味
-  unsigned f;			//先手
-  unsigned g;			//兼顾
-  unsigned h;			//复杂度
-  unsigned i;			//气
-  unsigned j;			//轻重
-  unsigned k;			//隐蔽性
+  unsigned a;                   //合目的
+  unsigned b;                   //官子
+  unsigned c;                   //棋形
+  unsigned d;                   //劫材
+  unsigned e;                   //余味
+  unsigned f;                   //先手
+  unsigned g;                   //兼顾
+  unsigned h;                   //复杂度
+  unsigned i;                   //气
+  unsigned j;                   //轻重
+  unsigned k;                   //隐蔽性
 public:
   RESULT (int v = 0):value (v)
   {

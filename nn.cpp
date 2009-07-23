@@ -22,10 +22,10 @@ NN::producedata (int m, int n)
     {
       VF vf;
       for (int j = 0; j < n; ++j)
-	if (j == 0)
-	  vf.push_back (fmod ((float) rand (), yrange));
-	else
-	  vf.push_back (fmod ((float) rand (), xrange));
+        if (j == 0)
+          vf.push_back (fmod ((float) rand (), yrange));
+        else
+          vf.push_back (fmod ((float) rand (), xrange));
       datayx.push_back (vf);
     }
   return datayx;
@@ -50,41 +50,41 @@ NN::linear_genetic ()
   VF tv;
   float bias;
   producedata (m, n);
-  INOUT ().save2txt (datayx, "datayx.txt");	//
+  INOUT ().save2txt (datayx, "datayx.txt");     //
   srand ((unsigned) time (0));
   w = randvvf (ALLPOPU, n);
-  tmpw = w;			//addby2009
+  tmpw = w;                     //addby2009
   for (int iterate = 0;; ++iterate)
     {
       for (int times = 0; times < (ALLPOPU / 2); ++times)
-	{
-	  tu = w[POPU - 1 - randsqrt (POPU)];
-	  tv = w[POPU - 1 - randsqrt (POPU)];
-	  for (int i = 1; i < n; ++i)
-	    {
-	      if (prob (1, 2))
-		swap (tu[i], tv[i]);
-	      if (prob (1, MUTATION_BASE))
-		tu[i] = randf ();
-	      if (prob (1, MUTATION_BASE))
-		tv[i] = randf ();
-	    }
-	  tu[0] = linearmodal (tu);
-	  tv[0] = linearmodal (tv);
-	  tmpw[times] = tu;
-	  tmpw[times + ALLPOPU / 2] = tv;
-	}
-      ___ASSERT (w.size () == tmpw.size () && w[0].size () == tmpw[0].size ());	//
-      ___ASSERT (w != tmpw);	//
+        {
+          tu = w[POPU - 1 - randsqrt (POPU)];
+          tv = w[POPU - 1 - randsqrt (POPU)];
+          for (int i = 1; i < n; ++i)
+            {
+              if (prob (1, 2))
+                swap (tu[i], tv[i]);
+              if (prob (1, MUTATION_BASE))
+                tu[i] = randf ();
+              if (prob (1, MUTATION_BASE))
+                tv[i] = randf ();
+            }
+          tu[0] = linearmodal (tu);
+          tv[0] = linearmodal (tv);
+          tmpw[times] = tu;
+          tmpw[times + ALLPOPU / 2] = tv;
+        }
+      ___ASSERT (w.size () == tmpw.size () && w[0].size () == tmpw[0].size ()); //
+      ___ASSERT (w != tmpw);    //
       partial_sort (tmpw.begin (), tmpw.begin () + POPU, tmpw.end ());
       swap (w, tmpw);
       bias = 0;
       for (int i = 0; i < POPU; ++i)
-	bias += w[i][0];
+        bias += w[i][0];
       if (bias < 100000)
-	break;
+        break;
       if (iterate > ITERATE_MAX)
-	break;
+        break;
 
       //cout<<"linear: "<<iterate
       //      <<"  bias: "<<(bias/POPU)
@@ -104,7 +104,7 @@ NN::linearmodal (VF w)
     {
       f = 0;
       for (int j = 1; j < w.size (); ++j)
-	f += w[j] * datayx[i][j];
+        f += w[j] * datayx[i][j];
       viariance += pow (datayx[i][0] - f, 2);
     }
   return viariance / datayx.size ();
@@ -141,45 +141,45 @@ NN::perception_genetic ()
   for (int iterate = 0;; ++iterate)
     {
       for (int times = 0; times < ALLPOPU / 2; ++times)
-	{
-	  tu = w[POPU - 1 - randsqrt (POPU)];
-	  tv = w[POPU - 1 - randsqrt (POPU)];
-	  for (int i = 0; i < h1; ++i)
-	    for (int j = 0; j < n; ++j)
-	      if (prob (1, CROSS_BASE))
-		swap (tu.w1[i][j], tv.w1[i][j]);
-	  for (int i = 0; i < h2; ++i)
-	    for (int j = 0; j < h1 + 1; ++j)
-	      if (prob (1, CROSS_BASE))
-		swap (tu.w2[i][j], tv.w2[i][j]);
-	  for (int i = 0; i < h2 + 1; ++i)
-	    if (prob (1, CROSS_BASE))
-	      swap (tu.w3[i], tv.w3[i]);
-	  for (int i = 0; i < h1; ++i)
-	    for (int j = 0; j < n; ++j)
-	      if (prob (1, MUTATION_BASE))
-		tu.w1[i][j] = randf ();
-	  for (int i = 0; i < h2; ++i)
-	    for (int j = 0; j < h1 + 1; ++j)
-	      if (prob (1, MUTATION_BASE))
-		tu.w2[i][j] = randf ();
-	  for (int i = 0; i < h2 + 1; ++i)
-	    if (prob (1, MUTATION_BASE))
-	      tu.w3[i] = randf ();
-	  for (int i = 0; i < h1; ++i)
-	    for (int j = 0; j < n; ++j)
-	      if (prob (1, MUTATION_BASE))
-		tv.w1[i][j] = randf ();
-	  for (int i = 0; i < h2; ++i)
-	    for (int j = 0; j < h1 + 1; ++j)
-	      if (prob (1, MUTATION_BASE))
-		tv.w1[i][j] = randf ();
-	  for (int i = 0; i < h2 + 1; ++i)
-	    if (prob (1, MUTATION_BASE))
-	      tv.w3[i] = randf ();
-	  tmpw[times] = perception (tu);
-	  tmpw[times + ALLPOPU / 2] = perception (tv);
-	}
+        {
+          tu = w[POPU - 1 - randsqrt (POPU)];
+          tv = w[POPU - 1 - randsqrt (POPU)];
+          for (int i = 0; i < h1; ++i)
+            for (int j = 0; j < n; ++j)
+              if (prob (1, CROSS_BASE))
+                swap (tu.w1[i][j], tv.w1[i][j]);
+          for (int i = 0; i < h2; ++i)
+            for (int j = 0; j < h1 + 1; ++j)
+              if (prob (1, CROSS_BASE))
+                swap (tu.w2[i][j], tv.w2[i][j]);
+          for (int i = 0; i < h2 + 1; ++i)
+            if (prob (1, CROSS_BASE))
+              swap (tu.w3[i], tv.w3[i]);
+          for (int i = 0; i < h1; ++i)
+            for (int j = 0; j < n; ++j)
+              if (prob (1, MUTATION_BASE))
+                tu.w1[i][j] = randf ();
+          for (int i = 0; i < h2; ++i)
+            for (int j = 0; j < h1 + 1; ++j)
+              if (prob (1, MUTATION_BASE))
+                tu.w2[i][j] = randf ();
+          for (int i = 0; i < h2 + 1; ++i)
+            if (prob (1, MUTATION_BASE))
+              tu.w3[i] = randf ();
+          for (int i = 0; i < h1; ++i)
+            for (int j = 0; j < n; ++j)
+              if (prob (1, MUTATION_BASE))
+                tv.w1[i][j] = randf ();
+          for (int i = 0; i < h2; ++i)
+            for (int j = 0; j < h1 + 1; ++j)
+              if (prob (1, MUTATION_BASE))
+                tv.w1[i][j] = randf ();
+          for (int i = 0; i < h2 + 1; ++i)
+            if (prob (1, MUTATION_BASE))
+              tv.w3[i] = randf ();
+          tmpw[times] = perception (tu);
+          tmpw[times + ALLPOPU / 2] = perception (tv);
+        }
       ___ASSERT (w.size () == tmpw.size ());
       ___ASSERT (w != tmpw);
       //tmpw.back () = w[0]; 
@@ -187,11 +187,11 @@ NN::perception_genetic ()
       swap (w, tmpw);
       bias = 0;
       for (int i = 0; i < POPU; ++i)
-	bias += w[i].fitness;
+        bias += w[i].fitness;
       if (bias < 100000)
-	break;
+        break;
       if (iterate > ITERATE_MAX)
-	break;
+        break;
 
       //cout<<"perception: "<<iterate
       //      <<"  bias: "<<(bias/POPU)
@@ -218,14 +218,14 @@ NN::perception (N3WEIGHT w)
   for (int i = 0; i < datayx.size (); ++i)
     {
       for (int j = 0; j < h1; ++j)
-	{
-	  hide1[j] = inner_product (datayx[j].begin () + 1, datayx[j].end (), w1[j].begin (), -w1[j].back ());
-	  hide1[j] = 1 / (1 + exp (-hide1[j]));
+        {
+          hide1[j] = inner_product (datayx[j].begin () + 1, datayx[j].end (), w1[j].begin (), -w1[j].back ());
+          hide1[j] = 1 / (1 + exp (-hide1[j]));
       } for (int k = 0; k < h2; ++k)
-	{
-	  hide2[k] = inner_product (hide1.begin (), hide1.end (), w2[k].begin (), -w2[k].back ());
-	  hide2[k] = 1 / (1 + exp (-hide2[k]));
-	} output = inner_product (hide2.begin (), hide2.end (), w3.begin (), -w3.back ());
+        {
+          hide2[k] = inner_product (hide1.begin (), hide1.end (), w2[k].begin (), -w2[k].back ());
+          hide2[k] = 1 / (1 + exp (-hide2[k]));
+        } output = inner_product (hide2.begin (), hide2.end (), w3.begin (), -w3.back ());
       viariance += pow (datayx[i][0] - output, 2);
     } w.fitness = viariance / datayx.size ();
   return w;

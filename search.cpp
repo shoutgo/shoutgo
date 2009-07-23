@@ -33,7 +33,7 @@ TREE::gen (NODE * p)
   for (int i = 0; i < SON_MAX && nodes < NODE_MAX - 1; ++i)
     {
       if (prob (1, 2))
-	continue;
+        continue;
       NODE *s = new NODE;
       ++nodes;
       s->numb = nodes;
@@ -152,22 +152,22 @@ TREE::alphabeta_minmax (NODE * p, VALUE alpha, VALUE beta)
   if (p->ismax)
     {
       for (int i = 0; i < p->sons.size (); ++i)
-	{
-	  // alpha, beta 确能顺传，因为界外值
-	  // 传到相应上层的时候一定会被"抹平"
-	  // 所以可作为界值深度优先向下传递
-	  VALUE v = alphabeta_minmax (p->sons[i], alpha, beta);
-	  if (v > alpha)
-	    {
-	      alpha = v;
-	      if (alpha >= beta)
-		{
-		  break;	// 剪枝之后返回越界的 alpha 还是 beta 
-		  // 并不影响最终值，因为总会被 beta "抹平"
-		}
-	    }
-	}
-      p->value = alpha;		// 可能高于原结点真实值，但不影响最终值，
+        {
+          // alpha, beta 确能顺传，因为界外值
+          // 传到相应上层的时候一定会被"抹平"
+          // 所以可作为界值深度优先向下传递
+          VALUE v = alphabeta_minmax (p->sons[i], alpha, beta);
+          if (v > alpha)
+            {
+              alpha = v;
+              if (alpha >= beta)
+                {
+                  break;        // 剪枝之后返回越界的 alpha 还是 beta 
+                  // 并不影响最终值，因为总会被 beta "抹平"
+                }
+            }
+        }
+      p->value = alpha;         // 可能高于原结点真实值，但不影响最终值，
       // 因为当为非剪枝返回，真实值会被 alpha "抹平"
       // 当为剪枝返回，则此越界的alpha值
       // 会被 beta "抹平"
@@ -179,17 +179,17 @@ TREE::alphabeta_minmax (NODE * p, VALUE alpha, VALUE beta)
   else
     {
       for (int i = 0; i < p->sons.size (); ++i)
-	{
-	  VALUE v = alphabeta_minmax (p->sons[i], alpha, beta);
-	  if (v < beta)
-	    {
-	      beta = v;
-	      if (alpha >= beta)
-		{
-		  break;
-		}
-	    }
-	}
+        {
+          VALUE v = alphabeta_minmax (p->sons[i], alpha, beta);
+          if (v < beta)
+            {
+              beta = v;
+              if (alpha >= beta)
+                {
+                  break;
+                }
+            }
+        }
       p->value = beta;
 
       //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "                        <<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
@@ -212,19 +212,19 @@ TREE::failsoft_minmax (NODE * p, VALUE alpha, VALUE beta)
     {
       VALUE v, better = INT_MIN;
       for (int i = 0; i < p->sons.size (); ++i)
-	{
-	  v = failsoft_minmax (p->sons[i], alpha, beta);
-	  better = max (better, v);
-	  if (v > alpha)
-	    {
-	      alpha = v;
-	      if (alpha >= beta)
-		{
-		  break;
-		}
-	    }
-	}
-      p->value = better;	// 返回已发现的较好值，不一定是真实值。
+        {
+          v = failsoft_minmax (p->sons[i], alpha, beta);
+          better = max (better, v);
+          if (v > alpha)
+            {
+              alpha = v;
+              if (alpha >= beta)
+                {
+                  break;
+                }
+            }
+        }
+      p->value = better;        // 返回已发现的较好值，不一定是真实值。
       // 但若把被剪掉的子树看作根本不存在，
       // 则可认为是真实值。
       // 所谓新树的真实值，原树的伪值。
@@ -235,18 +235,18 @@ TREE::failsoft_minmax (NODE * p, VALUE alpha, VALUE beta)
     {
       VALUE v, better = INT_MAX;
       for (int i = 0; i < p->sons.size (); ++i)
-	{
-	  v = failsoft_minmax (p->sons[i], alpha, beta);
-	  better = min (better, v);
-	  if (v < beta)
-	    {
-	      beta = v;
-	      if (alpha >= beta)
-		{
-		  break;
-		}
-	    }
-	}
+        {
+          v = failsoft_minmax (p->sons[i], alpha, beta);
+          better = min (better, v);
+          if (v < beta)
+            {
+              beta = v;
+              if (alpha >= beta)
+                {
+                  break;
+                }
+            }
+        }
       p->value = better;
 
       //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<" "                        <<setx(G)<<alpha<<", "<<beta<<setx(W)<< endl; 
@@ -263,10 +263,10 @@ TREE::negamax (NODE * p)
   if (p->isleaf)
     {
       if (p->flip == 0 && !p->ismax)
-	{
-	  p->flip = 1;
-	  p->value *= -1;
-	}
+        {
+          p->flip = 1;
+          p->value *= -1;
+        }
 
       //-//cout<< *p<< endl; 
       return (p->value);
@@ -293,10 +293,10 @@ TREE::negamax2 (NODE * p)
   if (p->isleaf)
     {
       if (p->flip == 0 && !p->ismax)
-	{
-	  p->flip = 1;
-	  p->value *= -1;
-	}
+        {
+          p->flip = 1;
+          p->value *= -1;
+        }
 
       //-//cout<< *p<< endl; 
       return;
@@ -324,10 +324,10 @@ TREE::alphabeta_negamax (NODE * p, VALUE alpha, VALUE beta)
   if (p->isleaf)
     {
       if (p->flip == 0 && !p->ismax)
-	{
-	  p->flip = 1;
-	  p->value *= -1;
-	}
+        {
+          p->flip = 1;
+          p->value *= -1;
+        }
 
       //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
       return (p->value);
@@ -337,11 +337,11 @@ TREE::alphabeta_negamax (NODE * p, VALUE alpha, VALUE beta)
     {
       v = -alphabeta_negamax (p->sons[i], -beta, -alpha);
       if (v > alpha)
-	{
-	  alpha = v;
-	  if (alpha >= beta)
-	    break;
-	}
+        {
+          alpha = v;
+          if (alpha >= beta)
+            break;
+        }
     }
   if (!p->ismax)
     p->flip = 1;
@@ -362,10 +362,10 @@ TREE::failsoft_negamax (NODE * p, VALUE alpha, VALUE beta)
   if (p->isleaf)
     {
       if (p->flip == 0 && !p->ismax)
-	{
-	  p->flip = 1;
-	  p->value *= -1;
-	}
+        {
+          p->flip = 1;
+          p->value *= -1;
+        }
 
       //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
       return (p->value);
@@ -376,11 +376,11 @@ TREE::failsoft_negamax (NODE * p, VALUE alpha, VALUE beta)
       v = -failsoft_negamax (p->sons[i], -beta, -alpha);
       better = max (v, better);
       if (v > alpha)
-	{
-	  alpha = v;
-	  if (alpha >= beta)
-	    break;
-	}
+        {
+          alpha = v;
+          if (alpha >= beta)
+            break;
+        }
     }
   if (!p->ismax)
     p->flip = 1;
@@ -401,10 +401,10 @@ TREE::negascout (NODE * p, VALUE alpha, VALUE beta)
   if (p->isleaf)
     {
       if (p->flip == 0 && !p->ismax)
-	{
-	  p->flip = 1;
-	  p->value *= -1;
-	}
+        {
+          p->flip = 1;
+          p->value *= -1;
+        }
 
       //-//cout<< *p <<setx(RG)<<olda<<", "<<oldb<<setx(W)<< endl; 
       return (p->value);
@@ -422,14 +422,14 @@ TREE::negascout (NODE * p, VALUE alpha, VALUE beta)
 
       // v == alpha + 1 时确也需要重新搜索，因为可能是剪枝而来
       if (v < beta && v > alpha)
-	v = -negascout (p->sons[i], -beta, -v);
+        v = -negascout (p->sons[i], -beta, -v);
       better = max (v, better);
       if (v > alpha)
-	{
-	  alpha = v;
-	  if (alpha >= beta)
-	    break;
-	}
+        {
+          alpha = v;
+          if (alpha >= beta)
+            break;
+        }
     }
   if (!p->ismax)
     p->flip = 1;
@@ -451,14 +451,14 @@ TREE::mtdf (NODE * p, VALUE guess)
   while (lowbound < upbound)
     {
       if (guess == lowbound)
-	beta = guess + 1;
+        beta = guess + 1;
       else
-	beta = guess;
+        beta = guess;
       guess = failsoft_negamax (p, beta - 1, beta);
       if (guess >= beta)
-	lowbound = guess;
+        lowbound = guess;
       else
-	upbound = guess;
+        upbound = guess;
     }
   return guess;
 }

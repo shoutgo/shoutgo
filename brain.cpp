@@ -29,14 +29,14 @@ BRAIN::genmove ()
 
 
 /*
-bool	BRAIN::move( const POS& pos, COLOR clr){
-	INFOGO* sonp = infop->move_tree(pos, clr); 
-	if (sonp == infop)
-		return 0; 
-	else {
-		infop = sonp; 
-		return 1; 
-	}
+bool    BRAIN::move( const POS& pos, COLOR clr){
+        INFOGO* sonp = infop->move_tree(pos, clr); 
+        if (sonp == infop)
+                return 0; 
+        else {
+                infop = sonp; 
+                return 1; 
+        }
 }
 */
 
@@ -60,14 +60,14 @@ BRAIN::top () const
     {
       PBC f_his = infop->father->area.getmass (cut, infop->turn ());
       PBC s_my = infop->area.getmass (cut, infop->getlastclr ());
-      vt.push_back (TARGET (DUAN, INT_MAX, f_his, s_my));	//被断者，断者
+      vt.push_back (TARGET (DUAN, INT_MAX, f_his, s_my));       //被断者，断者
     }
   // 已块联络，落在父的什么色区都有可能
   if (fmass.first.blockcount () > 1)
-    vt.push_back (TARGET (LIANLUO, INT_MAX, fmass, smass));	//联络对象，联络效果
+    vt.push_back (TARGET (LIANLUO, INT_MAX, fmass, smass));     //联络对象，联络效果
   // 异块隔开，落在父的什么色区都有可能
   if (fmass_his.first.blockcount () < smass_his.first.blockcount ())
-    vt.push_back (TARGET (GE, INT_MAX, fmass_his, smass));	//隔开对象，阻隔者
+    vt.push_back (TARGET (GE, INT_MAX, fmass_his, smass));      //隔开对象，阻隔者
   return vt;
 }
 

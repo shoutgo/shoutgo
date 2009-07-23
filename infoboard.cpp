@@ -95,17 +95,17 @@ INCREMENT::operator == (const INCREMENT & ic) const
   for (int i = 0; i < BS * BS + 1; ++i)
     {
       if (ic.gettag (i) != gettag (i))
-	  return 0;
+          return 0;
       if (ic.getcolor (i) != getcolor (i))
-	  return 0;
+          return 0;
       if (ic.getenemysite (i) != getenemysite (i))
-	  return 0;
+          return 0;
       if (ic.getcontent (i) != getcontent (i))
-	  return 0;
+          return 0;
       if (ic.getlibertysite (i) != getlibertysite (i))
-	  return 0;
+          return 0;
       if (ic.getliberty (i) != getliberty (i))
-	  return 0;
+          return 0;
     }
   return 1;
 }
@@ -266,28 +266,28 @@ INFOGO::move (const POS & pos, COLOR clr)
 
       // 如果为空位，可落子  // 或劫位？不必，不可能落在劫位之旁。
       if (c == EMPTY)
-	mvable = 1;
+        mvable = 1;
 
       // 如果为 1 气的异色块
       else if ((c == ~clr) && (inc.getliberty (n[i]) == 1))
-	{
+        {
 
-	  // 可落子
-	  mvable = 1;
+          // 可落子
+          mvable = 1;
 
-	  // 记录可能劫位
-	  tmphotko = near4p[i];
+          // 记录可能劫位
+          tmphotko = near4p[i];
 
-	  // 记录为可提块（合成了每块，可能有块相同）
-	  kill |= inc.getcontent (n[i]);
+          // 记录为可提块（合成了每块，可能有块相同）
+          kill |= inc.getcontent (n[i]);
 
-	  // 记录此可提块的敌块
-	  killenemysite |= inc.getenemysite (n[i]);
-	}
+          // 记录此可提块的敌块
+          killenemysite |= inc.getenemysite (n[i]);
+        }
 
       // 否则如果为大于 1 气的同色块，可落子
       else if ((c == clr) && (inc.getliberty (n[i]) > 1))
-	mvable = 1;
+        mvable = 1;
 
       // 不中断，各相邻块检测完
     }
@@ -361,51 +361,51 @@ INFOGO::move (const POS & pos, COLOR clr)
       // 如果为空位 // 或劫位？不必，因为劫位旁边一定是子
       if ((c == EMPTY))
 
-	// 记录为新气点之一
-	newlibertysite |= near4p[i];
+        // 记录为新气点之一
+        newlibertysite |= near4p[i];
 
       // 如果为异色块
       else if (c == ~clr)
-	{
+        {
 
-	  // 记录为新敌人之一
-	  newenemysite |= near4p[i];
+          // 记录为新敌人之一
+          newenemysite |= near4p[i];
 
-	  // 同时更新为敌块的敌人之一
-	  inc.setenemysite (n[i], inc.getenemysite (n[i]) | pos);
+          // 同时更新为敌块的敌人之一
+          inc.setenemysite (n[i], inc.getenemysite (n[i]) | pos);
 
-	  // 修正：如果落子处是敌块之气点（同一块确保只操作一次）
-	  if (inc.getlibertysite (n[i])[pos])
-	    {
+          // 修正：如果落子处是敌块之气点（同一块确保只操作一次）
+          if (inc.getlibertysite (n[i])[pos])
+            {
 
-	      // 去掉此气点
-	      inc.setlibertysite (n[i], inc.getlibertysite (n[i]) ^ pos);
+              // 去掉此气点
+              inc.setlibertysite (n[i], inc.getlibertysite (n[i]) ^ pos);
 
-	      // 减掉一气
-	      inc.setliberty (n[i], inc.getliberty (n[i]) - 1);
-	    }
-	}
+              // 减掉一气
+              inc.setliberty (n[i], inc.getliberty (n[i]) - 1);
+            }
+        }
 
       // 如果是同色块
       else
-	{
+        {
 
-	  // 生成新棋头　//-// < 对吗？ 在目前的 tag() 定义下正确
-	  if (inc.gettag (n[i]) < newtag)
-	    newtag = inc.gettag (n[i]);
+          // 生成新棋头　//-// < 对吗？ 在目前的 tag() 定义下正确
+          if (inc.gettag (n[i]) < newtag)
+            newtag = inc.gettag (n[i]);
 
-	  // 生成新棋块：压入原棋块
-	  newcontent |= inc.getcontent (n[i]);
+          // 生成新棋块：压入原棋块
+          newcontent |= inc.getcontent (n[i]);
 
-	  // 生成新气块：压入原气块
-	  newlibertysite |= inc.getlibertysite (n[i]);
+          // 生成新气块：压入原气块
+          newlibertysite |= inc.getlibertysite (n[i]);
 
-	  // 生成新敌块：压入原敌块
-	  newenemysite |= inc.getenemysite (n[i]);
+          // 生成新敌块：压入原敌块
+          newenemysite |= inc.getenemysite (n[i]);
 
-	  // 擦除原记录信息，同一块的信息只需利用一次，重复也没错
-	  // inc.settag(n[i], NULL_TAG); 
-	}
+          // 擦除原记录信息，同一块的信息只需利用一次，重复也没错
+          // inc.settag(n[i], NULL_TAG); 
+        }
     }
 
   // 修正：如果新气块包含落子处，剔除（当落子为独子时不能操作）
@@ -458,7 +458,7 @@ INFOGO::partition (int n) const
 {
   VG vg;
   vg.push_back (*this);
-  BITB tmpx[BS], tmpo[BS], contact;	// [n] ?
+  BITB tmpx[BS], tmpo[BS], contact;     // [n] ?
   for (int i = 0; i < n; ++i)
     {
       contact = vg[i].xx & vg[i].oo;
@@ -467,7 +467,7 @@ INFOGO::partition (int n) const
       tmpo[i] = expand (vg[i].oo ^ contact, WHITE);
       tmpo[i] = tmpo[i] ^ (tmpo[i] & vg[i].xx) | vg[i].oo;
       if ((tmpx[i] == vg[i].xx) && (tmpo[i] == vg[i].oo))
-	break;
+        break;
       vg.push_back (GO (tmpx[i], tmpo[i]));
     }
   return vg;
@@ -476,83 +476,83 @@ INFOGO::partition (int n) const
 
 /*
 // 色域精确化
-PBB	INFOGO::lastpartition(int n) const {	
-	GO     gp = partition(n).back(); 
-	BITB  tmp; 
-	int p, q; 
-	ITR itr = ITR(gp.xx & gp.oo); 
-	for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext()){
-		PII r = bb.range(); 
-		if ((r.first < SMALLBLOCK_RANGE) && (r.second < SMALLBLOCK_RANGE)){						
-			tmp = bb.dilate (1); 
-			p = (tmp&xx).count (); 
-			q = (tmp&oo).count (); 
-			if (p == q){
-				gp.xx ^= bb; 
-				gp.oo ^= bb; 
-			}
-			else if (p>q)  
-				gp.oo ^= bb; 
-			else           
-				gp.xx ^= bb; 
-		}
-		else {
-			gp.xx ^= bb; 
-			gp.oo ^= bb; 
-		}
-	}
-	return make_pair(gp.xx, gp.oo); 
+PBB     INFOGO::lastpartition(int n) const {    
+        GO     gp = partition(n).back(); 
+        BITB  tmp; 
+        int p, q; 
+        ITR itr = ITR(gp.xx & gp.oo); 
+        for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext()){
+                PII r = bb.range(); 
+                if ((r.first < SMALLBLOCK_RANGE) && (r.second < SMALLBLOCK_RANGE)){                                             
+                        tmp = bb.dilate (1); 
+                        p = (tmp&xx).count (); 
+                        q = (tmp&oo).count (); 
+                        if (p == q){
+                                gp.xx ^= bb; 
+                                gp.oo ^= bb; 
+                        }
+                        else if (p>q)  
+                                gp.oo ^= bb; 
+                        else           
+                                gp.xx ^= bb; 
+                }
+                else {
+                        gp.xx ^= bb; 
+                        gp.oo ^= bb; 
+                }
+        }
+        return make_pair(gp.xx, gp.oo); 
 }
 
-pair<VB, VB >	INFOGO::getallmass(const PBB& pbb) const {	
-	VB vecx, veco; 
-	ITR itr = ITR(pbb.first ); 
-	for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext())
-		vecx.push_back (bb&xx); 
-	itr = ITR(pbb.second ); 
-	for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext())
-		veco.push_back (bb&oo); 
-	return make_pair(vecx, veco); 
+pair<VB, VB >   INFOGO::getallmass(const PBB& pbb) const {      
+        VB vecx, veco; 
+        ITR itr = ITR(pbb.first ); 
+        for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext())
+                vecx.push_back (bb&xx); 
+        itr = ITR(pbb.second ); 
+        for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext())
+                veco.push_back (bb&oo); 
+        return make_pair(vecx, veco); 
 }
 
-AREA	INFOGO::setarea(int pt, int dt, int at) const {	
-	pair<VB, VB > pv = getallmass(lastpartition(pt)); 
-	PBB clrbb = lastpartition(BS); //pt
-	AREA area; 
-	BITB tmp, xbb, obb, xclr, oclr; 
-	for (int i = 0; i<pv.first .size (); ++i){
-		xclr = clrbb.first.blockon (pv.first [i]); 
-		tmp = pv.first [i].dilate (dt); 
-		area.xmass		.push_back (pv.first [i]); 
-        area.xrawland	.push_back (tmp.dry (pv.first[i], dt)); 
-		area.xrawsea		.push_back (tmp.adsorb (pv.first[i], dt)); 
-		area.xrawair		.push_back (tmp.adsorb (pv.first[i], dt-at)); 
-		area.xland	.push_back (area.xrawland[i] & xclr); 
-		area.xsea		.push_back (area.xrawsea[i]		  & xclr); 
-		area.xair		.push_back (area.xrawair[i]		  & xclr); 
-		xbb |= area.xair [i]; 
-		___ASSERT(area.xair[i].contain (area.xsea[i])); 
-		___ASSERT(area.xsea[i].contain (area.xland[i])); 
-	}
-	for (int i = 0; i<pv.second .size (); ++i){
-		oclr = clrbb.second.blockon (pv.second [i]); 
-		tmp = pv.second [i].dilate (dt); 
-		area.omass		.push_back (pv.second [i]); 
-        area.orawland	.push_back (tmp.dry (pv.second[i], dt)); 
-		area.orawsea		.push_back (tmp.adsorb (pv.second[i], dt)); 
-		area.orawair		.push_back (tmp.adsorb (pv.second[i], dt-at)); 
-		area.oland	.push_back (area.orawland[i] & oclr); 
-		area.osea		.push_back (area.orawsea[i]       & oclr); 
-		area.oair		.push_back (area.orawair[i]		  & oclr); 
-		obb |= area.oair [i]; 
-		___ASSERT(area.oair[i].contain (area.osea[i])); 
-		___ASSERT(area.osea[i].contain (area.oland[i])); 
-	}
-	tmp = ~(xbb|obb); 
-	area.publicsea = (tmp & ~square(star(5), 6)).ruboff(2, 0); 
-	area.publicair = (tmp & square(star(5), 6)).ruboff(2, 0); 
-	area.undecided = ~(xbb|obb|area.publicsea|area.publicair); 
-	return area; 
+AREA    INFOGO::setarea(int pt, int dt, int at) const { 
+        pair<VB, VB > pv = getallmass(lastpartition(pt)); 
+        PBB clrbb = lastpartition(BS); //pt
+        AREA area; 
+        BITB tmp, xbb, obb, xclr, oclr; 
+        for (int i = 0; i<pv.first .size (); ++i){
+                xclr = clrbb.first.blockon (pv.first [i]); 
+                tmp = pv.first [i].dilate (dt); 
+                area.xmass              .push_back (pv.first [i]); 
+        area.xrawland   .push_back (tmp.dry (pv.first[i], dt)); 
+                area.xrawsea            .push_back (tmp.adsorb (pv.first[i], dt)); 
+                area.xrawair            .push_back (tmp.adsorb (pv.first[i], dt-at)); 
+                area.xland      .push_back (area.xrawland[i] & xclr); 
+                area.xsea               .push_back (area.xrawsea[i]               & xclr); 
+                area.xair               .push_back (area.xrawair[i]               & xclr); 
+                xbb |= area.xair [i]; 
+                ___ASSERT(area.xair[i].contain (area.xsea[i])); 
+                ___ASSERT(area.xsea[i].contain (area.xland[i])); 
+        }
+        for (int i = 0; i<pv.second .size (); ++i){
+                oclr = clrbb.second.blockon (pv.second [i]); 
+                tmp = pv.second [i].dilate (dt); 
+                area.omass              .push_back (pv.second [i]); 
+        area.orawland   .push_back (tmp.dry (pv.second[i], dt)); 
+                area.orawsea            .push_back (tmp.adsorb (pv.second[i], dt)); 
+                area.orawair            .push_back (tmp.adsorb (pv.second[i], dt-at)); 
+                area.oland      .push_back (area.orawland[i] & oclr); 
+                area.osea               .push_back (area.orawsea[i]       & oclr); 
+                area.oair               .push_back (area.orawair[i]               & oclr); 
+                obb |= area.oair [i]; 
+                ___ASSERT(area.oair[i].contain (area.osea[i])); 
+                ___ASSERT(area.osea[i].contain (area.oland[i])); 
+        }
+        tmp = ~(xbb|obb); 
+        area.publicsea = (tmp & ~square(star(5), 6)).ruboff(2, 0); 
+        area.publicair = (tmp & square(star(5), 6)).ruboff(2, 0); 
+        area.undecided = ~(xbb|obb|area.publicsea|area.publicair); 
+        return area; 
 }
 */
 INFOGO *
@@ -588,18 +588,18 @@ INFOGO::setzobrist ()
   for (int i = 0; i < 4; ++i)
     {
       if (zobrist.getcount (i) < CORNERJOSEKI_MAX)
-	if (g_init.getjosekimask (i).contain (bb))
-	  {
-	    zobrist.setzobrist (i, lastpos, lastclr, kill);
-	    break;
-	  }
+        if (g_init.getjosekimask (i).contain (bb))
+          {
+            zobrist.setzobrist (i, lastpos, lastclr, kill);
+            break;
+          }
     }
   for (int i = 4; i < 8; ++i)
     if (zobrist.getcount (i) < EDGEJOSEKI_MAX)
       if (g_init.getjosekimask (i).contain (bb))
-	{
-	  zobrist.setzobrist (i, lastpos, lastclr, kill);
-	}
+        {
+          zobrist.setzobrist (i, lastpos, lastclr, kill);
+        }
   if (zobrist.getcount (8) < FUSEKI_MAX)
     zobrist.setzobrist (8, lastpos, lastclr, kill);
 }
@@ -619,7 +619,7 @@ INFOGO::getf_zobrist (int n, const BITB mask, COLOR clr) const
     {
       move = g_learn.lib_zobrist[n].getmove (getzobrist (n), i);
       if (mask[move.first] && move.second == clr)
-	vi[pos2i (move.first)] = g_learn.lib_zobrist[n].getfreq (getzobrist (n), i);
+        vi[pos2i (move.first)] = g_learn.lib_zobrist[n].getfreq (getzobrist (n), i);
     }
   return vi;
 }
@@ -627,11 +627,11 @@ INFOGO::getf_zobrist (int n, const BITB mask, COLOR clr) const
 
 /*
 VI INFOGO::getf_patfreq(int n, const BITB mask, COLOR clr) const {
-	VI vi(BS*BS, 0);
-	ITR itr = ITR(mask);
-	for (POS pos = itr.posbegin(); !itr.posend(); pos = itr.posnext())
-		vi[pos2i(pos)] = patfreq.getf(pos, clr, n);
-	return vi;
+        VI vi(BS*BS, 0);
+        ITR itr = ITR(mask);
+        for (POS pos = itr.posbegin(); !itr.posend(); pos = itr.posnext())
+                vi[pos2i(pos)] = patfreq.getf(pos, clr, n);
+        return vi;
 }
 */
 VI
@@ -645,27 +645,27 @@ INFOGO::getf_patfreq (int n, const BITB mask, COLOR clr)
   int tablef;
   for (POS pos = itr.posbegin (); !itr.posend (); pos = itr.posnext ())
     {
-      tablef = patfreq.getf (pos, clr, n);	//
+      tablef = patfreq.getf (pos, clr, n);      //
       if (tablef != NOINIT)
-	{			//
-	  vi[pos2i (pos)] = tablef;	//
-	  continue;		//
-	}			//
+        {                       //
+          vi[pos2i (pos)] = tablef;     //
+          continue;             //
+        }                       //
       INFOGO *sonp = snap.move_tree (pos, clr);
       if (sonp == &snap)
-	{
-	  vi[pos2i (pos)] = -1;
-	  patfreq.setf (pos, clr, n, -1);	//
-	  continue;
-	}
+        {
+          vi[pos2i (pos)] = -1;
+          patfreq.setf (pos, clr, n, -1);       //
+          continue;
+        }
       else
-	{
-	  puu = sonp->pemis (n);
-	  tablef = g_learn.lib_pemis.getfreq (puu.first, (ULL) puu.second);
-	  vi[pos2i (pos)] = tablef;
-	  patfreq.setf (pos, clr, n, tablef);	//
-	  delete sonp;
-	}
+        {
+          puu = sonp->pemis (n);
+          tablef = g_learn.lib_pemis.getfreq (puu.first, (ULL) puu.second);
+          vi[pos2i (pos)] = tablef;
+          patfreq.setf (pos, clr, n, tablef);   //
+          delete sonp;
+        }
     }
   return vi;
 }
@@ -673,10 +673,10 @@ INFOGO::getf_patfreq (int n, const BITB mask, COLOR clr)
 PUU
 INFOGO::pemis (int n) const
 {
-  BITB bb = BITB (getlastpos ()).dilate (n + 1);	//
+  BITB bb = BITB (getlastpos ()).dilate (n + 1);        //
   BITB tmp = father->xx.blockon (bb) | father->oo.blockon (bb);
   if (tmp.empty () && !g_init.getroute (R4)[getlastpos ()])
-    {				//
+    {                           //
       return make_pair (0, 0);
     }
   ULL f = father->pemis64 (tmp);
@@ -732,9 +732,9 @@ INFOGO::cutingpos () const
   for (int i = 1; i < BS - 1; ++i)
     {
       tmpx.r[i] = xx.r[i] & xx.r[i - 1] << 1 & oo.r[i] << 1 & oo.r[i - 1]
-	| xx.r[i] & xx.r[i - 1] >> 1 & oo.r[i] >> 1 & oo.r[i - 1] | xx.r[i] & xx.r[i + 1] << 1 & oo.r[i] << 1 & oo.r[i + 1] | xx.r[i] & xx.r[i + 1] >> 1 & oo.r[i] >> 1 & oo.r[i + 1];
+        | xx.r[i] & xx.r[i - 1] >> 1 & oo.r[i] >> 1 & oo.r[i - 1] | xx.r[i] & xx.r[i + 1] << 1 & oo.r[i] << 1 & oo.r[i + 1] | xx.r[i] & xx.r[i + 1] >> 1 & oo.r[i] >> 1 & oo.r[i + 1];
       tmpo.r[i] = oo.r[i] & oo.r[i - 1] << 1 & xx.r[i] << 1 & xx.r[i - 1]
-	| oo.r[i] & oo.r[i - 1] >> 1 & xx.r[i] >> 1 & xx.r[i - 1] | oo.r[i] & oo.r[i + 1] << 1 & xx.r[i] << 1 & xx.r[i + 1] | oo.r[i] & oo.r[i + 1] >> 1 & xx.r[i] >> 1 & xx.r[i + 1];
+        | oo.r[i] & oo.r[i - 1] >> 1 & xx.r[i] >> 1 & xx.r[i - 1] | oo.r[i] & oo.r[i + 1] << 1 & xx.r[i] << 1 & xx.r[i + 1] | oo.r[i] & oo.r[i + 1] >> 1 & xx.r[i] >> 1 & xx.r[i + 1];
     }
   tmpx.r[BS - 1] = xx.r[BS - 1] & xx.r[BS - 2] << 1 & oo.r[BS - 1] << 1 & oo.r[BS - 2] | xx.r[BS - 1] & xx.r[BS - 2] >> 1 & oo.r[BS - 1] >> 1 & oo.r[BS - 2];
   tmpo.r[BS - 1] = oo.r[BS - 1] & oo.r[BS - 2] << 1 & xx.r[BS - 1] << 1 & xx.r[BS - 2] | oo.r[BS - 1] & oo.r[BS - 2] >> 1 & xx.r[BS - 1] >> 1 & xx.r[BS - 2];
@@ -769,25 +769,25 @@ INFOGO::update ()
 
 /*
 VT INFOGO::top( ) const{
-	VT vt; 
-	PBC smass = area .getmass (getlastpos(), getlastclr()); 
-	PBC smass_his = area.getmass ( smass.first, turn()); 
-	PBC fmass = father->area .getmass (smass.first, getlastclr()); 
-	PBC fmass_his = father->area .getmass (smass.first, turn()); 
-	// 断事件，必然有异块半联（即断）已块半联（即断），可能有已块联络（全联）
-	BITB cut = cutpos(getlastclr()).blockon(getlastpos()); 
-	if (cut[getlastpos()]) {
-		PBC f_his = father->area .getmass (cut, turn()); 
-		PBC s_my = area.getmass (cut, getlastclr()); 
-		vt.push_back (TARGET(DUAN, f_his, s_my)); //被断者，断者
-	}
-	// 已块联络，落在父的什么色区都有可能
-	if ( fmass.first .blockcount() > 1)
-		vt.push_back (TARGET(LIANLUO, fmass, smass)); //联络对象，联络效果
-	// 异块隔开，落在父的什么色区都有可能
-	if ( fmass_his.first .blockcount() < smass_his.first .blockcount() )
-		vt.push_back (TARGET(GE, fmass_his, smass)); //隔开对象，阻隔者
-	return vt; 
+        VT vt; 
+        PBC smass = area .getmass (getlastpos(), getlastclr()); 
+        PBC smass_his = area.getmass ( smass.first, turn()); 
+        PBC fmass = father->area .getmass (smass.first, getlastclr()); 
+        PBC fmass_his = father->area .getmass (smass.first, turn()); 
+        // 断事件，必然有异块半联（即断）已块半联（即断），可能有已块联络（全联）
+        BITB cut = cutpos(getlastclr()).blockon(getlastpos()); 
+        if (cut[getlastpos()]) {
+                PBC f_his = father->area .getmass (cut, turn()); 
+                PBC s_my = area.getmass (cut, getlastclr()); 
+                vt.push_back (TARGET(DUAN, f_his, s_my)); //被断者，断者
+        }
+        // 已块联络，落在父的什么色区都有可能
+        if ( fmass.first .blockcount() > 1)
+                vt.push_back (TARGET(LIANLUO, fmass, smass)); //联络对象，联络效果
+        // 异块隔开，落在父的什么色区都有可能
+        if ( fmass_his.first .blockcount() < smass_his.first .blockcount() )
+                vt.push_back (TARGET(GE, fmass_his, smass)); //隔开对象，阻隔者
+        return vt; 
 }
 */
 
@@ -857,12 +857,12 @@ AREA::setclustermap (const BITB & mask, COLOR clr)
     {
     case BLACK:
       if (clustermap.oo.contain (mask))
-	clustermap.oo ^= mask;
+        clustermap.oo ^= mask;
       clustermap.xx |= mask;
       break;
     case WHITE:
       if (clustermap.xx.contain (mask))
-	clustermap.xx ^= mask;
+        clustermap.xx ^= mask;
       clustermap.oo |= mask;
       break;
     case BLACK_WHITE:
@@ -878,10 +878,10 @@ AREA::setclustermap (const BITB & mask, COLOR clr)
 void
 AREA::setpotentialmap ()
 {
-  potentialmap.xx = massmaps.back ().xx ^ (massmaps.back ().xx & clustermap.oo)	// 减去死区和未定区
-    | clustermap.xx;		// 加上活区和未定区　和对方死区
-  potentialmap.oo = massmaps.back ().oo ^ (massmaps.back ().oo & clustermap.xx)	// 减去死区和未定区
-    | clustermap.oo;		// 加上活区和未定区　和对方死区
+  potentialmap.xx = massmaps.back ().xx ^ (massmaps.back ().xx & clustermap.oo) // 减去死区和未定区
+    | clustermap.xx;            // 加上活区和未定区　和对方死区
+  potentialmap.oo = massmaps.back ().oo ^ (massmaps.back ().oo & clustermap.xx) // 减去死区和未定区
+    | clustermap.oo;            // 加上活区和未定区　和对方死区
   // 孤立的未定区设为对方色
   // 注意可能有双方未定区相挨
   BITB unclear = clustermap.xx & clustermap.oo;
@@ -889,13 +889,13 @@ AREA::setpotentialmap ()
   for (BITB tmp = itr.blockbegin (); !itr.blockend (); tmp = itr.blocknext ())
     {
       if (isolated (make_pair (tmp, BLACK)))
-	potentialmap.xx ^= tmp, potentialmap.oo |= tmp;
+        potentialmap.xx ^= tmp, potentialmap.oo |= tmp;
     }
   itr = ITR (massmaps.back ().oo & unclear);
   for (BITB tmp = itr.blockbegin (); !itr.blockend (); tmp = itr.blocknext ())
     {
       if (isolated (make_pair (tmp, WHITE)))
-	potentialmap.xx |= tmp, potentialmap.oo ^= tmp;
+        potentialmap.xx |= tmp, potentialmap.oo ^= tmp;
     }
 }
 
@@ -907,24 +907,24 @@ AREA::getclustermap (COLOR clr, STATE st) const
     {
     case BLACK:
       switch (st)
-	{
-	case ALIVE:
-	  return (clustermap.xx & massmaps.back ().xx).ruboff (unclear);
-	case DEAD:
-	  return (clustermap.oo & massmaps.back ().xx).ruboff (unclear);
-	case UNCLEAR:
-	  return massmaps.back ().xx & unclear;
-	}
+        {
+        case ALIVE:
+          return (clustermap.xx & massmaps.back ().xx).ruboff (unclear);
+        case DEAD:
+          return (clustermap.oo & massmaps.back ().xx).ruboff (unclear);
+        case UNCLEAR:
+          return massmaps.back ().xx & unclear;
+        }
     case WHITE:
       switch (st)
-	{
-	case ALIVE:
-	  return (clustermap.oo & massmaps.back ().oo).ruboff (unclear);
-	case DEAD:
-	  return (clustermap.xx & massmaps.back ().oo).ruboff (unclear);
-	case UNCLEAR:
-	  return massmaps.back ().oo & unclear;
-	}
+        {
+        case ALIVE:
+          return (clustermap.oo & massmaps.back ().oo).ruboff (unclear);
+        case DEAD:
+          return (clustermap.xx & massmaps.back ().oo).ruboff (unclear);
+        case UNCLEAR:
+          return massmaps.back ().oo & unclear;
+        }
     }
 }
 

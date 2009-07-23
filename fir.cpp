@@ -15,7 +15,7 @@ const int FIR::FIR_MAX = 10000;
 PIP
 FIR::minmax (int n)
 {
-  ++nodenum;			//cout<<"n = "<<n<< endl<<(*this); // fine
+  ++nodenum;                    //cout<<"n = "<<n<< endl<<(*this); // fine
   if (n == 0)
     return leafvalue ();
 
@@ -32,7 +32,7 @@ FIR::minmax (int n)
       if (over ())
       {
         //restore (snapgo);
-	return make_pair ((getlastclr () == BLACK) ? FIR_MAX : -FIR_MAX, lastpos);
+        return make_pair ((getlastclr () == BLACK) ? FIR_MAX : -FIR_MAX, lastpos);
       }
       vec.push_back (make_pair (minmax (n - 1).first, pos));
       restore (snapgo);
@@ -45,34 +45,34 @@ FIR::minmax (int n)
 
 /*
 PIP FIR::alphabeta(int n, int alpha, int beta){
-	return make_pair(0, NULL_POS); 
+        return make_pair(0, NULL_POS); 
 }
 */
 
 /*
-PIP FIR::minmax(int n){		//速度似乎有提高，但搜索范围太局限导致结果不正确
-	++nodenum; //cout<<(*this); // fine
-	if (n == 0)
-		return leafvalue(); 
-	vector<PIP > vec; 
-	GO snapgo = snap(); 
-	for (int i = 0; i<vecp.size (); ++i){
-		POS pos = vecp[i]; //
-		swap(vecp[i], vecp.back ()); //
-		vecp.pop_back (); //
-																		//if (getbb(turn())[pos])
-																		//	cout<<(*this)<<pos; 
-		add(pos, turn()); 
-		if (over())
-			return make_pair((getlastclr() == BLACK)?FIR_MAX:-FIR_MAX, lastpos); 
-		vec.push_back(make_pair(minmax( n-1).first, pos)); 
-		vecp.push_back (pos); //
-		swap(vecp[i], vecp.back ()); //
-		restore(snapgo); //
-	}
-	return	turn() == BLACK ?
-			vec[max_element(vec.begin (), vec.end (), ppless)-vec.begin ()]:
-			vec[min_element(vec.begin (), vec.end (), ppless)-vec.begin ()]; 
+PIP FIR::minmax(int n){         //速度似乎有提高，但搜索范围太局限导致结果不正确
+        ++nodenum; //cout<<(*this); // fine
+        if (n == 0)
+                return leafvalue(); 
+        vector<PIP > vec; 
+        GO snapgo = snap(); 
+        for (int i = 0; i<vecp.size (); ++i){
+                POS pos = vecp[i]; //
+                swap(vecp[i], vecp.back ()); //
+                vecp.pop_back (); //
+                                                                                                                                                //if (getbb(turn())[pos])
+                                                                                                                                                //      cout<<(*this)<<pos; 
+                add(pos, turn()); 
+                if (over())
+                        return make_pair((getlastclr() == BLACK)?FIR_MAX:-FIR_MAX, lastpos); 
+                vec.push_back(make_pair(minmax( n-1).first, pos)); 
+                vecp.push_back (pos); //
+                swap(vecp[i], vecp.back ()); //
+                restore(snapgo); //
+        }
+        return  turn() == BLACK ?
+                        vec[max_element(vec.begin (), vec.end (), ppless)-vec.begin ()]:
+                        vec[min_element(vec.begin (), vec.end (), ppless)-vec.begin ()]; 
 }
 */
 
@@ -89,12 +89,12 @@ FIR::scope (int a)
 
 PIP
 FIR::leafvalue ()
-{				//注意这里可以调用minmax()继续搜索
-  VI vi, vj;			//cout<<vecp.size (); 
+{                               //注意这里可以调用minmax()继续搜索
+  VI vi, vj;                    //cout<<vecp.size (); 
   vi = link4 (getbb (getlastclr ()), lastpos);
-  INFOGO info = snap ();	//
-  info.getbb (info.getlastclr ()).r[info.getlastpos ().first] ^= info.getlastpos ().second;	//
-  info.add (info.getlastpos (), info.turn ());	//
+  INFOGO info = snap ();        //
+  info.getbb (info.getlastclr ()).r[info.getlastpos ().first] ^= info.getlastpos ().second;     //
+  info.add (info.getlastpos (), info.turn ());  //
   vj = link4 (info.getbb (info.getlastclr ()), info.getlastpos ());
   int c = (getlastclr () == BLACK) ? 1 : -1;
   return make_pair (c * (accumulate (vi.begin (), vi.end (), 0) + accumulate (vj.begin (), vj.end (), 0)), lastpos);
@@ -159,9 +159,9 @@ ppless (const PIP & m1, const PIP & m2)
 
 VI
 link4 (BITB b, POS p)
-{				// direction: -\|/
+{                               // direction: -\|/
   VI vi;
-  vi.reserve (4);		// 比 vi.assign(4, 0) 性能大大提高，其它处尚未优化
+  vi.reserve (4);               // 比 vi.assign(4, 0) 性能大大提高，其它处尚未优化
   vi.push_back (popu (rowexpand (b.r[p.first], p.second)));
   int i, j;
   for (i = 1; p.first - i >= 0 && b[make_pair (p.first - i, p.second << i)]; ++i);

@@ -24,7 +24,7 @@ BITB::BITB (const POS & p)
 void
 BITB::random ()
 {
-  srand ((unsigned) clock ());	// 测试时可用time()   2006.9.23
+  srand ((unsigned) clock ());  // 测试时可用time()   2006.9.23
   for (int i = 0; i < BS; ++i)
     r[i] = ((rand () << 15) + rand ()) & ROWMASK;
 }
@@ -43,17 +43,17 @@ BITB::blockat (const POS & pos) const
   ROW p;
   int d = ((id == 0) ? 1 : -1);
   for (;;)
-    {				// 此处如多次重复检测可提前转向, 待优化. 
+    {                           // 此处如多次重复检测可提前转向, 待优化. 
       id += d;
       p = B.r[id - d] & r[id];
       B.r[id] = rowexpand (r[id], p | B.r[id]);
       if ((B.r[id] == 0) || (id == 0) && (d == -1) || (id == BS - 1) && (d == 1))
-	{
-	  if (Bsnap == B)
-	    return B;
-	  Bsnap = B;
-	  d *= -1;
-	}
+        {
+          if (Bsnap == B)
+            return B;
+          Bsnap = B;
+          d *= -1;
+        }
     }
 }
 
@@ -81,7 +81,7 @@ BITB::blockon (const BITB & t) const
       snapbb = bb;
       bb = bb.dilate (1) & *this;
       if (snapbb == bb)
-	return bb;
+        return bb;
     }
 }
 
@@ -93,13 +93,13 @@ BITB::only (const POS & pos) const
   for (int i = 0; i < BS; ++i)
     {
       if (i != pos.first)
-	{
-	  if (r[i] > 0)
-	    return 0;
-	}
+        {
+          if (r[i] > 0)
+            return 0;
+        }
 
       else if ((r[i] ^ pos.second) > 0)
-	return 0;
+        return 0;
     }
   return 1;
 }
@@ -120,8 +120,8 @@ BITB::transpose () const
   for (int i = 0; i < BS; ++i)
     {
       for (int j = 0; j < BS; ++j)
-	{
-	  T.r[BS - i - 1] = T.r[BS - i - 1] | ((r[j] & (1 << i)) >> i) << (BS - j - 1);
+        {
+          T.r[BS - i - 1] = T.r[BS - i - 1] | ((r[j] & (1 << i)) >> i) << (BS - j - 1);
     }} return T;
 }
 
@@ -134,20 +134,20 @@ BITB::rotate (int angle) const
     {
     case 90:
       for (int i = 0; i < BS; ++i)
-	for (int j = 0; j < BS; ++j)
-	  {
-	    T.r[BS - i - 1] = T.r[BS - i - 1] | ((r[j] & (1 << i)) >> i) << j;
-	  } break;
+        for (int j = 0; j < BS; ++j)
+          {
+            T.r[BS - i - 1] = T.r[BS - i - 1] | ((r[j] & (1 << i)) >> i) << j;
+          } break;
     case 180:
       for (int i = 0; i < BS; ++i)
-	T.r[i] = reverse (r[BS - 1 - i]) >> (32 - BS);
+        T.r[i] = reverse (r[BS - 1 - i]) >> (32 - BS);
       break;
     case 270:
       for (int i = 0; i < BS; ++i)
-	for (int j = 0; j < BS; ++j)
-	  {
-	    T.r[i] = T.r[i] | ((r[j] & (1 << i)) >> i) << (BS - j - 1);
-	  } break;
+        for (int j = 0; j < BS; ++j)
+          {
+            T.r[i] = T.r[i] | ((r[j] & (1 << i)) >> i) << (BS - j - 1);
+          } break;
     default:
       T = *this;
     }
@@ -172,15 +172,15 @@ BITB::range () const
 {
   if (*this == NULL_BB)
     return make_pair (0, 0);
-  ROW rr = 0;			//必须初始化为0
+  ROW rr = 0;                   //必须初始化为0
   int up = -1, down = -1;
   for (int i = 0; i < BS; ++i)
     {
       rr |= r[i];
       if ((up == -1) && r[i] > 0)
-	up = i;
+        up = i;
       if ((down == -1) && r[BS - 1 - i] > 0)
-	down = BS - 1 - i;
+        down = BS - 1 - i;
     }
   return make_pair (down - up, 32 - nleadingzero (rr) - ntailzero (rr) - 1);
 }
@@ -196,9 +196,9 @@ BITB::rangemask () const
     {
       rr |= r[i];
       if ((up == -1) && r[i] > 0)
-	up = i;
+        up = i;
       if ((down == -1) && r[BS - 1 - i] > 0)
-	down = BS - 1 - i;
+        down = BS - 1 - i;
     }
   BITB bb;
   int n = ntailzero (rr);
@@ -216,7 +216,7 @@ BITB::dilate (int times) const
     {
       ex.r[0] = (bb.r[0] | bb.r[0] << 1 | bb.r[0] >> 1 | bb.r[1]);
       for (int i = 1; i < BS - 1; ++i)
-	ex.r[i] = (bb.r[i] | bb.r[i] >> 1 | bb.r[i] << 1 | bb.r[i - 1] | bb.r[i + 1]);
+        ex.r[i] = (bb.r[i] | bb.r[i] >> 1 | bb.r[i] << 1 | bb.r[i - 1] | bb.r[i + 1]);
       ex.r[BS - 1] = (bb.r[BS - 1] | bb.r[BS - 1] << 1 | bb.r[BS - 1] >> 1 | bb.r[BS - 2]);
       ex &= ROWMASK;
       swap (ex, bb);
@@ -231,7 +231,7 @@ BITB::dry (const BITB & bone, int times) const
     {
       ex.r[0] = bone.r[0];
       for (int i = 1; i < BS - 1; ++i)
-	ex.r[i] = (bone.r[i] | (bb.r[i] >> 1 & bb.r[i] << 1 & bb.r[i - 1] & bb.r[i + 1]));
+        ex.r[i] = (bone.r[i] | (bb.r[i] >> 1 & bb.r[i] << 1 & bb.r[i - 1] & bb.r[i + 1]));
       ex.r[BS - 1] = bone.r[BS - 1];
       swap (ex, bb);
     } return bb;
@@ -245,7 +245,7 @@ BITB::adsorb (const BITB & bone, int times) const
     {
       ex = bb.dry (bone, 1);
       for (int i = 1; i < BS - 1; ++i)
-	ex.r[i] |= ((ex.r[i] << 1) & LEFTEST | ((ex.r[i] >> 1) & 1));
+        ex.r[i] |= ((ex.r[i] << 1) & LEFTEST | ((ex.r[i] >> 1) & 1));
       ex.r[0] |= ex.r[1];
       ex.r[BS - 1] |= ex.r[BS - 2];
       swap (ex, bb);
@@ -255,7 +255,7 @@ BITB::adsorb (const BITB & bone, int times) const
 BITB
 BITB::inner (int times) const
 {
-  BITB bone = *this;		// 2006.10.30
+  BITB bone = *this;            // 2006.10.30
   BITB bb;
   ITR itr (dilate (times) ^ bone);
   for (BITB blk = itr.blockbegin (); !itr.blockend (); blk = itr.blocknext ())
@@ -314,7 +314,7 @@ BITB::erode (int times) const
     {
       ex.r[0] = 0;
       for (int i = 1; i < BS - 1; ++i)
-	ex.r[i] = (bb.r[i] >> 1 & bb.r[i] << 1 & bb.r[i - 1] & bb.r[i + 1]);
+        ex.r[i] = (bb.r[i] >> 1 & bb.r[i] << 1 & bb.r[i - 1] & bb.r[i + 1]);
       ex.r[BS - 1] = 0;
       swap (ex, bb);
     } return bb;
@@ -353,16 +353,16 @@ BITB::_fly (int a, int b) const
     {
       m = i - a;
       if (m >= 0 && m < BS)
-	ex.r[i] = r[m] >> b | r[m] << b;
+        ex.r[i] = r[m] >> b | r[m] << b;
       m = i + a;
       if (m >= 0 && m < BS)
-	ex.r[i] |= r[m] >> b | r[m] << b;
+        ex.r[i] |= r[m] >> b | r[m] << b;
       m = i - b;
       if (m >= 0 && m < BS)
-	ex.r[i] |= r[m] >> a | r[m] << a;
+        ex.r[i] |= r[m] >> a | r[m] << a;
       m = i + b;
       if (m >= 0 && m < BS)
-	ex.r[i] |= r[m] >> a | r[m] << a;
+        ex.r[i] |= r[m] >> a | r[m] << a;
     }
   ex &= ROWMASK;
   return ex ^ (ex & dilate (a + b - 1));
@@ -411,8 +411,8 @@ BITB::tag () const
   for (int i = 0; i < BS; ++i)
     if (r[i] > 0)
       {
-	p.first = i, p.second = (((r[i] ^ (r[i] - 1)) + 1) >> 1);
-	return p;
+        p.first = i, p.second = (((r[i] ^ (r[i] - 1)) + 1) >> 1);
+        return p;
       }
   return NULL_POS;
 }
@@ -464,117 +464,117 @@ BITB::encode32 () const
 
 /*
 BITB BITB::pemismask() const {
-	BITB b = NULL_BB; 
-	if ( ((*this) &g_init.getroute(R4DOWN_EAST)) != NULL_BB)
-		b |= corner(EAST); 
-	if ( ((*this) &g_init.getroute(R4DOWN_SOUTH)) != NULL_BB)
-		b |= corner(SOUTH); 
-	if ( ((*this) &g_init.getroute(R4DOWN_WEST)) != NULL_BB)
-		b |= corner(WEST); 
-	if ( ((*this) &g_init.getroute(R4DOWN_NORTH)) != NULL_BB)
-		b |= corner(NORTH); 
-	return project(b)
-		|((*this).transpose ().project(b.transpose ()).transpose ()); 
+        BITB b = NULL_BB; 
+        if ( ((*this) &g_init.getroute(R4DOWN_EAST)) != NULL_BB)
+                b |= corner(EAST); 
+        if ( ((*this) &g_init.getroute(R4DOWN_SOUTH)) != NULL_BB)
+                b |= corner(SOUTH); 
+        if ( ((*this) &g_init.getroute(R4DOWN_WEST)) != NULL_BB)
+                b |= corner(WEST); 
+        if ( ((*this) &g_init.getroute(R4DOWN_NORTH)) != NULL_BB)
+                b |= corner(NORTH); 
+        return project(b)
+                |((*this).transpose ().project(b.transpose ()).transpose ()); 
 }
 
 // direction 的作用仅在于判断是否和四边接触，以便投射到相应边，
 // 所以左上四分之一区与左上角点完全等价
-BITB	BITB::project(const BITB& direction) const { 
-	ROW s = 0, m = 0; 
-	int up = -1, down = -1; 
-	for (int i = 0; i<BS; ++i){
-		if ((up == -1) && r[i]>0 ) 
-			up = i; 
-		if ((down == -1) && r[BS-1-i]>0 ) 
-			down = BS-1-i; 
-		s |= r[i]; 
-		m |= direction.r[i]; 
-	}
-	BITB bb; 
-	
-	//if (direction.r[0])						//direction 接触上边界 
-	//	for (int i = 0; i<up; ++i)
-	//		bb.r[i] = s; 
-	//if (direction.r[BS-1])					//direction 接触下边界 
-	//	for (int i = down+1; i<BS; ++i)
-	//		bb.r[i] = s; 
-	
-	if (m&LEFTEST)							//direction 接触左边界
-		for (int i = 0; i<BS; ++i)
-			if (r[i])
-				bb.r[i] = ROWMASK & (r[i]|reverse(reverse(r[i])-1)); 
-	if (m&1)								//direction 接触右边界
-		for (int i = 0; i<BS; ++i)
-			if (r[i])		
-				bb.r[i] |= (r[i]-1); 
-	return bb; 
+BITB    BITB::project(const BITB& direction) const { 
+        ROW s = 0, m = 0; 
+        int up = -1, down = -1; 
+        for (int i = 0; i<BS; ++i){
+                if ((up == -1) && r[i]>0 ) 
+                        up = i; 
+                if ((down == -1) && r[BS-1-i]>0 ) 
+                        down = BS-1-i; 
+                s |= r[i]; 
+                m |= direction.r[i]; 
+        }
+        BITB bb; 
+        
+        //if (direction.r[0])                                           //direction 接触上边界 
+        //      for (int i = 0; i<up; ++i)
+        //              bb.r[i] = s; 
+        //if (direction.r[BS-1])                                        //direction 接触下边界 
+        //      for (int i = down+1; i<BS; ++i)
+        //              bb.r[i] = s; 
+        
+        if (m&LEFTEST)                                                  //direction 接触左边界
+                for (int i = 0; i<BS; ++i)
+                        if (r[i])
+                                bb.r[i] = ROWMASK & (r[i]|reverse(reverse(r[i])-1)); 
+        if (m&1)                                                                //direction 接触右边界
+                for (int i = 0; i<BS; ++i)
+                        if (r[i])               
+                                bb.r[i] |= (r[i]-1); 
+        return bb; 
 }
 
 //注意 NULL_BB 结果为 1
-PUU BITB::pemis3232_(const BITB& patmask) const {			
-	vector<short> vecs; 
-	BITB patbb = blockon(patmask); 
-	BITB mask = patbb.pemismask(); 
-	ITR itr(patbb); 
-	for (POS p = itr.stonebegin (); !itr.stoneend (); p = itr.stonenext())
-		vecs.push_back((BITB(p).dilate(1)&patbb).count() + onboarder(p)*BS); //
-	short a, c; 
-	for(int i = 0; i<BS; ++i){
-		if(patbb.r[i]){
-			a = nleadingzero(patbb.r[i])+BS-32; 
-			c = ntailzero(patbb.r[i]); 
-			vecs.push_back (a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
-		}
-	}
-	patbb = patbb.transpose (); 
-	mask = mask.transpose (); 
-	for(int i = 0; i<BS; ++i){
-		if(patbb.r[i]){
-			a = nleadingzero(patbb.r[i])+BS-32; 
-			c = ntailzero(patbb.r[i]); 
-			vecs.push_back (a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
-		}
-	}
-	unsigned high32 = 0, low32 = 1; 
-	for(int i = 0; i<vecs.size (); ++i) {							
-		high32 = high32*vecs[i] + mulhigh32(low32, vecs[i]); 
-		low32 *= vecs[i]; 
-	}															
-	unsigned y = patbb.rangemask().count(); //这样才能区别小飞与尖等简单棋形 
-	if ( ~low32 < y ) 
-		high32 += 1; 
-	low32 += y; 
-	return make_pair(high32, low32); 
+PUU BITB::pemis3232_(const BITB& patmask) const {                       
+        vector<short> vecs; 
+        BITB patbb = blockon(patmask); 
+        BITB mask = patbb.pemismask(); 
+        ITR itr(patbb); 
+        for (POS p = itr.stonebegin (); !itr.stoneend (); p = itr.stonenext())
+                vecs.push_back((BITB(p).dilate(1)&patbb).count() + onboarder(p)*BS); //
+        short a, c; 
+        for(int i = 0; i<BS; ++i){
+                if(patbb.r[i]){
+                        a = nleadingzero(patbb.r[i])+BS-32; 
+                        c = ntailzero(patbb.r[i]); 
+                        vecs.push_back (a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
+                }
+        }
+        patbb = patbb.transpose (); 
+        mask = mask.transpose (); 
+        for(int i = 0; i<BS; ++i){
+                if(patbb.r[i]){
+                        a = nleadingzero(patbb.r[i])+BS-32; 
+                        c = ntailzero(patbb.r[i]); 
+                        vecs.push_back (a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
+                }
+        }
+        unsigned high32 = 0, low32 = 1; 
+        for(int i = 0; i<vecs.size (); ++i) {                                                   
+                high32 = high32*vecs[i] + mulhigh32(low32, vecs[i]); 
+                low32 *= vecs[i]; 
+        }                                                                                                                       
+        unsigned y = patbb.rangemask().count(); //这样才能区别小飞与尖等简单棋形 
+        if ( ~low32 < y ) 
+                high32 += 1; 
+        low32 += y; 
+        return make_pair(high32, low32); 
 }
 
 //算法应与 project() 有关!
-ULL	BITB::pemis64_(const BITB& patmask) const {				
-	ULL tmp = 1; 
-	BITB patbb = blockon(patmask); 
-	BITB mask = patbb.pemismask(); 
-	ITR itr(patbb); 
-	for (POS p = itr.stonebegin (); !itr.stoneend (); p = itr.stonenext()){
-		tmp *= (ULL)((BITB(p).dilate(1)&patbb).count() + onboarder(p)*BS); //	
-	}																				
-	int a, c; 
-	for(int i = 0; i<BS; ++i){
-		if(patbb.r[i]){
-			a = nleadingzero(patbb.r[i])+BS-32; 
-			c = ntailzero(patbb.r[i]); 
-			tmp *= (ULL)(a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
-		}
-	}																					
-	patbb = patbb.transpose (); 
-	mask = mask.transpose (); 
-	for(int i = 0; i<BS; ++i){
-		if(patbb.r[i]){
-			a = nleadingzero(patbb.r[i])+BS-32; 
-			c = ntailzero(patbb.r[i]); 
-			tmp *= (ULL)(a*((mask.r[i]&LEFTEST)>0)+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
-		}
-	}																					
-	return tmp + (ULL)(patbb.rangemask().count()); 
-	//return tmp * (ULL)(patbb.rangemask().count()+(ULL)BS*BS); 
+ULL     BITB::pemis64_(const BITB& patmask) const {                             
+        ULL tmp = 1; 
+        BITB patbb = blockon(patmask); 
+        BITB mask = patbb.pemismask(); 
+        ITR itr(patbb); 
+        for (POS p = itr.stonebegin (); !itr.stoneend (); p = itr.stonenext()){
+                tmp *= (ULL)((BITB(p).dilate(1)&patbb).count() + onboarder(p)*BS); //   
+        }                                                                                                                                                               
+        int a, c; 
+        for(int i = 0; i<BS; ++i){
+                if(patbb.r[i]){
+                        a = nleadingzero(patbb.r[i])+BS-32; 
+                        c = ntailzero(patbb.r[i]); 
+                        tmp *= (ULL)(a*( (mask.r[i]&LEFTEST)>0 )+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
+                }
+        }                                                                                                                                                                       
+        patbb = patbb.transpose (); 
+        mask = mask.transpose (); 
+        for(int i = 0; i<BS; ++i){
+                if(patbb.r[i]){
+                        a = nleadingzero(patbb.r[i])+BS-32; 
+                        c = ntailzero(patbb.r[i]); 
+                        tmp *= (ULL)(a*((mask.r[i]&LEFTEST)>0)+(BS-a-c)+c*((mask.r[i]&1)>0)+BS); //
+                }
+        }                                                                                                                                                                       
+        return tmp + (ULL)(patbb.rangemask().count()); 
+        //return tmp * (ULL)(patbb.rangemask().count()+(ULL)BS*BS); 
 }
 */
 
@@ -588,28 +588,28 @@ BITB::project () const
   for (int i = 0; i < BS; ++i)
     {
       if ((up == -1) && tmp.r[i] > 0)
-	up = i;
+        up = i;
       if ((down == -1) && tmp.r[BS - 1 - i] > 0)
-	down = BS - 1 - i;
+        down = BS - 1 - i;
       s |= tmp.r[i];
     }
   BITB bb = tmp;
-  if (!(tmp & g_init.getroute (R4DOWN_NORTH)).empty ())	// 接触上海 
+  if (!(tmp & g_init.getroute (R4DOWN_NORTH)).empty ()) // 接触上海 
     for (int i = 0; i < up; ++i)
       bb.r[i] = s;
-  if (!(tmp & g_init.getroute (R4DOWN_SOUTH)).empty ())	// 接触下海 
+  if (!(tmp & g_init.getroute (R4DOWN_SOUTH)).empty ()) // 接触下海 
     for (int i = down + 1; i < BS; ++i)
       bb.r[i] = s;
 
   // 上下操作完再操作左右，用更新后的 bb，对每行
-  if (!(tmp & g_init.getroute (R4DOWN_WEST)).empty ())	// 接触左海
+  if (!(tmp & g_init.getroute (R4DOWN_WEST)).empty ())  // 接触左海
     for (int i = 0; i < BS; ++i)
       if (bb.r[i])
-	bb.r[i] = ROWMASK & (bb.r[i] | reverse (reverse (bb.r[i]) - 1));
-  if (!(tmp & g_init.getroute (R4DOWN_EAST)).empty ())	// 接触右海
+        bb.r[i] = ROWMASK & (bb.r[i] | reverse (reverse (bb.r[i]) - 1));
+  if (!(tmp & g_init.getroute (R4DOWN_EAST)).empty ())  // 接触右海
     for (int i = 0; i < BS; ++i)
       if (bb.r[i])
-	bb.r[i] |= (bb.r[i] - 1);
+        bb.r[i] |= (bb.r[i] - 1);
   return bb;
 }
 
@@ -633,9 +633,9 @@ BITB::rowpemis () const
   for (int i = 0; i < BS; ++i)
     if (r[i])
       {
-	a = nleadingzero (r[i]) + BS - 32;
-	c = ntailzero (r[i]);
-	vs.push_back (a * leftproject + (BS - a - c) + c * rightproject);	// + BS
+        a = nleadingzero (r[i]) + BS - 32;
+        c = ntailzero (r[i]);
+        vs.push_back (a * leftproject + (BS - a - c) + c * rightproject);       // + BS
       }
   return vs;
 }
@@ -667,7 +667,7 @@ BITB::pemis3232 () const
     {
       high = high * vs[i] + mulhigh32 (low, vs[i]);
       low *= vs[i];
-    } unsigned y = rangemask ().count ();	//这样才能区别小飞与尖等简单棋形 
+    } unsigned y = rangemask ().count ();       //这样才能区别小飞与尖等简单棋形 
   if (~low < y)
     high += 1;
   low += y;
@@ -685,43 +685,43 @@ pair < EYEKIND, VP > BITB::eyekind (ACTION action) const
     {
       VP jointp = jointpos ();
       switch (jointp.size ())
-	{
-	case 0:
-	  if (count () == 6)
-	    return make_pair (SOMEEYE, NULL_VP);
+        {
+        case 0:
+          if (count () == 6)
+            return make_pair (SOMEEYE, NULL_VP);
 
-	  else
-	    return make_pair (ONEEYE, NULL_VP);
-	case 1:
-	  if (count () == 7)
-	    if (encode32 () == 3645)
-	      return make_pair (CO_ONEEYE, jointp);
+          else
+            return make_pair (ONEEYE, NULL_VP);
+        case 1:
+          if (count () == 7)
+            if (encode32 () == 3645)
+              return make_pair (CO_ONEEYE, jointp);
 
-	    else
-	      return make_pair (SOMEEYE, NULL_VP);
+            else
+              return make_pair (SOMEEYE, NULL_VP);
 
-	  else
-	    return make_pair (ONEEYE, jointp);
-	default:
-	  return make_pair (SOMEEYE, NULL_VP);
-	}
+          else
+            return make_pair (ONEEYE, jointp);
+        default:
+          return make_pair (SOMEEYE, NULL_VP);
+        }
     }
   if (action == RESCUE)
     {
       pair < EYEKIND, VP > result = eyekind (AFTERDELETE);
       switch (result.first)
-	{
-	case ONEEYE:
-	  if (!result.second.empty ())
-	    return make_pair (SOMEEYE, result.second);
+        {
+        case ONEEYE:
+          if (!result.second.empty ())
+            return make_pair (SOMEEYE, result.second);
 
-	  else
-	    return make_pair (ONEEYE, NULL_VP);
-	case SOMEEYE:
-	  return make_pair (SOMEEYE, NULL_VP);
-	case CO_ONEEYE:
-	  return make_pair (SOMEEYE, result.second);
-	}
+          else
+            return make_pair (ONEEYE, NULL_VP);
+        case SOMEEYE:
+          return make_pair (SOMEEYE, NULL_VP);
+        case CO_ONEEYE:
+          return make_pair (SOMEEYE, result.second);
+        }
     }
 }
 
@@ -758,17 +758,17 @@ BITB::dist (const BITB & bb) const
   if (!((*this) & tmp).empty ())
     for (int i = 0;; --i)
       {
-	tmp = tmp.erode (1);
-	if (((*this) & tmp).empty ())
-	  return i;
+        tmp = tmp.erode (1);
+        if (((*this) & tmp).empty ())
+          return i;
       }
 
   else
     for (int i = 0;; ++i)
       {
-	tmp = tmp.dilate (1);
-	if (!((*this) & tmp).empty ())
-	  return i + 1;
+        tmp = tmp.dilate (1);
+        if (!((*this) & tmp).empty ())
+          return i + 1;
       }
 }
 
@@ -796,17 +796,17 @@ pair < BITB, PII > BITB::relation_ (const BITB & bb) const
   else
     {
       int
-	x = m / 2, y = m - x;
+        x = m / 2, y = m - x;
       BITB
-	onthis,
-	onbb;
+        onthis,
+        onbb;
       for (int i = 0; x >= 0; x -= i, y += i)
-	{
-	  onbb = fly (x, y) & bb;
-	  if (!onbb.empty ())
-	    onthis = bb.fly (x, y) & (*this);
-	  return make_pair (onthis | onbb, make_pair (x, y));
-	}
+        {
+          onbb = fly (x, y) & bb;
+          if (!onbb.empty ())
+            onthis = bb.fly (x, y) & (*this);
+          return make_pair (onthis | onbb, make_pair (x, y));
+        }
     }
 }
 
@@ -849,24 +849,24 @@ BITB::operator^ (const BITB & bb) const
 
 /*
 BITB BITB::operator>>  (int n)  const { 
-	BITB tmp; 
-	for (int i = 0; i<BS; ++i) 
-		tmp.r[i] = r[i]>>n; 
-	return tmp; }
+        BITB tmp; 
+        for (int i = 0; i<BS; ++i) 
+                tmp.r[i] = r[i]>>n; 
+        return tmp; }
 BITB BITB::operator<<  (int n)  const {
-	BITB tmp; 
-	for (int i = 0; i<BS; ++i) 
-		tmp.r[i] = (r[i]<<n)&ROWMASK; 
-	return tmp; 
+        BITB tmp; 
+        for (int i = 0; i<BS; ++i) 
+                tmp.r[i] = (r[i]<<n)&ROWMASK; 
+        return tmp; 
 }
-void	 BITB::operator>>= (int n)	{ 
-	for (int i = 0; i<BS; ++i)  
-		r[i]>>= n; 
+void     BITB::operator>>= (int n)      { 
+        for (int i = 0; i<BS; ++i)  
+                r[i]>>= n; 
 }
-void	 BITB::operator< <= (int n)	{ 
-	for (int i = 0; i<BS; ++i)  
-		r[i]<<= n, r[i] &= ROWMASK; 
-}			
+void     BITB::operator< <= (int n)     { 
+        for (int i = 0; i<BS; ++i)  
+                r[i]<<= n, r[i] &= ROWMASK; 
+}                       
 */
 void
 BITB::operator &= (const BITB & bb)
@@ -903,29 +903,29 @@ BITB::operator< (const BITB & bb) const
 
 
 /*
-bool	 BITB::operator <= (const BITB& bb) const { 
-	for (int i = 0; i<BS; ++i) 
-		if (r[i]<bb.r[i]) 
-			return 1; 
-		else if (r[i]>bb.r[i]) 
-			return 0; 
-	return 1; 
+bool     BITB::operator <= (const BITB& bb) const { 
+        for (int i = 0; i<BS; ++i) 
+                if (r[i]<bb.r[i]) 
+                        return 1; 
+                else if (r[i]>bb.r[i]) 
+                        return 0; 
+        return 1; 
 }
-bool	 BITB::operator>   (const BITB& bb) const { 
-	for (int i = 0; i<BS; ++i) 
-		if (r[i]<bb.r[i]) 
-			return 0; 
-		else if (r[i]>bb.r[i]) 
-			return 1; 
-	return 0; 
+bool     BITB::operator>   (const BITB& bb) const { 
+        for (int i = 0; i<BS; ++i) 
+                if (r[i]<bb.r[i]) 
+                        return 0; 
+                else if (r[i]>bb.r[i]) 
+                        return 1; 
+        return 0; 
 }
-bool	 BITB::operator >= (const BITB& bb) const { 
-	for (int i = 0; i<BS; ++i) 
-		if (r[i]<bb.r[i]) 
-			return 0; 
-		else if (r[i]>bb.r[i]) 
-			return 1; 
-	return 1; 
+bool     BITB::operator >= (const BITB& bb) const { 
+        for (int i = 0; i<BS; ++i) 
+                if (r[i]<bb.r[i]) 
+                        return 0; 
+                else if (r[i]>bb.r[i]) 
+                        return 1; 
+        return 1; 
 }
 */
 bool
@@ -935,7 +935,7 @@ BITB::operator == (const BITB & bb) const
     if (r[i] < bb.r[i] || bb.r[i] < r[i])
       return 0;
   return 1;
-}				//这两句可以用 != .待改。2006.9.9
+}                               //这两句可以用 != .待改。2006.9.9
 
 bool BITB::operator != (const BITB & bb) const
 {
@@ -947,32 +947,32 @@ bool BITB::operator != (const BITB & bb) const
 
 
 /*
-BITB BITB::operator&	 (const ROW rr)	  const { 
-	BITB tmp; 
-	for (int i = 0; i<BS; ++i) 
-		tmp.r[i] = r[i]&rr; 
-	return tmp; 
+BITB BITB::operator&     (const ROW rr)   const { 
+        BITB tmp; 
+        for (int i = 0; i<BS; ++i) 
+                tmp.r[i] = r[i]&rr; 
+        return tmp; 
 }
-BITB BITB::operator|   (const ROW rr)	  const { 
-	BITB tmp; 
-	for (int i = 0; i<BS; ++i) 
-		tmp.r[i] = r[i]|rr; 
-	return tmp; 
+BITB BITB::operator|   (const ROW rr)     const { 
+        BITB tmp; 
+        for (int i = 0; i<BS; ++i) 
+                tmp.r[i] = r[i]|rr; 
+        return tmp; 
 }
-BITB BITB::operator^   (const ROW rr)	  const { 
-	BITB tmp; 
-	for (int i = 0; i<BS; ++i) 
-		tmp.r[i] = r[i]^rr; 
-	return tmp; 
+BITB BITB::operator^   (const ROW rr)     const { 
+        BITB tmp; 
+        for (int i = 0; i<BS; ++i) 
+                tmp.r[i] = r[i]^rr; 
+        return tmp; 
 }
 */
 /*
-BITB BITB::operator& (const POS& pos)	const	{ 
-	BITB tmp; 
-	for (int i = 0; i<BS; ++i) 
-		tmp.r[i] = r[i]; 
-	tmp.r[pos.first] = r[pos.first]&pos.second; 
-	return tmp; 
+BITB BITB::operator& (const POS& pos)   const   { 
+        BITB tmp; 
+        for (int i = 0; i<BS; ++i) 
+                tmp.r[i] = r[i]; 
+        tmp.r[pos.first] = r[pos.first]&pos.second; 
+        return tmp; 
 }
 */
 BITB
@@ -997,16 +997,16 @@ BITB::operator^ (const POS & pos) const
 
 
 /*
-bool	 BITB::operator&&  (const POS& pos)const	{ 
-	return (r[pos.first]&pos.second) > 0; 
+bool     BITB::operator&&  (const POS& pos)const        { 
+        return (r[pos.first]&pos.second) > 0; 
 } 
-bool	 BITB::operator||  (const POS& pos)const	{ 
-	return (r[pos.first]|pos.second) > 0; 
+bool     BITB::operator||  (const POS& pos)const        { 
+        return (r[pos.first]|pos.second) > 0; 
 }
-bool	 BITB::operator!   ( )	 const	{ 
+bool     BITB::operator!   ( )   const  { 
 }
-void	 BITB::operator &= (const POS& pos)		{ 
-	r[pos.first] &= pos.second; 
+void     BITB::operator &= (const POS& pos)             { 
+        r[pos.first] &= pos.second; 
 }
 */
 

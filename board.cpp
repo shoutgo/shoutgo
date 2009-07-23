@@ -86,9 +86,9 @@ GO::color (const POS & pos) const
   if (oo[pos])
     {
       if (xx[pos])
-	return BLACK_WHITE;
+        return BLACK_WHITE;
       else
-	return WHITE;
+        return WHITE;
     }
   else if (xx[pos])
     return BLACK;
@@ -199,7 +199,7 @@ int
 GO::liberty_ (const POS & pos) const
 {
   if (color (pos) != BLACK && color (pos) != WHITE)
-    return 0;			//-// -1
+    return 0;                   //-// -1
   return libertysite (pos).count ();
 }
 
@@ -292,14 +292,14 @@ GO::moveable (const POS & pos, COLOR clr) const
       COLOR c = color (near4p[i]);
       // 有气
       if (c == EMPTY)
-	return 1;
+        return 1;
       // 可提
       BITB blk = libertysite (near4p[i]);
       if ((c != clr) && blk.only (pos))
-	return 1;
+        return 1;
       // 可融合成有气的块
       else if ((c == clr) && blk.count () > 1)
-	return 1;
+        return 1;
     }
   // 自杀
   return 0;
@@ -320,9 +320,9 @@ GO::move_ (const POS & pos, COLOR clr)
   for (int i = 0; i < near4p.size (); ++i)
     {
       if ((color (near4p[i]) != clr) && libertysite (near4p[i]).only (pos))
-	{
-	  hotko = near4p[i], kill |= otherbb.blockat (near4p[i]);
-	}
+        {
+          hotko = near4p[i], kill |= otherbb.blockat (near4p[i]);
+        }
     }
   // 更新 ...
   if (clr == BLACK)
@@ -337,9 +337,9 @@ GO::move_ (const POS & pos, COLOR clr)
     {
       BITB tmpbb = getbb (clr).blockat (pos);
       if (tmpbb.count () == 1 && (expand (tmpbb, clr) ^ tmpbb).count () == 1)
-	;
+        ;
       else
-	hotko = NULL_POS;
+        hotko = NULL_POS;
     }
   else
     hotko = NULL_POS;
@@ -418,9 +418,9 @@ GO::move__ (const POS & pos, COLOR clr)
     {
       tmpbb = getbb (clr).blockat (pos);
       if (tmpbb.count () == 1 && (expand (tmpbb, clr) ^ tmpbb).count () == 1)
-	;
+        ;
       else
-	hotko = NULL_POS;
+        hotko = NULL_POS;
     }
   else
     hotko = NULL_POS;
@@ -444,18 +444,18 @@ GO::move (const POS & pos, COLOR clr)
       COLOR c = color (near4p[i]);
       // 有气
       if (c == EMPTY)
-	mvable = 1;
+        mvable = 1;
       BITB blk = libertysite (near4p[i]);
       // 可提
       if ((c != clr) && blk.only (pos))
-	{
-	  mvable = 1;
-	  hotko = near4p[i];
-	  tmpbb |= otherbb.blockat (near4p[i]);
-	}
+        {
+          mvable = 1;
+          hotko = near4p[i];
+          tmpbb |= otherbb.blockat (near4p[i]);
+        }
       // 可融合成有气的块
       else if ((c == clr) && blk.count () > 1)
-	mvable = 1;
+        mvable = 1;
     }
   // 自杀
   if (!mvable)
@@ -474,9 +474,9 @@ GO::move (const POS & pos, COLOR clr)
     {
       tmpbb = getbb (clr).blockat (pos);
       if (tmpbb.count () == 1 && (expand (tmpbb, clr) ^ tmpbb).count () == 1)
-	;
+        ;
       else
-	hotko = NULL_POS;
+        hotko = NULL_POS;
     }
   else
     hotko = NULL_POS;

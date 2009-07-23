@@ -186,7 +186,7 @@ rot (int angle, const POS & pos)
     case 270:
       return make_pair (ntailzero (pos.second), 1 << (BS - 1 - pos.first));
     default:
-      return pos;		// 2006.8.20 以使在angle = 0时正确
+      return pos;               // 2006.8.20 以使在angle = 0时正确
     }
 }
 
@@ -494,7 +494,7 @@ pie (const POS & center, int radius)
       m = pos.first - center.first;
       n = popu ((pos.second - 1) ^ (center.second - 1));
       if ((m * m + n * n) > radius * radius)
-	bb ^= pos;
+        bb ^= pos;
     }
   return bb;
 }
@@ -511,7 +511,7 @@ circle (const POS & center, int radius)
       n = popu ((pos.second - 1) ^ (center.second - 1));
       l = (m * m + n * n);
       if (l > radius * radius || l <= (radius - 1) * (radius - 1))
-	bb ^= pos;
+        bb ^= pos;
     }
   return bb;
 }
@@ -570,204 +570,204 @@ muloverflow (unsigned x, unsigned y)
 
 
 /*
-bool	issamepat(string a, string b){  
-	string ax = a; 
-	for (int i = 0; i<a.size (); ++i){
-		if		(ax.substr (i, 1) == "x")   
-			ax.replace (i, 1, "o"); 
-		else if (ax.substr (i, 1) == "o")   
-			ax.replace (i, 1, "x"); 
-		else if (ax.substr (i, 1) == "X")   
-			ax.replace (i, 1, "O"); 
-		else if (ax.substr (i, 1) == "O")   
-			ax.replace (i, 1, "X"); 
-	}
-	//第 1 种情况 (未翻转) 
-    if (a == b || ax == b)						
-		return 1; 
-	//把 b 读入 bmn, m 行 n 列.
-	char bmn[BS][BS]; 
-	int  m = 0, n = 0, p; 
-	for (p = 0; p<b.size(); ++p){
-		if (b.substr (p, 1) != "\n") 			
-			bmn[m][n++] = b[p]; 
-		else {
-			n = 0; 
-			++m; 
-		}
-	}
-	n = p/m - 1; //-// 取模？与in2pat()有重复
+bool    issamepat(string a, string b){  
+        string ax = a; 
+        for (int i = 0; i<a.size (); ++i){
+                if              (ax.substr (i, 1) == "x")   
+                        ax.replace (i, 1, "o"); 
+                else if (ax.substr (i, 1) == "o")   
+                        ax.replace (i, 1, "x"); 
+                else if (ax.substr (i, 1) == "X")   
+                        ax.replace (i, 1, "O"); 
+                else if (ax.substr (i, 1) == "O")   
+                        ax.replace (i, 1, "X"); 
+        }
+        //第 1 种情况 (未翻转) 
+    if (a == b || ax == b)                                              
+                return 1; 
+        //把 b 读入 bmn, m 行 n 列.
+        char bmn[BS][BS]; 
+        int  m = 0, n = 0, p; 
+        for (p = 0; p<b.size(); ++p){
+                if (b.substr (p, 1) != "\n")                    
+                        bmn[m][n++] = b[p]; 
+                else {
+                        n = 0; 
+                        ++m; 
+                }
+        }
+        n = p/m - 1; //-// 取模？与in2pat()有重复
 
-	//其它 7 种对称情况 (看作是座标读取方式的不同)
-	string tmp = ""; 
-	for (int i = 0; i<n; ++i)		
-		for(int j = 0; j<m; ++j){
-			tmp += bmn[j][i]; 
-			if (j == m-1) tmp += "\n"; 
-		}									
+        //其它 7 种对称情况 (看作是座标读取方式的不同)
+        string tmp = ""; 
+        for (int i = 0; i<n; ++i)               
+                for(int j = 0; j<m; ++j){
+                        tmp += bmn[j][i]; 
+                        if (j == m-1) tmp += "\n"; 
+                }                                                                       
     if (a == tmp || ax == tmp) 
-		return 1; 
-			
-	tmp = ""; 
-	for (int i = m-1; i >= 0; --i)
-		for(int j = 0; j<n; ++j){
-			tmp += bmn[i][j]; 
-			if (j == n-1) tmp += "\n"; 
-		}									
+                return 1; 
+                        
+        tmp = ""; 
+        for (int i = m-1; i >= 0; --i)
+                for(int j = 0; j<n; ++j){
+                        tmp += bmn[i][j]; 
+                        if (j == n-1) tmp += "\n"; 
+                }                                                                       
     if (a == tmp || ax == tmp) 
-		return 1; 
+                return 1; 
 
-	tmp = ""; 
-	for (int i = 0; i<n; ++i)
-		for(int j = m-1; j >= 0; --j){
-			tmp += bmn[j][i]; 
-			if (j == 0) tmp += "\n"; 
-		}									
+        tmp = ""; 
+        for (int i = 0; i<n; ++i)
+                for(int j = m-1; j >= 0; --j){
+                        tmp += bmn[j][i]; 
+                        if (j == 0) tmp += "\n"; 
+                }                                                                       
     if (a == tmp || ax == tmp) 
-		return 1; 
+                return 1; 
 
-	tmp = ""; 
-	for (int i = m-1; i >= 0; --i)
-		for(int j = n-1; j >= 0; --j){
-			tmp += bmn[i][j]; 
-			if (j == 0) tmp += "\n"; 
-		}									
+        tmp = ""; 
+        for (int i = m-1; i >= 0; --i)
+                for(int j = n-1; j >= 0; --j){
+                        tmp += bmn[i][j]; 
+                        if (j == 0) tmp += "\n"; 
+                }                                                                       
     if (a == tmp || ax == tmp) 
-		return 1; 
+                return 1; 
 
-	tmp = ""; 
-	for (int i = n-1; i >= 0; --i)
-		for(int j = m-1; j >= 0; --j){
-			tmp += bmn[j][i]; 
-			if (j == 0) tmp += "\n"; 
-		}									
+        tmp = ""; 
+        for (int i = n-1; i >= 0; --i)
+                for(int j = m-1; j >= 0; --j){
+                        tmp += bmn[j][i]; 
+                        if (j == 0) tmp += "\n"; 
+                }                                                                       
     if (a == tmp || ax == tmp) 
-		return 1; 
+                return 1; 
 
-	tmp = ""; 
-	for (int i = 0; i<m; ++i)
-		for(int j = n-1; j >= 0; --j){
-			tmp += bmn[i][j]; 
-			if (j == 0) tmp += "\n"; 
-		}									
+        tmp = ""; 
+        for (int i = 0; i<m; ++i)
+                for(int j = n-1; j >= 0; --j){
+                        tmp += bmn[i][j]; 
+                        if (j == 0) tmp += "\n"; 
+                }                                                                       
     if (a == tmp || ax == tmp) 
-		return 1; 
+                return 1; 
 
-	tmp = ""; 
-	for (int i = n-1; i >= 0; --i)
-		for(int j = 0; j<m; ++j){
-			tmp += bmn[j][i]; 
-			if (j == m-1) tmp += "\n"; 
-		}									
+        tmp = ""; 
+        for (int i = n-1; i >= 0; --i)
+                for(int j = 0; j<m; ++j){
+                        tmp += bmn[j][i]; 
+                        if (j == m-1) tmp += "\n"; 
+                }                                                                       
     if (a == tmp || ax == tmp) 
-		return 1; 
-	
-	return 0; 
+                return 1; 
+        
+        return 0; 
 }
 
 //此函数应当避免使用, 也未有 X O 符号
-string	asciipat(string patstr){	
-	for (int p = 0; p<patstr.size (); ++p){			// p += 2
-		if (patstr.substr(p, 2) == "●")		{ patstr.replace (p, 2, "x"); continue; }
-		if (patstr.substr(p, 2) == "○")		{ patstr.replace (p, 2, "o"); continue; }
-		if (patstr.substr(p, 2) == "┼")		{ patstr.replace (p, 2, "."); continue; }
-		if (patstr.substr(p, 2) == "┏")		{ patstr.replace (p, 2, "+"); continue; }
-		if (patstr.substr(p, 2) == "┓")		{ patstr.replace (p, 2, "+"); continue; }
-		if (patstr.substr(p, 2) == "┛")		{ patstr.replace (p, 2, "+"); continue; } 
-		if (patstr.substr(p, 2) == "┗")		{ patstr.replace (p, 2, "+"); continue; }
-		if (patstr.substr(p, 2) == "┯")		{ patstr.replace (p, 2, "-"); continue; }
-		if (patstr.substr(p, 2) == "┨")		{ patstr.replace (p, 2, "-"); continue; }
-		if (patstr.substr(p, 2) == "┷")		{ patstr.replace (p, 2, "-"); continue; }
-		if (patstr.substr(p, 2) == "┠")		{ patstr.replace (p, 2, "-"); continue; }
-		if (patstr.substr(p, 2) == "◎")		{ patstr.replace (p, 2, "o"); continue; }
-		if (patstr.substr(p, 2) == "⊙")		{ patstr.replace (p, 2, "*"); continue; }
-		if (patstr.substr(p, 2) == "\n\n")	{ patstr.replace (p, 2, "\n"); continue; }
-	}
-	return patstr; 
+string  asciipat(string patstr){        
+        for (int p = 0; p<patstr.size (); ++p){                 // p += 2
+                if (patstr.substr(p, 2) == "●")         { patstr.replace (p, 2, "x"); continue; }
+                if (patstr.substr(p, 2) == "○")         { patstr.replace (p, 2, "o"); continue; }
+                if (patstr.substr(p, 2) == "┼")         { patstr.replace (p, 2, "."); continue; }
+                if (patstr.substr(p, 2) == "┏")         { patstr.replace (p, 2, "+"); continue; }
+                if (patstr.substr(p, 2) == "┓")         { patstr.replace (p, 2, "+"); continue; }
+                if (patstr.substr(p, 2) == "┛")         { patstr.replace (p, 2, "+"); continue; } 
+                if (patstr.substr(p, 2) == "┗")         { patstr.replace (p, 2, "+"); continue; }
+                if (patstr.substr(p, 2) == "┯")         { patstr.replace (p, 2, "-"); continue; }
+                if (patstr.substr(p, 2) == "┨")         { patstr.replace (p, 2, "-"); continue; }
+                if (patstr.substr(p, 2) == "┷")         { patstr.replace (p, 2, "-"); continue; }
+                if (patstr.substr(p, 2) == "┠")         { patstr.replace (p, 2, "-"); continue; }
+                if (patstr.substr(p, 2) == "◎")         { patstr.replace (p, 2, "o"); continue; }
+                if (patstr.substr(p, 2) == "⊙")         { patstr.replace (p, 2, "*"); continue; }
+                if (patstr.substr(p, 2) == "\n\n")      { patstr.replace (p, 2, "\n"); continue; }
+        }
+        return patstr; 
 }
 
 //此 mask 可以呈不规则形状
 //注意可以生成 "xbb\no-\n" 模式, 并不能用in2pat()还原
-string	pat2ascii ( const BITB& xbb, const BITB& obb, const BITB& mask){   
-												
-	string s = ""; 
-	BITB squarem = project(((xbb|obb)&mask).rangemask(), mask.rangemask()); 
-	POS pos; //应该调用已存的位置向量
-	for (int i = 0; i<BS*BS; ++i) {
-		pos = i2pos(i); 
-		if (squarem[pos]){
-			if		(xbb[pos]&&!obb[pos])	{
-				if (mask[pos]) 
-					s += (onboarder(pos)?"X":"x"); 
-				else s += "  "; 
-			}
-			else if(!xbb[pos]&&obb[pos])	{
-				if (mask[pos]) 
-					s += (onboarder(pos)?"O":"o"); 
-				else s += "  "; 
-			}
-			else if (xbb[pos]&&obb[pos]) 	{
-				if (mask[pos]) 
-					s += "*"; 
-				else s += "  "; 
-			}
-			else if (!xbb[pos]&&!obb[pos]) {
-				if (mask[pos]) 
-					s += asciigrid(pos); 
-				else s += "  "; 
-			}
-		}
-		if (pos.second == LEFTEST && squarem.r[pos.first])             
-			s += "\n"; 
-	}
-	return s; 
+string  pat2ascii ( const BITB& xbb, const BITB& obb, const BITB& mask){   
+                                                                                                
+        string s = ""; 
+        BITB squarem = project(((xbb|obb)&mask).rangemask(), mask.rangemask()); 
+        POS pos; //应该调用已存的位置向量
+        for (int i = 0; i<BS*BS; ++i) {
+                pos = i2pos(i); 
+                if (squarem[pos]){
+                        if              (xbb[pos]&&!obb[pos])   {
+                                if (mask[pos]) 
+                                        s += (onboarder(pos)?"X":"x"); 
+                                else s += "  "; 
+                        }
+                        else if(!xbb[pos]&&obb[pos])    {
+                                if (mask[pos]) 
+                                        s += (onboarder(pos)?"O":"o"); 
+                                else s += "  "; 
+                        }
+                        else if (xbb[pos]&&obb[pos])    {
+                                if (mask[pos]) 
+                                        s += "*"; 
+                                else s += "  "; 
+                        }
+                        else if (!xbb[pos]&&!obb[pos]) {
+                                if (mask[pos]) 
+                                        s += asciigrid(pos); 
+                                else s += "  "; 
+                        }
+                }
+                if (pos.second == LEFTEST && squarem.r[pos.first])             
+                        s += "\n"; 
+        }
+        return s; 
 }
 
 //此 mask 可以呈不规则形状
 //注意可以生成 "xx\nx-\n" 模式, 并不能用in2pat()还原
 //可以生成 "+o\n" 或 "-o\n" 模式, 待改进
-string	pat2ascii(const BITB& bb, const BITB& mask) { 
-	string s; 
-	BITB squarem = project((bb&mask).rangemask(), mask.rangemask()); 
-	POS pos; //应该调用已存的位置向量
-	for (int i = 0; i<BS*BS; ++i) {
-		pos = i2pos(i); 
-		if (squarem[pos]){
-			switch (bb[pos]) {
-				case 1:	            
-					if (mask[pos]) 
-						s += (onboarder(pos)?"O":"o"); 
-					else s += "  "; 
-					break; 
-				case 0: 			
-					if (mask[pos]) 
-						s += asciigrid(pos); 
-					else s += "  "; 
-					break; 
-			}
-		}
-		if (pos.second == LEFTEST && squarem.r[pos.first])           
-			s += "\n"; 
-	}
-	return s; 
+string  pat2ascii(const BITB& bb, const BITB& mask) { 
+        string s; 
+        BITB squarem = project((bb&mask).rangemask(), mask.rangemask()); 
+        POS pos; //应该调用已存的位置向量
+        for (int i = 0; i<BS*BS; ++i) {
+                pos = i2pos(i); 
+                if (squarem[pos]){
+                        switch (bb[pos]) {
+                                case 1:             
+                                        if (mask[pos]) 
+                                                s += (onboarder(pos)?"O":"o"); 
+                                        else s += "  "; 
+                                        break; 
+                                case 0:                         
+                                        if (mask[pos]) 
+                                                s += asciigrid(pos); 
+                                        else s += "  "; 
+                                        break; 
+                        }
+                }
+                if (pos.second == LEFTEST && squarem.r[pos.first])           
+                        s += "\n"; 
+        }
+        return s; 
 }
 
-string	asciigrid(const POS& pos) {  
-	int		 r = pos.first; 
-	ROW		 p = pos.second; 
-	if (r == 0&&p == LEFTEST)	{return "+"; }
-	if (r == 0&&p == 1)			{return "+"; }
-	if (r == BS-1&&p == 1)		{return "+"; }
-	if (r == BS-1&&p == LEFTEST){return "+"; }
-	if (r == 0)				{return "-"; }
-	if (p == 1)				{return "-"; }
-	if (r == (BS-1))			{return "-"; }
-	if (p == LEFTEST)			{return "-"; }
-	if ((BS == 19) &&	((r == 3) || (r == 9) || (r == 15) ) &&
-		((p == (1<<(BS-4))) || (p == (1<<(BS-10))) || (p == (1<<(BS-16))))
-		)
-							{return "."; }
-	else 					{return "."; }
+string  asciigrid(const POS& pos) {  
+        int              r = pos.first; 
+        ROW              p = pos.second; 
+        if (r == 0&&p == LEFTEST)       {return "+"; }
+        if (r == 0&&p == 1)                     {return "+"; }
+        if (r == BS-1&&p == 1)          {return "+"; }
+        if (r == BS-1&&p == LEFTEST){return "+"; }
+        if (r == 0)                             {return "-"; }
+        if (p == 1)                             {return "-"; }
+        if (r == (BS-1))                        {return "-"; }
+        if (p == LEFTEST)                       {return "-"; }
+        if ((BS == 19) &&       ((r == 3) || (r == 9) || (r == 15) ) &&
+                ((p == (1<<(BS-4))) || (p == (1<<(BS-10))) || (p == (1<<(BS-16))))
+                )
+                                                        {return "."; }
+        else                                    {return "."; }
 }
 */
 
@@ -788,7 +788,7 @@ randsqrt (int m)
 
 int
 randlog_ (int m)
-{				//-// right ?
+{                               //-// right ?
   return log ((float) (rand () + 1)) / 15 * m;
 }
 
@@ -824,7 +824,7 @@ randvvf (int m, int n)
     {
       VF vf;
       for (int j = 0; j < n; ++j)
-	vf.push_back ((float) rand () / (float) (rand () + 1) * (prob (1, 2) ? 1 : -1));
+        vf.push_back ((float) rand () / (float) (rand () + 1) * (prob (1, 2) ? 1 : -1));
       vv.push_back (vf);
     } return vv;
 }
@@ -843,12 +843,12 @@ randvvvf_ (int m, int n, int l)
     {
       VVF vvf;
       for (int j = 0; j < n; ++j)
-	{
-	  VF vf;
-	  for (int k = 0; k < l; ++k)
-	    vf.push_back ((float) rand () / (float) (rand () + 1) * (prob (1, 2) ? 1 : -1));
-	  vvf.push_back (vf);
-	} vvv.push_back (vvf);
+        {
+          VF vf;
+          for (int k = 0; k < l; ++k)
+            vf.push_back ((float) rand () / (float) (rand () + 1) * (prob (1, 2) ? 1 : -1));
+          vvf.push_back (vf);
+        } vvv.push_back (vvf);
     } return vvv;
 }
 
@@ -869,14 +869,14 @@ index8 (int a, int b)
 {
 
   // 8 种对称方式
-  int id[8][6] = { {0, a - 1, 1, 0, b - 1, 1},	// +0
-  {0, a - 1, 1, b - 1, 0, -1},	// |
-  {a - 1, 0, -1, 0, b - 1, 1},	// -
-  {a - 1, 0, -1, b - 1, 0, -1},	// +180
-  {0, b - 1, 1, 0, a - 1, 1},	// "\"
-  {0, b - 1, 1, a - 1, 0, -1},	// +90
-  {b - 1, 0, -1, 0, a - 1, 1},	// +270
-  {b - 1, 0, -1, a - 1, 0, -1}	// /
+  int id[8][6] = { {0, a - 1, 1, 0, b - 1, 1},  // +0
+  {0, a - 1, 1, b - 1, 0, -1},  // |
+  {a - 1, 0, -1, 0, b - 1, 1},  // -
+  {a - 1, 0, -1, b - 1, 0, -1}, // +180
+  {0, b - 1, 1, 0, a - 1, 1},   // "\"
+  {0, b - 1, 1, a - 1, 0, -1},  // +90
+  {b - 1, 0, -1, 0, a - 1, 1},  // +270
+  {b - 1, 0, -1, a - 1, 0, -1}  // /
   };
 
   // 生成从 0 到 a*b-1 的一维坐标，对应 a 行 b 列的二维坐标
@@ -891,10 +891,10 @@ index8 (int a, int b)
     {
       VI tmp;
       for (int j = id[i][0]; id[i][0] < id[i][1] ? j <= id[i][1] : j >= id[i][1]; j += id[i][2])
-	for (int k = id[i][3]; id[i][3] < id[i][4] ? k <= id[i][4] : k >= id[i][4]; k += id[i][5])
+        for (int k = id[i][3]; id[i][3] < id[i][4] ? k <= id[i][4] : k >= id[i][4]; k += id[i][5])
 
-	  // 前 4 种先固定行，后 4 种先固定列
-	  tmp.push_back (index[(i < 4 ? j : k) * b + (i < 4 ? k : j)]);
+          // 前 4 种先固定行，后 4 种先固定列
+          tmp.push_back (index[(i < 4 ? j : k) * b + (i < 4 ? k : j)]);
       vvi.push_back (tmp);
     } return vvi;
 }

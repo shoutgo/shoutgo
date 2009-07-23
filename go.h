@@ -56,50 +56,50 @@ play (MODE_PLAY mode)
   for (;;)
     {
       for (;;)
-	{
-	  if (mode == PC_PC)
-	    break;
-	  prompt (t, PREMOVE_MAN);
-	  in = getline ();
-	  if (in[0] == "pass" || in[0] == "end")
-	    break;
-	  pos = INOUT ().in2pos (t.getlastpos (), in[0]);
-	  if (t.move (pos, t.turn ()))
-	    {
-	      t.update ();
-	      prompt (t, AFTERMOVE_MAN);
-	      break;
-	    }
-	  else
-	    {
-	      command_test (in);
-	      command_state (t, in);
-	    }
-	}
+        {
+          if (mode == PC_PC)
+            break;
+          prompt (t, PREMOVE_MAN);
+          in = getline ();
+          if (in[0] == "pass" || in[0] == "end")
+            break;
+          pos = INOUT ().in2pos (t.getlastpos (), in[0]);
+          if (t.move (pos, t.turn ()))
+            {
+              t.update ();
+              prompt (t, AFTERMOVE_MAN);
+              break;
+            }
+          else
+            {
+              command_test (in);
+              command_state (t, in);
+            }
+        }
       if (in[0] == "end" || t.endgame ())
-	{
-	  prompt (t, ENDGAME);
-	  break;
-	}
+        {
+          prompt (t, ENDGAME);
+          break;
+        }
       for (;;)
-	{
-	  ___ESC;
-	  if (mode == MAN_MAN)
-	    break;
-	  pos = t.genmove ();
-	  prompt (t, PREMOVE_PC);
-	  if (t.move (pos, t.turn ()))
-	    {
-	      t.update ();
-	      prompt (t, AFTERMOVE_PC);
-	      break;
-	    }
-	}
+        {
+          ___ESC;
+          if (mode == MAN_MAN)
+            break;
+          pos = t.genmove ();
+          prompt (t, PREMOVE_PC);
+          if (t.move (pos, t.turn ()))
+            {
+              t.update ();
+              prompt (t, AFTERMOVE_PC);
+              break;
+            }
+        }
       if (t.endgame ())
-	{
-	  prompt (t, ENDGAME);
-	  break;
-	}
+        {
+          prompt (t, ENDGAME);
+          break;
+        }
     }
 }
 
@@ -160,20 +160,20 @@ review ()
       cout << endl << ">  ";
       VS in = getline ();
       if (isdigit (in[0][0]) || in[0][0] == '-')
-	{
-	  i += str2i (in[0], -i, rcd.size () - 1 - i);
-	  t = vect[i];
-	  cout << t;
-	}
+        {
+          i += str2i (in[0], -i, rcd.size () - 1 - i);
+          t = vect[i];
+          cout << t;
+        }
 
       else if (in[0] == "end")
-	break;
+        break;
 
       else
-	{
-	  command_test (in);
-	  command_state (t, in);
-	}
+        {
+          command_test (in);
+          command_state (t, in);
+        }
     }
 }
 
@@ -202,74 +202,74 @@ sgftree ()
       // 显示并提示 ( 也可以提示最近的 bigson 父层次 )
       BITB bb;
       for (int i = 0; i < cnode->sons.size (); ++i)
-	bb |= cnode->sons[i]->pos;
+        bb |= cnode->sons[i]->pos;
       cout << (*t_ptr) (bb);
 
       // 如果到达叶结点
       if (cnode->sons.empty ())
-	{
-	  for (;;)
-	    {
-	      cout << endl << ">  ";
-	      cout << "the leaf node now. end ? [y/n] ";
-	      string tmp = getline ()[0];
-	      if (tmp == "y")
-		{
-		  // 似乎还要删除最初那个 cnode
-		  delete root;
-		  t_ptr->delfromroot ();
-		  return;
-		}
-	      else if (tmp == "n")
-		break;
-	    }
-	}
+        {
+          for (;;)
+            {
+              cout << endl << ">  ";
+              cout << "the leaf node now. end ? [y/n] ";
+              string tmp = getline ()[0];
+              if (tmp == "y")
+                {
+                  // 似乎还要删除最初那个 cnode
+                  delete root;
+                  t_ptr->delfromroot ();
+                  return;
+                }
+              else if (tmp == "n")
+                break;
+            }
+        }
 
       // 选择合适分支
       int m;
       for (;;)
-	{
-	  cout << endl << ">  ";
-	  VS in = getline ();
+        {
+          cout << endl << ">  ";
+          VS in = getline ();
 
-	  // 简化操作
-	  if (in[0] == "end")
-	    return;
-	  if (in[0] == "y" && !cnode->sons.empty ())
-	    {
-	      cnode = cnode->sons[0];
-	      break;
-	    }
+          // 简化操作
+          if (in[0] == "end")
+            return;
+          if (in[0] == "y" && !cnode->sons.empty ())
+            {
+              cnode = cnode->sons[0];
+              break;
+            }
 
-	  // 输入一个合法位置
-	  POS pos = INOUT ().in2pos (t_ptr->getlastpos (), in[0]);
-	  if (bb[pos])
-	    {
-	      for (int i = 0; i < cnode->sons.size (); ++i)
-		if (pos == cnode->sons[i]->pos)
-		  cnode = cnode->sons[i];
-	      break;
-	    }
+          // 输入一个合法位置
+          POS pos = INOUT ().in2pos (t_ptr->getlastpos (), in[0]);
+          if (bb[pos])
+            {
+              for (int i = 0; i < cnode->sons.size (); ++i)
+                if (pos == cnode->sons[i]->pos)
+                  cnode = cnode->sons[i];
+              break;
+            }
 
-	  // 后退 (不采用跳进方式，因为可能和坐标输入法冲突)
-	  else if (in[0][0] == '-')
-	    {
-	      m = atoi (in[0].c_str ());
-	      for (; m < 0 && (t_ptr->father); ++m)
-		{
-		  t_ptr = t_ptr->father;
-		  cnode = cnode->father;
-		}
-	      for (int i = 0; i < t_ptr->sons.size (); ++i)
-		t_ptr->sons[i]->delfromhere ();
-	      t_ptr->sons.clear ();
-	      break;
-	    }
+          // 后退 (不采用跳进方式，因为可能和坐标输入法冲突)
+          else if (in[0][0] == '-')
+            {
+              m = atoi (in[0].c_str ());
+              for (; m < 0 && (t_ptr->father); ++m)
+                {
+                  t_ptr = t_ptr->father;
+                  cnode = cnode->father;
+                }
+              for (int i = 0; i < t_ptr->sons.size (); ++i)
+                t_ptr->sons[i]->delfromhere ();
+              t_ptr->sons.clear ();
+              break;
+            }
 
-	  // 如果是命令
-	  command_test (in);
-	  command_state (*t_ptr, in);
-	}
+          // 如果是命令
+          command_test (in);
+          command_state (*t_ptr, in);
+        }
 
       // 更新
       t_ptr = t_ptr->move_tree (cnode->pos, cnode->color);
