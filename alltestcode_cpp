@@ -1,0 +1,775 @@
+diff --git a/bitboard.cpp b/bitboard.cpp
+index 138f5fd..06dddc3 100644
+--- a/bitboard.cpp
++++ b/bitboard.cpp
+@@ -898,63 +898,3 @@ bool	 BITB::operator[]  (const POS& pos)  const	{
+ 	return (r[pos.first]&pos.second) >0; 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_BB::fly(){
+-	BITB tmp; 
+-	tmp.random (); 
+-	ITR itr = ITR(tmp); 
+-	for (BITB bb = itr.blockbegin(); !itr.blockend(); bb = itr.blocknext()){
+-		___COUT1( GO(bb, bb.diagonal()) ); 
+-		___COUT8( 
+-			GO(bb, bb.fly (0, 1)), 
+-			GO(bb, bb.fly (1, 1)), 
+-			GO(bb, bb.fly (1, 2)), 
+-			GO(bb, bb.fly (2, 1)), 
+-			GO(bb, bb.fly (0, 2)), 
+-			GO(bb, bb.fly (3, 0)), 
+-			GO(bb, bb.fly (3, 1)), 
+-			GO(bb, bb.fly (3, 2))
+-			); 
+-	}
+-}
+-
+-void TEST_BB::timefunc (string which) {
+-		 
+-	RANDER  r; 
+-
+-	BITB	bb = r.vb[0]; 
+-
+-	___TIME(BB_RANDOM, bb.random(); ); 
+-	___TIME(BB_ONLY, bb.only( r.vp[0]); ); 
+-	___TIME(BB_COUNT, bb.count(); ); 
+-	___TIME(BB_BLOCKCOUNT, bb.blockcount(); ); 
+-	//___TIME(BB_BLOCKAT, bb.blockat(  r.vp[0]); ); 
+-	___TIME(BB_TRANSPOSE, bb.transpose(); ); 
+-	___TIME(BB_ROTATE, bb.rotate( 90); ); 
+-	___TIME(BB_RANGE, bb.range(); ); 
+-	___TIME(BB_RANGEMASK, bb.rangemask(); ); 
+-	___TIME(BB_DILATE, bb.dilate(  2); ); 
+-	___TIME(BB_ERODE, bb.erode( r.vi[0]); ); 
+-	___TIME(BB_DRY, bb.dry(  r.vb[0], r.vi[0]); ); 
+-	___TIME(BB_ADSORB, bb.adsorb(  r.vb[0], r.vi[0]); ); 
+-	___TIME(BB_INNER, bb.inner(  r.vi[0]); ); 
+-	___TIME(BB_NOTBIGGER, bb.notbigger(  r.vi[0], r.vi[1]); ); 
+-	___TIME(BB_RUBOFF1, bb.ruboff(  r.vb[0]); ); 
+-	___TIME(BB_RUBOFF2, bb.ruboff(  r.vi[0], r.vi[1]); ); 
+-	___TIME(BB_CLOSE, bb.close(  r.vi[0]); ); 
+-	___TIME(BB_OPEN, bb.open(  r.vi[0]); ); 
+-	___TIME(BB_BLOCKON, bb.blockon(  r.vb[0]); ); 
+-	___TIME(BB_TOUCHBOARDER, bb.touchboarder(); ); 
+-	___TIME(BB_CONTAIN, bb.contain(  r.vb[0]); ); 
+-	___TIME(BB_KEYPOS, bb.keypos_(); ); 
+-	___TIME(BB_JOINTPOS, bb.jointpos(); ); 
+-	___TIME(BB_ENCODE32, bb.encode32(); ); 
+-	___TIME(BB_PEMIS3232, bb.pemis3232( ); ); 
+-	___TIME(BB_PEMIS64, bb.pemis64( ); ); 
+-	___TIME(BB_EYEKIND, bb.eyekind(  r.va[0]); ); 
+-
+-}
+-
+-
+-
+diff --git a/board.cpp b/board.cpp
+index 694338d..c454566 100644
+--- a/board.cpp
++++ b/board.cpp
+@@ -578,51 +578,3 @@ int			GO::delta () const {
+ 	return xx.count () - oo.count(); 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_GO::morphology(){
+-	GO  go; 
+-	go.random (); 
+-	//GO go = INOUT().frommatlab (); 
+-	cout<<go; 
+-	go.xx &= square(star(EN), 5); 
+-	int times = 5; 
+-	for(int i = 1; i <= times; ++i){
+-		BITB bb = go.xx.dilate (i); 
+-		cout<<"dilate times: "<<i<< endl<<GO(go.xx, bb^go.xx); 
+-		cout<<"dry    times: "<<i<< endl<<GO(go.xx, bb.dry (go.xx, i)^go.xx); 
+-		cout<<"adsorb times: "<<i<< endl<<GO(go.xx, bb.adsorb (go.xx, i)^go.xx); 
+-		cout<<"inner  times: "<<i<< endl<<GO(go.xx, go.xx.inner (i)); 
+-	}
+-}
+-
+-void TEST_GO::timefunc (string which) {
+- 	 
+-	RANDER  r; 
+-	
+-	GO go = r.vg [0]; 
+-
+-	___TIME( GO_RANDOM, go.random( LEGALIZE ); ); 
+-	___TIME( GO_ADD, go.add(r.vp[0], r.vc[0] ); ); 
+-	___TIME( GO_LEGALIZE, go.legalize(); ); 
+-	/*
+-	___TIME( GO_SNAP, go.snap(); ); 
+-	___TIME( GO_RESTORE, go.restore(r.vg[0]); ); 
+-	*/
+-	___TIME( GO_PEMIS3232, go.pemis3232(r.vb[0]); ); 
+-	___TIME( GO_PEMIS64, go.pemis64(r.vb[0]); ); 
+-	___TIME( GO_TRANSPOSE, go.transpose( ); )		
+-	___TIME( GO_ROTATE, go.rotate(r.vi[0]); )		
+-	___TIME( GO_TURN, go.turn( ); )					
+-	___TIME( GO_GETLASTCLR, go.getlastclr( ); )				
+-	___TIME( GO_COLOR, go.color( r.vp[0] ); )			
+-	___TIME( GO_GETLASTPOS, go.getlastpos( ); )			
+-	___TIME( GO_GETBB, go.getbb( r.vc[0] ); )			
+-	___TIME( GO_EXPAND, go.expand( r.vb[0], r.vc[0] ); )	
+-	___TIME( GO_LIBERTYSITE, go.libertysite( r.vp[0] ); )		
+-	___TIME( GO_LIBERTY, go.liberty_( r.vp[0] ); )			
+-	___TIME( GO_MOVEABLE, go.moveable( r.vp[0], r.vc[0] ); )	
+-	___TIME( GO_MOVE, go.move( r.vp[0], r.vc[0] ); ); 
+-	___TIME( GO_ENDGAME, go.endgame( ); ); 
+- 
+-}
+diff --git a/brain.cpp b/brain.cpp
+index 847ca3b..b9dc127 100644
+--- a/brain.cpp
++++ b/brain.cpp
+@@ -138,8 +138,3 @@ VT	BRAIN::surmise () {
+ 	return vt; 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_BR::timefunc (string which) {
+-	RANDER  r; 
+-}
+diff --git a/fir.cpp b/fir.cpp
+index e4a2d63..59d8246 100644
+--- a/fir.cpp
++++ b/fir.cpp
+@@ -143,8 +143,3 @@ int link(BITB b, POS p){
+ 	return popu(rowexpand(b.r[p.first], p.second)); 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_F::timefunc (string which) {
+-	RANDER  r; 
+-}
+diff --git a/infoboard.cpp b/infoboard.cpp
+index c059e3d..306ad94 100644
+--- a/infoboard.cpp
++++ b/infoboard.cpp
+@@ -918,21 +918,3 @@ bool	AREA::newmass(const POS& pos, COLOR clr) const{
+ //	return vec; 
+ //}
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_INFO::timefunc (string which) {
+-	  
+-	RANDER  r; 
+-	
+-	INFOGO	info = INFOGO(r.vg[0]); 
+-
+-	//___TIME( INFO_SCAN, info.scan(); ); 
+-	//___TIME( INFO_MOVE, info.move  ( r.vp[0], r.vc[0] ); ); 
+-	___TIME( INFO_PARTITION, info.partition(r.vi[0] ); ); 
+-	/*
+-	___TIME( INFO_LASTPARTITION, info.lastpartition(r.vi[0]); ); 
+-	___TIME( INFO_CLUSTER, info.getallmass(make_pair(r.vb[0], r.vb[1])); ); 
+-	___TIME( INFO_AREA, info.setarea(r.vi [0], r.vi[1], r.vi[2]); ); 
+-	*/
+-}
+-
+diff --git a/inout.cpp b/inout.cpp
+index 38059e1..2628ee6 100644
+--- a/inout.cpp
++++ b/inout.cpp
+@@ -1220,222 +1220,3 @@ ostream& operator<<(ostream& os, const PAT& pat){
+ 	return os; 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_IO::pattern(){
+-	string ina = 
+-					"\
+-		+--------	\n\
+-		.........	\n\
+-		....xo..o	\n\
+-		...x.o...	\n\
+-		.........	\n\
+-		.........	\n\
+-		..x......	\n\
+-					"; 
+-	string inb = 
+-					"\
+-		+------		\n\
+-		.......		\n\
+-		......x		\n\
+-		...x...		\n\
+-		..x....		\n\
+-		..oo...		\n\
+-		.......		\n\
+-		.......		\n\
+-		..o....		\n\
+-					"; 
+-
+-	PAT  pata = INOUT().in2pat(ina); 
+-	PAT  patb = INOUT().in2pat(inb); 
+-	PUU	 a3232 = pata.first .pemis3232(pata.second ); 
+-	PUU	 b3232 = patb.first .pemis3232(patb.second ); 
+-	___COUT6(
+-		ina, pata.first, pata.second, 
+-		inb, patb.first, patb.second 
+-		); 
+-	___COUT4(
+-		a3232, 
+-		b3232, 
+-		pata.first.pemis64(pata.second ), 
+-		patb.first.pemis64(patb.second )
+-		); 
+-	//___ASSERT(issamepat(ina, inb)); 
+-	___ASSERT(a3232 == b3232); 
+-
+-	BITB paton = strip(star(8), 3, 1); 
+-	___COUT1(paton); 
+-	BITB bb; 
+-	bb.random(); 
+-	BITB patmask = bb.blockon(paton); 
+-	PUU bb3232 = (bb&patmask).pemis3232(); 
+-	ULL	bb64 = (bb&patmask).pemis64(); 
+-	cout << make_pair(GO(bb, bb), patmask); 
+-	___COUT4(
+-		bb, 
+-		patmask, 
+-		//INOUT().printpat(bb, patmask), 
+-		//asciipat(INOUT().printpat(bb, patmask)), 
+-		//pat2ascii(bb, patmask), 
+-		bb3232, 
+-		bb64
+-		); 
+-	___ASSERT((ULL)(bb3232.first )*((ULL)1<<32)+(ULL)(bb3232.second ) == bb64); 
+-
+-	GO go; 
+-	go.random (); 
+-	patmask = go.xx.blockon (paton)|go.oo.blockon (paton); 
+-	PUU go3232 = go.pemis3232 (patmask); 
+-	ULL go64 = go.pemis64(patmask); 
+-	cout << make_pair(go, patmask); 
+-	___COUT4(
+-		go, 
+-		patmask, 
+-		//INOUT().printpat(go, patmask), 
+-		//asciipat(INOUT().printpat(go, patmask)), 
+-		//pat2ascii(go.xx, go.oo, patmask), 
+-		go3232, 
+-		go64
+-		); 
+-	___ASSERT((ULL)(go3232.first )*((ULL)1<<32)+(ULL)(go3232.second ) == go64); 
+-	
+-}
+-
+-/*
+-void TEST_IO::sgftree(){
+-	// 初始布局
+-	SGFROOT *root = INOUT().sgf2tree(INOUT().selectsgf()); 
+-	SGFNODE *cnode = new SGFNODE; 
+-	INFOGO* infop; 
+-	infop = new INFOGO; 
+-	cout << root->intro << endl << "start:\n"; 
+-	root->fuseki(infop); 
+-	cout << *infop; 
+-	cnode->sons = root->sons; 
+-	for (int i = 0; i<cnode->sons .size (); ++i)
+-		cnode->sons [i]->father = cnode; 
+-
+-	// 多次查看		
+-	for(; ; ){
+-		// 如果到达叶结点
+-		if (cnode->sons.empty ()){
+-			delete root; 
+-			infop->delfromroot(); 
+-			// 似乎还要删除最初那个 cnode
+-			return; 
+-		}
+-		// 提示
+-		if (cnode->sons.size () == 1)
+-			cout<<"branch: "<<"[0]"<< endl; 
+-		else 
+-			cout<<"branch: "<<"[0]-["
+-				<< cnode->sons .size ()-1<<"]"<< endl; 
+-		// 选择合适分支
+-		int m; 
+-		for(; ; ){
+-			cout<< endl << ">  "; 
+-			string s; 
+-			cin >> s; 
+-			if (isdigit(s[0])|| s[0] == '-'){
+-				m = atoi(s.c_str ()); 
+-				if( 0 <= m && m< cnode->sons .size ()){
+-					cnode = cnode->sons [m]; 
+-					break; 
+-				}
+-				// 后退
+-				else if ( m<0 ) {
+-					for (; m<0 && (infop->father); ++m ){
+-						infop = infop->father; 
+-						cnode = cnode->father; 
+-					}
+-					for (int i = 0; i<infop->sons .size (); ++i)
+-						infop->sons[i]->delfromhere(); 
+-					infop->sons .clear (); 
+-					break; 
+-				}
+-			}
+-		}
+-		// 显示
+-		infop = infop->move_tree(cnode->pos, cnode->color ); 
+-		cout<<*infop; 
+-	}
+-}
+-*/
+-
+-void TEST_IO::inputpat(){
+-	char	chars[256]; 
+-	string	patstr, tmp; 
+-	int		n; 
+-	PAT		pat; 
+-	cout<<"input the pattern: \n"; 
+-	cin.getline(chars, 256); 
+-	tmp = (string)(chars); 
+-	n = tmp.size (); 
+-	for (; ; )
+-		if (tmp == ""){
+-			if (patstr == "") break; 
+-			pat = INOUT().in2pat(patstr); 
+-			cout<<"pemis64(): "<<pat.first.pemis64(pat.second)<< endl; 
+-			cout<<pat; 
+-			//INOUT().printpat(pat.first, pat.second ); 
+-			break; 
+-		}
+-		else{
+-			if (tmp.size() != n){
+-				inputpat(); 
+-				break; 
+-			}
+-			patstr += (tmp+"\n"); 
+-		    cin.getline(chars, 256); 
+-			tmp = (string)(chars); 
+-		}
+-}
+-
+-void TEST_IO::timefunc (string which) {
+-	RANDER  r; 
+-	
+-	INOUT	io = INOUT(); 
+-	pair<VB, VB> pvv = make_pair(r.vb, r.vb); 
+-	VI	vi; 
+-	vi.assign (BS*BS, 1); 
+-	VVF vvf = randvvf(5, 3); 
+-
+-	___TIME( IO_LOGO, io.logo_ ( ); ); 
+-    ___TIME( IO_GRID, io.grid ( r.vp[0]); ); 
+-	//___TIME( IO_PRINTBITBOARD, io.printbitboard ( r.vb[0] ); ); 
+-	//___TIME( IO_PRINT, io.print__ ( r.vg[0], r.vb[0], r.vp[0], BOARD_P ); ); 
+-	/*
+-	___TIME( IO_PRINTBLOCK, io.printblock(r.vg[0], r.vb[0], r.vp[0] ); ); 
+-	___TIME( IO_PRINTLIBERTYSITE, io.printlibertysite(r.vg[0], r.vb[0], r.vp[0] ); ); 
+-    ___TIME( IO_PRINTLIBERTY, io.printliberty( r.vg[0], vi); ); 
+-    ___TIME( IO_PRINTPARTITION, io.printpartition (r.vg ); ); 
+-	___TIME( IO_PRINTLABEL, io.printlabel ( r.vg[0], pvv, L_CLUSTER); ); 
+-	___TIME( IO_PRINTCLUSTER, io.printcluster ( r.vg[0], pvv); ); 
+-	___TIME( IO_PRINTAREA, io.printarea ( r.vg[0], pvv); ); 
+-	___TIME( IO_PRINTONEAREA, io.printonearea ( r.vg[0], r.vb[0]); ); 
+-	___TIME( IO_PRINTPUBLICAREA, io.printpublicarea ( r.vg[0], r.vb[0]); ); 
+-	*/
+-	//___TIME( IO_PRINTPAT1, io.printpat ( r.vg[0], r.vb[0]); ); 
+-	//___TIME( IO_PRINTPAT2, io.printpat ( r.vb[0], r.vb[1]); ); 
+-	
+-	/*
+-	___TIME( IO_SGF2POS, io.sgf2pos(r.vs[0]); ); 
+-	___TIME( IO_SGF2XY, io.sgf2xy(r.vs[0]); ); 
+-	___TIME( IO_SGFS2POS, io.sgfs2pos(r.vs); ); 
+-	___TIME( IO_SGFS2XY, io.sgfs2xy(r.vs); ); 
+-	*/
+-	___TIME( IO_IN2PAT, io.in2pat(r.vs[0]); ); 
+-	___TIME( IO_IN2POS, io.in2pos( r.vp[0], r.vs[0] ); ); 
+-	___TIME( IO_JJ2POS, io.jj2pos( r.vs[0], r.vp[0]); ); 
+-	___TIME( IO_GETFILENAME, io.getfilename(r.vs[0], r.vs[1]); ); 
+-	___TIME( IO_SGF2TREE, io.sgf2tree(r.vs[0]); ); 
+-	___TIME( IO_FROMMATLAB, io.frommatlab(r.vs[0]); ); 
+-	/*
+-	___TIME( IO_SAVE1, io.save2txt(r.vs[0], r.vs[1]); ); 
+-	___TIME( IO_SAVE2, io.save2txt(vvf, r.vs[0]); ); 
+-	___TIME( IO_SAVE3, io.save2txt(r.vg[0], r.vs[0]); ); 
+-	*/
+-	___TIME( IO_SAVECODE, io.savecode(r.vs[0]); ); 
+-	___TIME( IO_READBUF, io.readbuf(r.vs[0]); ); 
+-}
+-
+diff --git a/itr.cpp b/itr.cpp
+index b5e7e47..835ea51 100644
+--- a/itr.cpp
++++ b/itr.cpp
+@@ -232,52 +232,3 @@ map<POS, VB >	ITR::makejosekimask(int width){	// 其实每个pos只对应一个m
+ 	return mapmask; 
+ }
+ */
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_ITR::timefunc (string which) {
+-	RANDER  r; 
+-	
+-	ITR itr = ITR(r.vb[0]); 
+-
+-    ___TIME( ITR_IOPOSBEGIN, itr.ioposbegin(); ); 
+-	___TIME( ITR_IOPOSNEXT, itr.ioposnext(); ); 
+-	___TIME( ITR_IOPOSEND, itr.ioposend(); ); 
+-
+-    ___TIME( ITR_POSBEGIN, itr.posbegin(); ); 
+-	___TIME( ITR_POSNEXT, itr.posnext(); ); 
+-	___TIME( ITR_POSEND, itr.posend(); ); 
+-
+-    ___TIME( ITR_STONEBEGIN, itr.stonebegin(); ); 
+-	___TIME( ITR_STONENEXT, itr.stonenext(); ); 
+-	___TIME( ITR_STONEEND, itr.stoneend(); ); 
+-
+-	___TIME( ITR_ORIGINBEGIN, itr.tagbegin(); ); 
+-	//___TIME( ITR_ORIGINNEXT, itr.tagnext(); ); 
+-	___TIME( ITR_ORIGINEND, itr.tagend(); ); 
+-    
+-	___TIME( ITR_BLOCKBEGIN, itr.blockbegin(); ); 
+-	___TIME( ITR_BLOCKNEXT, itr.blocknext(); ); 
+-	___TIME( ITR_BLOCKEND, itr.blockend(); ); 
+-
+-	___TIME( ITR_RANDOMPOSBEGIN, itr.randomposbegin(); ); 
+-	___TIME( ITR_RANDOMPOSEND, itr.randomposend(); ); 
+-	___TIME( ITR_RANDOMPOSNEXT, itr.randomposnext(); ); 
+-
+-	___TIME( ITR_RANDOMSTONEBEGIN, itr.randomstonebegin(); ); 
+-	___TIME( ITR_RANDOMSTONEEND, itr.randomstoneend(); ); 
+-	___TIME( ITR_RANDOMSTONENEXT, itr.randomstonenext(); ); 
+-
+-	___TIME( ITR_RANDOMEMPTYBEGIN, itr.randomemptybegin(); ); 
+-	___TIME( ITR_RANDOMEMPTYEND, itr.randomemptyend(); ); 
+-	___TIME( ITR_RANDOMEMPTYNEXT, itr.randomemptynext(); ); 
+-	/*
+-	___TIME( ITR_MAKEMASK, itr.makemask(r.vp[0], r.vi[0], r.vi[1]); ); 
+-	___TIME( ITR_MAKEMAPMASK, itr.makemapmask(r.vi[0], r.vi[1]); ); 
+-	___TIME( ITR_MAKEJOSEKIMASK, itr.makejosekimask(r.vi[0]); ); 
+-
+-	___TIME( ITR_RANDOMMASKBEGIN, itr.randommaskbegin(r.vp[0], r.vi[0], r.vi[1]); ); 
+-	___TIME( ITR_RANDOMMASKEND, itr.randommaskend(); ); 
+-	___TIME( ITR_RANDOMMASKNEXT, itr.randommasknext(); ); 
+-	*/
+-}
+-
+diff --git a/learn.cpp b/learn.cpp
+index 8edced3..9774669 100644
+--- a/learn.cpp
++++ b/learn.cpp
+@@ -238,75 +238,3 @@ SGFROOT::~SGFROOT(){
+ 	//clog<< "delete the sgfroot !"<< endl; 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_L::joseki(){
+-}
+-
+-void TEST_L::lib_zobrist(){
+-	//VS vf = INOUT().getfilename( SGFPATH, "*.sgf"); 
+-	//cout << vf; 
+-	//LEARN learn; 
+-	//learn.learn (vf); 
+-	//g_learn.lib_pemis.save (LIBPATH + "pemis"); //
+-	/*
+-	FSM<ULL> loaded; //
+-	loaded.load (LIBPATH + "pemis"); //
+-	___COUT2(g_learn.lib_pemis, loaded); //
+-	___ASSERT(g_learn.lib_pemis == loaded); //
+-	*/
+-
+-	for(; ; ) {
+-		string sw, sn; 
+-		INFOGO* infop = new INFOGO; 
+-		cout << *infop; 
+-		for(; ; ) {
+-			for (int i = 0; i<ZOBRIST::ZOBRIST_KIND; ++i){
+-				int a = g_learn.lib_zobrist[i].getsonssize(infop->getzobrist(i)); 
+-				cout<< "lib_zobrist["<<i<<"] branchs: "; 
+-				if (a == 0)
+-					cout << endl; 
+-				else if (a == 1)
+-					cout << "[0]" << endl; 
+-				else
+-					cout << "[0]-[" << a-1 << "]" << endl; 
+-			}
+-			cout << "> "; 
+-			//cin >> sw;
+-			sw = getline()[0];
+-			if (sw == "end" )
+-				break; 
+-			cout << "> "; 
+-			//cin >> sn;
+-			sn = getline()[0];
+-			if (sn == "end" )
+-				break; 
+-			int which = -1, n = -1; 
+-			if (isdigit(sw[0]) && isdigit(sn[0])){
+-				which = atoi(sw.c_str() ); 
+-				n = atoi(sn.c_str() ); 
+-			}
+-			if (which >= 0 && which<ZOBRIST::ZOBRIST_KIND  )
+-				if ( n >= 0 && n < g_learn.lib_zobrist[which].getsonssize(infop->getzobrist (which))) {
+-					MOVE m = g_learn.lib_zobrist[which].getmove(infop->getzobrist (which), n); 
+-					infop = infop->move_tree(m.first, m.second); 
+-					//___COUT2(m.first, m.second ); 
+-					cout << *infop; 
+-					/*
+-					g_learn.setpatfreq (infop); //
+-					___COUT1(infop->patfreq); //
+-					*/
+-				}
+-		}
+-		infop->delfromroot(); 
+-		if (sw == "end" || sn == "end")
+-			break; 
+-	}
+-}
+-
+-void TEST_L::timefunc (string which) {
+-	RANDER  r; 
+-}
+-
+-
+-
+diff --git a/nn.cpp b/nn.cpp
+index 85286fe..b76706d 100644
+--- a/nn.cpp
++++ b/nn.cpp
+@@ -205,8 +205,3 @@ N3WEIGHT				NN::perception(N3WEIGHT w){
+ 	return w; //
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_NN::timefunc (string which) {
+-	RANDER  r; 
+-}
+diff --git a/search.cpp b/search.cpp
+index 3144bd4..05e1837 100644
+--- a/search.cpp
++++ b/search.cpp
+@@ -375,8 +375,3 @@ VALUE TREE::mtdf(NODE* p, VALUE guess){
+ 	return guess; 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_S::timefunc (string which) {
+-	 RANDER  r; 
+-}
+diff --git a/targetsearch.cpp b/targetsearch.cpp
+index b55111e..6fe97a6 100644
+--- a/targetsearch.cpp
++++ b/targetsearch.cpp
+@@ -638,8 +638,3 @@ void	TARGETSEARCH::lookfor(){
+ }
+ */
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_TS::timefunc (string which) {
+-	RANDER  r; 
+-}
+diff --git a/transptable.cpp b/transptable.cpp
+index 27a0e6b..413a54a 100644
+--- a/transptable.cpp
++++ b/transptable.cpp
+@@ -21,18 +21,3 @@ TERM::TERM(){
+ 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_TT::aimtree(){
+-	AIMGRAPH aimtree; 
+-	for (int i = 0; i<AIM_SIZE; ++i){
+-		AIM a = static_cast<AIM>(i); 
+-		___COUT1(aimtree.sons [a].size () ); 
+-		___COUT3(aimtree.backward(a), a, aimtree.forward(a)); 
+-		___ASSERT(aimtree.anti(aimtree.anti (a)) == a ); 
+-	}
+-}
+-
+-void TEST_TT::timefunc (string which) {
+-	RANDER  r; 
+-}
+diff --git a/tsumego.cpp b/tsumego.cpp
+index d5c786e..bd7fd7b 100644
+--- a/tsumego.cpp
++++ b/tsumego.cpp
+@@ -262,41 +262,3 @@ void	TSUMEGO::restore(const GO& go){
+ 	// *this = go; 
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void TEST_TG::randomeye(){/*
+-	PBB pbb = TSUMEGO().randomeye(6, 4, 0); 
+-	GO go(pbb.second, pbb.first); 
+-	cout<<go<< endl; 
+-	POS pos = ITR(go.xx^go.oo ).tagbegin (); 
+-	cout<<"if moved in pos:"<< endl; 
+-	cout<<INOUT().print__(go, BITB(pos)); 
+-	pbb = go.oo .update(KILL, go.xx, pos); 
+-	cout<<"newpbb:"<< endl<<(GO(pbb.second, pbb.first))<< endl; */
+-}
+-
+-void TEST_TG::eyekind(){/*
+-	for(int i = 0; i<30; ++i){
+-		PBB pbb = TSUMEGO().randomeye(6, 4, 3); 
+-		cout<<"this:"<< endl<<GO(pbb.second, pbb.first )
+-			<<"KILL:   "<<pbb.first .eyekind(KILL, pbb.second )
+-			<<"RESCUE: "<<pbb.first .eyekind(RESCUE, pbb.second )<< endl; 
+-	}*/
+-}
+-
+-void TEST_TG::tsumego(){/*
+-	TSUMEGO tgo; 
+-	for (int i = 0; i<100; ++i){
+-		tgo.randomtsumgo(3, 3, 1, 3); 
+-		cout<<tgo.snap ()
+-			<<"RESCUE: "<<tgo.tsumego(BLACK)
+-			<<"KILL:   "<<tgo.tsumego(WHITE)<< endl; 
+-	}*/
+-}
+-
+-void TEST_TG::timefunc (string which) {
+-	RANDER  r; 
+-}
+-
+-
+-
+diff --git a/utility.cpp b/utility.cpp
+index 4503b59..e1a0141 100644
+--- a/utility.cpp
++++ b/utility.cpp
+@@ -856,122 +856,3 @@ VI indexsort(const VI& vi){
+ 	return tmp;
+ }
+ 
+-/* _______________________________ 测试区 _______________________________ */
+-
+-void U_TEST::draw(){
+-		___COUT1(  strip (star(5), 3, 3, 3, 3)); 
+-		___COUT1(   ~strip (star(5), 5, 5, 5, 5)); 
+-		___COUT1(   frame (star(5), 5)); 
+-		___COUT1(   strip (star(5), 4, 4, 4, 4)); 
+-		___COUT1( frame(star(5), MIDBS) ); 
+-		___COUT1( (((NULL_BB|star(2))|star(5)).range()) ); 
+-		___COUT1( (((NULL_BB|star(2))|star(4)).rangemask())); 
+-		___COUT1( strip(star(9), 9, 2) ); 
+-		___COUT1( strip(star(4), BS, 4, NORTH) ); 
+-		___COUT1( strip(star(6), 4, BS, WEST) ); 
+-		___COUT1( strip(star(5), 4, 6, WS) ); 
+-		___COUT1( strip(star(2), star(4))); 
+-		___COUT1( diamond(star(5), 3) ); 
+-		___COUT1( pie(star(5), 7) ); 
+-		___COUT1( (pie(star(5), 7)^pie(star(5), 6)) ); 
+-		___COUT1( circle(star(6), 7) ); 
+-		___COUT1( line(star(7), star(4))); 
+-		___COUT1( line(star(6), star(4))); 
+-		___COUT1( line(star(2), star(7))); 
+-		___COUT1( line(star(7), star(2))); 
+-		___COUT1( line(star(9), star(2))); 
+-		___COUT1( line(star(2), star(9))); 
+-		___COUT1( line(star(4), star(9))); 
+-		___COUT1( line(star(9), star(4))); 
+-		___COUT1( line(star(4), star(3))); 
+-		___COUT1( line(star(3), star(5))); 
+-		___COUT1( line(make_pair(15, 1<<18), make_pair(0, 1))); 
+-		___COUT1( line(make_pair(3, 1<<18), make_pair(0, 1))); 
+-		___COUT1( line(make_pair(13, 1<<13), make_pair(5, 1<<2))); 
+-		___COUT1( line(make_pair(11, 1<<7), make_pair(2, 1))); 
+-		___COUT1( line(make_pair(7, 1<<13), make_pair(4, 1))); 
+-		___COUT1( line(make_pair(13, 1<<13), make_pair(5, 1<<2))); 
+-		___COUT1( line(make_pair(13, 1<<2), make_pair(5, 1<<13))); 
+-}
+-
+-void U_TEST::bit(){
+-	___COUT8(
+-		nleadingzero(0), 
+-		ntailzero(0), 
+-		nleadingzero(1), 
+-		ntailzero(1), 
+-		nleadingzero(1<<31), 
+-		ntailzero(1<<31), 
+-		NULL_POS, 
+-		PASS_POS
+-		); 
+-}
+-
+-void U_TEST::idsort(){
+-	VI vi;
+-	for (int t=0; t<10; ++t) {
+-		for (int i=0; i< randu(20); ++i)
+-			vi.push_back( randu(100) );
+-		___COUT2( vi, indexsort(vi) );
+-	}
+-}
+-
+-void U_TEST::timefunc(string which){
+-	 
+-	RANDER  r; 
+-
+-	___TIME(U_ROWEXPAND, rowexpand(   r.vu[0], r.vu[1]); ); 
+-	___TIME(U_CONNECTINGONE, connectingone(   r.vu[0], r.vi[0]); ); 
+-	___TIME(U_REVERSE, reverse(   r.vu[0]); ); 
+-	___TIME(U_POPU, popu(  r.vu[0]); ); 
+-	___TIME(U_NLEADINGZERO, nleadingzero(   r.vu[0]); ); 
+-	___TIME(U_NTAILZERO, ntailzero(   r.vu[0]); ); 
+-
+-	___TIME(U_XY2POS, _xy2pos(   r.vi[0], r.vi[1]); ); 
+-	___TIME(U_XY2I, xy2i_(   r.vi[0], r.vi[1] ); ); 
+-	___TIME(U_I2XY, i2xy_(   r.vi[0]); ); 
+-	___TIME(U_I2POS, i2pos(   r.vi[0]); ); 
+-	___TIME(U_POS2I, pos2i(   r.vp[0]); ); 
+-	___TIME(U_POS2XY, _pos2xy(   r.vp[0]); ); 
+-	___TIME(U_AA2POS, aa2pos(   r.vs[0]); ); 
+-
+-	___TIME(U_CORNER, corner(   r.vd[0]); ); 
+-	___TIME(U_STAR1, star(   r.vd[0] ); ); 
+-	___TIME(U_STAR2, star(   r.vi[0]); ); 
+-	___TIME(U_NEAR4, near4(   r.vp[0]); ); 
+-	___TIME(U_NEAR8, near8(   r.vp[0]); ); 
+-	___TIME(U_OUTSIDE, outside(   r.vp[0]); ); 
+-	___TIME(U_ONBOARDER, onboarder(  r.vp[0]); ); 
+-	___TIME(U_ROT, rot(   r.vi[0], r.vp[0]); ); 
+-	___TIME(U_TRANSP, transp(   r.vp[0]); ); 
+-	___TIME(U_INTERVAL, interval_(   r.vp[0], r.vp[1]); ); 
+-
+-	___TIME(U_LINE, line(   r.vp[0], r.vp[1]); ); 
+-	___TIME(U_FRAME, frame(   r.vp[0], r.vi[0]); ); 
+-	___TIME(U_SQUARE, square(   r.vp[0], r.vi[0]); ); 
+-	___TIME(U_PIE, pie(   r.vp[0], r.vi[0]); ); 
+-	___TIME(U_CIRCLE, circle(  r.vp[0], r.vi[0]); ); 
+-	___TIME(U_DIAMOND, diamond(  r.vp[0], r.vi[0]); ); 
+-	___TIME(U_CROSS, cross(  r.vp[0], r.vi[0]); ); 
+-	___TIME(U_STRIP1, strip(  r.vp[0], r.vp[1]); ); 
+-	___TIME(U_STRIP2, strip(  r.vp[0], r.vi[0], r.vi[1], r.vd[0]); ); 
+-	___TIME(U_STRIP3, strip(  r.vp[0], r.vi[0], r.vi[1], r.vi[2], r.vi[3]); ); 
+-
+-	___TIME(U_MULHIGH32, mulhigh32(  r.vu[0], r.vu[1]); ); 
+-	___TIME(U_MULOVERFLOW, muloverflow(  r.vu[0], r.vu[1]); ); 
+-	/*
+-	___TIME(U_ISSAMEPAT, issamepat(  r.vs[0], r.vs[1]); ); 
+-	___TIME(U_STANDARDPAT, asciipat(  r.vs[0]); ); 
+-	___TIME(U_GRIDSTR, asciigrid(  r.vp[0]); ); 
+-	___TIME(U_PAT2STR1, pat2ascii(  r.vb[0], r.vb[1]); ); 
+-	___TIME(U_PAT2STR2, pat2ascii(  r.vb[0], r.vb[1], r.vb[2]); ); 
+-	*/
+-	___TIME(U_PROB, prob(  r.vi[0], r.vi[1]); ); 
+-	___TIME(U_RANDSQRT, randsqrt(  r.vi[0]); ); 
+-	___TIME(U_RANDLOG, randlog_(  r.vi[0]); ); 
+-	___TIME(U_RANDU, randu(  r.vi[0]); ); 
+-	___TIME(U_RANDF, randf(); ); 
+-	___TIME(U_RANDVF, randvf(  r.vi[0]); ); 
+-	___TIME(U_RANDVVF, randvvf(  r.vi[0], r.vi[1]); ); 
+-	___TIME(U_RANDVVVF, randvvvf_(  r.vi[0], r.vi[1], r.vi[2]); ); 
+-}

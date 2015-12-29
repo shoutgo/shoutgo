@@ -1,0 +1,2262 @@
+A FSM been loaded from g:\vc\go\lib\pemis .
+A FSM been loaded from g:\vc\go\lib\zobrist0 .
+A FSM been loaded from g:\vc\go\lib\zobrist1 .
+A FSM been loaded from g:\vc\go\lib\zobrist2 .
+A FSM been loaded from g:\vc\go\lib\zobrist3 .
+A FSM been loaded from g:\vc\go\lib\zobrist4 .
+A FSM been loaded from g:\vc\go\lib\zobrist5 .
+A FSM been loaded from g:\vc\go\lib\zobrist6 .
+A FSM been loaded from g:\vc\go\lib\zobrist7 .
+A FSM been loaded from g:\vc\go\lib\zobrist8 .
+All FSMs been loaded .
+
+A FSM been loaded from g:\vc\go\lib\pemis .
+A FSM been loaded from g:\vc\go\lib\zobrist0 .
+A FSM been loaded from g:\vc\go\lib\zobrist1 .
+A FSM been loaded from g:\vc\go\lib\zobrist2 .
+A FSM been loaded from g:\vc\go\lib\zobrist3 .
+A FSM been loaded from g:\vc\go\lib\zobrist4 .
+A FSM been loaded from g:\vc\go\lib\zobrist5 .
+A FSM been loaded from g:\vc\go\lib\zobrist6 .
+A FSM been loaded from g:\vc\go\lib\zobrist7 .
+A FSM been loaded from g:\vc\go\lib\zobrist8 .
+All FSMs been loaded .
+
+>> ac
+datayx:
+                1503.6                     98                     48
+         51                     21                     62                     84
+
+                2599.9                     42                     11
+         24                     46                     42                      2
+
+                 685.8                     45                     31
+         21                      2                     62                     25
+
+                1483.8                     90                     55
+         14                      2                     24                     24
+
+                 880.9                     75                     23
+         53                     24                     22                     55
+
+                1132.4                     17                      7
+         28                     82                     97                     11
+
+                 444.6                     86                     40
+          3                     66                     61                      3
+
+                    16                     63                     60
+         91                      8                     40                     74
+
+                1948.5                     46                     93
+         49                     51                     94                     60
+
+                 814.5                     70                     71
+         17                      1                     56                     12
+
+                1860.9                      0                     59
+         97                     11                     66                     95
+
+                1999.8                     87                     47
+         85                     68                     52                     73
+
+                  1253                     85                     37
+         69                     73                     44                     34
+
+                3602.7                     70                     15
+         76                     47                     18                     72
+
+                1869.8                      5                     66
+         27                     37                     53                     27
+
+                4033.8                     30                     52
+         72                     33                     87                     83
+
+                4989.5                     25                     40
+         13                     34                      7                     26
+
+               462.399                     38                     96
+          9                     38                     10                     76
+
+                1548.6                     41                     85
+          2                     86                     55                     65
+
+                3722.8                     57                     27
+         75                     25                     11                     78
+
+
+linear: 0  bias: 3.28967e+006  best: 2.24417e+006
+linear: 1  bias: 2.20894e+006  best: 2.11176e+006
+linear: 2  bias: 2.09969e+006  best: 1.87294e+006
+linear: 3  bias: 1.96898e+006  best: 1.84246e+006
+linear: 4  bias: 1.86469e+006  best: 1.82904e+006
+linear: 5  bias: 1.82972e+006  best: 1.82809e+006
+linear: 6  bias: 1.82835e+006  best: 1.82728e+006
+linear: 7  bias: 1.82791e+006  best: 1.82627e+006
+linear: 8  bias: 1.82741e+006  best: 1.82325e+006
+linear: 9  bias: 1.82471e+006  best: 1.82323e+006
+linear: 10  bias: 1.82324e+006  best: 1.82311e+006
+linear: 11  bias: 1.82315e+006  best: 1.82303e+006
+linear: 12  bias: 1.82309e+006  best: 1.82298e+006
+linear: 13  bias: 1.82301e+006  best: 1.82298e+006
+linear: 14  bias: 1.82298e+006  best: 1.82298e+006
+linear: 15  bias: 1.82298e+006  best: 1.82298e+006
+linear: 16  bias: 1.82298e+006  best: 1.82298e+006
+linear: 17  bias: 1.82298e+006  best: 1.82297e+006
+linear: 18  bias: 1.82297e+006  best: 1.82297e+006
+linear: 19  bias: 1.82297e+006  best: 1.82297e+006
+linear: 20  bias: 1.82297e+006  best: 1.82297e+006
+linear: 21  bias: 1.82297e+006  best: 1.82297e+006
+linear: 22  bias: 1.82297e+006  best: 1.82297e+006
+linear: 23  bias: 1.82297e+006  best: 1.82297e+006
+linear: 24  bias: 1.82297e+006  best: 1.82297e+006
+linear: 25  bias: 1.82297e+006  best: 1.82297e+006
+linear: 26  bias: 1.82296e+006  best: 1.82284e+006
+linear: 27  bias: 1.82293e+006  best: 1.82247e+006
+linear: 28  bias: 1.82274e+006  best: 1.82247e+006
+linear: 29  bias: 1.82247e+006  best: 1.82246e+006
+linear: 30  bias: 1.82247e+006  best: 1.82246e+006
+linear: 31  bias: 1.82246e+006  best: 1.82246e+006
+linear: 32  bias: 1.82246e+006  best: 1.82246e+006
+linear: 33  bias: 1.82246e+006  best: 1.82245e+006
+linear: 34  bias: 1.82245e+006  best: 1.82245e+006
+linear: 35  bias: 1.82245e+006  best: 1.82245e+006
+linear: 36  bias: 1.82245e+006  best: 1.82244e+006
+linear: 37  bias: 1.82244e+006  best: 1.82244e+006
+linear: 38  bias: 1.82244e+006  best: 1.82244e+006
+linear: 39  bias: 1.82244e+006  best: 1.82244e+006
+linear: 40  bias: 1.82244e+006  best: 1.82244e+006
+linear: 41  bias: 1.82244e+006  best: 1.82243e+006
+linear: 42  bias: 1.82244e+006  best: 1.82243e+006
+linear: 43  bias: 1.82243e+006  best: 1.82243e+006
+linear: 44  bias: 1.82243e+006  best: 1.82243e+006
+linear: 45  bias: 1.82243e+006  best: 1.82243e+006
+linear: 46  bias: 1.82243e+006  best: 1.82243e+006
+linear: 47  bias: 1.82243e+006  best: 1.82243e+006
+linear: 48  bias: 1.82243e+006  best: 1.82243e+006
+linear: 49  bias: 1.82243e+006  best: 1.82243e+006
+linear: 50  bias: 1.82243e+006  best: 1.82243e+006
+linear: 51  bias: 1.82243e+006  best: 1.82243e+006
+linear: 52  bias: 1.82243e+006  best: 1.82243e+006
+linear: 53  bias: 1.82243e+006  best: 1.82243e+006
+linear: 54  bias: 1.82243e+006  best: 1.82243e+006
+linear: 55  bias: 1.82243e+006  best: 1.82243e+006
+linear: 56  bias: 1.82243e+006  best: 1.82243e+006
+linear: 57  bias: 1.82243e+006  best: 1.82243e+006
+linear: 58  bias: 1.82243e+006  best: 1.82243e+006
+linear: 59  bias: 1.82243e+006  best: 1.82239e+006
+linear: 60  bias: 1.82242e+006  best: 1.82235e+006
+linear: 61  bias: 1.82239e+006  best: 1.82235e+006
+linear: 62  bias: 1.82235e+006  best: 1.82235e+006
+linear: 63  bias: 1.82235e+006  best: 1.82235e+006
+linear: 64  bias: 1.82231e+006  best: 1.8206e+006
+linear: 65  bias: 1.82211e+006  best: 1.81949e+006
+linear: 66  bias: 1.82021e+006  best: 1.81949e+006
+linear: 67  bias: 1.81949e+006  best: 1.81945e+006
+linear: 68  bias: 1.81948e+006  best: 1.81945e+006
+linear: 69  bias: 1.81945e+006  best: 1.81945e+006
+linear: 70  bias: 1.81945e+006  best: 1.81944e+006
+linear: 71  bias: 1.81945e+006  best: 1.81944e+006
+linear: 72  bias: 1.81944e+006  best: 1.81943e+006
+linear: 73  bias: 1.81943e+006  best: 1.81941e+006
+linear: 74  bias: 1.81942e+006  best: 1.81941e+006
+linear: 75  bias: 1.81941e+006  best: 1.81941e+006
+linear: 76  bias: 1.81941e+006  best: 1.8194e+006
+linear: 77  bias: 1.81941e+006  best: 1.8194e+006
+linear: 78  bias: 1.81939e+006  best: 1.81939e+006
+linear: 79  bias: 1.81939e+006  best: 1.81939e+006
+linear: 80  bias: 1.81939e+006  best: 1.81939e+006
+linear: 81  bias: 1.81938e+006  best: 1.81886e+006
+linear: 82  bias: 1.8193e+006  best: 1.81878e+006
+linear: 83  bias: 1.81881e+006  best: 1.81876e+006
+linear: 84  bias: 1.81878e+006  best: 1.81876e+006
+linear: 85  bias: 1.81876e+006  best: 1.81875e+006
+linear: 86  bias: 1.81876e+006  best: 1.81874e+006
+linear: 87  bias: 1.81875e+006  best: 1.81874e+006
+linear: 88  bias: 1.81874e+006  best: 1.81874e+006
+linear: 89  bias: 1.81874e+006  best: 1.81874e+006
+linear: 90  bias: 1.81874e+006  best: 1.81874e+006
+linear: 91  bias: 1.81874e+006  best: 1.81874e+006
+linear: 92  bias: 1.81874e+006  best: 1.81874e+006
+linear: 93  bias: 1.81874e+006  best: 1.81874e+006
+linear: 94  bias: 1.81874e+006  best: 1.81874e+006
+linear: 95  bias: 1.81874e+006  best: 1.81874e+006
+linear: 96  bias: 1.81874e+006  best: 1.81874e+006
+linear: 97  bias: 1.81874e+006  best: 1.81874e+006
+linear: 98  bias: 1.81874e+006  best: 1.81874e+006
+linear: 99  bias: 1.81874e+006  best: 1.81874e+006
+linear: 100  bias: 1.81874e+006  best: 1.81874e+006
+linear: 101  bias: 1.81874e+006  best: 1.81874e+006
+linear: 102  bias: 1.81874e+006  best: 1.81874e+006
+linear: 103  bias: 1.81874e+006  best: 1.81874e+006
+linear: 104  bias: 1.81874e+006  best: 1.81874e+006
+linear: 105  bias: 1.81874e+006  best: 1.81874e+006
+linear: 106  bias: 1.81874e+006  best: 1.81874e+006
+linear: 107  bias: 1.81874e+006  best: 1.81874e+006
+linear: 108  bias: 1.81874e+006  best: 1.81874e+006
+linear: 109  bias: 1.81874e+006  best: 1.81874e+006
+linear: 110  bias: 1.81874e+006  best: 1.81874e+006
+linear: 111  bias: 1.81874e+006  best: 1.81873e+006
+linear: 112  bias: 1.81874e+006  best: 1.81873e+006
+linear: 113  bias: 1.81874e+006  best: 1.81873e+006
+linear: 114  bias: 1.81874e+006  best: 1.81873e+006
+linear: 115  bias: 1.81874e+006  best: 1.81873e+006
+linear: 116  bias: 1.81874e+006  best: 1.81873e+006
+linear: 117  bias: 1.81874e+006  best: 1.81873e+006
+linear: 118  bias: 1.81874e+006  best: 1.81873e+006
+linear: 119  bias: 1.81874e+006  best: 1.81873e+006
+linear: 120  bias: 1.81874e+006  best: 1.81873e+006
+linear: 121  bias: 1.81874e+006  best: 1.81873e+006
+linear: 122  bias: 1.81874e+006  best: 1.81873e+006
+linear: 123  bias: 1.81874e+006  best: 1.81873e+006
+linear: 124  bias: 1.81873e+006  best: 1.81873e+006
+linear: 125  bias: 1.81873e+006  best: 1.81873e+006
+linear: 126  bias: 1.81873e+006  best: 1.81873e+006
+linear: 127  bias: 1.81873e+006  best: 1.81868e+006
+linear: 128  bias: 1.81873e+006  best: 1.81868e+006
+linear: 129  bias: 1.81868e+006  best: 1.81868e+006
+linear: 130  bias: 1.81868e+006  best: 1.81866e+006
+linear: 131  bias: 1.81867e+006  best: 1.81866e+006
+linear: 132  bias: 1.81866e+006  best: 1.81866e+006
+linear: 133  bias: 1.81866e+006  best: 1.81866e+006
+linear: 134  bias: 1.81865e+006  best: 1.81839e+006
+linear: 135  bias: 1.81859e+006  best: 1.81839e+006
+linear: 136  bias: 1.81839e+006  best: 1.81838e+006
+linear: 137  bias: 1.81839e+006  best: 1.81838e+006
+linear: 138  bias: 1.81838e+006  best: 1.81838e+006
+linear: 139  bias: 1.81836e+006  best: 1.8174e+006
+linear: 140  bias: 1.81822e+006  best: 1.8174e+006
+linear: 141  bias: 1.8174e+006  best: 1.81678e+006
+linear: 142  bias: 1.81706e+006  best: 1.81675e+006
+linear: 143  bias: 1.81676e+006  best: 1.81672e+006
+linear: 144  bias: 1.81671e+006  best: 1.81663e+006
+linear: 145  bias: 1.8167e+006  best: 1.81663e+006
+linear: 146  bias: 1.81662e+006  best: 1.8166e+006
+linear: 147  bias: 1.81661e+006  best: 1.8166e+006
+linear: 148  bias: 1.81661e+006  best: 1.8166e+006
+linear: 149  bias: 1.81661e+006  best: 1.8166e+006
+linear: 150  bias: 1.81661e+006  best: 1.8166e+006
+linear: 151  bias: 1.8166e+006  best: 1.8166e+006
+linear: 152  bias: 1.8166e+006  best: 1.8166e+006
+linear: 153  bias: 1.8166e+006  best: 1.8166e+006
+linear: 154  bias: 1.8166e+006  best: 1.8166e+006
+linear: 155  bias: 1.8166e+006  best: 1.8166e+006
+linear: 156  bias: 1.8166e+006  best: 1.8166e+006
+linear: 157  bias: 1.8166e+006  best: 1.8166e+006
+linear: 158  bias: 1.8166e+006  best: 1.8166e+006
+linear: 159  bias: 1.8166e+006  best: 1.8166e+006
+linear: 160  bias: 1.8166e+006  best: 1.8166e+006
+linear: 161  bias: 1.8166e+006  best: 1.8166e+006
+linear: 162  bias: 1.8166e+006  best: 1.8166e+006
+linear: 163  bias: 1.8166e+006  best: 1.8166e+006
+linear: 164  bias: 1.8166e+006  best: 1.8166e+006
+linear: 165  bias: 1.81659e+006  best: 1.81653e+006
+linear: 166  bias: 1.81655e+006  best: 1.81653e+006
+linear: 167  bias: 1.81654e+006  best: 1.81653e+006
+linear: 168  bias: 1.81654e+006  best: 1.81653e+006
+linear: 169  bias: 1.81653e+006  best: 1.81653e+006
+linear: 170  bias: 1.81653e+006  best: 1.81653e+006
+linear: 171  bias: 1.81653e+006  best: 1.81653e+006
+linear: 172  bias: 1.81653e+006  best: 1.81653e+006
+linear: 173  bias: 1.81653e+006  best: 1.81653e+006
+linear: 174  bias: 1.81653e+006  best: 1.81653e+006
+linear: 175  bias: 1.81653e+006  best: 1.81653e+006
+linear: 176  bias: 1.81653e+006  best: 1.81653e+006
+linear: 177  bias: 1.81653e+006  best: 1.81653e+006
+linear: 178  bias: 1.81653e+006  best: 1.81653e+006
+linear: 179  bias: 1.81653e+006  best: 1.81652e+006
+linear: 180  bias: 1.81652e+006  best: 1.81652e+006
+linear: 181  bias: 1.81652e+006  best: 1.81652e+006
+linear: 182  bias: 1.81652e+006  best: 1.81652e+006
+linear: 183  bias: 1.81652e+006  best: 1.81652e+006
+linear: 184  bias: 1.81652e+006  best: 1.81652e+006
+linear: 185  bias: 1.81652e+006  best: 1.81652e+006
+linear: 186  bias: 1.81652e+006  best: 1.81652e+006
+linear: 187  bias: 1.81652e+006  best: 1.81652e+006
+linear: 188  bias: 1.81652e+006  best: 1.81652e+006
+linear: 189  bias: 1.81652e+006  best: 1.81652e+006
+linear: 190  bias: 1.81652e+006  best: 1.81652e+006
+linear: 191  bias: 1.81652e+006  best: 1.81652e+006
+linear: 192  bias: 1.81652e+006  best: 1.81652e+006
+linear: 193  bias: 1.81652e+006  best: 1.81652e+006
+linear: 194  bias: 1.81652e+006  best: 1.81652e+006
+linear: 195  bias: 1.81652e+006  best: 1.81652e+006
+linear: 196  bias: 1.81652e+006  best: 1.81652e+006
+linear: 197  bias: 1.81652e+006  best: 1.81652e+006
+linear: 198  bias: 1.81652e+006  best: 1.81652e+006
+linear: 199  bias: 1.81652e+006  best: 1.81652e+006
+linear: 200  bias: 1.81652e+006  best: 1.81652e+006
+linear: 201  bias: 1.81652e+006  best: 1.81652e+006
+linear: 202  bias: 1.81652e+006  best: 1.81652e+006
+linear: 203  bias: 1.81652e+006  best: 1.81652e+006
+linear: 204  bias: 1.81652e+006  best: 1.81652e+006
+linear: 205  bias: 1.81652e+006  best: 1.81652e+006
+linear: 206  bias: 1.81652e+006  best: 1.81652e+006
+linear: 207  bias: 1.81652e+006  best: 1.81652e+006
+linear: 208  bias: 1.81652e+006  best: 1.81652e+006
+linear: 209  bias: 1.81652e+006  best: 1.81652e+006
+linear: 210  bias: 1.81652e+006  best: 1.81652e+006
+linear: 211  bias: 1.81652e+006  best: 1.81652e+006
+linear: 212  bias: 1.81652e+006  best: 1.81652e+006
+linear: 213  bias: 1.81652e+006  best: 1.81652e+006
+linear: 214  bias: 1.81652e+006  best: 1.81652e+006
+linear: 215  bias: 1.81652e+006  best: 1.81652e+006
+linear: 216  bias: 1.81652e+006  best: 1.81652e+006
+linear: 217  bias: 1.81652e+006  best: 1.81651e+006
+linear: 218  bias: 1.81652e+006  best: 1.81651e+006
+linear: 219  bias: 1.81651e+006  best: 1.81651e+006
+linear: 220  bias: 1.81651e+006  best: 1.81651e+006
+linear: 221  bias: 1.81651e+006  best: 1.81651e+006
+linear: 222  bias: 1.81651e+006  best: 1.81651e+006
+linear: 223  bias: 1.81651e+006  best: 1.81651e+006
+linear: 224  bias: 1.81651e+006  best: 1.81651e+006
+linear: 225  bias: 1.81651e+006  best: 1.81651e+006
+linear: 226  bias: 1.81651e+006  best: 1.81651e+006
+linear: 227  bias: 1.81651e+006  best: 1.81651e+006
+linear: 228  bias: 1.81651e+006  best: 1.81651e+006
+linear: 229  bias: 1.81651e+006  best: 1.81651e+006
+linear: 230  bias: 1.81651e+006  best: 1.81651e+006
+linear: 231  bias: 1.81651e+006  best: 1.81651e+006
+linear: 232  bias: 1.81651e+006  best: 1.81651e+006
+linear: 233  bias: 1.81651e+006  best: 1.81651e+006
+linear: 234  bias: 1.81651e+006  best: 1.81651e+006
+linear: 235  bias: 1.81651e+006  best: 1.81651e+006
+linear: 236  bias: 1.81651e+006  best: 1.81651e+006
+linear: 237  bias: 1.81651e+006  best: 1.81651e+006
+linear: 238  bias: 1.81651e+006  best: 1.81651e+006
+linear: 239  bias: 1.81651e+006  best: 1.81651e+006
+linear: 240  bias: 1.81651e+006  best: 1.81651e+006
+linear: 241  bias: 1.81651e+006  best: 1.81651e+006
+linear: 242  bias: 1.81651e+006  best: 1.81651e+006
+linear: 243  bias: 1.81651e+006  best: 1.81651e+006
+linear: 244  bias: 1.81651e+006  best: 1.81651e+006
+linear: 245  bias: 1.81651e+006  best: 1.81651e+006
+linear: 246  bias: 1.81651e+006  best: 1.81651e+006
+linear: 247  bias: 1.81651e+006  best: 1.81651e+006
+linear: 248  bias: 1.81651e+006  best: 1.81651e+006
+linear: 249  bias: 1.81651e+006  best: 1.81651e+006
+linear: 250  bias: 1.81651e+006  best: 1.81651e+006
+linear: 251  bias: 1.81651e+006  best: 1.81651e+006
+linear: 252  bias: 1.81651e+006  best: 1.81651e+006
+linear: 253  bias: 1.81651e+006  best: 1.81651e+006
+linear: 254  bias: 1.81651e+006  best: 1.81651e+006
+linear: 255  bias: 1.81651e+006  best: 1.81651e+006
+linear: 256  bias: 1.81651e+006  best: 1.81651e+006
+linear: 257  bias: 1.81651e+006  best: 1.81651e+006
+linear: 258  bias: 1.81651e+006  best: 1.81651e+006
+linear: 259  bias: 1.81651e+006  best: 1.81651e+006
+linear: 260  bias: 1.81651e+006  best: 1.81651e+006
+linear: 261  bias: 1.81651e+006  best: 1.81651e+006
+linear: 262  bias: 1.81651e+006  best: 1.81651e+006
+linear: 263  bias: 1.81651e+006  best: 1.81651e+006
+linear: 264  bias: 1.81651e+006  best: 1.81651e+006
+linear: 265  bias: 1.81651e+006  best: 1.81651e+006
+linear: 266  bias: 1.81651e+006  best: 1.81651e+006
+linear: 267  bias: 1.81651e+006  best: 1.81651e+006
+linear: 268  bias: 1.81651e+006  best: 1.81651e+006
+linear: 269  bias: 1.81651e+006  best: 1.81651e+006
+linear: 270  bias: 1.81651e+006  best: 1.81651e+006
+linear: 271  bias: 1.81651e+006  best: 1.81651e+006
+linear: 272  bias: 1.81651e+006  best: 1.81651e+006
+linear: 273  bias: 1.81651e+006  best: 1.81651e+006
+linear: 274  bias: 1.81651e+006  best: 1.81651e+006
+linear: 275  bias: 1.81651e+006  best: 1.81651e+006
+linear: 276  bias: 1.81651e+006  best: 1.81651e+006
+linear: 277  bias: 1.81651e+006  best: 1.81651e+006
+linear: 278  bias: 1.81651e+006  best: 1.81651e+006
+linear: 279  bias: 1.81651e+006  best: 1.81651e+006
+linear: 280  bias: 1.81651e+006  best: 1.81651e+006
+linear: 281  bias: 1.81651e+006  best: 1.81651e+006
+linear: 282  bias: 1.81651e+006  best: 1.81651e+006
+linear: 283  bias: 1.81651e+006  best: 1.81651e+006
+linear: 284  bias: 1.81651e+006  best: 1.81651e+006
+linear: 285  bias: 1.81651e+006  best: 1.81651e+006
+linear: 286  bias: 1.81651e+006  best: 1.8165e+006
+linear: 287  bias: 1.81651e+006  best: 1.8165e+006
+linear: 288  bias: 1.8165e+006  best: 1.8165e+006
+linear: 289  bias: 1.8165e+006  best: 1.8165e+006
+linear: 290  bias: 1.8165e+006  best: 1.8165e+006
+linear: 291  bias: 1.8165e+006  best: 1.8165e+006
+linear: 292  bias: 1.8165e+006  best: 1.8165e+006
+linear: 293  bias: 1.8165e+006  best: 1.8165e+006
+linear: 294  bias: 1.8165e+006  best: 1.8165e+006
+linear: 295  bias: 1.8165e+006  best: 1.8165e+006
+linear: 296  bias: 1.8165e+006  best: 1.8165e+006
+linear: 297  bias: 1.8165e+006  best: 1.8165e+006
+linear: 298  bias: 1.8165e+006  best: 1.8165e+006
+linear: 299  bias: 1.8165e+006  best: 1.8165e+006
+linear: 300  bias: 1.8165e+006  best: 1.8165e+006
+w[0]:
+           1.8165e+006             -0.0157596             -0.0261661
+    10.3883                17.0759               -1.47043                12.8142
+
+w[1]:
+           1.8165e+006             -0.0157596             -0.0261661
+    10.3883                17.0759               -1.47043                12.8142
+
+w[2]:
+           1.8165e+006             -0.0157596             -0.0261661
+    10.3883                17.0759               -1.47043                12.8142
+
+w[3]:
+           1.8165e+006             -0.0157596             -0.0261661
+    10.3883                17.0759               -1.47043                12.8142
+
+datayx:
+                1503.6                     98                     48
+         51                     21                     62                     84
+
+                2599.9                     42                     11
+         24                     46                     42                      2
+
+                 685.8                     45                     31
+         21                      2                     62                     25
+
+                1483.8                     90                     55
+         14                      2                     24                     24
+
+                 880.9                     75                     23
+         53                     24                     22                     55
+
+                1132.4                     17                      7
+         28                     82                     97                     11
+
+                 444.6                     86                     40
+          3                     66                     61                      3
+
+                    16                     63                     60
+         91                      8                     40                     74
+
+                1948.5                     46                     93
+         49                     51                     94                     60
+
+                 814.5                     70                     71
+         17                      1                     56                     12
+
+                1860.9                      0                     59
+         97                     11                     66                     95
+
+                1999.8                     87                     47
+         85                     68                     52                     73
+
+                  1253                     85                     37
+         69                     73                     44                     34
+
+                3602.7                     70                     15
+         76                     47                     18                     72
+
+                1869.8                      5                     66
+         27                     37                     53                     27
+
+                4033.8                     30                     52
+         72                     33                     87                     83
+
+                4989.5                     25                     40
+         13                     34                      7                     26
+
+               462.399                     38                     96
+          9                     38                     10                     76
+
+                1548.6                     41                     85
+          2                     86                     55                     65
+
+                3722.8                     57                     27
+         75                     25                     11                     78
+
+
+perception: 0  bias: 4.70058e+006  best: 4.28368e+006
+perception: 1  bias: 4.21117e+006  best: 3.9496e+006
+perception: 2  bias: 3.95337e+006  best: 3.88349e+006
+perception: 3  bias: 3.92359e+006  best: 3.88327e+006
+perception: 4  bias: 3.88378e+006  best: 3.86602e+006
+perception: 5  bias: 3.87314e+006  best: 3.78196e+006
+perception: 6  bias: 3.84095e+006  best: 3.75356e+006
+perception: 7  bias: 3.74033e+006  best: 3.63868e+006
+perception: 8  bias: 3.64908e+006  best: 3.63857e+006
+perception: 9  bias: 3.63828e+006  best: 3.62407e+006
+perception: 10  bias: 3.59933e+006  best: 2.75709e+006
+perception: 11  bias: 3.30512e+006  best: 2.75709e+006
+perception: 12  bias: 2.75692e+006  best: 2.74731e+006
+perception: 13  bias: 2.74315e+006  best: 2.15299e+006
+perception: 14  bias: 2.47664e+006  best: 2.15299e+006
+perception: 15  bias: 2.15218e+006  best: 2.14055e+006
+perception: 16  bias: 2.1421e+006  best: 2.14055e+006
+perception: 17  bias: 2.14055e+006  best: 2.14055e+006
+perception: 18  bias: 2.13918e+006  best: 2.10342e+006
+perception: 19  bias: 2.11854e+006  best: 2.0192e+006
+perception: 20  bias: 2.03745e+006  best: 1.89157e+006
+perception: 21  bias: 1.98531e+006  best: 1.8706e+006
+perception: 22  bias: 1.87436e+006  best: 1.87059e+006
+perception: 23  bias: 1.87058e+006  best: 1.87059e+006
+perception: 24  bias: 1.87058e+006  best: 1.87059e+006
+perception: 25  bias: 1.87058e+006  best: 1.87059e+006
+perception: 26  bias: 1.87058e+006  best: 1.87059e+006
+perception: 27  bias: 1.87058e+006  best: 1.87059e+006
+perception: 28  bias: 1.87058e+006  best: 1.87059e+006
+perception: 29  bias: 1.87058e+006  best: 1.87059e+006
+perception: 30  bias: 1.87058e+006  best: 1.87059e+006
+perception: 31  bias: 1.86824e+006  best: 1.75348e+006
+perception: 32  bias: 1.8385e+006  best: 1.75348e+006
+perception: 33  bias: 1.75348e+006  best: 1.75348e+006
+perception: 34  bias: 1.75348e+006  best: 1.75348e+006
+perception: 35  bias: 1.75348e+006  best: 1.75348e+006
+perception: 36  bias: 1.75348e+006  best: 1.75348e+006
+perception: 37  bias: 1.75348e+006  best: 1.75348e+006
+perception: 38  bias: 1.75348e+006  best: 1.75348e+006
+perception: 39  bias: 1.75348e+006  best: 1.75348e+006
+perception: 40  bias: 1.75348e+006  best: 1.75348e+006
+perception: 41  bias: 1.75348e+006  best: 1.75348e+006
+perception: 42  bias: 1.75348e+006  best: 1.75348e+006
+perception: 43  bias: 1.75348e+006  best: 1.75348e+006
+perception: 44  bias: 1.75348e+006  best: 1.75348e+006
+perception: 45  bias: 1.75348e+006  best: 1.75348e+006
+perception: 46  bias: 1.75348e+006  best: 1.75348e+006
+perception: 47  bias: 1.75348e+006  best: 1.75348e+006
+perception: 48  bias: 1.75348e+006  best: 1.75348e+006
+perception: 49  bias: 1.75348e+006  best: 1.75348e+006
+perception: 50  bias: 1.7521e+006  best: 1.6846e+006
+perception: 51  bias: 1.73779e+006  best: 1.6846e+006
+perception: 52  bias: 1.6846e+006  best: 1.6846e+006
+perception: 53  bias: 1.6846e+006  best: 1.6846e+006
+perception: 54  bias: 1.6846e+006  best: 1.6846e+006
+perception: 55  bias: 1.6846e+006  best: 1.6846e+006
+perception: 56  bias: 1.6846e+006  best: 1.6846e+006
+perception: 57  bias: 1.6846e+006  best: 1.6846e+006
+perception: 58  bias: 1.6846e+006  best: 1.6846e+006
+perception: 59  bias: 1.6846e+006  best: 1.6846e+006
+perception: 60  bias: 1.6846e+006  best: 1.6846e+006
+perception: 61  bias: 1.6846e+006  best: 1.6846e+006
+perception: 62  bias: 1.6846e+006  best: 1.6846e+006
+perception: 63  bias: 1.6846e+006  best: 1.6846e+006
+perception: 64  bias: 1.6846e+006  best: 1.6846e+006
+perception: 65  bias: 1.6846e+006  best: 1.6846e+006
+perception: 66  bias: 1.6846e+006  best: 1.6846e+006
+perception: 67  bias: 1.6846e+006  best: 1.6846e+006
+perception: 68  bias: 1.6846e+006  best: 1.6846e+006
+perception: 69  bias: 1.6846e+006  best: 1.6846e+006
+perception: 70  bias: 1.6846e+006  best: 1.6846e+006
+perception: 71  bias: 1.6846e+006  best: 1.6846e+006
+perception: 72  bias: 1.6846e+006  best: 1.6846e+006
+perception: 73  bias: 1.6846e+006  best: 1.6846e+006
+perception: 74  bias: 1.6846e+006  best: 1.6846e+006
+perception: 75  bias: 1.6846e+006  best: 1.6846e+006
+perception: 76  bias: 1.6846e+006  best: 1.6846e+006
+perception: 77  bias: 1.6846e+006  best: 1.6846e+006
+perception: 78  bias: 1.6846e+006  best: 1.6846e+006
+perception: 79  bias: 1.6846e+006  best: 1.6846e+006
+perception: 80  bias: 1.6846e+006  best: 1.6846e+006
+perception: 81  bias: 1.6846e+006  best: 1.6846e+006
+perception: 82  bias: 1.6846e+006  best: 1.6846e+006
+perception: 83  bias: 1.6846e+006  best: 1.6846e+006
+perception: 84  bias: 1.6846e+006  best: 1.6846e+006
+perception: 85  bias: 1.6846e+006  best: 1.6846e+006
+perception: 86  bias: 1.6846e+006  best: 1.6846e+006
+perception: 87  bias: 1.6846e+006  best: 1.6846e+006
+perception: 88  bias: 1.6846e+006  best: 1.6846e+006
+perception: 89  bias: 1.6846e+006  best: 1.6846e+006
+perception: 90  bias: 1.6846e+006  best: 1.6846e+006
+perception: 91  bias: 1.6846e+006  best: 1.6846e+006
+perception: 92  bias: 1.6846e+006  best: 1.6846e+006
+perception: 93  bias: 1.6846e+006  best: 1.6846e+006
+perception: 94  bias: 1.6846e+006  best: 1.6846e+006
+perception: 95  bias: 1.6846e+006  best: 1.6846e+006
+perception: 96  bias: 1.6846e+006  best: 1.6846e+006
+perception: 97  bias: 1.6846e+006  best: 1.6846e+006
+perception: 98  bias: 1.6846e+006  best: 1.6846e+006
+perception: 99  bias: 1.6846e+006  best: 1.6846e+006
+perception: 100  bias: 1.6846e+006  best: 1.6846e+006
+perception: 101  bias: 1.6846e+006  best: 1.6846e+006
+perception: 102  bias: 1.6846e+006  best: 1.6846e+006
+perception: 103  bias: 1.6846e+006  best: 1.6846e+006
+perception: 104  bias: 1.6846e+006  best: 1.6846e+006
+perception: 105  bias: 1.6846e+006  best: 1.6846e+006
+perception: 106  bias: 1.6846e+006  best: 1.6846e+006
+perception: 107  bias: 1.6846e+006  best: 1.6846e+006
+perception: 108  bias: 1.6846e+006  best: 1.6846e+006
+perception: 109  bias: 1.6846e+006  best: 1.6846e+006
+perception: 110  bias: 1.6846e+006  best: 1.6846e+006
+perception: 111  bias: 1.6846e+006  best: 1.6846e+006
+perception: 112  bias: 1.6846e+006  best: 1.6846e+006
+perception: 113  bias: 1.6846e+006  best: 1.6846e+006
+perception: 114  bias: 1.6846e+006  best: 1.6846e+006
+perception: 115  bias: 1.6846e+006  best: 1.6846e+006
+perception: 116  bias: 1.6846e+006  best: 1.6846e+006
+perception: 117  bias: 1.6846e+006  best: 1.6846e+006
+perception: 118  bias: 1.6846e+006  best: 1.6846e+006
+perception: 119  bias: 1.6846e+006  best: 1.6846e+006
+perception: 120  bias: 1.6846e+006  best: 1.6846e+006
+perception: 121  bias: 1.6846e+006  best: 1.6846e+006
+perception: 122  bias: 1.6846e+006  best: 1.6846e+006
+perception: 123  bias: 1.6846e+006  best: 1.6846e+006
+perception: 124  bias: 1.6846e+006  best: 1.6846e+006
+perception: 125  bias: 1.6846e+006  best: 1.6846e+006
+perception: 126  bias: 1.6846e+006  best: 1.6846e+006
+perception: 127  bias: 1.6846e+006  best: 1.6846e+006
+perception: 128  bias: 1.6846e+006  best: 1.6846e+006
+perception: 129  bias: 1.6846e+006  best: 1.6846e+006
+perception: 130  bias: 1.6846e+006  best: 1.6846e+006
+perception: 131  bias: 1.6846e+006  best: 1.6846e+006
+perception: 132  bias: 1.6846e+006  best: 1.6846e+006
+perception: 133  bias: 1.6846e+006  best: 1.6846e+006
+perception: 134  bias: 1.6846e+006  best: 1.6846e+006
+perception: 135  bias: 1.6846e+006  best: 1.6846e+006
+perception: 136  bias: 1.6846e+006  best: 1.6846e+006
+perception: 137  bias: 1.6846e+006  best: 1.6846e+006
+perception: 138  bias: 1.6846e+006  best: 1.6846e+006
+perception: 139  bias: 1.6846e+006  best: 1.6846e+006
+perception: 140  bias: 1.6846e+006  best: 1.6846e+006
+perception: 141  bias: 1.6846e+006  best: 1.6846e+006
+perception: 142  bias: 1.6846e+006  best: 1.6846e+006
+perception: 143  bias: 1.6846e+006  best: 1.6846e+006
+perception: 144  bias: 1.6846e+006  best: 1.6846e+006
+perception: 145  bias: 1.6846e+006  best: 1.6846e+006
+perception: 146  bias: 1.6846e+006  best: 1.6846e+006
+perception: 147  bias: 1.6846e+006  best: 1.6846e+006
+perception: 148  bias: 1.6846e+006  best: 1.6846e+006
+perception: 149  bias: 1.6846e+006  best: 1.6846e+006
+perception: 150  bias: 1.6846e+006  best: 1.6846e+006
+perception: 151  bias: 1.6846e+006  best: 1.6846e+006
+perception: 152  bias: 1.6846e+006  best: 1.6846e+006
+perception: 153  bias: 1.6846e+006  best: 1.6846e+006
+perception: 154  bias: 1.6846e+006  best: 1.6846e+006
+perception: 155  bias: 1.68457e+006  best: 1.683e+006
+perception: 156  bias: 1.68424e+006  best: 1.683e+006
+perception: 157  bias: 1.68295e+006  best: 1.68232e+006
+perception: 158  bias: 1.68277e+006  best: 1.6823e+006
+perception: 159  bias: 1.68242e+006  best: 1.6823e+006
+perception: 160  bias: 1.68239e+006  best: 1.6823e+006
+perception: 161  bias: 1.68232e+006  best: 1.6823e+006
+perception: 162  bias: 1.68231e+006  best: 1.6823e+006
+perception: 163  bias: 1.6823e+006  best: 1.6823e+006
+perception: 164  bias: 1.6823e+006  best: 1.6823e+006
+perception: 165  bias: 1.6823e+006  best: 1.6823e+006
+perception: 166  bias: 1.6823e+006  best: 1.6823e+006
+perception: 167  bias: 1.6823e+006  best: 1.6823e+006
+perception: 168  bias: 1.6823e+006  best: 1.6823e+006
+perception: 169  bias: 1.6823e+006  best: 1.6823e+006
+perception: 170  bias: 1.6823e+006  best: 1.6823e+006
+perception: 171  bias: 1.6823e+006  best: 1.6823e+006
+perception: 172  bias: 1.6823e+006  best: 1.6823e+006
+perception: 173  bias: 1.6823e+006  best: 1.6823e+006
+perception: 174  bias: 1.6823e+006  best: 1.6823e+006
+perception: 175  bias: 1.6823e+006  best: 1.6823e+006
+perception: 176  bias: 1.6823e+006  best: 1.6823e+006
+perception: 177  bias: 1.6823e+006  best: 1.6823e+006
+perception: 178  bias: 1.6823e+006  best: 1.6823e+006
+perception: 179  bias: 1.6823e+006  best: 1.6823e+006
+perception: 180  bias: 1.6823e+006  best: 1.6823e+006
+perception: 181  bias: 1.6823e+006  best: 1.6823e+006
+perception: 182  bias: 1.6823e+006  best: 1.6823e+006
+perception: 183  bias: 1.6823e+006  best: 1.6823e+006
+perception: 184  bias: 1.6823e+006  best: 1.6823e+006
+perception: 185  bias: 1.6823e+006  best: 1.6823e+006
+perception: 186  bias: 1.6823e+006  best: 1.6823e+006
+perception: 187  bias: 1.6823e+006  best: 1.6823e+006
+perception: 188  bias: 1.6823e+006  best: 1.6823e+006
+perception: 189  bias: 1.6823e+006  best: 1.6823e+006
+perception: 190  bias: 1.6823e+006  best: 1.6823e+006
+perception: 191  bias: 1.6823e+006  best: 1.6823e+006
+perception: 192  bias: 1.6823e+006  best: 1.6823e+006
+perception: 193  bias: 1.6823e+006  best: 1.6823e+006
+perception: 194  bias: 1.6823e+006  best: 1.6823e+006
+perception: 195  bias: 1.6823e+006  best: 1.6823e+006
+perception: 196  bias: 1.6823e+006  best: 1.6823e+006
+perception: 197  bias: 1.6823e+006  best: 1.6823e+006
+perception: 198  bias: 1.6823e+006  best: 1.6823e+006
+perception: 199  bias: 1.6823e+006  best: 1.6823e+006
+perception: 200  bias: 1.6823e+006  best: 1.6823e+006
+perception: 201  bias: 1.6823e+006  best: 1.6823e+006
+perception: 202  bias: 1.6823e+006  best: 1.6823e+006
+perception: 203  bias: 1.6823e+006  best: 1.6823e+006
+perception: 204  bias: 1.6823e+006  best: 1.6823e+006
+perception: 205  bias: 1.6823e+006  best: 1.6823e+006
+perception: 206  bias: 1.6823e+006  best: 1.6823e+006
+perception: 207  bias: 1.6823e+006  best: 1.6823e+006
+perception: 208  bias: 1.6823e+006  best: 1.6823e+006
+perception: 209  bias: 1.6823e+006  best: 1.6823e+006
+perception: 210  bias: 1.6823e+006  best: 1.6823e+006
+perception: 211  bias: 1.6823e+006  best: 1.6823e+006
+perception: 212  bias: 1.6823e+006  best: 1.6823e+006
+perception: 213  bias: 1.6823e+006  best: 1.6823e+006
+perception: 214  bias: 1.6823e+006  best: 1.6823e+006
+perception: 215  bias: 1.6823e+006  best: 1.6823e+006
+perception: 216  bias: 1.6823e+006  best: 1.6823e+006
+perception: 217  bias: 1.6823e+006  best: 1.6823e+006
+perception: 218  bias: 1.6823e+006  best: 1.6823e+006
+perception: 219  bias: 1.6823e+006  best: 1.6823e+006
+perception: 220  bias: 1.6823e+006  best: 1.6823e+006
+perception: 221  bias: 1.6823e+006  best: 1.6823e+006
+perception: 222  bias: 1.6823e+006  best: 1.6823e+006
+perception: 223  bias: 1.6823e+006  best: 1.6823e+006
+perception: 224  bias: 1.6823e+006  best: 1.6823e+006
+perception: 225  bias: 1.6823e+006  best: 1.6823e+006
+perception: 226  bias: 1.6823e+006  best: 1.6823e+006
+perception: 227  bias: 1.6823e+006  best: 1.6823e+006
+perception: 228  bias: 1.6823e+006  best: 1.6823e+006
+perception: 229  bias: 1.6823e+006  best: 1.6823e+006
+perception: 230  bias: 1.6823e+006  best: 1.6823e+006
+perception: 231  bias: 1.6823e+006  best: 1.6823e+006
+perception: 232  bias: 1.6823e+006  best: 1.6823e+006
+perception: 233  bias: 1.6823e+006  best: 1.6823e+006
+perception: 234  bias: 1.6823e+006  best: 1.6823e+006
+perception: 235  bias: 1.6823e+006  best: 1.6823e+006
+perception: 236  bias: 1.6823e+006  best: 1.6823e+006
+perception: 237  bias: 1.6823e+006  best: 1.6823e+006
+perception: 238  bias: 1.6823e+006  best: 1.6823e+006
+perception: 239  bias: 1.6823e+006  best: 1.6823e+006
+perception: 240  bias: 1.6823e+006  best: 1.6823e+006
+perception: 241  bias: 1.6823e+006  best: 1.6823e+006
+perception: 242  bias: 1.6823e+006  best: 1.6823e+006
+perception: 243  bias: 1.6823e+006  best: 1.6823e+006
+perception: 244  bias: 1.6823e+006  best: 1.6823e+006
+perception: 245  bias: 1.6823e+006  best: 1.6823e+006
+perception: 246  bias: 1.6823e+006  best: 1.6823e+006
+perception: 247  bias: 1.6823e+006  best: 1.6823e+006
+perception: 248  bias: 1.6823e+006  best: 1.6823e+006
+perception: 249  bias: 1.6823e+006  best: 1.6823e+006
+perception: 250  bias: 1.6823e+006  best: 1.6823e+006
+perception: 251  bias: 1.6823e+006  best: 1.6823e+006
+perception: 252  bias: 1.6823e+006  best: 1.6823e+006
+perception: 253  bias: 1.6823e+006  best: 1.6823e+006
+perception: 254  bias: 1.6823e+006  best: 1.6823e+006
+perception: 255  bias: 1.6823e+006  best: 1.6823e+006
+perception: 256  bias: 1.6823e+006  best: 1.6823e+006
+perception: 257  bias: 1.6823e+006  best: 1.6823e+006
+perception: 258  bias: 1.6823e+006  best: 1.6823e+006
+perception: 259  bias: 1.6823e+006  best: 1.6823e+006
+perception: 260  bias: 1.6823e+006  best: 1.6823e+006
+perception: 261  bias: 1.6823e+006  best: 1.6823e+006
+perception: 262  bias: 1.6823e+006  best: 1.6823e+006
+perception: 263  bias: 1.6823e+006  best: 1.6823e+006
+perception: 264  bias: 1.6823e+006  best: 1.6823e+006
+perception: 265  bias: 1.6823e+006  best: 1.6823e+006
+perception: 266  bias: 1.6823e+006  best: 1.6823e+006
+perception: 267  bias: 1.6823e+006  best: 1.6823e+006
+perception: 268  bias: 1.6823e+006  best: 1.6823e+006
+perception: 269  bias: 1.6823e+006  best: 1.6823e+006
+perception: 270  bias: 1.6823e+006  best: 1.6823e+006
+perception: 271  bias: 1.6823e+006  best: 1.6823e+006
+perception: 272  bias: 1.6823e+006  best: 1.6823e+006
+perception: 273  bias: 1.6823e+006  best: 1.6823e+006
+perception: 274  bias: 1.6823e+006  best: 1.6823e+006
+perception: 275  bias: 1.6823e+006  best: 1.6823e+006
+perception: 276  bias: 1.6823e+006  best: 1.6823e+006
+perception: 277  bias: 1.6823e+006  best: 1.6823e+006
+perception: 278  bias: 1.6823e+006  best: 1.6823e+006
+perception: 279  bias: 1.6823e+006  best: 1.6823e+006
+perception: 280  bias: 1.6823e+006  best: 1.6823e+006
+perception: 281  bias: 1.6823e+006  best: 1.6823e+006
+perception: 282  bias: 1.6823e+006  best: 1.6823e+006
+perception: 283  bias: 1.6823e+006  best: 1.6823e+006
+perception: 284  bias: 1.6823e+006  best: 1.6823e+006
+perception: 285  bias: 1.6823e+006  best: 1.6823e+006
+perception: 286  bias: 1.6823e+006  best: 1.6823e+006
+perception: 287  bias: 1.6823e+006  best: 1.6823e+006
+perception: 288  bias: 1.6823e+006  best: 1.6823e+006
+perception: 289  bias: 1.6823e+006  best: 1.6823e+006
+perception: 290  bias: 1.6823e+006  best: 1.6823e+006
+perception: 291  bias: 1.6823e+006  best: 1.6823e+006
+perception: 292  bias: 1.6823e+006  best: 1.6823e+006
+perception: 293  bias: 1.6823e+006  best: 1.6823e+006
+perception: 294  bias: 1.6823e+006  best: 1.6823e+006
+perception: 295  bias: 1.6823e+006  best: 1.6823e+006
+perception: 296  bias: 1.6823e+006  best: 1.6823e+006
+perception: 297  bias: 1.6823e+006  best: 1.6823e+006
+perception: 298  bias: 1.6823e+006  best: 1.6823e+006
+perception: 299  bias: 1.6823e+006  best: 1.6823e+006
+perception: 300  bias: 1.6823e+006  best: 1.6823e+006
+
+12359 CPUsn_zobrist:          7168
+27172 CPUsn_zobrist:          7328
+20797 CPUsn_zobrist:          6928
+37391 CPUsn_zobrist:          7168
+29547 CPUsn_zobrist:          7280
+37344 CPUsn_zobrist:          7360
+39734 CPUsn_zobrist:          7024
+50187 CPUsn_zobrist:          7328
+50000 CPUsn_zobrist:          6880
+135125 CPUsn_zobrist:          17616
+
+pemis:
+
+8172 CPUsn_pemis:            538
+20547 CPUsn_pemis:            1112
+9375 CPUsn_pemis:            574
+21532 CPUsn_pemis:            1067
+10562 CPUsn_pemis:            648
+15797 CPUsn_pemis:            853
+13110 CPUsn_pemis:            736
+24390 CPUsn_pemis:            1104
+19281 CPUsn_pemis:            940
+39469 CPUsn_pemis:            1931
+
+
+g:\vc\go\lib\xorand : open fail !
+Learning from these file :
+[0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy177_19330405.sgf
+[2] g:\vc\go\sgf\wqy178_19330412.sgf
+[3] g:\vc\go\sgf\wqy179_19330419.sgf
+[4] g:\vc\go\sgf\wqy180_19330422.sgf
+[5] g:\vc\go\sgf\wqy181_19330426.sgf
+[6] g:\vc\go\sgf\wqy182_19330426.sgf
+[7] g:\vc\go\sgf\wqy184_19330518.sgf
+[8] g:\vc\go\sgf\wqy183_19330509.sgf
+[9] g:\vc\go\sgf\wgzs.SGF
+vf[v]:
+g:\vc\go\sgf\wqy185_19330609.sgf
+zobrist                      1 times :     12359 CPUs
+n_zobrist:          7168
+vf[v]:
+g:\vc\go\sgf\wqy177_19330405.sgf
+zobrist                      1 times :     27172 CPUs
+n_zobrist:          7328
+vf[v]:
+g:\vc\go\sgf\wqy178_19330412.sgf
+zobrist                      1 times :     20797 CPUs
+n_zobrist:          6928
+vf[v]:
+g:\vc\go\sgf\wqy179_19330419.sgf
+zobrist                      1 times :     37391 CPUs
+n_zobrist:          7168
+vf[v]:
+g:\vc\go\sgf\wqy180_19330422.sgf
+zobrist                      1 times :     29547 CPUs
+n_zobrist:          7280
+vf[v]:
+g:\vc\go\sgf\wqy181_19330426.sgf
+zobrist                      1 times :     37344 CPUs
+n_zobrist:          7360
+vf[v]:
+g:\vc\go\sgf\wqy182_19330426.sgf
+zobrist                      1 times :     39734 CPUs
+n_zobrist:          7024
+vf[v]:
+g:\vc\go\sgf\wqy184_19330518.sgf
+zobrist                      1 times :     50187 CPUs
+n_zobrist:          7328
+vf[v]:
+g:\vc\go\sgf\wqy183_19330509.sgf
+zobrist                      1 times :     50000 CPUs
+n_zobrist:          6880
+vf[v]:
+g:\vc\go\sgf\wgzs.SGF
+zobrist                      1 times :    135125 CPUs
+n_zobrist:          17616
+vf[v]:
+g:\vc\go\sgf\wqy185_19330609.sgf
+pemis                        1 times :      8172 CPUs
+n_pemis:            538
+vf[v]:
+g:\vc\go\sgf\wqy177_19330405.sgf
+pemis                        1 times :     20547 CPUs
+n_pemis:            1112
+vf[v]:
+g:\vc\go\sgf\wqy178_19330412.sgf
+pemis                        1 times :      9375 CPUs
+n_pemis:            574
+vf[v]:
+g:\vc\go\sgf\wqy179_19330419.sgf
+pemis                        1 times :     21532 CPUs
+n_pemis:            1067
+vf[v]:
+g:\vc\go\sgf\wqy180_19330422.sgf
+pemis                        1 times :     10562 CPUs
+n_pemis:            648
+vf[v]:
+g:\vc\go\sgf\wqy181_19330426.sgf
+pemis                        1 times :     15797 CPUs
+n_pemis:            853
+vf[v]:
+g:\vc\go\sgf\wqy182_19330426.sgf
+pemis                        1 times :     13110 CPUs
+n_pemis:            736
+vf[v]:
+g:\vc\go\sgf\wqy184_19330518.sgf
+pemis                        1 times :     24390 CPUs
+n_pemis:            1104
+vf[v]:
+g:\vc\go\sgf\wqy183_19330509.sgf
+pemis                        1 times :     19281 CPUs
+n_pemis:            940
+vf[v]:
+g:\vc\go\sgf\wgzs.SGF
+pemis                        1 times :     39469 CPUs
+n_pemis:            1931
+
+>>
+
+A FSM been loaded from g:\vc\go\lib\pemis .
+A FSM been loaded from g:\vc\go\lib\zobrist0 .
+A FSM been loaded from g:\vc\go\lib\zobrist1 .
+A FSM been loaded from g:\vc\go\lib\zobrist2 .
+A FSM been loaded from g:\vc\go\lib\zobrist3 .
+A FSM been loaded from g:\vc\go\lib\zobrist4 .
+A FSM been loaded from g:\vc\go\lib\zobrist5 .
+A FSM been loaded from g:\vc\go\lib\zobrist6 .
+A FSM been loaded from g:\vc\go\lib\zobrist7 .
+A FSM been loaded from g:\vc\go\lib\zobrist8 .
+All FSMs been loaded .
+
+>> thesis
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼○┼┼┼┼┼╋┼┼┼┼┼●┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼●┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼●┼┼┨16
+17┠┼┼○┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+棋盘与棋子
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏●○┯┯●●○●┯○┯┯○┯┯┯●┓ 1
+ 2●●┼●┼○┼┼┼○┼┼┼●┼●●┼○ 2
+ 3○○●┼┼●●●●○┼┼○┼○○┼┼┨ 3
+ 4┠○┼╋●┼●┼┼╋┼●┼○┼●○○┨ 4
+ 5○●○┼●●┼●┼┼●┼┼┼┼┼┼┼┨ 5
+ 6┠●●┼┼┼┼○○●○┼┼●┼●┼┼● 6
+ 7┠┼●┼┼●○●┼┼┼┼┼┼●┼○●○ 7
+ 8●○●┼●●○●○┼●┼●┼○┼●┼┨ 8
+ 9┠●○┼●┼┼●┼●┼○┼●┼●┼●● 9
+10●┼●○┼┼○○○╋○┼○○●●●○┨10
+11●┼○●○○┼┼┼○┼●○┼┼○●┼●11
+12●○○┼○┼○○○○○●●┼┼┼┼┼┨12
+13┠┼○○┼○┼○●●●○┼┼┼┼┼●○13
+14○┼┼●●○┼●┼●┼○○●●┼┼┼┨14
+15○┼●●┼●●○○●●●┼○┼○●┼●15
+16○●┼●●┼○┼┼○●○┼┼○○○○○16
+17●┼┼●○┼┼┼●●┼●┼●●●○○○17
+18┠●┼●┼○○○┼○┼┼┼┼○┼┼○┨18
+19●┷┷┷●┷●●┷┷●●○○┷○○┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼○⊙⊙⊙○┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼⊙●●●●○┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼╋┼⊙●⊙⊙╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼⊙┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+气
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼○○○○○┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼○●●●┼○┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼╋┼○●○○╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼○┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+禁着点
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼●○┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼●╋●○┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼●○┼┨17
+18●○┼┼┼┼┼┼┼●○┼┼┼┼┼┼┼┨18
+19┗●○┷┷┷┷┷●┷●○┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+劫
+A FSM been loaded from g:\vc\go\lib\pemis .
+A FSM been loaded from g:\vc\go\lib\zobrist0 .
+A FSM been loaded from g:\vc\go\lib\zobrist1 .
+A FSM been loaded from g:\vc\go\lib\zobrist2 .
+A FSM been loaded from g:\vc\go\lib\zobrist3 .
+A FSM been loaded from g:\vc\go\lib\zobrist4 .
+A FSM been loaded from g:\vc\go\lib\zobrist5 .
+A FSM been loaded from g:\vc\go\lib\zobrist6 .
+A FSM been loaded from g:\vc\go\lib\zobrist7 .
+A FSM been loaded from g:\vc\go\lib\zobrist8 .
+All FSMs been loaded .
+
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [0] sgf file .
+go.move()                    1 times :      3813 CPUs
+info.movebyinfo()            1 times :     27734 CPUs
+rcd.size():         147
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼●○●●○┼┼┼┼┼○●┼┼┨ 2
+ 3┠┼┼┼●○●○○●●┼●○┼┼┼┼┨ 3
+ 4┠┼┼●●●○○┼○┼┼●○┼●┼┼┨ 4
+ 5●●●┼┼○●○┼○●┼●○○┼●●┨ 5
+ 6●○○┼○┼●○┼○┼┼┼●○┼●○┨ 6
+ 7○┼┼┼┼┼●○┼○┼┼┼●○┼┼┼┨ 7
+ 8┠○┼┼●┼●●○○●●┼●○┼○●┨ 8
+ 9┠┼○┼┼┼┼┼●●○┼┼┼┼┼●●┨ 9
+10┠┼┼○┼┼┼●┼╋○┼●┼○○○○●10
+11┠┼┼┼┼┼┼┼┼┼┼●┼┼┼┼●●┨11
+12┠┼┼┼○┼┼●┼┼┼●○○┼○┼┼┨12
+13┠┼┼┼┼○●┼●○○○●●┼○●┼┨13
+14┠┼┼┼┼○○●┼┼●●┼●┼○●┼┨14
+15┠┼┼┼┼○●●┼●┼┼┼┼┼○●┼┨15
+16┠┼○╋┼┼○○○╋┼┼○┼○╋●┼┨16
+17┠┼┼┼○○●●●●┼●┼○┼○●●○17
+18┠┼┼○●●○┼┼┼┼┼●○●○○○┨18
+19┗┷┷┷○┷┷┷┷┷┷┷┷●┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼●┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [1] sgf file .
+go.move()                    1 times :      7406 CPUs
+info.movebyinfo()            1 times :     44703 CPUs
+rcd.size():         250
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯○●●●●●┯┯●○○┯┓ 1
+ 2┠○○○┼○○○●○●┼●┼●●○┼┨ 2
+ 3┠○●●○○●○●○○●┼●●○┼┼┨ 3
+ 4┠○●╋●●●●○╋○┼┼●○○┼┼┨ 4
+ 5┠○●●○●┼┼┼┼┼┼●●┼○┼┼┨ 5
+ 6┠┼○┼○○●┼┼●●┼●○○┼○┼┨ 6
+ 7┠┼┼○○●●○●┼●●○┼┼┼┼┼┨ 7
+ 8┠┼○●●●○●●●○○┼┼┼┼┼┼┨ 8
+ 9┠○○┼┼○○○○○○○┼┼┼○┼┼┨ 9
+10○○●●●○●┼●╋┼●○○○╋○┼┨10
+11○●┼●○○●┼●○○●●●●○●┼┨11
+12○●┼●○○○┼●●○○●┼●○○○┨12
+13●┼┼●●●○○┼●●○●●○○┼┼○13
+14┠●●┼┼●○┼●┼●○●┼●●○○○14
+15●●○○┼○┼○○○●●●┼●○○●○15
+16●○┼○┼○○●○●○○○○●●●●●16
+17○○○●●●●●●●○●●○●┼○●┨17
+18┠○┼○○○●●┼●●┼┼●●┼┼○┨18
+19┗┷○┷○●●┷○●┷┷●●┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼●╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [2] sgf file .
+go.move()                    1 times :      7406 CPUs
+info.movebyinfo()            1 times :     48672 CPUs
+rcd.size():         249
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯●○○┯┯○○●●●●○┯○●┯● 1
+ 2┠┼●●○┼○┼○○●┼●○┼┼○●● 2
+ 3┠┼┼●○┼○○●●●●○○┼○○○● 3
+ 4┠┼●╋○○┼┼○●●┼●○┼●○●● 4
+ 5┠┼●○○●●○┼○●●●○○○●●┨ 5
+ 6┠●┼●●┼●●┼○○○○┼●○○●┨ 6
+ 7●┼┼┼┼┼┼●●┼┼┼┼○●┼●●● 7
+ 8○●●●●┼┼●○○┼●●●●┼●○● 8
+ 9○○○●○●●○○┼○○●┼●○○○○ 9
+10┠┼○●○●┼●○○○●●●●●○┼┨10
+11┠┼┼○○○○●○●○●●○●○●○┨11
+12┠┼┼○○┼○●┼●○●○○●○┼┼┨12
+13┠┼○┼┼○○●●●○●○●○○○┼┨13
+14○○┼○○●●●○○○○○●●●○○┨14
+15●○○●●┼┼●○┼┼┼○●○●●○○15
+16●●○○●┼●○○○┼┼┼○○╋●●○16
+17┠●●●┼┼●●●●○┼┼┼○●┼●○17
+18┠┼┼┼┼┼┼●○○○┼○┼○●┼●●18
+19┗┷┷┷┷┷┷●●○┷┷┷○●●┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼●╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [3] sgf file .
+go.move()                    1 times :      4407 CPUs
+info.movebyinfo()            1 times :     31828 CPUs
+rcd.size():         168
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯●┓ 1
+ 2┠┼○┼○●┼┼●●●┼┼┼┼┼●┼● 2
+ 3┠○┼○○●●●○○●●┼┼○●●●○ 3
+ 4○●●╋┼○┼○┼╋○○●●●○●○┨ 4
+ 5┠○●●○┼┼┼┼○┼┼○○┼○○○┨ 5
+ 6┠●┼┼●○┼┼┼┼┼┼┼○┼○●○● 6
+ 7┠┼┼┼●┼┼┼┼┼┼┼○┼○●●●┨ 7
+ 8┠┼●○┼┼●┼┼┼┼●○○●●●┼○ 8
+ 9┠┼●●●○┼┼┼┼┼┼○●●○┼┼┨ 9
+10┠┼○○○┼┼┼┼╋┼┼┼○○●●●○10
+11┠┼┼┼┼┼┼┼┼┼┼┼○┼●●○┼┨11
+12┠┼●┼○●┼○┼○○●●●●○○┼┨12
+13┠┼┼●●○○○○●┼┼┼○●○┼┼┨13
+14┠●●○┼●┼┼┼●○○○┼○┼○┼┨14
+15●┼●○●┼●○○●●●○┼┼┼┼┼┨15
+16┠●○╋┼┼┼●○○○●○●┼●┼○┨16
+17┠○┼○○┼┼●●●○○●┼┼┼●●┨17
+18┠┼○┼┼┼○○┼┼●●●┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼●╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [4] sgf file .
+go.move()                    1 times :      5140 CPUs
+info.movebyinfo()            1 times :     32844 CPUs
+rcd.size():         177
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼○○●●┼┼┼┼●○○┼┼┼○┼┨ 2
+ 3┠┼○●┼○┼●●●●●○┼┼○●●┨ 3
+ 4┠┼○●┼┼┼○●○┼●○┼○╋┼┼┨ 4
+ 5┠┼○●●┼┼○●○○●●○○●●┼┨ 5
+ 6┠┼┼○●┼●○○●┼○●○●○┼┼┨ 6
+ 7┠┼┼○○●●●●○○○○●●●●┼┨ 7
+ 8┠┼┼┼┼┼┼○○┼○┼○○○○●┼┨ 8
+ 9┠┼┼┼┼┼●┼●○○●●○○●●┼┨ 9
+10┠┼┼╋┼┼●┼●●●○○○●●┼┼┨10
+11┠┼┼┼┼┼┼┼○┼○●●●○○┼┼┨11
+12┠┼┼┼┼┼┼┼┼○┼●┼●●┼○┼┨12
+13┠┼┼●┼┼●●○┼┼○○○┼●○┼┨13
+14┠┼○┼┼┼●┼●○┼○●●●┼○┼┨14
+15┠┼┼┼┼●○●●○┼┼○○●○┼┼┨15
+16┠○●●┼●○○●○○○●○●○┼┼┨16
+17┠┼○┼●○○○○○┼○●┼●○┼┼┨17
+18┠○┼┼┼●●○┼●○●┼●●●○┼┨18
+19┗┷┷┷┷┷┷┷┷┷●┷●┷┷○┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼●┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [5] sgf file .
+go.move()                    1 times :      4781 CPUs
+info.movebyinfo()            1 times :     35516 CPUs
+rcd.size():         176
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯○┯○┯○┯┯┯┯┓ 1
+ 2┠┼┼┼○●┼●○┼○○┼●○┼┼┼┨ 2
+ 3┠○○┼○┼●●○┼○●●●●○┼┼┨ 3
+ 4┠●●●○┼○●●○○●○○○○○┼┨ 4
+ 5┠○●○●○┼○●●●●●┼●●○┼┨ 5
+ 6┠●●○●┼┼○┼┼○○○●┼○┼┼┨ 6
+ 7┠○●○┼○○●●●○●●┼┼●○┼┨ 7
+ 8┠●○○┼┼●○●○●┼┼┼●○○┼┨ 8
+ 9●┼●○┼┼┼○●○●●┼┼●●○┼┨ 9
+10┠●●○┼┼┼┼○○┼┼┼┼┼╋○○┨10
+11┠┼●●○○┼●┼┼○┼┼┼●●●○┨11
+12┠┼┼┼●┼┼┼●┼┼○○○●┼┼●●12
+13┠┼○○○○┼┼┼○┼○●●○○┼┼┨13
+14┠┼●●┼┼○○┼●○┼┼┼●┼┼┼┨14
+15┠┼○●○●┼●●┼┼┼○●┼●┼┼┨15
+16┠○●○┼●┼●○●┼○●●┼╋●┼┨16
+17┠●●●┼┼┼┼○○┼○┼○○○○●┨17
+18┠┼┼┼┼┼┼●┼┼┼┼┼┼┼┼┼●┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼●╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [6] sgf file .
+go.move()                    1 times :      8000 CPUs
+info.movebyinfo()            1 times :     56063 CPUs
+rcd.size():         261
+   S R Q P O N M L K J I H G F E D C B A
+ 1○┯○○○┯┯○┯●┯●○┯┯┯┯┯┓ 1
+ 2┠○●●○┼○●●┼●●○○┼┼┼●○ 2
+ 3●●┼●○┼○○●┼●●●○○●●○┨ 3
+ 4┠┼●●●○┼┼○●●○○○┼○○┼○ 4
+ 5┠●●┼○┼┼○○┼●○●●○○┼○┨ 5
+ 6●●○○○○○●○○●○●┼●●●○┨ 6
+ 7○●●●○●○●○●●●●●●●○○┨ 7
+ 8○○●○●●●●●●○┼○●○○┼┼┨ 8
+ 9┠○○○○●┼┼┼●○┼┼○●○○┼● 9
+10┠┼┼╋┼○●●┼●○┼○┼●●○○○10
+11┠┼┼┼┼○●○●●●●○┼●○○○●11
+12○○○○○○●○●○┼○○●┼┼●●●12
+13●●○●●●○○○○○┼○○●●●○┨13
+14┠●●┼┼┼○●●○○●●┼●┼┼●┨14
+15┠┼┼●○○○●┼●●┼●●┼┼●┼●15
+16┠┼┼●●○●●●●┼┼●○●╋●●┨16
+17┠┼┼●○○●●○●●●○○○●┼┼┨17
+18┠┼┼●○┼○○○○○○┼○○●┼┼┨18
+19┗┷┷●●○┷┷┷┷┷┷○○●●┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼●╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [7] sgf file .
+go.move()                    1 times :      3047 CPUs
+info.movebyinfo()            1 times :     24797 CPUs
+rcd.size():         117
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼●┼●┼┼●●○○○┼┼○●┼┼┨ 2
+ 3┠●┼┼┼○○○●●○●○┼○●┼┼┨ 3
+ 4┠○┼●┼┼┼┼●╋●●○┼┼╋●┼┨ 4
+ 5┠○●┼●┼○┼┼┼┼┼┼┼○●┼┼┨ 5
+ 6○●●○●┼┼○●●┼┼●┼○┼┼┼┨ 6
+ 7┠○○○●○●○○●┼┼●○○●┼┼┨ 7
+ 8●┼○○○●○┼○┼┼┼●○●┼●┼┨ 8
+ 9┠○●●┼●┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼○●●●●○○╋┼┼┼┼○╋○┼┨10
+11┠┼○●○○○●┼┼┼┼┼┼┼┼┼┼┨11
+12○○●○●┼┼○┼┼┼┼┼┼┼┼┼┼┨12
+13┠●●┼┼┼●┼○┼┼┼┼┼┼┼┼┼┨13
+14┠┼●┼●┼┼●┼┼┼┼┼┼┼┼○┼┨14
+15┠┼┼┼●○┼●┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼●●○○┼┼○╋┼┼┼┼┼●┼●┨16
+17┠┼●○┼┼┼○┼┼┼○┼●┼┼┼┼┨17
+18┠┼○┼○┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼●┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [8] sgf file .
+go.move()                    1 times :      8375 CPUs
+info.movebyinfo()            1 times :     59859 CPUs
+rcd.size():         269
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯○┯●┯○○┯┯┯┯┯┯┯┓ 1
+ 2┠┼○○┼○●┼┼○●○○┼○●●●● 2
+ 3○○○○┼○○●●●●●○○┼○●○○ 3
+ 4○●○●○┼┼○○●┼●○●○○●○○ 4
+ 5○●○●┼○┼○●●●┼●●●○●●○ 5
+ 6●●●●○┼○●┼●○●●●○○○○○ 6
+ 7┠┼┼●○●○●●●○┼●○○●○┼┨ 7
+ 8┠┼●┼●●○○●●○┼●┼●●●○┨ 8
+ 9┠┼●●○●○●○○┼○●┼●┼○○○ 9
+10●●●○○○┼●○╋○○○○●○○●●10
+11○●●●●○┼●┼●○┼○●●○●●○11
+12○○○○○○○●●┼○○●○○●●●┨12
+13┠○○●┼○●●●●●○┼○○○○●┨13
+14┠●○●┼┼○┼○○●●○○●○●○┨14
+15○┼○●○○○○○●●┼○●●●●●┨15
+16●○○○●○●●○○●●○○┼●┼┼┨16
+17●●●●●●┼┼●●┼●●○┼●○┼┨17
+18┠┼●┼┼┼┼┼┼┼┼┼┼●●┼●○┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷●┷●┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼●┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>> [0] g:\vc\go\sgf\wqy185_19330609.sgf
+[1] g:\vc\go\sgf\wqy167_19330105.sgf
+[2] g:\vc\go\sgf\wqy168_19330123.sgf
+[3] g:\vc\go\sgf\wqy169_19330124.sgf
+[4] g:\vc\go\sgf\wqy170_19330221.sgf
+[5] g:\vc\go\sgf\wqy171_193306.sgf
+[6] g:\vc\go\sgf\wqy172_19330301.sgf
+[7] g:\vc\go\sgf\wqy173_19330308.sgf
+[8] g:\vc\go\sgf\wqy174_19330315.sgf
+[9] g:\vc\go\sgf\wqy175_19330322.sgf
+[10] g:\vc\go\sgf\wqy176_19330329.sgf
+[11] g:\vc\go\sgf\wqy177_19330405.sgf
+[12] g:\vc\go\sgf\wqy178_19330412.sgf
+[13] g:\vc\go\sgf\wqy179_19330419.sgf
+[14] g:\vc\go\sgf\wqy180_19330422.sgf
+[15] g:\vc\go\sgf\wqy181_19330426.sgf
+[16] g:\vc\go\sgf\wqy182_19330426.sgf
+[17] g:\vc\go\sgf\wqy184_19330518.sgf
+[18] g:\vc\go\sgf\wqy183_19330509.sgf
+[19] g:\vc\go\sgf\wgzs.SGF
+
+> Selected the [9] sgf file .
+go.move()                    1 times :      4578 CPUs
+info.movebyinfo()            1 times :     31578 CPUs
+rcd.size():         165
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯●┯●●┯┯┯┓ 1
+ 2┠●┼●●○○┼┼┼●┼●○●┼┼┼┨ 2
+ 3●○●┼┼●○┼○●●○○○●┼┼┼┨ 3
+ 4┠○○●●●┼┼┼○●○●┼┼╋●●┨ 4
+ 5┠○┼○┼┼┼┼┼┼○○●┼┼●○┼┨ 5
+ 6┠┼○○●┼○┼┼┼┼○●┼┼●○┼┨ 6
+ 7┠○┼┼┼┼┼┼○┼┼○●┼┼●○┼┨ 7
+ 8┠┼┼┼┼┼┼●○┼○●●┼┼┼┼●● 8
+ 9┠┼●┼┼┼┼●○┼┼┼┼┼┼●●●○ 9
+10┠┼┼╋┼●┼●○╋┼○┼┼○○○○○10
+11┠●○●┼┼●○┼┼┼┼┼┼┼┼┼●┨11
+12┠┼●●○┼┼○┼┼┼┼○●┼●●○┨12
+13┠●○○○┼○┼┼┼○┼○○●●○○┨13
+14┠●○┼●○┼┼┼●○┼○●●○○┼┨14
+15┠●○●●┼○┼○○●●○●┼┼┼┼┨15
+16┠┼●╋┼○┼○○●○○○●┼○┼┼┨16
+17┠┼┼●○○●●○●●●┼●○┼┼┼┨17
+18┠┼●┼●○┼●●○●┼┼●○○┼┼┨18
+19┗┷┷●┷┷┷┷┷┷┷┷┷●●○┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+   S R Q P O N M L K J I H G F E D C B A
+ 1┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓ 1
+ 2┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 2
+ 3┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 3
+ 4┠┼┼●┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨ 4
+ 5┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 5
+ 6┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 6
+ 7┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 7
+ 8┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 8
+ 9┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨ 9
+10┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨10
+11┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨11
+12┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨12
+13┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨13
+14┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨14
+15┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨15
+16┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨16
+17┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨17
+18┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨18
+19┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛19
+   S R Q P O N M L K J I H G F E D C B A
+
+>
+>>
+
+
+(ULL) 512 * 1024 * 1024 * sizeof(long double): 4294967296
+0xffffffff                    : 4294967295
+sizeof(bool )                 : 1
+sizeof(int )                  : 4
+sizeof(long )                 : 4
+sizeof(float )                : 4
+sizeof(double )               : 8
+sizeof(long double)           : 8
+sizeof(BITB)                  : 76
+sizeof(GO)                    : 252
+sizeof(INFOGO)                : 392
+sizeof(INOUT )                : 1
+sizeof(ITR )                  : 204
+sizeof(FIR )                  : 412
+sizeof(TSUMEGO )              : 392
+sizeof(NN )                   : 16
+sizeof(TRANSPTABLE )          : 1
+sizeof(SEARCH )               : 396
+sizeof(TARGETSEARCH )         : 748
+sizeof(LEARN)                 : 3344
+sizeof(BRAIN )                : 6216
+1
+2
+3
+[0] g:\vc\go\sgf\LIWANG.SGF
+[1] g:\vc\go\sgf\LIZHANG.SGF
+[2] g:\vc\go\sgf\mokuhazushi.sgf
+[3] g:\vc\go\sgf\S00014.SGF
+[4] g:\vc\go\sgf\SHORT.SGF
+[5] g:\vc\go\sgf\SHORT2.SGF
+[6] g:\vc\go\sgf\YEGUI.SGF
+Have selected the [1] sgf file .
+
+
+
+┏○┯○●●┯┯┯●┯●┯┯┯●●●┓
+┠┼┼○○●┼●●┼●┼┼●┼┼●○●
+┠○○┼○○●●○●●●┼┼●●●○●
+┠○●●○●○○○○┼●●┼●╋●○┨
+┠●●○○●┼┼┼○●┼●┼●┼○○●
+┠┼●●●●┼●●○○○○●○┼○○○
+┠●●○┼┼┼●○○○●●●○┼○┼○
+┠○●●┼○○○●┼○┼┼┼●●○○●
+○●●┼●●○┼○┼●○●○┼┼○○●
+┠○┼╋○○┼●○●┼●●●●●●●●
+┠┼○┼┼┼┼●○┼●○●┼┼┼┼┼┨
+┠┼●○○○○○●○┼○○○○●○┼┨
+┠○○●●●●○●●○┼┼┼┼┼○┼┨
+┠○●●○┼┼●●○┼┼┼┼○○┼┼┨
+○●●●○┼●●┼┼○○┼○●○┼┼┨
+●○○○●┼●○┼○┼○○●┼●○○┨
+●●┼┼●○●○┼○┼○●┼●●○●┨
+┠┼●┼●○○┼┼●○┼○●┼●●┼●
+┗┷┷┷┷┷┷┷┷┷┷○┷┷┷┷┷●┛
+
+┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼●┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛
+>
+
+
+
+
+┼◎◎┼┼
+┼◎◎┼◎
+◎┼┼┼◎
+◎┼┼◎┼
+┼◎◎◎┼
+◎┼◎◎┼
+┼┼◎┼◎
+
+1990656*23427962561203200+35
+x*y+z = 3645221896770813987
+┼◎◎┼┼
+┼◎◎┼◎
+◎┼┼┼◎
+◎┼┼◎┼
+┼◎◎◎┼
+◎┼◎◎┼
+┼┼◎┼◎
+
+asciipat():
+.oo..
+.oo.o
+o...o
+o..o.
+.ooo.
+o.oo.
+..o.o
+pat2ascii():
+..oo.
+o.oo.
+o...o
+.o..o
+.ooo.
+.oo.o
+o.o..
+
+e3232(): [848719360, 2088763427]
+e3232():3645221896770813987
+e64():  3645221896770813987
+
+○┼┼○○
+○●●○●
+┼○┼┼┼
+●○○●┼
+○┼●●○
+●┼●┼┼
+┼┼┼┼●
+
+1289945088*23046381895680000+35
+x*y+z = 15734243115550113827
+576*28267713331200+25
+x*y+z = 16282202878771225
+144*27098850240000+30
+x*y+z = 3902234434560030
+kb kw kt 3902234434560030 16282202878771225 15734243115550113827
+144*27098850240000+30
+x*y+z = 3902234434560030
+576*28267713331200+25
+x*y+z = 16282202878771225
+1289945088*23046381895680000+35
+x*y+z = 15734243115550113827
+○┼┼○○
+○●●○●
+┼○┼┼┼
+●○○●┼
+○┼●●○
+●┼●┼┼
+┼┼┼┼●
+
+asciipat():
+o..oo
+oxxox
+.o...
+xoox.
+o.xxo
+x.x..
+....x
+pat2ascii():
+oo..o
+xoxxo
+...o.
+.xoox
+oxx.o
+..x.x
+x....
+
+e3232(): [1458278734, 3807872650]
+e3232():6263259474790155914
+e64():  6263259474790155914
+
+Press any key to continue
+
+
+
+
+
+
+
+
+pattern learn from 6 sgf!
+wide*high:      3*3
+pattern size: 1143
+repeat times: 86
+times:  8312
+
+wide*high:      3*4
+pattern size: 7665
+repeat times: 201
+times:  23703
+
+wide*high:      3*5
+pattern size: 13875
+repeat times: 165
+times:  29094
+
+wide*high:      3*6
+pattern size: 18588
+repeat times: 187
+times:  32531
+
+wide*high:      4*3
+pattern size: 7665
+repeat times: 201
+times:  22031
+
+wide*high:      4*4
+pattern size: 8218
+repeat times: 73
+times:  15703
+
+wide*high:      4*5
+pattern size: 21474
+repeat times: 148
+times:  39406
+
+wide*high:      4*6
+pattern size: 27516
+repeat times: 165
+times:  46266
+
+wide*high:      5*3
+pattern size: 13875
+repeat times: 165
+times:  29109
+
+wide*high:      5*4
+pattern size: 21474
+repeat times: 150
+times:  38734
+
+wide*high:      5*5
+pattern size: 15194
+repeat times: 34
+times:  24812
+
+wide*high:      5*6
+pattern size: 33545
+repeat times: 114
+times:  59984
+
+wide*high:      6*3
+pattern size: 18588
+repeat times: 187
+times:  35985
+
+wide*high:      6*4
+pattern size: 27516
+repeat times: 201
+times:  44281
+
+wide*high:      6*5
+pattern size: 33545
+repeat times: 115
+times:  56453
+
+wide*high:      6*6
+pattern size: 21251
+repeat times: 43
+times:  33859
+
+
+
+
+
+
+
+
+
+
+
+pattern learn from 20 sgf!
+wide*high:      3*3
+pattern size: 1479
+repeat times: 416
+times:          25547
+
+wide*high:      3*4
+pattern size: 14485
+repeat times: 1187
+times:          68703
+
+wide*high:      3*5
+pattern size: 32771
+repeat times: 985
+times:          81875
+
+wide*high:      3*6
+pattern size: 48733
+repeat times: 949
+times:          96531
+
+wide*high:      4*3
+pattern size: 14485
+repeat times: 1187
+times:          66078
+
+wide*high:      4*4
+pattern size: 19925
+repeat times: 480
+times:          45313
+
+wide*high:      4*5
+pattern size: 57338
+repeat times: 867
+times:          112359
+
+wide*high:      4*6
+pattern size: 77330
+repeat times: 885
+times:          133578
+
+wide*high:      5*3
+pattern size: 32771
+repeat times: 985
+times:          81969
+
+wide*high:      5*4
+pattern size: 57338
+repeat times: 869
+times:          112610
+
+wide*high:      5*5
+pattern size: 42603
+repeat times: 234
+times:          70891
+
+wide*high:      5*6
+pattern size: 96146
+repeat times: 586
+times:          169953
+
+wide*high:      6*3
+pattern size: 48733
+repeat times: 949
+times:          96734
+
+wide*high:      6*4
+pattern size: 77330
+repeat times: 923
+times:          133765
+
+wide*high:      6*5
+pattern size: 96146
+repeat times: 589
+times:          170000
+
+wide*high:      6*6
+pattern size: 62632
+repeat times: 230
+times:          101562
+
+Press any key to continue
+
+pattern learn from 20 sgf!
+w*h:3*3  patsize:1479    total:26285     repeat:416     time:24703
+w*h:3*4  patsize:14485   total:69316     repeat:1187    time:65844
+w*h:3*5  patsize:32771   total:83438     repeat:985     time:81734
+w*h:3*6  patsize:48733   total:95151     repeat:949     time:96625
+w*h:4*3  patsize:14485   total:69316     repeat:1187    time:65953
+w*h:4*4  patsize:19925   total:45167     repeat:480     time:45265
+w*h:4*5  patsize:57338   total:107999    repeat:867     time:112156
+w*h:4*6  patsize:77330   total:122613    repeat:885     time:133140
+w*h:5*3  patsize:32771   total:83438     repeat:985     time:83109
+w*h:5*4  patsize:57338   total:107999    repeat:869     time:113594
+w*h:5*5  patsize:42603   total:64318     repeat:234     time:70828
+w*h:5*6  patsize:96146   total:145672    repeat:586     time:169812
+w*h:6*3  patsize:48733   total:95151     repeat:949     time:96766
+w*h:6*4  patsize:77330   total:122613    repeat:923     time:133469
+w*h:6*5  patsize:96146   total:145672    repeat:589     time:169453
+w*h:6*6  patsize:62632   total:82346     repeat:230     time:101250
+Press any key to continue
+
+c:
++------
+.......
+......x
+...x...
+..x....
+..oo...
+.......
+.......
+..o....
+
+b:
++--------
+.........
+....xo..o
+...x.o...
+.........
+.........
+..x......
+
+c == b: 0
+        kb kw kt159766479 1416808 1230201772835
+b:
+┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼●○┼┼○┼┼┼┼┼┼┼┼┼┨
+┠┼┼●┼○┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼●┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛
+b-mask:
+◎◎◎◎◎◎◎◎◎┯┯┯┯┯┯┯┯┯┓
+◎◎◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎◎◎╋┼┼┼┼┼╋┼┼┨
+◎◎◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛
+
+b:
++--------
+.........
+....xo..o
+...x.o...
+.........
+.........
+..x......
+
+e3232():  [811001105, 2769130824]
+e3232(): 3483223225763992904
+e64():   3483223225763992904
+        kb kw kt159766479 1416808 1230201772835
+c:
+┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼●┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼●┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼●┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼○○┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼○┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛
+c-mask:
+◎◎◎◎◎◎◎┯┯┯┯┯┯┯┯┯┯┯┓
+◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎┼┼╋┼┼┼┼┼╋┼┼┨
+◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┼┼┨
+◎◎◎◎◎◎◎┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛
+
+c:
++------
+.......
+......x
+...x...
+..x....
+..oo...
+.......
+.......
+..o....
+
+e3232():  [811001105, 2769130824]
+e3232(): 3483223225763992904
+e64():   3483223225763992904
+
+Press any key to continue
+
+
+ -+    -+    ++
+   ●┯┯┯○
+   ┠③②①┨
+ --┠⑥⑤④┨++
+   ┠⑨⑧⑦┨
+   ○┷┷┷●
+ --    +-    +-
+
+┏┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┯┓
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼╋┼┼┼┼┼╋┼┼┼┼┼╋┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┠┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┨
+┗┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┷┛
+pattern learn from 507 sgf!
+         patsize:27686   total:42691     repeat:43
+ time:114797
+● History 0
+  

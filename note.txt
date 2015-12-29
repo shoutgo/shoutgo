@@ -1,0 +1,472 @@
+play MODE 问题, 加悔棋功能
+库的save() load():写入库对应的sgf, 比对\\SGF，学习新文件。
+info2bmp()
+Term().insert()
+用函数指针形式写back_save()
+随时后台保存棋局
+helpmore()
+改造command active()
+joseki()[numb]下标调得和输入法一致　
+inputpat()的去留
+print(VI vi, BITB mask)以彩色形式输出VI，显示频率等信息，setw(3), 配合print(go)
+BITB(vecpos), BITB().serialize(), BITB().serialize(VVI, int sortnumb); ITR中?
+改造FSM以适合于排序
+dry改名为hull
+官子模型
+class POS
+toupper()
+ambiguous figure
+class GO 可以使命令多重嵌套
+grid(), stone(), SCREEN_MODE, TEXT_MODE
+重写class NN
+
+//______________________________________________________________________
+
+// 时间测试都保留
+// 缓式计算保持
+// 条件编译早点实现
+// 先验证正确，再修改
+// 统计函数在代码中的出现次数，决定重不重载运算符
+// 替换之前一定要执行查找！！！！！
+// inline 加在有指针的函数前要慎重，会导致编译错误
+
+// 修正：VIR, default
+// ITR 的 public 临时变量清除
+// 重载bitboard +-
+// ITR某些变量static
+// BITB中for(++BS)快还是transform算法快？
+
+// 复数的应用，乘 i 相当于将向量左旋 90 度
+// NN 用 Varray
+// GO　加　bool whenxx, 改bb[0], bb[1]? 函数移位？
+// ko　数据结构
+// 官子模型
+// 内部叠代器
+// 常用函数改查表法
+// 面向算法，改造for
+// static 化？	http://www.pkuer.net/wmkj/study/CPlusPlus/7/2/1.htm
+// 合法性"去检测", 如pos
+
+// 测试 hash_map
+// 测试double, float四则运算
+
+// 为避免频繁申请临时变量，可在类内 private 化
+// 原则：在其正常作用区域内不被其它函数改变
+// 命名规范：	tmp_
+// int			i, j, k, m, n, x, y
+// BITB		b, bb
+// GO		g, gg
+// POS			p, pp
+// 为确保万无一失可以这样命名： i_myfun, j_myfun, k_myfun
+//
+//______________________________________________________________________
+
+
+
+棋形术语
+目标术语
+全局术语
+
+
+合目的
+官子
+棋形
+劫材
+余味
+先手
+兼顾
+复杂度
+气
+轻重
+隐蔽性
+
+换位思考原则
+对抗原则
+忍耐原则
+试探原则
+对抗得逞后效原则
+脱先原则
+顺势原则
++
+利益最大原则
+收益平衡原则
+阈值原则
+	急所原则
+	破地原则
+	杀棋原则
+	活棋原则
+	破空原则
+	围空原则
+
+棋形事件
+气事件
+提子事件
+吃棋事件
+劫事件
+
+
+
+http://www.enstudy.net/Article/ShowArticle.asp?ArticleID = 1835
+
+围棋术语中英文对照   
+
+   段位 dan grading
+   级 kyu
+   读秒 byo-yomi
+   欺招 hamete（trick play）
+   厚 thickness
+   气 liberty
+   轻 karui（light）
+   失着 slip
+   本手 honte（proper move）
+   对杀 semeai
+   好手 tesuji
+   后手 gote
+   劫 ko
+   缓气劫 yose-ko（approach-move-ko）
+   筋 suji
+   双活 seki（impasse）
+   脱先 kenuki
+   无忧劫 hanami-ko
+   交换 furikawari（exchange）
+   味道 aji（potential）
+   先手得利 kikashi
+   眼 eye
+   星小目布局 hoshi-komoku fuseki
+   一间夹 ikken bsasme
+   手筋 tesuji
+   见合 miai
+   大模样作战 big moyo ， large moyo
+   生死劫 tsume-ko
+   劫材 kozai
+   先手 sente
+   定式 formalized series of moves
+   围 contain
+   拆 extend
+   立 sagari
+   叫吃 atari（cheok）
+   打入 uehikomi
+   挂角 kakari
+   逼 tsume（checking extension）
+   夹 hasami（pincer）
+   枷 geta
+   尖 diagonal move
+   空 chi ，territory
+   长 nobi
+   切断 cut-in
+   腾挪 sabaki
+   提通 ponnuki
+   挖 warikom（wedge）
+   压 kake（pressing move），oshi（push）
+   挤去眼 sashikomi
+   断点 cutting point
+   空提 ponnuki
+   断 cut
+   靠 tsuke
+   跳 jump
+   挡 osae
+   打 atari
+   提子 take
+   托角 touke（corner）
+
+
+http://www.weiqi361.com/html/2004/07/20040715001801.shtml
+
+部分英文围棋术语
+
+
+aji 味，余味 (*)
+
+aji-keshi 解消余味 (*)
+
+amashi (*)这词常用，但中文围棋术语中没有正式的翻译。原来专指江户时期执白者的一种战略，先取实地然后再侵消黑势，治理孤棋。江户时期
+的名家八世安井知得仙知，现代的坂田荣男、赵治勋都是“amashi”的高手。从这一意义上来说，这一词的意思就是现在所谓的“先捞后洗”。
+
+atari 打吃 (*)
+
+-bango 番棋
+
+byo-yomi 读秒 (*)
+
+carpenter"s square 小曲尺 (*)
+
+chuban (middle game) 中盘 (*)
+
+dame 单官，气 (*)
+
+dan 段 (*)
+
+empty triangle 空三角 (*)
+
+eye 眼 (*)
+
+furikawari (exchange, trade, swap) 转换、交换 (*)
+
+fuseki 布局 (*)
+
+geta 枷 (*)
+
+gaisei (outside influence) 外势 (*)
+
+gankei (eye shape) 眼形 (*)
+
+go 碁(在日本专指围棋)，围棋 (*)
+
+goban 围棋盘 (*)
+
+godokoro 碁所(棋所)
+
+Gosei 碁圣(小棋圣)
+
+gote 后手 (*)
+
+gote no sente 后中先
+
+gukei (bad shape) 愚形 (*)
+
+gyaku sente (reverse sente) 逆先手 (*)
+
+gyaku yose (reverse yose) 逆官子 (*)
+
+hamete (trick move) 嵌手 (*)
+
+hanami-ko 看花劫(即无忧劫)
+
+hana-zuke (nose attachment) 鼻顶 (*)
+
+hane 扳 (*)
+
+hane-kaeshi 反扳，连扳
+
+hangan (half an eye) 半眼
+
+han-ko 半劫
+
+han-moku (half a point) 半目 (*)
+
+hasami (pincer attack) 夹攻(如定式中的一间夹、二间夹等等) (*)
+
+hasami-kaeshi 反夹(对应于上述夹攻之反夹)
+
+haya-go 快棋 (*)
+
+hazama 穿象眼
+
+hazama tobi 象飞
+
+hiraki (extension) 开拆(如拆二、拆三等等) (*)
+
+hon-ko (real ko) 本劫
+
+Honinbo 本因坊(*)
+
+honte 本手 (*)
+
+hoshi (star point) 星 (*)
+
+igo 围棋(正式的名称，与上面的“碁”相对照) (*)
+
+ikken 一间(常见的有以下四种)：
+
+ikken-basami (one-space pincer) 一间夹 (*)
+
+ikken-biraki (one-space extension) 一间拆 (*)
+
+ikken-jimari (one-space enclosure) 单关守角 (*)
+
+ikken-tobi (one-space jump) 一间跳(单关跳) (*)
+
+insei 院生 (*)
+
+ishi-no-shita 倒脱靴 (*)
+
+ji (territory) 地 (*)
+
+jigo (a drawn game) 和棋，持棋 (*)
+
+joseki 定式 (*)
+
+joban (opening game) 序盘 (*)
+
+josen 定先
+
+jozu 上手，又常指江户时期的七段 (*)
+
+jubango 十番棋 (*)
+
+Judan Sen 十段战
+
+jun-Meijin 准名人
+
+kabe (wall) 壁 (*)
+
+kakari (approach move) 挂角 (*)
+
+kake 飞压
+
+kake-me (false eye) 假眼 (*)
+
+keshi 消，侵消 (*)
+
+ki 棋
+
+kiai 气合
+
+kishi 棋士 (*)
+
+ki-in 棋院 (*)
+
+kido 棋道 (*)
+
+kifu 棋谱 (*)
+
+kikashi (a forcing move requring an answer) 先手利 (*)
+
+kiri (cut) 切断 (*)
+
+kiri-chigai (crosscut) 扭断 (*)
+
+Kisei 棋圣 (*)
+
+ko 劫 (*)
+
+kogeima 小飞，小桂马(台湾版的书常用) (*)
+
+komi 贴目 (*)
+
+komoku 小目 (*)
+
+kosumi (diagonal move) 小尖 (*)
+
+kosumi-tsuke 尖顶
+
+kozai (ko threat) 劫材 (*)
+
+kyu 级 (*)
+
+kyusho (vital point) 急所 (*)
+
+liberty 气 (*)
+
+magari (turning move) 曲 (*)
+
+magari-tsuke 拐头
+
+mane-go (mimic go) 模仿棋 (*)
+
+mannen-ko (thousand-year ko) 万年劫 (*)
+
+me (eye) 眼(*)
+
+me-gatachi (eye shape) 眼形
+
+mekura-go (blindfold go) 盲棋
+
+Meijin 名人 (*)
+
+menjo 免状，棋力证书 (*)
+
+miai 见合 (*)
+
+mokuhazushi (5-3 point) 目外(*)
+
+moyo 模样 (*)
+
+myoshu (A brilliant move) 妙手 (*)
+
+nadare (avalanche joseki) 雪崩 (*)
+
+nidan-bane (two-step hane) 连扳 (*)
+
+nigiri 猜先 (*)
+
+Nihon Ki-in日本棋院
+
+niken 二间(用于下列术语)
+
+niken-basami (two-space pincer) 二间夹(*)
+
+niken-biraki (two-space extension) 二间拆(*)
+
+niken-jimari (two-space corner enclosure) 二间守角
+
+niken-taka-basami (high two-space pincer) 二间高夹(*)
+
+niken-taka-gakari (two-space high approach) 二间高挂(*)
+
+niken-tobi (two-space jump) 二间跳(*)
+
+niren-sei 二连星(*)
+
+nobi (solid extension) 长(*)
+
+nozoki (peep) 刺(*)
+
+nurui (lukewarm, slack) 缓(*)
+
+oba (large fuseki point or extension) 大场，常用 “large point”
+
+ogeima (large-knight approach move) 大飞挂，大桂马(台湾用法)
+
+ogeima-jimari (large-knight"s corner enclosure) 大飞守角 (*)
+
+oki-go (Handicap Go) 让子棋(*)
+
+omoi (heavy) 重(*)
+
+onadare (large avalanche joseki) 大雪崩(*)
+
+osae (block) 挡 (*)
+
+oshi (pushing move) 压 (*)
+
+o-shiro go (castle game) 御城棋
+
+Paduk (韩语)围棋
+
+poka (blunder) (*) 恶手，错着(mistake)，漏着(oversight)，以上几个词义相近，
+但有程度上的差别。
+
+ponnuki 开花(*)
+
+Ranka 烂柯(围棋的别名)
+
+rengo (team go) 连棋
+
+ryo-atari (double atari) 双打(*)
+
+ryo-ko (double ko) 双劫(同时打两个劫)(*)
+
+ryo-gote (double gote) 双方后手(*)
+
+ryo-sente (double sente) 双方先手(*)
+
+sabaki (making light, flexible shape in order to save a group) 腾挪(*)
+
+sagari (a descent) 立(*)
+
+sandan-bane (triple hane) 三连扳
+
+san-ko (triple ko) 三劫 (*) 
+
+sangen 三间(用于下列术语)
+
+sangen-basami (two-space pincer) 三间夹
+
+sangen-biraki (two-space extension) 三间拆
+
+sangen-tobi (two-space jump) 三间跳
+
+san-san (the 3-3 point) 三三
+
+sanren-sei 三连星(*)
+
+saru-suberi (the monkey jump) 大飞伸腿(收官)
+
+seki 双活(*)
+
+sekito shibori (the stone-tower squeeze) 大头鬼(“石塔”)
+
+seme (attacking) 攻击(*)
+
+semeai (a capt
